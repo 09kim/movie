@@ -52,8 +52,6 @@ public class MemberDAO {
 			pstmt.setString(4, mb.getPhone());
 			insertCount = pstmt.executeUpdate();
 			
-			
-			
 		} catch (SQLException e) {
 			e.getMessage();
 		} finally {

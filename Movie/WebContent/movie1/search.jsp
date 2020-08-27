@@ -28,7 +28,6 @@ $(document).ready(function(){
 						var title = item2.title
 						var title2 = title.replace('!HS','')
 						var title3 = title2.replace('!HE','')
-						var title4 = title3.replace('/ /gi',"")
 						var title5 = title4.trim();
 						var actors="";
 						

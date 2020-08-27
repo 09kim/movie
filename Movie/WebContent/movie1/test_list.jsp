@@ -35,7 +35,7 @@
 							var title5 = title4.trim();
 							
 							var image = item2.posters.split("|")
-								
+							var keyword = item2.keywords.split(",")
 							var actors="";
 							for(var num = 3; num < 13 ; num++){
 								if(num==12){
@@ -59,7 +59,9 @@
 							for(var i in image){
 							$('#posters').append('<div style=float:left; class=image><img src='+image[i]+'></div>')
 							}
-							
+							for(var i in keyword){
+							$('#keyword').append('<div style=float:left; class=keyword>#'+keyword[i]+'&nbsp;</div>')
+							}
 							
 							
 		                  });
@@ -86,6 +88,8 @@
 	<section id="detail">
 	</section>
 	<section id="posters">
+	</section>
+	<section style=float:left; id="keyword">
 	</section>
 </body>
 </html>

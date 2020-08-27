@@ -35,7 +35,7 @@ public class MovieProAction implements Action{
 			
 		}
 		
-		
+		System.out.println(json);
 		
 		
 		JsonParser jsonParser = new JsonParser();

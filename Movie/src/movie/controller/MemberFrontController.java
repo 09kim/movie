@@ -23,7 +23,6 @@ public class MemberFrontController extends HttpServlet {
 
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
 		if (command.equals("/MovieDetail.mo")) {
 			action = new MovieProAction();
 			try {
@@ -43,7 +42,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MovieDetail1.mo")) {
+		} else if(command.equals("/MovieDetailPro.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/test_list.jsp");
 		}

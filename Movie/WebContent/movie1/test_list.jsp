@@ -25,11 +25,19 @@
 					
 					$.each(data.Data,function(idx,item){
 						
+						
 						$.each(item.Result,function(idx,item2){
+							
+							var title = item2.title
+							var title2 = title.replace('!HS','')
+							var title3 = title2.replace('!HE','')
+							var title4 = title3.replace('/ /gi',"")
+							var title5 = title4.trim();
+							
 							$('#idx').text(item2.DOCID);
 							$('#id').text(item2.movieId);
 							$('#seq').text(item2.movieSeq);
-							$('#title').text(item2.title);
+							$('#title').text(title5);
 							$('#titleEng').text(item2.titleEng);
 							$('#nation').text(item2.nation);
 							$('#plot').text(item2.plot);

@@ -10,13 +10,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$('#btn').click(function(){
-		var name = $("#na").val();
+// 	$('#btn').click(function(){
+		var query = $("#query").val();
 		$.ajax({
 			url:"MovieSearchPro.mo",
 			method:"get",
 			dataType :"json",
-			data:{name:name},
+			data:{query:query},
 			success:function(data){
 				
 				$.each(data.Data,function(idx,item){
@@ -28,7 +28,8 @@ $(document).ready(function(){
 						var title = item2.title
 						var title2 = title.replace('!HS','')
 						var title3 = title2.replace('!HE','')
-						var title5 = title4.trim();
+						var title4 = title3.replace('/ /gi',"")
+						var title5 = title3.trim();
 						var actors="";
 						
 						var image = item2.posters.split("|")
@@ -38,7 +39,7 @@ $(document).ready(function(){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 						$('#list').append('<div class=nation>'+item2.nation+'</div>')
-						$('#list').append('<div class=title><a href=MovieDetailPro.mo?query='+title5+'&movieSeq='+item2.movieSeq+'>'+title5+'</div>')
+						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title5+'>'+title5+'</div>')
 						$('#list').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#list').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#list').append('<div class=poster><img src='+image[0]+'></div>')
@@ -56,15 +57,15 @@ $(document).ready(function(){
 				
 			}
 			
-		});
+// 		});
 		
 	});
 });
 </script>
 </head>
 <body>
-	<input type="text" id="na" name="na">
-	<input type="button" id="btn" value="버튼" onclick="">
+<%String query=request.getParameter("query"); %>
+	<input type="hidden" id="query" name=query value="<%=query%>">
 	<section id="list">
 	</section>
 </body>

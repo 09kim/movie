@@ -60,7 +60,7 @@
 							$('#posters').append('<div style=float:left; class=image><img src='+image[i]+'></div>')
 							}
 							for(var i in keyword){
-							$('#keyword').append('<div style=float:left; class=keyword>#'+keyword[i]+'&nbsp;</div>')
+							$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
 							}
 							
 							

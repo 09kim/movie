@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="MovieSearch.mo">영화</a> 
+<form action="MovieSearch.mo">
+<input type="text" name="query">
+<input type="submit" value="검색">
+</form>
 <a href="MemberWriteForm.me">회원가입</a>
 </body>
 </html>

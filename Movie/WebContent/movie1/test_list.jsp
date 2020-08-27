@@ -29,21 +29,36 @@
 						$.each(item.Result,function(idx,item2){
 							
 							var title = item2.title
-							var title2 = title.replace('!HS','')
-							var title3 = title2.replace('!HE','')
-							var title4 = title3.replace('/ /gi',"")
-							var title5 = title4.trim();
+							var titleNoSpace = title.replace(/ /g, '');
+							var title2 = titleNoSpace.replace(/!HS/g,'')
+							var title3 = title2.replace(/!HE/g,'')
+							var title5 = title3.trim();
 							
 							var image = item2.posters.split("|")
 							var keyword = item2.keywords.split(",")
 							var actors="";
-							for(var num = 3; num < 13 ; num++){
-								if(num==12){
-									actors = actors + item2.staff[num].staffNm;
-								}else{
-								actors = actors + item2.staff[num].staffNm + ", ";	
-									
+							for(var num = 0; num < item2.staff.length ; num++){
+								if(item2.staff.length>11){
+									if(num==11){
+										actors = actors + item2.staff[num].staffNm;
+										break;
+									}else{
+									actors = actors + item2.staff[num].staffNm + ", ";	
+										
+									}
+					
+								}else {
+									if(num==item2.staff.length-1){
+										actors = actors + item2.staff[num].staffNm;
+										break;
+									}else{
+									actors = actors + item2.staff[num].staffNm + ", ";	
+										
+									}
 								}
+								
+								
+								
 								
 							}
 							
@@ -59,9 +74,14 @@
 							for(var i in image){
 							$('#posters').append('<div style=float:left; class=image><img src='+image[i]+'></div>')
 							}
-							for(var i in keyword){
-							$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
-							}
+								if(keyword[0]!=""){
+									
+								for(var i in keyword){
+										
+									$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
+								}
+								}
+							
 							
 							
 		                  });

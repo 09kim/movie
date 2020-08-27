@@ -26,20 +26,20 @@ $(document).ready(function(){
 					$.each(item.Result,function(idx,item2){
 						
 						var title = item2.title
-						var title2 = title.replace('!HS','')
-						var title3 = title2.replace('!HE','')
-						var title4 = title3.replace('/ /gi',"")
+						var titleNoSpace = title.replace(/ /g, '');
+						var title2 = titleNoSpace.replace(/!HS/g,'')
+						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim();
 						var actors="";
 						
 						var image = item2.posters.split("|")
-						
+						$('body').append(title)
 						
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 						$('#list').append('<div class=nation>'+item2.nation+'</div>')
-						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title5+'>'+title5+'</div>')
+						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
 						$('#list').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#list').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#list').append('<div class=poster><img src='+image[0]+'></div>')

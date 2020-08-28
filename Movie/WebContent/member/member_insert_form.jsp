@@ -28,7 +28,6 @@ $(document).ready(function(){
 			$("#certificationNum").attr("readonly",true);
 			$("#certificationBtn").attr("disabled","disabled");
 			alert("certificationNum");
-
 		} else {
 			$('#divid').html("인증번호가 틀렸습니다.")
 		}

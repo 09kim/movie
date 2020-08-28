@@ -11,6 +11,7 @@ $(document).ready(function(){
 	
 // 	$('#btn').click(function(){
 		var query = $("#query").val();
+		query = query.replace(/ /g,'');
 		$.ajax({
 			url:"MovieSearchPro.mo",
 			method:"get",

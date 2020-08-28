@@ -14,7 +14,7 @@ import movie.action.MovieProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
-public class MemberFrontController extends HttpServlet {
+public class MovieFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

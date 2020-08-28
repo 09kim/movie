@@ -45,47 +45,8 @@ public class MovieProAction implements Action{
 		
 		JsonArray ja = (JsonArray) jsonObject.get("Data"); // 이거안하면 나오는게 이상함
 		
-//		System.out.println(ja);
 		
 		
-		
-//		System.out.println(jsonObject);
-		
-//		System.out.println(ja);
-		
-		
-//		System.out.println(jsonObject);
-		
-		
-		
-//		JsonElement je = mo.getAsJsonObject();
-//		
-//		System.out.println(je);
-		
-		
-		
-		
-//		JsonElement je = mo.get();
-		
-		
-		
-//		JsonArray mo = (JsonArray) jsonObject.get("Data");
-		
-		
-//		System.out.println(inf);
-		
-		
-		
-		
-		
-		
-//		System.out.println(mo.toString());
-//		System.out.println(mo);
-		
-//		for(int i = 0; i<mo.size(); i ++) {
-//			JsonObject movieArray = (JsonObject) mo.get(i);
-//			
-//		}
 		
 		response.setContentType("application/json;charset=UTF-8");
 		// Get the printwriter object from response to write the required json object to the output stream      

@@ -66,15 +66,13 @@ public class MemberDAO {
 
 
 		try {
-			String sql = "SELECT phone FROM a where phone=?";
+			String sql = "SELECT phone FROM member where phone=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, phone);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				if (phone.equals(rs.getString("phone"))) {
-					checkResult = false;
-				} 
+				checkResult = false;
 			}
 
 		} catch (SQLException e) {

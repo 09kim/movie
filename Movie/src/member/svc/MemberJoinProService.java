@@ -25,7 +25,7 @@ public class MemberJoinProService {
 			throw new MemberInsertException("회원가입 오류");
 			
 		}
-		
+		close(con);
 		return isInsert;
 	}
 

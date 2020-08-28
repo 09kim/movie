@@ -34,7 +34,7 @@
 							var title3 = title2.replace(/!HE/g,'')
 							var title5 = title3.trim();
 							
-							var image = item2.posters.split("|")
+							var stlls = item2.stlls.split("|")
 							var keyword = item2.keywords.split(",")
 							var actors="";
 							for(var num = 0; num < item2.staff.length ; num++){
@@ -53,7 +53,6 @@
 										break;
 									}else{
 									actors = actors + item2.staff[num].staffNm + ", ";	
-										
 									}
 								}
 								
@@ -71,15 +70,16 @@
 							$('#detail').append('<div class=actors>'+actors+'</div>')
 							$('#detail').append('<div class=company>'+item2.company+'</div>')
 							$('#detail').append('<div class=plot>'+item2.plot+'</div>')
-							for(var i in image){
-							$('#posters').append('<div style=float:left; class=image><img src='+image[i]+'></div>')
+							for(var i in stlls){
+							$('#posters').append('<div style=float:left; class=image><img src='+stlls[i]+'></div>')
 							}
-								if(keyword[0]!=""){
+								if(keyword[0]!=""||keyword[keyword.length]!=""){
 									
 								for(var i in keyword){
-										
-									$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
-								}
+									
+										$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
+									}
+									
 								}
 							
 							

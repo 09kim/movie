@@ -14,7 +14,7 @@ public class MemberJoinProService {
 		
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.setCon(con);
+		dao.setConnection(con);
 		int insertCount = dao.insertMember(mb);
 		
 		if(insertCount>0) {

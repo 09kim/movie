@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import member.action.MessageAction;
 import member.action.MemberWriteProAction;
 import vo.ActionForward;
 
@@ -35,7 +36,15 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/Message.me")) {
+			action = new MessageAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

@@ -26,7 +26,7 @@ public class MemberDAO {
 
 	Connection con ;
 
-	public void setCon(Connection con) {
+	public void setConnection(Connection con) {
 		this.con = con;
 	}
 	
@@ -59,6 +59,32 @@ public class MemberDAO {
 		}
 		
 		return insertCount;
+	}
+	
+	public boolean dupCheckPhone(String phone) {
+		boolean checkResult = true;
+
+
+		try {
+			String sql = "SELECT phone FROM a where phone=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, phone);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				if (phone.equals(rs.getString("phone"))) {
+					checkResult = false;
+				} 
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("MemberDAO - dupCheckPhone() 오류!");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return checkResult;
 	}
 
 }

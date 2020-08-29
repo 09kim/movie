@@ -45,16 +45,18 @@ public class MemberDAO {
 			if (rs.next()) {
 				maxNum = rs.getInt(1) + 1;
 			}
-			sql = "INSERT INTO member VALUES(?,?,?,?,now())";
+			System.out.println(maxNum);
+			sql = "INSERT INTO member VALUES(?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, maxNum);
 			pstmt.setString(2, mb.getEmail());
 			pstmt.setString(3, mb.getPass());
-			pstmt.setString(4, mb.getPhone());
+			pstmt.setString(4, mb.getNick());
+			pstmt.setString(5, mb.getPhone());
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}

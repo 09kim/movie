@@ -11,6 +11,7 @@
 <input type="text" name="query">
 <input type="submit" value="검색">
 </form>
+<a href="GradeMovie.mo">평점</a>
 <a href="MemberLoginForm.me">로그인</a>
 <a href="MemberJoinForm.me">회원가입</a>
 </body>

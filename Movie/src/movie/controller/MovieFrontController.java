@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import movie.action.MovieActorProAction;
 import movie.action.MovieDirectorProAction;
+import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieQueryProAction;
 import vo.ActionForward;
@@ -22,6 +24,7 @@ public class MovieFrontController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
+		System.out.println(command);
 
 		Action action = null;
 		ActionForward forward = null;
@@ -56,7 +59,6 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -69,9 +71,25 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MovieSearchActorPro.mo")) {
+			action = new MovieActorProAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/GradeMoviePro.mo")) {
+			action = new MovieGradeAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/GradeMovie.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie1/movie_grade.jsp");
 		}
 
 		if (forward != null) {

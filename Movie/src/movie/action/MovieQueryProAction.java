@@ -31,6 +31,8 @@ public class MovieQueryProAction implements Action {
 		if (movieSeq !=null && query !=null) {
 			json = movie.getMovieDetail(movieSeq, query);
 		}
+		
+		System.out.println(json);
 
 //		System.out.println(json);
 

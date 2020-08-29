@@ -14,7 +14,7 @@ $(document).ready(function(){
 		$.ajax('MovieSearchDirectorPro.mo',{
 			method:"get",
 			dataType :"json",
-			data:{director:director},
+			data:{query:director},
 			success:function(data){
 				
 				$.each(data.Data,function(idx,item){

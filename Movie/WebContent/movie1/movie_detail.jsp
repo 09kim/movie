@@ -42,19 +42,18 @@
 							for(var num = 0; num < item2.staff.length ; num++){
 								if(item2.staff.length>11){
 									if(num==11){
-										actors = actors + item2.staff[num].staffNm;
 										break;
-									}else{
-									actors = actors + item2.staff[num].staffNm + ", ";	
-										
 									}
-					
-								}else {
-									if(num==item2.staff.length-1){
-										actors = actors + item2.staff[num].staffNm;
-										break;
+									if(!item2.staff[num].staffRole){
+										actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRoleGroup+"<br>";
 									}else{
-									actors = actors + item2.staff[num].staffNm + ", ";	
+									actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRole+"<br>";	
+									}
+								}else {
+									if(!item2.staff[num].staffRole){
+										actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRoleGroup+"<br>";
+									}else{
+									actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRole+"<br>";	
 									}
 								}
 								

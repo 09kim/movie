@@ -13,16 +13,16 @@ import action.Action;
 import api.kmdbApi;
 import vo.ActionForward;
 
-public class MovieDirectorProAction implements Action{
+public class MovieActorProAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String director = request.getParameter("query");
+		String actor = request.getParameter("query");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
-		if (director!=null) {
-			json = movie.getMovieDetailByDirector(director);
+		if (actor!=null) {
+			json = movie.getMovieDetailByActor(actor);
 		}
 
 		System.out.println(json);

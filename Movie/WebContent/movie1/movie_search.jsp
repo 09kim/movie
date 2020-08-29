@@ -67,6 +67,77 @@ $(document).ready(function(){
 				});
 			}
 	});
+		$.ajax('MovieSearchActorPro.mo',{
+			method:"get",
+			dataType :"json",
+			data:{query:query},
+			success:function(data){
+				
+				$.each(data.Data,function(idx,item){
+					
+					var count = item.Count
+						
+					$.each(item.Result,function(idx,item2){
+						
+						var title = item2.title
+						var titleNoSpace = title.replace(/ /g, '');
+						var title2 = titleNoSpace.replace(/!HS/g,'')
+						var title3 = title2.replace(/!HE/g,'')
+						var title5 = title3.trim();
+						var actors="";
+						
+						var image = item2.posters.split("|")
+						
+						for(var num = 0; num < item2.actor.length ; num++){
+							actors = actors + item2.actor[num].actorNm + ", ";	
+						}
+							
+						$('#actorList').append('<div class=nation>'+item2.nation+'</div>')
+						$('#actorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>')
+						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+						$('#actorList').append('<div class=poster><img src='+image[0]+'></div>')
+	                  });
+				});
+			}
+	});
+		
+		$.ajax('MovieSearchDirectorPro.mo',{
+			method:"get",
+			dataType :"json",
+			data:{query:query},
+			success:function(data){
+				
+				$.each(data.Data,function(idx,item){
+					
+					var count = item.Count
+						
+					$.each(item.Result,function(idx,item2){
+						
+						var title = item2.title
+						var titleNoSpace = title.replace(/ /g, '');
+						var title2 = titleNoSpace.replace(/!HS/g,'')
+						var title3 = title2.replace(/!HE/g,'')
+						var title5 = title3.trim();
+						var actors="";
+						
+						var image = item2.posters.split("|")
+						
+						for(var num = 0; num < item2.actor.length ; num++){
+							actors = actors + item2.actor[num].actorNm + ", ";	
+						}
+							
+						$('#directorList').append('<div class=nation>'+item2.nation+'</div>')
+						$('#directorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>')
+						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+						$('#directorList').append('<div class=poster><img src='+image[0]+'></div>')
+	                  });
+				});
+			}
+	});
 		
 });
 </script>
@@ -84,7 +155,10 @@ $(document).ready(function(){
 	
 <h1>국외영화</h1>
 	<section id="foreignList">
-	
 	</section>
+<h1>영화인 검색 결과</h1>
+	<section id="actorList"></section>
+<h1>감독 검색 결과</h1>
+	<section id="directorList"></section>
 </body>
 </html>

@@ -13,13 +13,15 @@
 			var name = $("#na").val();
 			var movieSeq = $("#movieSeq").val();
 			var query = $("#query").val();
+			var keyword = $("#keyword").val();
 			$.ajax({
 				url:"MovieDetail.mo",
 				method:"get",
 				dataType :"json",
 				data:{
 					movieSeq:movieSeq,
-					query:query
+					query:query,
+					keyword:keyword
 					},
 				success:function(data){
 					
@@ -56,9 +58,6 @@
 									}
 								}
 								
-								
-								
-								
 							}
 							
 							$('#detail').append('<div class=title>'+title5+'</div>')
@@ -67,6 +66,7 @@
 							$('#detail').append('<div class=nation>'+item2.nation+'</div>')
 							$('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+							$('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
 							$('#detail').append('<div class=actors>'+actors+'</div>')
 							$('#detail').append('<div class=company>'+item2.company+'</div>')
 							$('#detail').append('<div class=plot>'+item2.plot+'</div>')
@@ -77,7 +77,7 @@
 									
 								for(var i in keyword){
 									
-										$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearch.mo?query='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
+										$('#keyword').append('<div style=float:left; class=keyword><a href=MovieSearchKeyword.mo?keyword='+keyword[i]+'>#'+keyword[i]+'&nbsp;</div>')
 									}
 									
 								}
@@ -101,6 +101,10 @@
 </script>
 </head>
 <body>
+<form action="MovieSearch.mo">
+<input type="text" name="query">
+<input type="submit" value="검색">
+</form>
 <%String movieSeq = request.getParameter("movieSeq");
   String query = request.getParameter("query");%>
 	<input type="hidden" id="movieSeq" value="<%=movieSeq%>">

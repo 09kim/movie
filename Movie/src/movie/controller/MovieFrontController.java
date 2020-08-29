@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import movie.action.MovieProAction;
+import movie.action.MovieDirectorProAction;
+import movie.action.MovieKeywordProAction;
+import movie.action.MovieQueryProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -24,27 +26,52 @@ public class MovieFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		if (command.equals("/MovieDetail.mo")) {
-			action = new MovieProAction();
+			action = new MovieQueryProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
+		} else if (command.equals("/MovieDetailPro.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie1/movie_detail.jsp");
 		} else if (command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
-			forward.setPath("/movie1/search.jsp");
+			forward.setPath("/movie1/movie_search.jsp");
 
-		}  else if(command.equals("/MovieSearchPro.mo")) {
-			action = new MovieProAction();
+		} else if (command.equals("/MovieSearchPro.mo")) {
+			action = new MovieQueryProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MovieDetailPro.mo")) {
+		} else if (command.equals("/MovieSearchKeyword.mo")) {
 			forward = new ActionForward();
-			forward.setPath("/movie1/test_list.jsp");
+			forward.setPath("/movie1/movie_keyword_search.jsp");
+			
+		} else if (command.equals("/MovieSearchKeywordPro.mo")) {
+			action = new MovieKeywordProAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/MovieSearchDirector.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie1/movie_director_search.jsp");
+			
+		} else if (command.equals("/MovieSearchDirectorPro.mo")) {
+			action = new MovieDirectorProAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

@@ -225,7 +225,7 @@ public class MemberDAO {
 				MemberBean member = new MemberBean();
 				
 				member.setIdx(rs.getInt("idx"));
-				member.setPass(rs.getString("passwd"));
+				member.setPass(rs.getString("pass"));
 				member.setPhone(rs.getString("name"));
 				member.setNick(rs.getString("nick"));
 				member.setEmail(rs.getString("email"));

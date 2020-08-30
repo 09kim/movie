@@ -15,6 +15,7 @@ import member.action.DupCheckAction;
 import member.action.ForgetAction;
 import member.action.MemberEmailAction;
 import member.action.MemberLoginProAction;
+import member.action.MemberLogoutAction;
 import member.action.MemberJoinProAction;
 import vo.ActionForward;
 
@@ -89,6 +90,13 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/ForgetEmailChForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_emailch.jsp");
+		} else if(command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

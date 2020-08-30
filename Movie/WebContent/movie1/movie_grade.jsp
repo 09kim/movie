@@ -13,15 +13,32 @@ $(document).ready(function(){
 	$('#categoryMovie').change(function(){
 		var random = $('#categoryMovie option:selected').val();
 		if(random=='random'){
-			$.ajax("GradeMoviePro.mo"),{
-				method:"post",
-				dataType :"json",
-				success:function(data){
-					$.each(data,function(data,item){
-						$('table').append("<tr><th>"+item.title+"</th></tr>")	
-					});
-				}
-				
+		for(var i =0 ; i <11 ; i++){
+				$.ajax("GradeMoviePro.mo",{
+					method:"get",
+					dataType :"json",
+					success:function(data){
+						$.each(data.Data,function(idx,item){
+							var count = item.TotalCount;
+							var ran = parseInt(Math.random()*count);
+							$.each(item.Result,function(idx,item2){
+								var num = 0;
+								
+								var title = item2.title
+								var titleNoSpace = title.replace(/ /g, '');
+								var title2 = titleNoSpace.replace(/!HS/g,'')
+								var title3 = title2.replace(/!HE/g,'')
+								var title5 = title3.trim();
+								
+								$('#movieList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+							});
+						});
+						
+						
+					}
+					
+				});
 			}
 		}
 	});
@@ -33,5 +50,8 @@ $(document).ready(function(){
 <option >정렬기준</option>
 <option id ="random" value="random">랜덤</option>
 </select>
+
+<section id="movieList">
+</section>
 </body>
 </html>

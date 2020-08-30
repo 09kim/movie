@@ -20,33 +20,26 @@ public class MovieGradeAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MovieGradeAction");
-		int num = 0;
-		int genre = 0;
-		int startNum = 0;
+
+		Random random = new Random();
+		int rNum = random.nextInt(14);
+		StringBuffer sb = new StringBuffer();
+		String genre = sb.append("코미디/느와르/범죄/드라마/로맨스/스릴러/로맨틱/전쟁/가족/판타지/액션/SF/애니메이션/다큐멘터리/공포").toString();
+
+		String[] getGenre = genre.split("/");
+
+		System.out.println(getGenre[rNum]);
 		
-		Random rNum = new Random();
-		System.out.println("랜덤");
-		num = rNum.nextInt(26) + 1;
-		while(num== 25 && num== 26) {
-			num = rNum.nextInt(26) + 1;
-		}
-		genre = num;
+		int startCount = random.nextInt(20484)+1;
 		
-		System.out.println(genre);
-
-		startNum = rNum.nextInt(900) + 1;
-
-		System.out.println(startNum);
-
-		NaverMovieApi movie = new NaverMovieApi();
-		String json = movie.getMovie(genre, startNum);
+		
+		kmdbApi movie = new kmdbApi();
+		String json = movie.getMovieByGenre("드라마",startCount);
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
-		JsonArray arr = (JsonArray) jsonObject.get("item");
-
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(arr);
+		out.print(jsonObject);
 		out.flush();
 
 		return null;

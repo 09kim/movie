@@ -181,4 +181,38 @@ public class kmdbApi {
 		return sb.toString();
 	}
 
+	public String getMovieByGenre(String genre,int startCount) throws IOException{
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=1&startCount="+startCount+"&createDts=1990&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+		urlBuilder.append("&" + URLEncoder.encode("genre", "UTF-8") + "=" + URLEncoder.encode(genre, "UTF-8")); 
+//		urlBuilder.append(
+//				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
+//		urlBuilder
+//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8"));
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + conn.getResponseCode());
+
+		BufferedReader rd;
+		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		}
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		System.out.println(sb.toString());
+		
+		rd.close();
+		conn.disconnect();
+
+
+		return sb.toString();
+	}
+
 }

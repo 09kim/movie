@@ -19,7 +19,6 @@ $(document).ready(function(){
 				
 				$.each(data.Data,function(idx,item){
 					
-					var count = item.Count
 						
 					$.each(item.Result,function(idx,item2){
 						

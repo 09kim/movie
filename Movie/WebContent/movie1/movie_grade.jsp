@@ -44,7 +44,6 @@ $(document).ready(function(){
 					}
 					
 				});
-<<<<<<< HEAD
 			}
 		} else if(random=='sf'){
 			for(var i =0 ; i <11 ; i++){
@@ -75,9 +74,7 @@ $(document).ready(function(){
 					
 				});
 			}
-=======
 // 			}
->>>>>>> refs/remotes/origin/태윤
 		}
 	});
 });

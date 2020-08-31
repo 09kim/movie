@@ -38,7 +38,7 @@ public class MovieGradeAction implements Action {
 		
 //		int startCount = random.nextInt(28623)+1;
 		int startCount = 0;
-		
+		String genre2 = "genre";
 		switch (type) {
 		case "코메디":
 			startCount = random.nextInt(9465)+1;
@@ -72,6 +72,7 @@ public class MovieGradeAction implements Action {
 			break;
 		case "애니메이션":
 			startCount = random.nextInt(7027)+1;
+			genre2 = "type";
 			break;
 		case "인물":
 			startCount = random.nextInt(1805)+1;
@@ -82,11 +83,10 @@ public class MovieGradeAction implements Action {
 		case "범죄":
 			startCount = random.nextInt(3994)+1;
 			break;	
-		case "미스테리":
+		case "미스터리":
 			startCount = random.nextInt(1888)+1;
 			break;	
-		default:
-			break;
+		
 		}
 		
 	
@@ -94,7 +94,7 @@ public class MovieGradeAction implements Action {
 			
 		
 			kmdbApi movie = new kmdbApi();
-			String json = movie.getMovieByGenre(type,startCount);
+			String json = movie.getMovieByGenre(genre2,type,startCount);
 			JsonParser jsonParser = new JsonParser();
 			JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 			response.setContentType("application/json;charset=UTF-8");

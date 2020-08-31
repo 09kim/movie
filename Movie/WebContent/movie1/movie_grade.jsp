@@ -73,7 +73,7 @@ $(document).ready(function(){
 <option id ="animation" value="애니메이션">애니메이션</option>
 <option id ="character" value="인물">인물</option>
 <option id ="horror" value="공포">공포</option>
-<option id ="mystery" value="미스테리">미스테리</option>
+<option id ="mystery" value="미스터리">미스터리</option>
 </select>
 <section id="movieList">
 </section>

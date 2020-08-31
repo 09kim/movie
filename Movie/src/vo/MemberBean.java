@@ -8,14 +8,15 @@ public class MemberBean {
 	private String pass;
 	private String email;
 	private String phone;
-	private Date data;
+	private Date date;
 
-	public Date getData() {
-		return data;
+
+	public Date getDate() {
+		return date;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getPhone() {
@@ -58,14 +59,6 @@ public class MemberBean {
 		this.email = email;
 	}
 
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-
-	private Date regDate;
+	
 
 }

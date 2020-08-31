@@ -16,7 +16,7 @@ public class MessageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		
 		SendMessage sendMessage = new SendMessage();
-		String phone = request.getParameter("phoneNum");
+		String phone = request.getParameter("phone");
 		String cNum = request.getParameter("cNum");
 
 		System.out.println(cNum);

@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.action.MessageAction;
-import member.action.MemberWriteProAction;
+import member.action.DupCheckAction;
+import member.action.ForgetAction;
+import member.action.MemberEmailAction;
+import member.action.MemberLoginProAction;
+import member.action.MemberLogoutAction;
+import member.action.MemberJoinProAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -25,12 +30,12 @@ public class MemberFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		System.out.println(command);
-		if (command.equals("/MemberWriteForm.me")) {
+		if (command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_insert_form.jsp");
 
-		} else if (command.equals("/MemberWritePro.me")) {
-			action = new MemberWriteProAction();
+		} else if (command.equals("/MemberJoinPro.me")) {
+			action = new MemberJoinProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -42,6 +47,54 @@ public class MemberFrontController extends HttpServlet {
 				action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(command.equals("/dupNick.me")) {
+			action = new DupCheckAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Email.me")) {
+    		System.out.println("Email.me");
+    		try {
+				action = new MemberEmailAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    		
+    	} else if (command.equals("/MemberLoginForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_login.jsp");
+		} else if (command.equals("/MemberLoginPro.me")) {
+			action = new MemberLoginProAction();
+
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ForgetForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_forget.jsp");
+			
+		} else if(command.equals("/ForgetPro.me")) {
+			action = new ForgetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ForgetEmailChForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_emailch.jsp");
+		} else if(command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

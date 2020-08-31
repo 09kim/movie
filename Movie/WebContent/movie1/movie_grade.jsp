@@ -11,12 +11,13 @@ $(document).ready(function(){
 	
 	// 랜덤한 영화를 보여주는 Jqeury 문
 	$('#categoryMovie').change(function(){
-		var random = $('#categoryMovie option:selected').val();
-		if(random=='random'){
+		var type = $('#categoryMovie option:selected').val();
+// 		if(random=='random'){
 // 		for(var i =0 ; i <11 ; i++){
 				$.ajax("GradeMoviePro.mo",{
 					method:"get",
 					dataType :"json",
+					data:{type:type},
 					success:function(data){
 						
 						$.each(data.Data,function(idx,item){
@@ -45,7 +46,7 @@ $(document).ready(function(){
 					
 				});
 // 			}
-		}
+// 		}
 	});
 });
 </script>
@@ -54,6 +55,8 @@ $(document).ready(function(){
 <select id="categoryMovie">
 <option >정렬기준</option>
 <option id ="random" value="random">랜덤</option>
+<option id ="comedy" value="코메디">코메디</option>
+<option id ="nwar" value="느와르">느와르</option>
 </select>
 
 <section id="movieList">

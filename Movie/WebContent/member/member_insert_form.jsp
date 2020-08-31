@@ -36,7 +36,7 @@ $(document).ready(function(){
 	
 	$('#dupNick').click(function(){
 		var nick = $('#nick').val();		
-		$.ajax("dupNick.me",{
+		$.ajax('dupNick.me',{
 			data:{nick:nick},
 			success:function(data){
 				$('#divNick').html(data);
@@ -51,12 +51,13 @@ $(document).ready(function(){
 	// 패스워드 정규식
 	$('#pass').keyup(function() {
 			
-	if(false == reg.test(pw)) {
-			$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+		   if(false == reg.test(pw)) {
+			    $('#regPass').html('비밀번호는 8~15자이며, 숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
 				return false;
 	//			/^[가-힣a-zA-z]{3.10}$/
 			}else {
 				$('#regPass').html('사용 가능')
+// 				return false;
 			}
 		
 			if(/(\w)\1\1\1/.test(pw)) {
@@ -181,9 +182,9 @@ $(document).ready(function(){
 이메일 : <input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divemail"></div>
-패스워드 : pass <input type="password" id="pass" onkeydown=""><span id="regPass"></span>
+패스워드 : <input type="password" id="pass"><span id="regPass"></span>
 <span id="st_msg"></span><br>
- again pass <input type="password" id="againPass"><br>
+패스워드 확인 : <input type="password" id="againPass"><br>
 닉네임 : <input type="text" id="nick" name="nick" required="required"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
 <div id="divNick"></div>
 연락처 : <input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>

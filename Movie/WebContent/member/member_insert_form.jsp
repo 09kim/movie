@@ -47,7 +47,7 @@ $(document).ready(function(){
 연락처 : <input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>
 			<input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증">
 	 
-<div id="divid">d</div>
+<div id="divid"></div>
 <input type="submit" value="가입">
 </form>
 </body>

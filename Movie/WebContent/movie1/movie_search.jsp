@@ -109,6 +109,7 @@ $(document).ready(function(){
 			method:"get",
 			dataType :"json",
 			data:{query:query},
+			async:false,
 			success:function(data){
 				
 				$.each(data.Data,function(idx,item){

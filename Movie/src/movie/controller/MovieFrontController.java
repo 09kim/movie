@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import movie.action.MovieActorProAction;
+import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
@@ -53,7 +54,7 @@ public class MovieFrontController extends HttpServlet {
 		} else if (command.equals("/MovieSearchKeyword.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_keyword_search.jsp");
-			
+
 		} else if (command.equals("/MovieSearchKeywordPro.mo")) {
 			action = new MovieKeywordProAction();
 			try {
@@ -65,7 +66,7 @@ public class MovieFrontController extends HttpServlet {
 		} else if (command.equals("/MovieSearchDirector.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_director_search.jsp");
-			
+
 		} else if (command.equals("/MovieSearchDirectorPro.mo")) {
 			action = new MovieDirectorProAction();
 			try {
@@ -90,7 +91,19 @@ public class MovieFrontController extends HttpServlet {
 		} else if (command.equals("/GradeMovie.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_grade.jsp");
+		} else if (command.equals("/MovieDirector.mo")) {
+			action = new MovieDirectorAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+//		else if (command.equals("/MovieDirector.mo")) {
+//			forward = new ActionForward();
+//			forward.setPath("/movie1/movie_detail_director.jsp");
+//		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

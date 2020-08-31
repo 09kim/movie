@@ -206,7 +206,8 @@ public class kmdbApi {
 		while ((line = rd.readLine()) != null) {
 			sb.append(line + "\n");
 		}
-		System.out.println(sb.toString());
+		
+		System.out.println(sb.toString() + "THIS");
 		
 		rd.close();
 		conn.disconnect();

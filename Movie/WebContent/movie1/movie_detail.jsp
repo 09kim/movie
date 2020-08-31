@@ -8,7 +8,7 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		// 영화의 디테일한 내용을 담당하는 Jquery 문
 // 		$('#btn').click(function(){
 			var name = $("#na").val();
 			var movieSeq = $("#movieSeq").val();

@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	
+	// 랜덤한 영화를 보여주는 Jqeury 문
 	$('#categoryMovie').change(function(){
 		var random = $('#categoryMovie option:selected').val();
 		if(random=='random'){

@@ -192,7 +192,7 @@ public class MemberDAO {
 				member.setPhone(rs.getString("name"));
 				member.setNick(rs.getString("nick"));
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}
@@ -229,7 +229,7 @@ public class MemberDAO {
 				member.setPhone(rs.getString("name"));
 				member.setNick(rs.getString("nick"));
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}

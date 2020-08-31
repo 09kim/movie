@@ -187,12 +187,12 @@ public class MemberDAO {
 			while(rs.next()) {
 				MemberBean member = new MemberBean();
 				
-				member.setIdx(rs.getInt("idx"));
-				member.setPass(rs.getString("passwd"));
-				member.setPhone(rs.getString("name"));
-				member.setNick(rs.getString("nick"));
+				member.setIdx(rs.getInt("idx")); 
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setPass(rs.getString("pass"));
+				member.setNick(rs.getString("nick"));
+				member.setPhone(rs.getString("phone"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}
@@ -224,12 +224,12 @@ public class MemberDAO {
 				System.out.println(rs.getInt("idx"));
 				MemberBean member = new MemberBean();
 				
-				member.setIdx(rs.getInt("idx"));
-				member.setPass(rs.getString("pass"));
-				member.setPhone(rs.getString("name"));
-				member.setNick(rs.getString("nick"));
+				member.setIdx(rs.getInt("idx")); 
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setPass(rs.getString("pass"));
+				member.setNick(rs.getString("nick"));
+				member.setPhone(rs.getString("phone"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}

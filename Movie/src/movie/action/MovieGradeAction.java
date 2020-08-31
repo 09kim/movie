@@ -46,11 +46,50 @@ public class MovieGradeAction implements Action {
 		case "느와르":
 			startCount = random.nextInt(106)+1;
 			break;
+		case "드라마":
+			startCount = random.nextInt(28523)+1;
+			break;
+		case "로맨스":
+			startCount = random.nextInt(1142)+1;
+			break;
+		case "스릴러":
+			startCount = random.nextInt(6024)+1;
+			break;
+		case "전쟁":
+			startCount = random.nextInt(1571)+1;
+			break;
+		case "가족":
+			startCount = random.nextInt(3001)+1;
+			break;	
+		case "판타지":
+			startCount = random.nextInt(2962)+1;
+			break;
+		case "액션":
+			startCount = random.nextInt(9191)+1;
+			break;
+		case "SF":
+			startCount = random.nextInt(2572)+1;
+			break;
+		case "애니메이션":
+			startCount = random.nextInt(7027)+1;
+			break;
+		case "인물":
+			startCount = random.nextInt(1805)+1;
+			break;
+		case "공포":
+			startCount = random.nextInt(3464)+1;
+			break;	
+		case "범죄":
+			startCount = random.nextInt(3994)+1;
+			break;	
+		case "미스테리":
+			startCount = random.nextInt(1888)+1;
+			break;	
 		default:
 			break;
 		}
 		
-
+	
 //		System.out.println(getGenre[rNum]); // 랜덤인덱스 접근
 			
 		

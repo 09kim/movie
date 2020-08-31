@@ -8,7 +8,7 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		// 영화의 디테일한 내용을 담당하는 Jquery 문
 // 		$('#btn').click(function(){
 			var name = $("#na").val();
 			var movieSeq = $("#movieSeq").val();
@@ -65,6 +65,7 @@
 							$('#detail').append('<div class=nation>'+item2.nation+'</div>')
 							$('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+							$('#detail').append('<div class=runtime>'+item2.genre+'</div>')
 							$('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
 							$('#detail').append("<input type='hidden' id ='directorName' value="+ item2.director[0].directorNm+ ">")
 							$('#detail').append('<div class=actors>'+actors+'</div>')

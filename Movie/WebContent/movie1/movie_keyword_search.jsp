@@ -8,9 +8,9 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	// 영화 디테일 내에서 키워드 클릭시 키워드만 검색 시켜주는 기능
 		var keyword = $("#keyword").val();
-		keyword = keyword.replace(/ /g,'');
+		keyword = keyword.replace(/ /g,''); // 키워드 공백 제거 하는 정규식
 		$.ajax('MovieSearchKeywordPro.mo',{
 			method:"get",
 			dataType :"json",

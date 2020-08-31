@@ -10,12 +10,13 @@ public class MemberBean {
 	private String phone;
 	private Date date;
 
+
 	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Date data) {
-		this.date = data;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getPhone() {

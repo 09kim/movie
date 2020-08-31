@@ -8,7 +8,7 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	// 감독 검색기능의 Jquery 디테일에서 감독 이름 클릭시 결과가 나옴
 		var director = $("#director").val();
 		director = director.replace(/ /g,'');
 		$.ajax('MovieSearchDirectorPro.mo',{

@@ -19,7 +19,6 @@ public class MovieKeywordProAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String keyword = request.getParameter("keyword");
 		System.out.println(keyword);
-		System.out.println("hi2");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		

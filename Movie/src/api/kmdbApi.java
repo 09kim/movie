@@ -183,7 +183,7 @@ public class kmdbApi {
 
 	public String getMovieByGenre(String genre,int startCount) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=1&startCount="+startCount+"&createDts=1990&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&startCount="+startCount+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("genre", "UTF-8") + "=" + URLEncoder.encode(genre, "UTF-8")); 
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
@@ -211,7 +211,7 @@ public class kmdbApi {
 		
 		rd.close();
 		conn.disconnect();
-
+	
 
 		return sb.toString();
 	}

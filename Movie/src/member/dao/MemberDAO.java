@@ -189,9 +189,11 @@ public class MemberDAO {
 				
 				member.setIdx(rs.getInt("idx")); 
 				member.setEmail(rs.getString("email"));
+
 				member.setPass(rs.getString("pass"));
 				member.setNick(rs.getString("nick"));
 				member.setPhone(rs.getString("phone"));
+
 				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
@@ -229,6 +231,7 @@ public class MemberDAO {
 				member.setPass(rs.getString("pass"));
 				member.setNick(rs.getString("nick"));
 				member.setPhone(rs.getString("phone"));
+
 				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);

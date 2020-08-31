@@ -65,6 +65,7 @@
 							$('#detail').append('<div class=nation>'+item2.nation+'</div>')
 							$('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+							$('#detail').append('<div class=runtime>'+item2.genre+'</div>')
 							$('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
 							$('#detail').append('<div class=actors>'+actors+'</div>')
 							$('#detail').append('<div class=company>'+item2.company+'</div>')

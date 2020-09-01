@@ -99,6 +99,9 @@ public class MovieFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if (command.equals("/MovieCss.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/moviecss/movie.css");
 		}
 //		else if (command.equals("/MovieDirector.mo")) {
 //			forward = new ActionForward();

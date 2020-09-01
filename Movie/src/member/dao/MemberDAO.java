@@ -45,16 +45,18 @@ public class MemberDAO {
 			if (rs.next()) {
 				maxNum = rs.getInt(1) + 1;
 			}
-			sql = "INSERT INTO member VALUES(?,?,?,?,now())";
+			System.out.println(maxNum);
+			sql = "INSERT INTO member VALUES(?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, maxNum);
 			pstmt.setString(2, mb.getEmail());
 			pstmt.setString(3, mb.getPass());
-			pstmt.setString(4, mb.getPhone());
+			pstmt.setString(4, mb.getNick());
+			pstmt.setString(5, mb.getPhone());
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -190,7 +192,7 @@ public class MemberDAO {
 				member.setPhone(rs.getString("name"));
 				member.setNick(rs.getString("nick"));
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}
@@ -223,11 +225,11 @@ public class MemberDAO {
 				MemberBean member = new MemberBean();
 				
 				member.setIdx(rs.getInt("idx"));
-				member.setPass(rs.getString("passwd"));
+				member.setPass(rs.getString("pass"));
 				member.setPhone(rs.getString("name"));
 				member.setNick(rs.getString("nick"));
 				member.setEmail(rs.getString("email"));
-				member.setRegDate(rs.getDate("regdate"));
+				member.setDate(rs.getDate("date"));
 				
 				memberList.add(member);
 			}

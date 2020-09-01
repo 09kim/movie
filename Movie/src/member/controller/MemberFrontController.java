@@ -15,7 +15,8 @@ import member.action.DupCheckAction;
 import member.action.ForgetAction;
 import member.action.MemberEmailAction;
 import member.action.MemberLoginProAction;
-import member.action.MemberWriteProAction;
+import member.action.MemberLogoutAction;
+import member.action.MemberJoinProAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -34,7 +35,7 @@ public class MemberFrontController extends HttpServlet {
 			forward.setPath("/member/member_insert_form.jsp");
 
 		} else if (command.equals("/MemberJoinPro.me")) {
-			action = new MemberWriteProAction();
+			action = new MemberJoinProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -78,6 +79,7 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/ForgetForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_forget.jsp");
+			
 		} else if(command.equals("/ForgetPro.me")) {
 			action = new ForgetAction();
 			try {
@@ -88,6 +90,13 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/ForgetEmailChForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_emailch.jsp");
+		} else if(command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

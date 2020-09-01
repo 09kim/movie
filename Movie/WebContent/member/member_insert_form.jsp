@@ -11,9 +11,10 @@ $(document).ready(function(){
 	
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
-		var phone = $("#phoneNum").val();
+		var phone = $("#phone").val();
+		alert(phone)
 		$.ajax('Message.me',{
-			data:{phoneNum:phone},
+			data:{phone:phone},
 			success:function(rdata){
 				$('#divPhone').html(rdata);
 				$("#phoneNumBtn").attr("disabled","disabled");
@@ -25,7 +26,7 @@ $(document).ready(function(){
 		var cNum = $("#certificationNum").val();
 		if(cNum==$('#hiddenCnum').val()){
 			$('#divid').html("인증되셨습니다.");
-			$("#phoneNum").attr("readonly",true);
+			$("#phone").attr("readonly",true);
 			$("#certificationNum").attr("readonly",true);
 			$("#certificationBtn").attr("disabled","disabled");
 			alert("certificationNum");
@@ -46,7 +47,12 @@ $(document).ready(function(){
 	
 	var pw = $('#pass').val(); 
 // 	var reg = /^[a-zA-Z0-9!@]{8,15}$/;
-	var reg = /^(?=.*?^[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@]).{8,15}$/;
+//     var regLow = 
+//     var regUper =
+//     var regNum
+//     var reg
+    
+    var reg = /^(?=.*?^[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@]).{8,15}$/;
 	
 	// 패스워드 정규식
 	$('#pass').keyup(function() {
@@ -177,8 +183,8 @@ $(document).ready(function(){
 
 
 
-
-<form action="MemberJoinPro.me">
+<!-- 0829 이메일 인증번호 체크 구현해야함 -->
+<form action="MemberJoinPro.me" method="get">
 이메일 : <input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divemail"></div>
@@ -187,10 +193,9 @@ $(document).ready(function(){
 패스워드 확인 : <input type="password" id="againPass"><br>
 닉네임 : <input type="text" id="nick" name="nick" required="required"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
 <div id="divNick"></div>
-연락처 : <input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>
+연락처 : <input type="text" id="phone" name="phone">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>
 <input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증">
 <div id="divPhone"></div>
-
 
 <input type="submit" value="가입">
 </form>

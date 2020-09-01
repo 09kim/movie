@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		String email = request.getParameter("email");
-		out.println(email);
-	%>
 	<form action="ForgetPro.me" method="POST">
 		<h2>비밀번호 찾기</h2>
 		<hr>

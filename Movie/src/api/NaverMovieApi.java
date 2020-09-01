@@ -1,4 +1,4 @@
-package movie.action;
+package api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
-public class movie {
+public class NaverMovieApi {
 
     public String getMovie(String name) throws ParseException {
         String clientId = "CFlg96SBfMW7EbxDq0Hc"; //애플리케이션 클라이언트 아이디값"
@@ -27,7 +27,7 @@ public class movie {
             throw new RuntimeException("검색어 인코딩 실패",e);
         }
 
-        String apiURL = "https://openapi.naver.com/v1/search/movie.json?query="+text;    // json 결과
+        String apiURL = "https://openapi.naver.com/v1/search/movie.json?genre="+1;    // json 결과
         //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
 
         Map<String, String> requestHeaders = new HashMap<>();
@@ -92,6 +92,30 @@ public class movie {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
+
+	public String getMovie(int genre, int startNum) {
+		String clientId = "CFlg96SBfMW7EbxDq0Hc"; //애플리케이션 클라이언트 아이디값"
+        String clientSecret = "qA42rUyceE"; //애플리케이션 클라이언트 시크릿값"
+        String text = "";
+        try {
+            text = URLEncoder.encode(text, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("검색어 인코딩 실패",e);
+        }
+
+        String apiURL = "https://openapi.naver.com/v1/search/movie.json?query="+text+"&genre="+genre+"&start="+startNum+
+        		"&display=100";    // json 결과
+        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
+
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        String responseBody = get(apiURL,requestHeaders);
+        System.out.println(responseBody);
+        
+        
+        return responseBody;
+	}
 }
 
 

@@ -43,10 +43,11 @@ public class MemberLoginProAction implements Action {
 				out.println("</script>");
 			}else {
 				
-				HttpSession session = request.getSession();
 				forward = new ActionForward();
 				forward.setRedirect(true);
 				forward.setPath("./");
+				HttpSession session = request.getSession();
+				session.setAttribute("email", member.getEmail());
 			}
 			
 		return forward;

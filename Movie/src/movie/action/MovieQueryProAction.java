@@ -22,6 +22,7 @@ public class MovieQueryProAction implements Action {
 		String query = request.getParameter("query");
 		
 		
+		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 

@@ -65,7 +65,9 @@
 							$('#detail').append('<div class=nation>'+item2.nation+'</div>')
 							$('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+							$('#detail').append('<div class=runtime>'+item2.genre+'</div>')
 							$('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
+							$('#detail').append("<input type='hidden' id ='directorName' value="+ item2.director[0].directorNm+ ">")
 							$('#detail').append('<div class=actors>'+actors+'</div>')
 							$('#detail').append('<div class=company>'+item2.company+'</div>')
 							$('#detail').append('<div class=plot>'+item2.plot+'</div>')
@@ -80,22 +82,63 @@
 									}
 									
 								}
-							
-							
-							
+
 		                  });
-						
-						
-						
-						
+
 					});
-					
-					
+
 				}
 				
 			});
 			
-// 		});
+			
+			
+			$('#directorMovies').click(function(){
+				
+				var director = $("#directorName").val();
+				director = director.replace(/ /g,'');
+				$.ajax('MovieDirector.mo',{
+					method:"get",
+					dataType :"json",
+					data:{query:director},
+					success:function(data){
+						
+						
+						
+						$.each(data.Data,function(idx,item){
+							
+							var count = item.Count
+								
+							$.each(item.Result,function(idx,item2){
+								
+								var title = item2.title
+								var titleNoSpace = title.replace(/ /g, '');
+								var title2 = titleNoSpace.replace(/!HS/g,'')
+								var title3 = title2.replace(/!HE/g,'')
+								var title5 = title3.trim();
+								var actors="";
+								
+								var image = item2.posters.split("|")
+								
+								for(var num = 0; num < item2.actor.length ; num++){
+									actors = actors + item2.actor[num].actorNm + ", ";	
+								}
+									
+								$('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+								$('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+								$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+								$('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+			                  });
+						});
+					}
+			});
+				
+			});
+			
+			
+			
 	});
 </script>
 </head>
@@ -113,6 +156,17 @@
 	<section id="posters">
 	</section>
 	<section style=float:left; id="keyword">
+	</section>
+	<br><br><br><br><br><br>
+	<%String director=request.getParameter("director"); %>
+	<input type="hidden" id="director" name=director value="<%=director%>">
+	<section>
+		<input type="button" id="directorMovies" value="이 감독의 다른 영화">
+		<br>
+		<div id="subInfo">d</div>
+		
+	<section id="list">
+	</section>
 	</section>
 </body>
 </html>

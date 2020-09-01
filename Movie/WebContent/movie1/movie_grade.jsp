@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link href="MovieCss.mo" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -13,8 +14,6 @@ $(document).ready(function(){
 	$('#categoryMovie').change(function(){
 		var type = $('#categoryMovie option:selected').val();
 		$("#movieList").empty();
-// 		if(random=='random'){
-// 		for(var i =0 ; i <11 ; i++){
 				$.ajax("GradeMoviePro.mo",{
 					method:"get",
 					dataType :"json",
@@ -36,9 +35,38 @@ $(document).ready(function(){
 								if(image[0]){
 								$('#movieList').append('<div class=poster><img src='+image[0]+'></div><div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
 										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								$('#movieList').append('<span class=star-input> <span class=input>'+
+									    '<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
+									    +'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
+									   +' <input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
+									   +' <input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
+									   +'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
+									   +'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
+									   +' <input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
+									   +' <input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
+									   +' <input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
+									   +' <input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
+									   +' </span></span>'
+									   +' <a href=>별점등록</a>');
+									   
+								
 								}else {
 								$('#movieList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div><div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
 										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								$('#movieList').append('<span class=star-input> <span class=input>'+
+									    '<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
+									    +'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
+									   +' <input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
+									   +' <input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
+									   +'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
+									   +'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
+									   +' <input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
+									   +' <input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
+									   +' <input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
+									   +' <input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
+									   +' </span></span>'
+									   +' <a href=>별점등록</a>');
+											   
 								}
 							});
 						
@@ -47,13 +75,55 @@ $(document).ready(function(){
 					}
 					
 				});
-// 			}
-// 		}
 	});
+	
+	var starRating = function(){
+        var $star = $(".star-input"),
+            $result = $star.find("output>b");
+        $(document)
+          .on("focusin", ".star-input>.input", function(){
+          $(this).addClass("focus");
+        })
+          .on("focusout", ".star-input>.input", function(){
+          var $this = $(this);
+          setTimeout(function(){
+            if($this.find(":focus").length === 0){
+              $this.removeClass("focus");
+            }
+          }, 100);
+        })
+          .on("change", ".star-input :radio", function(){
+          $result.text($(this).next().text());
+        })
+          .on("mouseover", ".star-input label", function(){
+          $result.text($(this).text());
+        })
+          .on("mouseleave", ".star-input>.input", function(){
+          var $checked = $star.find(":checked");
+          if($checked.length === 0){
+            $result.text("0");
+          } else {
+            $result.text($checked.next().text());
+          }
+        });
+      };
+      starRating();
+      
+      
+      $('#starRating').submit(function(){
+          if($(".star-input>output").val() =="0점"){
+            alert('점수는 최소 1점이상 입력하셔야 합니다.');
+            return false;
+          } else {
+            alert($(".star-input>output").val())
+            return true;
+          }
+      });
 });
 </script>
 </head>
 <body>
+
 <select id="categoryMovie">
 <option >정렬기준</option>
 <option id ="random" value="random">랜덤</option>
@@ -75,7 +145,8 @@ $(document).ready(function(){
 <option id ="horror" value="공포">공포</option>
 <option id ="mystery" value="미스터리">미스터리</option>
 </select>
-<section id="movieList">
-</section>
+<div id="movieList">
+</div>
+
 </body>
 </html>

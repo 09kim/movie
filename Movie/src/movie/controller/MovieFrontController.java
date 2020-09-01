@@ -16,6 +16,7 @@ import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieQueryProAction;
+import movie.action.setGradeProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -102,6 +103,13 @@ public class MovieFrontController extends HttpServlet {
 		}else if (command.equals("/MovieCss.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/moviecss/movie.css");
+		}else if (command.equals("/setGrade.mo")) {
+			action = new setGradeProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 //		else if (command.equals("/MovieDirector.mo")) {
 //			forward = new ActionForward();

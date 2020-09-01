@@ -41,8 +41,8 @@
     left: 0;
 }
 .star-input>.input>label:hover,
-.star-input>.input>input:focus+label,
-.star-input>.input>input:checked+label{
+.star-input>.input>*:focus+label,
+.star-input>.input>*:checked+label{
     background-size: 100px;
     background-position: 0 bottom;
 }
@@ -97,9 +97,6 @@
 .star-input>output>b{
     font:bold 18px Helvetica, Arial, sans-serif;
     vertical-align: middle;
-}
-#thisMovie>*{
-	float:left;
 }
 
 

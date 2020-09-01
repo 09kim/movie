@@ -35,7 +35,6 @@
 							var title2 = titleNoSpace.replace(/!HS/g,'')
 							var title3 = title2.replace(/!HE/g,'')
 							var title5 = title3.trim();
-							
 							var stlls = item2.stlls.split("|")
 							var keyword = item2.keywords.split(",")
 							var actors="";
@@ -60,6 +59,8 @@
 							}
 							
 							$('#detail').append('<div class=title>'+title5+'</div>')
+							$('#detail').append("<input type='hidden' id ='movieSeq' value="+ item2.movieSeq+ ">")
+							$('#detail').append("<input type='hidden' id ='movieName' value="+ title5+ ">")
 							$('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
 							$('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
 							$('#detail').append('<div class=nation>'+item2.nation+'</div>')
@@ -91,8 +92,6 @@
 				
 			});
 			
-			
-			
 			$('#directorMovies').click(function(){
 				
 				var director = $("#directorName").val();
@@ -120,9 +119,6 @@
 								
 								var image = item2.posters.split("|")
 								
-								for(var num = 0; num < item2.actor.length ; num++){
-									actors = actors + item2.actor[num].actorNm + ", ";	
-								}
 									
 								$('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
 								$('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
@@ -130,6 +126,50 @@
 								$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
 								$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 								$('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+			                  });
+						});
+					}
+			});
+				
+			});
+			
+$('#actorRole').click(function(){
+				
+	
+	
+				var movieSeq = $("#movieSeq").val();
+				movieSeq = movieSeq.replace(/ /g,'');
+				$.ajax('MovieActorRole.mo',{
+					method:"get",
+					dataType :"json",
+					data:{query:movieSeq},
+					success:function(data){
+						$.each(data.Data,function(idx,item){
+							$.each(item.Result,function(idx,item2){
+								
+								var actors="";
+								for(var num = 0; num < item2.staff.length ; num++){
+									if(item2.staff.length>11){
+										if(num==11){
+											break;
+										}
+										if(!item2.staff[num].staffRole){
+											actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRoleGroup+"<br>";
+										}else{
+										actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRole+"<br>";	
+										}
+									}else {
+										if(!item2.staff[num].staffRole){
+											actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRoleGroup+"<br>";
+										}else{
+										actors = actors + item2.staff[num].staffNm + " : "+ item2.staff[num].staffRole+"<br>";	
+										}
+									}
+									$('#detail').append('<div class=actors>'+actors+'</div>')
+								}
+								
+								$(location).attr('href','movie1/movie_detail_staff.jsp?movieSeq=' + movieSeq);
+							
 			                  });
 						});
 					}
@@ -158,12 +198,14 @@
 	<section style=float:left; id="keyword">
 	</section>
 	<br><br><br><br><br><br>
-	<%String director=request.getParameter("director"); %>
-	<input type="hidden" id="director" name=director value="<%=director%>">
 	<section>
 		<input type="button" id="directorMovies" value="이 감독의 다른 영화">
 		<br>
-		<div id="subInfo">d</div>
+		<div id="subInfo"></div>
+		
+		<input type="button" id="actorRole" value="영화 배역" >
+		<br>
+		<div id="actorRoleInfo"></div>
 		
 	<section id="list">
 	</section>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import movie.action.MovieActorProAction;
+import movie.action.MovieActorRoleAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
@@ -93,6 +94,14 @@ public class MovieFrontController extends HttpServlet {
 			forward.setPath("/movie1/movie_grade.jsp");
 		} else if (command.equals("/MovieDirector.mo")) {
 			action = new MovieDirectorAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MovieActorRole.mo")) {
+			action = new MovieActorRoleAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

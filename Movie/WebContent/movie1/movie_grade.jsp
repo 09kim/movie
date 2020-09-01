@@ -40,37 +40,77 @@ $(document).ready(function(){
 								+'<a class="link"></a>'
 // 								+'</div>'
 								+'<span class=star-input>' 
-								+'<span class=input>'
-								+'<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
-								+'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
-								+'<input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
-								+'<input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
-								+'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
-								+'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
-								+'<input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
-								+'<input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
-								+'<input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
-								+'<input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
-								+'</span>'
-								+'</span>'
-								+'<a class="star" href=>별점등록</a>'
+								+'<span class=input>'+
+								'<input class=p1><label class=l1>1</lable>'+
+								'<input class=p2><label class=l2>2</lable>'+
+								'<input class=p3><label class=l3>3</lable>'+
+								'<input class=p4><label class=l4>4</lable>'+
+								'<input class=p5><label class=l5>5</lable>'+
+								'<input class=p6><label class=l6>6</lable>'+
+								'<input class=p7><label class=l7>7</lable>'+
+								'<input class=p8><label class=l8>8</lable>'+
+								'<input class=p9><label class=l9>9</lable>'+
+								'<input class=p10><label class=l10>10</lable>'+
+								'</span>'+
+								'</span>'+
+								'<a class="star" href=>별점등록</a>'
 								+'</div>');
 								
 // 								$('.poster_img:eq(idx)').attr("src="+image[idx]);
+									$('.link').eq(idx).text(title);
+									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+											+item2.movieSeq+'&query='+title5);
+									
 								if(image[0]){
 									
-									$('.link').eq(idx).text(title);
-									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-											+item2.movieSeq+'&query='+title5);
 									$('.poster_img').eq(idx).attr("src",image[0]);
+									
 								}else{
-									$('.link').eq(idx).text(title);
-									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-											+item2.movieSeq+'&query='+title5);
+// 									$('.link').eq(idx).text(title);
+// 									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+// 											+item2.movieSeq+'&query='+title5);
 									$('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
 								}
+								for(var i = 1; i<11 ; i++){
+									$('.p'+i).eq(idx).attr("type","radio");
+									$('.p'+i).eq(idx).attr("value",i);
+									$('.l'+i).eq(idx).attr('for','p'+i);
+									$('.p'+i).eq(idx).attr("name","star-input"+idx);
+									$('.p'+i).eq(idx).attr("id","star"+idx);
+								}
+// 									
 								
-								
+								var starRating = function(){
+							        var $star = $(".star-input"),
+							            $result = $star.find("output>b");
+							        $(document)
+							          .on("focusin", ".star-input>.input", function(){
+							          $(this).addClass("focus");
+							        })
+							          .on("focusout", ".star-input>.input", function(){
+							          var $this = $(this);
+							          setTimeout(function(){
+							            if($this.find(":focus").length === 0){
+							              $this.removeClass("focus");
+							            }
+							          }, 100);
+							        })
+							          .on("change", ".star-input :radio", function(){
+							          $result.text($(this).next().text());
+							        })
+							          .on("mouseover", ".star-input label", function(){
+							          $result.text($(this).text());
+							        })
+							          .on("mouseleave", ".star-input>.input", function(){
+							          var $checked = $star.find(":checked");
+							          if($checked.length === 0){
+							            $result.text("0");
+							          } else {
+							            $result.text($checked.next().text());
+							          }
+							        });
+							      };
+							      starRating();
 								
 								
 								
@@ -84,37 +124,7 @@ $(document).ready(function(){
 				});
 	});
 	
-	var starRating = function(){
-        var $star = $(".star-input"),
-            $result = $star.find("output>b");
-        $(document)
-          .on("focusin", ".star-input>.input", function(){
-          $(this).addClass("focus");
-        })
-          .on("focusout", ".star-input>.input", function(){
-          var $this = $(this);
-          setTimeout(function(){
-            if($this.find(":focus").length === 0){
-              $this.removeClass("focus");
-            }
-          }, 100);
-        })
-          .on("change", ".star-input :radio", function(){
-          $result.text($(this).next().text());
-        })
-          .on("mouseover", ".star-input label", function(){
-          $result.text($(this).text());
-        })
-          .on("mouseleave", ".star-input>.input", function(){
-          var $checked = $star.find(":checked");
-          if($checked.length === 0){
-            $result.text("0");
-          } else {
-            $result.text($checked.next().text());
-          }
-        });
-      };
-      starRating();
+	
       
       
       $('#starRating').submit(function(){
@@ -154,7 +164,24 @@ $(document).ready(function(){
 </select>
 
 <div class="movieList"></div>
-
+<form action="StarRating.me" method="get" name="starRating" id="starRating">
+<span class="star-input">
+  <span class="input">
+    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
+    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
+    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
+    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
+    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+  </span>
+  <output for="star-input"><b>0</b>점</output>
+</span>
+<input type="submit" value="별점 등록하기">
+</form>
 
 </body>
 </html>

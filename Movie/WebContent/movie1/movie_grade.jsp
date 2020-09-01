@@ -32,42 +32,49 @@ $(document).ready(function(){
 								var title3 = title2.replace(/!HE/g,'')
 								var title5 = title3.trim();
 								
-								if(image[0]){
-								$('#movieList').append('<div class=poster><img src='+image[0]+'></div><div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-								$('#movieList').append('<span class=star-input> <span class=input>'+
-									    '<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
-									    +'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
-									   +' <input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
-									   +' <input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
-									   +'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
-									   +'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
-									   +' <input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
-									   +' <input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
-									   +' <input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
-									   +' <input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
-									   +' </span></span>'
-									   +' <a href=>별점등록</a>');
-									   
+								$('.movieList').append('<div class=thisMovie>'
+								+'<div class=poster>'
+								+'<img class="poster_img">'
+								+'</div>'
+// 								+'<div class=title>'
+								+'<a class="link"></a>'
+// 								+'</div>'
+								+'<span class=star-input>' 
+								+'<span class=input>'
+								+'<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
+								+'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
+								+'<input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
+								+'<input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
+								+'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
+								+'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
+								+'<input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
+								+'<input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
+								+'<input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
+								+'<input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
+								+'</span>'
+								+'</span>'
+								+'<a class="star" href=>별점등록</a>'
+								+'</div>');
 								
-								}else {
-								$('#movieList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div><div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-								$('#movieList').append('<span class=star-input> <span class=input>'+
-									    '<input type=radio name=star-input id=p1 value=1><label for=p1>1</label>'
-									    +'<input type=radio name=star-input id=p2 value=2><label for=p2>2</label>'
-									   +' <input type=radio name=star-input id=p3 value=3><label for=p3>3</label>'
-									   +' <input type=radio name=star-input id=p4 value=4><label for=p4>4</label>'
-									   +'<input type=radio name=star-input id=p5 value=5><label for=p5>5</label>'
-									   +'<input type=radio name=star-input id=p6 value=6><label for=p6>6</label>'
-									   +' <input type=radio name=star-input id=p7 value=7><label for=p7>7</label>'
-									   +' <input type=radio name=star-input id=p8 value=8><label for=p8>8</label>'
-									   +' <input type=radio name=star-input id=p9 value=9><label for=p9>9</label>'
-									   +' <input type=radio name=star-input id=p10 value=10><label for=p10>10</label>'
-									   +' </span></span>'
-									   +' <a href=>별점등록</a>');
-											   
+// 								$('.poster_img:eq(idx)').attr("src="+image[idx]);
+								if(image[0]){
+									
+									$('.link').eq(idx).text(title);
+									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+											+item2.movieSeq+'&query='+title5);
+									$('.poster_img').eq(idx).attr("src",image[0]);
+								}else{
+									$('.link').eq(idx).text(title);
+									$('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+											+item2.movieSeq+'&query='+title5);
+									$('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
 								}
+								
+								
+								
+								
+								
+								
 							});
 						
 						});
@@ -145,8 +152,9 @@ $(document).ready(function(){
 <option id ="horror" value="공포">공포</option>
 <option id ="mystery" value="미스터리">미스터리</option>
 </select>
-<div id="movieList">
-</div>
+
+<div class="movieList"></div>
+
 
 </body>
 </html>

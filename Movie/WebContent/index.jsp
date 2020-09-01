@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 <form action="MovieSearch.mo">
@@ -18,11 +18,8 @@
 <%} else if(session.getAttribute("email").equals("admin")){%>
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>
-<<<<<<< HEAD
 <a href="MemberList.me">회원관리</a>
-=======
 <a href="">회원관리</a>
->>>>>>> refs/remotes/origin/태윤
 <%} else{ %>
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>

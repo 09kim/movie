@@ -16,7 +16,7 @@
 			var keyword = $("#keyword").val();
 			$.ajax({
 				url:"MovieDetail.mo",
-				method:"get",
+				method:"post",
 				dataType :"json",
 				data:{
 					movieSeq:movieSeq,

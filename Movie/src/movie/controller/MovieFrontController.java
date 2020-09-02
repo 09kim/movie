@@ -118,6 +118,9 @@ public class MovieFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/MovieRanking.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie1/movie_ranking.jsp");
 		}
 //		else if (command.equals("/MovieDirector.mo")) {
 //			forward = new ActionForward();

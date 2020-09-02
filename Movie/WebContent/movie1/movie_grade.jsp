@@ -125,7 +125,6 @@ $(document).ready(function(){
 	                           var grade=1;
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
-=======
 	                           var param = $('.param').val(data);
 	                            starClick(data,grade);
 	                        });

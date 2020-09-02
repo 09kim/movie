@@ -19,8 +19,6 @@
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>
 <a href="MemberList.me">회원관리</a>
-<a href="">회원관리</a>
->>>>>>> refs/remotes/origin/태윤
 <%} else{ %>
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>

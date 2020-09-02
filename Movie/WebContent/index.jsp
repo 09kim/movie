@@ -19,7 +19,10 @@
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>
 <a href="MemberList.me">회원관리</a>
+<<<<<<< HEAD
 <a href="">회원관리</a>
+=======
+>>>>>>> refs/heads/웅
 <%} else{ %>
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>

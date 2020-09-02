@@ -25,6 +25,7 @@
 <a href="MemberLogout.me">로그아웃</a>
 <a href="">마이페이지</a>
 <%} %>
+<br>
 
 
 </body>

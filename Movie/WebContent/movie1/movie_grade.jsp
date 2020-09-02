@@ -19,6 +19,21 @@ button{
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+   
+	function starClick(param,grade){
+
+		  	  $.ajax("setGrade.mo",{
+		  		  method:"post",
+		          data:{
+		         	   data:param,
+		         	   grade:grade
+		         	   },
+		          success:function(data){
+		          	  alert("평가 됨.");
+		            }
+		  	  }
+		)
+	}
 	
 	 function starClick(data,grade){
 		 
@@ -36,7 +51,7 @@ $(document).ready(function(){
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
-      $("#movieList").remove();
+      $("#movieList").empty();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",
@@ -84,7 +99,7 @@ $(document).ready(function(){
                            $('.link').eq(idx).text(title);
                            $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
                                  +item2.movieSeq+'&query='+title5);
-                           $('.c1').eq(idx).val(title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre);
+                           $('.c1').eq(idx).val(title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                            
                         if(image[0]){
                            
@@ -110,42 +125,63 @@ $(document).ready(function(){
 	                           var grade=1;
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+=======
+	                           var param = $('.param').val(data);
+	                            starClick(data,grade);
 	                        });
 	                        
 	                        $('.c2').eq(idx).click(function(){
+	                        	var grade = 2;
 	                           alert(title +  " | " + "1점 등록");
 	                           var grade=2;
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                          
 	                        });
 	                        $('.c3').eq(idx).click(function(){
 	                           alert(title +  " | " +  "1.5점 등록");
 	                           var grade=3;
+	                           var grade = 3;
+	                           $('.grade').val(3);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
 	                           
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                        });
 	                        
 	                        $('.c4').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2점 등록");
 	                           var grade=4;
+	                           var grade = 4;
+	                           $('.grade').val(4);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                           
 	                        });
 	                        
 	                        $('.c5').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2.5점 등록");
 	                           var grade=5;
+	                           var grade = 5;
+	                           $('.grade').val(5);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade); 
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                        });
 	                        
-	                        $('#c6').eq(idx).click(function(){
+	                        $('.c6').eq(idx).click(function(){
 	                            alert(title +  " | " +  "3점 등록");
 	                            var grade=6;
+	                            var grade = 6;
+	                            $('.grade').val(6);
 	                            var data = $('.c1').eq(idx).val();
+	                            $('.param').val(data); 
 	                            starClick(data,grade);
 	                            
 	                        });
@@ -154,6 +190,11 @@ $(document).ready(function(){
 	                            var grade=7;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
+	                            var grade = 7;
+	                            $('.grade').val(7); 
+	                            var data = $('.c1').eq(idx).val();
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                            
 	                        });
 	                        $('.c8').eq(idx).click(function(){
@@ -161,6 +202,11 @@ $(document).ready(function(){
 	                            var grade=8;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(padataram,grade);
+	                            var grade = 8;
+	                            $('.grade').val(8);
+	                            var data = $('.c1').eq(idx).val();
+	                            $('.param').val(data);
+	                            starClick(data,grade);
 	                            
 	                        });
 	                        $('.c9').eq(idx).click(function(){
@@ -168,6 +214,11 @@ $(document).ready(function(){
 	                            var grade=9;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
+	                            var grade = 9;
+	                            $('.grade').val(9);
+	                            var data = $('.c1').eq(idx).val();
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                            
 	                        });
 	                        $('.c10').eq(idx).click(function(){
@@ -175,6 +226,11 @@ $(document).ready(function(){
 	                            var grade=10;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
+	                            var grade = 10;
+	                            $('.grade').val(10);
+	                            var data = $('.c1').eq(idx).val();
+	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                            
 	                            
 	                        });

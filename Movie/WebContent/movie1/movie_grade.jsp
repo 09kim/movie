@@ -19,27 +19,20 @@ button{
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-   
-	function starClick(param,grade){
-		 $('input:button').click(function(){
-// 		  	  var grade = $('.grade').val();
-// 		  	  var param = $('.param').val();
-			alert(grade);
-			alert(param);
-		  	  $.ajax("setGrade.mo"),{
-		  		  method:"post",
-		          data:{
-		         	   data:param,
-		         	   grade:grade
-		         	   },
-		          success:function(data){
-		          	  alert("평가 됨.");
-		            }
-		  	  }
-		    });
-	}
-	starClick();
 	
+	 function starClick(data,grade){
+		 
+	  	  $.ajax("setGrade.mo",{
+	  		  method:"post",
+	          data:{
+	         	   data:data,
+	         	   grade:grade
+	         	   },
+	          success:function(data){
+	          	  alert("평가 됨.");
+	            }
+	  	  });
+	}
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
@@ -116,79 +109,77 @@ $(document).ready(function(){
 	                           alert(title + " | " + "0.5점 등록");
 	                           var grade=1;
 	                           var data = $('.c1').eq(idx).val();
-	                           var param = $('.param').val(data);
-	                           alert(param)
-	                            starClick(param,grade);
+	                           starClick(data,grade);
 	                        });
 	                        
 	                        $('.c2').eq(idx).click(function(){
 	                           alert(title +  " | " + "1점 등록");
-	                           $('.grade').val(2);
+	                           var grade=2;
 	                           var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                           starClick(data,grade);
 	                          
 	                        });
 	                        $('.c3').eq(idx).click(function(){
 	                           alert(title +  " | " +  "1.5점 등록");
-	                           $('.grade').val(3);
+	                           var grade=3;
 	                           var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                           starClick(data,grade);
 	                           
 	                        });
 	                        
 	                        $('.c4').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2점 등록");
-	                           $('.grade').val(4);
+	                           var grade=4;
 	                           var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                           starClick(data,grade);
 	                           
 	                        });
 	                        
 	                        $('.c5').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2.5점 등록");
-	                           $('.grade').val(5);
+	                           var grade=5;
 	                           var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                           starClick(data,grade); 
 	                        });
 	                        
 	                        $('#c6').eq(idx).click(function(){
 	                            alert(title +  " | " +  "3점 등록");
-	                            $('.grade').val(6);
+	                            var grade=6;
 	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                            starClick(data,grade);
 	                            
 	                        });
 	                        $('.c7').eq(idx).click(function(){
 	                            alert(title +  " | " +  "3.5점 등록");
-	                            $('.grade').val(7); 
-	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                            var grade=7;
+		                        var data = $('.c1').eq(idx).val();
+		                        starClick(data,grade);
 	                            
 	                        });
 	                        $('.c8').eq(idx).click(function(){
 	                            alert(title +  " | " +  "4점 등록");
-	                            $('.grade').val(8);
-	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                            var grade=8;
+		                        var data = $('.c1').eq(idx).val();
+		                        starClick(padataram,grade);
 	                            
 	                        });
 	                        $('.c9').eq(idx).click(function(){
 	                            alert(title +  " | " +  "4.5점 등록");
-	                            $('.grade').val(9);
-	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                            var grade=9;
+		                        var data = $('.c1').eq(idx).val();
+		                        starClick(data,grade);
 	                            
 	                        });
 	                        $('.c10').eq(idx).click(function(){
 	                            alert(title +  " | " +  "5점 등록");
-	                            $('.grade').val(10);
-	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
+	                            var grade=10;
+		                        var data = $('.c1').eq(idx).val();
+		                        starClick(data,grade);
 	                            
 	                            
 	                        });
+	              	  	 
 	                        
-	                   
                   
                   });//each문 끝남
               });
@@ -199,13 +190,13 @@ $(document).ready(function(){
         });
    });
    
+  
+  
    
 });
 </script>
 </head>
 <body>
-<input type="hidden" class="param">
-<input type="hidden" class="grade">
 <input type="hidden" class="nick">
 <select id="categoryMovie">
 <option >정렬기준</option>

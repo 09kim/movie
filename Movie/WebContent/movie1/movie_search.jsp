@@ -146,6 +146,15 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+<!-- 낙원(0902:헤더 추가) -->
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
+<!-- /낙원(0902:헤더 추가) -->
+
+
+>>>>>>> refs/heads/낙원
 <form action="MovieSearch.mo">
 <input type="text" name="query">
 <input type="submit" value="검색">

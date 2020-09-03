@@ -91,7 +91,6 @@ public class ForgetAction implements Action{
 			out.println("<input type='text' id='hiddenCnum_email' value=" + certificationNum + ">");
 			System.out.println(certificationNum);
 		}
->>>>>>> refs/heads/낙원
 		return forward;
 	}
 

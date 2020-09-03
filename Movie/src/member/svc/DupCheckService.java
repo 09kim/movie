@@ -8,6 +8,7 @@ import static db.JdbcUtil.*;
 
 public class DupCheckService {
 
+
 	public boolean dupCheck(String nick) {
 		System.out.println("DupCheckService");
 		

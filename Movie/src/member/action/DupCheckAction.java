@@ -16,7 +16,6 @@ public class DupCheckAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("DupCheckAction");
 		
-		
 		String nick = request.getParameter("nick");		
 		
 		
@@ -35,6 +34,7 @@ public class DupCheckAction implements Action {
 		}
 		
 		return null;
+
 	}
 
 }

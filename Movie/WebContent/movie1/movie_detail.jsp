@@ -16,7 +16,7 @@
 			var keyword = $("#keyword").val();
 			$.ajax({
 				url:"MovieDetail.mo",
-				method:"get",
+				method:"post",
 				dataType :"json",
 				data:{
 					movieSeq:movieSeq,
@@ -82,11 +82,8 @@
 									}
 									
 								}
-
 		                  });
-
 					});
-
 				}
 				
 			});
@@ -163,11 +160,10 @@
 	<section>
 		<input type="button" id="directorMovies" value="이 감독의 다른 영화">
 		<br>
-		<div id="subInfo">d</div>
+		<div id="subInfo"></div>
 		
 	<section id="list">
 	</section>
 	</section>
 </body>
 </html>
-

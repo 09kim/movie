@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import movie.action.MovieActorProAction;
+import movie.action.MovieActorRoleAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieQueryProAction;
+import movie.action.setGradeProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -99,6 +101,27 @@ public class MovieFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MovieActorRole.mo")) {
+			action = new MovieActorRoleAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		}else if (command.equals("/MovieCss.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/moviecss/movie.css");
+		}else if (command.equals("/setGrade.mo")) {
+			action = new setGradeProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieRanking.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/movie1/movie_ranking.jsp");
+
 		}
 //		else if (command.equals("/MovieDirector.mo")) {
 //			forward = new ActionForward();

@@ -10,21 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-<<<<<<< HEAD
 import member.action.MessageAction;
 import member.action.DupCheckAction;
 import member.action.ForgetAction;
 import member.action.MemberEmailAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
-=======
 import member.action.DupCheckAction;
 import member.action.MemberForgetAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMailAction;
 import member.action.MemberSMSAction;
->>>>>>> refs/heads/낙원
 import member.action.MemberJoinProAction;
 import member.action.MemberListAction;
 import vo.ActionForward;
@@ -52,72 +49,6 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/Message.me")) {
-<<<<<<< HEAD
-			action = new MessageAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if(command.equals("/dupNick.me")) {
-			action = new DupCheckAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/Email.me")) {
-    		System.out.println("Email.me");
-    		try {
-				action = new MemberEmailAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    		
-    	} else if (command.equals("/MemberLoginForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/member_login.jsp");
-		} else if (command.equals("/MemberLoginPro.me")) {
-			action = new MemberLoginProAction();
-
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ForgetForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/member_forget.jsp");
-			
-		} else if(command.equals("/ForgetPro.me")) {
-			action = new ForgetAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/ForgetEmailChForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/forget_emailch.jsp");
-		} else if(command.equals("/MemberLogout.me")) {
-			action = new MemberLogoutAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace(); 
-			}
-		}  else if(command.equals("/MemberList.me")) {
-			action = new MemberListAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-=======
 			action = new MemberSMSAction();
 			try {
 				action.execute(request, response);
@@ -184,7 +115,6 @@ public class MemberFrontController extends HttpServlet {
 		} else if (command.equals("/Main.me")) { // 낙원(0902:Main.me 서블릿 추가)
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
->>>>>>> refs/heads/낙원
 		}
 
 		if (forward != null) {

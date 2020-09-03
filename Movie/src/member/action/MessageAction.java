@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import api.SendMessage;
-import member.svc.MessageService;
+import member.svc.DupCheckService;
 import vo.ActionForward;
 
 public class MessageAction implements Action {
@@ -21,9 +21,8 @@ public class MessageAction implements Action {
 
 		System.out.println(cNum);
 
-		MessageService messageService = new MessageService();
-
-		boolean result = messageService.dupCheckPhone(phone);
+		DupCheckService dupCheck = new DupCheckService();
+		boolean result = dupCheck.dupCheck(phone, "phone");
 
 		if (phone != null) {
 			if (!result) {

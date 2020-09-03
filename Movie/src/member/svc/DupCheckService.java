@@ -9,7 +9,7 @@ import static db.JdbcUtil.*;
 public class DupCheckService {
 
 
-	public boolean dupCheck(String nick) {
+	public boolean dupCheck(String nick, String type) {
 		System.out.println("DupCheckService");
 		
 		boolean isDup = false;
@@ -19,12 +19,14 @@ public class DupCheckService {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 		
-		isDup = memberDAO.dupCheck(nick);
+		isDup = memberDAO.dupCheck(nick,type);
 		
 		
 		close(con);
 		
 		return isDup;
 	}
+
+	
 
 }

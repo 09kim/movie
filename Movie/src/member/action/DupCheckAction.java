@@ -20,7 +20,7 @@ public class DupCheckAction implements Action {
 		
 		
 		DupCheckService dupCheckService = new DupCheckService();
-		boolean isDup = dupCheckService.dupCheck(nick);
+		boolean isDup = dupCheckService.dupCheck(nick,"nick");
 		
 		if(isDup) {
 			response.setContentType("text/html;charset=UTF-8");

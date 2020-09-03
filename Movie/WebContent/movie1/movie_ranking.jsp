@@ -78,7 +78,7 @@
                 console.log(movie_data);
                 
                 var str = "";
-                str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
+                str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'><a href=''></a>";
                 str = str + "<a href='" + $(movie_data).find("naverMovieSrc").text() + "'>네이버바로가기</a>" ;
                 str = str + "<div>" + $(movie_data).find("movieNm").text() + "(";
                 str = str + $(movie_data).find("movieNmEn").text() + ")</div>";

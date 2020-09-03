@@ -36,19 +36,6 @@ $(document).ready(function(){
 		)
 	}
 	
-	 function starClick(data,grade){
-		 
-	  	  $.ajax("setGrade.mo",{
-	  		  method:"post",
-	          data:{
-	         	   data:data,
-	         	   grade:grade
-	         	   },
-	          success:function(data){
-	          	  alert("평가 됨.");
-	            }
-	  	  });
-	}
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();

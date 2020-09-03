@@ -64,7 +64,6 @@ public class MemberDAO {
 		return insertCount;
 	}
 	
-<<<<<<< HEAD
 	public boolean dupCheckPhone(String phone) {
 		boolean checkResult = true;
 
@@ -270,11 +269,11 @@ public class MemberDAO {
 		
 		return isEmailSame;
 	}
-=======
+
 	// 낙원(0902:dupCheck() 메서드 하나로 통합 및 중복되는 기능의 메서드[isEmailSame(),dupCheck()] 삭제)
 		public boolean dupCheck(String params,String type) {
 			boolean checkResult = true;
->>>>>>> refs/heads/낙원
+
 
 			try {
 				String sql = "SELECT " + type + " FROM member where " + type + "=?";

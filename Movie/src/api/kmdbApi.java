@@ -151,7 +151,6 @@ public class kmdbApi {
 	public String getMovieDetailByActor(String actor) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
-<<<<<<< HEAD
 		
 		urlBuilder.append("&" + URLEncoder.encode("actor", "UTF-8") + "=" + URLEncoder.encode(actor, "UTF-8")); 
 //		urlBuilder.append(
@@ -187,9 +186,7 @@ public class kmdbApi {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + URLEncoder.encode(movieSeq, "UTF-8")); 
-=======
-		urlBuilder.append("&" + URLEncoder.encode("actor", "UTF-8") + "=" + URLEncoder.encode(actor, "UTF-8")); 
->>>>>>> refs/heads/낙원
+
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
 //		urlBuilder

@@ -8,31 +8,7 @@
 <style type="text/css">
 td{
 	border : 1px solid black;
-<<<<<<< HEAD
-}</style>
-<%
-ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("memberList");
-%>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body> 
-<% for(MemberBean mb : memberList) {%>
-	<table>
-	  <tr><td>idx</td> <td>email</td>  <td>pass</td>  <td>nick</td>  <td>phone</td>  <td>date</td> </tr>
-	    <tr>
-	      <td><%= mb.getIdx() %></td>  
-	      <td><%= mb.getEmail() %></td> 
-	      <td><%= mb.getPass() %></td> 
-	      <td><%= mb.getNick() %></td>
-	      <td><%= mb.getPhone() %></td>  
-	      <td><%= mb.getDate() %></td>
-	    </tr>
-	</table>
-<%} %>
 }
-/* <------------------------------------------테이블 CSS 추가(낙원)--------------------------------------------> */
-/*  테이블 모양 CSS */
 table {
 		margin: auto;
 		width: 800px;
@@ -60,7 +36,6 @@ table {
 	h2 {
 		text-align: center;
 	}
-/*테이블 CSS 추가(낙원) */
 </style>
 <%
 ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("memberList");
@@ -69,12 +44,9 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 <title>Insert title here</title>
 </head>
 <body> 
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<!-- /낙원(0902:헤더 추가) -->
 
-<!-- 낙원(0902:테이블 디자인 변경) -->
 <section id="listForm">
 		<h2>회원 목록</h2>
 		<table>
@@ -98,6 +70,5 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 			<%}%>
 		</table>
 	</section>
-<!-- /낙원(0902:테이블 디자인 변경) -->
 </body>
 </html>

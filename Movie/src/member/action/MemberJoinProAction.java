@@ -10,13 +10,12 @@ import member.svc.MemberJoinProService;
 import member.vo.MemberBEAN;
 import vo.ActionForward;
 
-public class MemberWriteProAction implements Action {
+public class MemberJoinProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		System.out.println();
-		
+
+
 		String email = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		String nick = request.getParameter("nick");
@@ -29,30 +28,25 @@ public class MemberWriteProAction implements Action {
 		mb.setNick(nick);
 		mb.setPhone(phone);
 		boolean isInsert = false;
-		String resultMsg =""; 
-				
-		
+		String resultMsg = "";
+
 		MemberJoinProService memberJoinProService = new MemberJoinProService();
 		try {
 			isInsert = memberJoinProService.insertMember(mb);
 		} catch (Exception e) {
 			resultMsg = e.getMessage();
 		}
-		
+
 		ActionForward forward = null;
-		if(!isInsert){
+		if (!isInsert) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert("+ resultMsg+");history.back();</script>");
-		}else {
+			out.println("<script>alert('" + resultMsg + "');history.back();</script>");
+		} else {
 			forward = new ActionForward();
 			forward.setPath("./");
 		}
-		
-		
-		
-		
-		
+
 		return forward;
 	}
 

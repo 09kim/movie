@@ -14,8 +14,9 @@ public class MemberJoinProService {
 		
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.setCon(con);
+		dao.setConnection(con);
 		int insertCount = dao.insertMember(mb);
+		System.out.println("sve : " + insertCount);
 		
 		if(insertCount>0) {
 			isInsert = true;
@@ -25,7 +26,7 @@ public class MemberJoinProService {
 			throw new MemberInsertException("회원가입 오류");
 			
 		}
-		
+		close(con);
 		return isInsert;
 	}
 

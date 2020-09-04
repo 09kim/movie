@@ -10,7 +10,7 @@ import api.SendMessage;
 import member.svc.DupCheckService;
 import vo.ActionForward;
 
-public class MessageAction implements Action {
+public class MemberMessageAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

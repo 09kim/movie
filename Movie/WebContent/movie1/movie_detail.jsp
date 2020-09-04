@@ -158,8 +158,8 @@
 	<%String director=request.getParameter("director"); %>
 	<input type="hidden" id="director" name=director value="<%=director%>">
 	<section>
-		<input type="button" id="directorMovies" value="이 감독의 다른 영화">
-		<br>
+	<a href="#" id="directorMovies">이 감독의 다른 영화</a>
+			<br>
 		<div id="subInfo"></div>
 		
 	<section id="list">

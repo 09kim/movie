@@ -31,7 +31,7 @@ $(document).ready(function(){
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
-      $("#movieList").remove();
+      $(".thisMovie").remove();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",
@@ -105,6 +105,7 @@ $(document).ready(function(){
 	                           var grade=1;
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+	                           $('.thisMovie').eq(idx).hide();
 	                        });
 	                        
 	                        $('.c2').eq(idx).click(function(){
@@ -112,41 +113,40 @@ $(document).ready(function(){
 	                        	var grade = 2;
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+	                           $('.thisMovie').eq(idx).hide();
 	                          
 	                        });
 	                        $('.c3').eq(idx).click(function(){
 	                           alert(title +  " | " +  "1.5점 등록");
 	                           var grade = 3;
-	                           $('.grade').val(3);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
+	                           $('.thisMovie').eq(idx).hide();
 	                           
 	                        });
 	                        
 	                        $('.c4').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2점 등록");
 	                           var grade = 4;
-	                           $('.grade').val(4);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade);
-	                           
+	                           $('.thisMovie').eq(idx).hide();
 	                        });
 	                        
 	                        $('.c5').eq(idx).click(function(){
 	                           alert(title +  " | " +  "2.5점 등록");
 	                           var grade = 5;
-	                           $('.grade').val(5);
 	                           var data = $('.c1').eq(idx).val();
 	                           starClick(data,grade); 
+	                           $('.thisMovie').eq(idx).hide();
 	                        });
 	                        
 	                        $('.c6').eq(idx).click(function(){
 	                            alert(title +  " | " +  "3점 등록");
 	                            var grade = 6;
-	                            $('.grade').val(6);
 	                            var data = $('.c1').eq(idx).val();
-	                            $('.param').val(data); 
 	                            starClick(data,grade);
+	                            $('.thisMovie').eq(idx).hide();
 	                            
 	                        });
 	                        $('.c7').eq(idx).click(function(){
@@ -154,29 +154,28 @@ $(document).ready(function(){
 	                            var grade=7;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
-	                            
+		                        $('.thisMovie').eq(idx).hide();
 	                        });
 	                        $('.c8').eq(idx).click(function(){
 	                            alert(title +  " | " +  "4점 등록");
 	                            var grade=8;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(padataram,grade);
-	                            
+		                        $('.thisMovie').eq(idx).hide();
 	                        });
 	                        $('.c9').eq(idx).click(function(){
 	                            alert(title +  " | " +  "4.5점 등록");
 	                            var grade=9;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
-	                            
+		                        $('.thisMovie').eq(idx).hide();
 	                        });
 	                        $('.c10').eq(idx).click(function(){
 	                            alert(title +  " | " +  "5점 등록");
 	                            var grade=10;
 		                        var data = $('.c1').eq(idx).val();
 		                        starClick(data,grade);
-	                            
-	                            
+		                        $('.thisMovie').eq(idx).hide();
 	                        });
 	              	  	 
 	                        

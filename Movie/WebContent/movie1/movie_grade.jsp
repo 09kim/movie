@@ -31,7 +31,7 @@ $(document).ready(function(){
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
-      $("#movieList").remove();
+      $(".thieMovie").remove();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",

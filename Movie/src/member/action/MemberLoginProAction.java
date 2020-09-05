@@ -40,7 +40,7 @@ public class MemberLoginProAction implements Action {
 				out.println("<script>");
 				out.println("alert('" + resultStr + "')");
 				out.println("history.back()");
-				out.println("</script>");
+				out.println("</script>");	
 			}else {
 				
 				forward = new ActionForward();
@@ -55,27 +55,6 @@ public class MemberLoginProAction implements Action {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

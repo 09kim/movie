@@ -21,7 +21,6 @@ button{
 $(document).ready(function(){
    
 	function starClick(param,grade){
-<<<<<<< HEAD
 
 		  	  $.ajax("setGrade.mo",{
 		  		  method:"post",

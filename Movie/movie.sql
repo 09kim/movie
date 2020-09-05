@@ -5,7 +5,6 @@ CREATE TABLE member(
    nick varchar(16) unique not null,
    phone varchar(20) unique not null,
    date Date
-   
 );
 
 CREATE table grade(

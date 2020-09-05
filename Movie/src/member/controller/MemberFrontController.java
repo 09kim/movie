@@ -18,6 +18,8 @@ import member.action.MemberListAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
+import member.action.MemberMypageGenerAction;
+import member.action.MemberMypageTitleAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -88,7 +90,6 @@ public class MemberFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("/Main.me")) { 
@@ -113,6 +114,25 @@ public class MemberFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Mypage.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_mypage.jsp");
+		} else if (command.equals("/MypageGener.me")) {
+			action = new MemberMypageGenerAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageTitle.me")) {
+			action = new MemberMypageTitleAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

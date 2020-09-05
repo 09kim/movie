@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import member.exception.MemberLoginException;
 import member.vo.MemberBEAN;
+import movie.vo.MovieBean;
 import vo.MemberBean;
 
 public class MemberDAO {
@@ -124,7 +125,6 @@ public class MemberDAO {
 	}
 	
 	public boolean isLogin(MemberBean memberBean) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -222,5 +222,50 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return memberList;
+	}
+
+	// ------------------------------------------------------------------- 별점 용 메서드
+	public StringBuffer selectGener(String nick) {
+		String sql = "SELECT * from grade where nick = ?";
+		StringBuffer sb= new StringBuffer();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				sb = sb.append(rs.getString("gener")+",");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return sb;
+	}
+
+
+	public ArrayList<MovieBean> selectTitle(String nick) {
+		String sql = "SELECT grade,title from grade where nick = ?";
+		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MovieBean mb = new MovieBean();
+				mb.setMovieGrade(rs.getString("grade"));
+				mb.setMovieTitle(rs.getString("title"));
+				list.add(mb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }

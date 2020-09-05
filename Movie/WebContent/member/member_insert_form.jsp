@@ -106,8 +106,6 @@ $(document).ready(function(){
 				$('#st_msg').addClass('짧음')
 			}
 			
-			
-			
 			if(pass.length >= 8) strength += 1
 			if(pass.match(/([a-z].*[A-Z])|([A-Z].*[a-z]))/)) strength += 1
 			if(pass.match(/([a-zA-Z])/) && pass.match(/([0-9])/)) strength += 1
@@ -194,13 +192,13 @@ $(document).ready(function(){
 		
 });
 </script>
+
 </head>
 <body>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
-
-<form action="MemberJoinPro.me" method="get">
+<form class="join_fr" action="MemberJoinPro.me" method="get">
 <fieldset>
 <legend>Nick Name</legend>
 <input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>

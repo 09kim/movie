@@ -24,9 +24,9 @@ public class MovieGradeAction implements Action {
 		
 		
 		Random random = new Random();
-		int rNum = random.nextInt(13);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
+		int rNum = random.nextInt(15);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
 		StringBuffer sb = new StringBuffer(); // 메모리 할당을 줄이기위한 Buffer 메서드
-		String genre = sb.append("코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포").toString(); // 장르저장
+		String genre = sb.append("코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처").toString(); // 장르저장
 
 		String[] getGenre = genre.split("/"); // 장르 스플릿
 		
@@ -85,8 +85,10 @@ public class MovieGradeAction implements Action {
 			break;	
 		case "미스터리":
 			startCount = random.nextInt(1888)+1;
-			break;	
-		
+			break;
+		case "어드벤처":
+			startCount = 1;
+			break;
 		}
 		
 	

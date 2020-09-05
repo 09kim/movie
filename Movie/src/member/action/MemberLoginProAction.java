@@ -22,23 +22,24 @@ public class MemberLoginProAction implements Action {
 		MemberBean member = new MemberBean();
 		member.setEmail(request.getParameter("email"));
 		member.setPass(request.getParameter("pass"));
-		
+		boolean isLogin = false;
+		String result = "";
+		String nick = "";
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
-		int isLogin = memberLoginProService.login(member);
+		try {
+			nick = memberLoginProService.login(member);
+			isLogin = true;
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 
 			
-		if(isLogin == 0 || isLogin == -1) {
-			String resultStr = "";
+		if(!isLogin) {
 			
-			if(isLogin == 0) {
-				resultStr = "이메일 없음";
-			} else if(isLogin == -1) {
-				resultStr = "패스워드 틀림";
-			}
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter(); 
 				out.println("<script>");
-				out.println("alert('" + resultStr + "')");
+				out.println("alert('" + result + "')");
 				out.println("history.back()");
 				out.println("</script>");	
 			}else {
@@ -47,7 +48,7 @@ public class MemberLoginProAction implements Action {
 				forward.setRedirect(true);
 				forward.setPath("./");
 				HttpSession session = request.getSession();
-				session.setAttribute("email", member.getEmail());
+				session.setAttribute("nick", nick);
 			}
 			
 		return forward;

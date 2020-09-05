@@ -9,20 +9,19 @@ import movie.svc.setGradeService;
 import movie.vo.MovieBean;
 import vo.ActionForward;
 
-public class setGradeProAction implements Action {
+public class MovieSetGradeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("setGradeProAction");
-//		String id = request.getParameter("id");
+		String nick = request.getParameter("nick");
 		String grade = request.getParameter("grade");
 		String movieInfo = request.getParameter("data");
-//		System.out.println(movieSeq);
-//		System.out.println(grade);
 		String[] param = movieInfo.split("/");
 		for(int i = 0; i<param.length; i++) {
 			System.out.println(param[i]);
-		}  
+		}
+		System.out.println(nick);
 		String movieTitle = param[0];
 		String movieSeq = param[1];
 		String movieRuntime = param[2];
@@ -35,13 +34,12 @@ public class setGradeProAction implements Action {
 		movieBean.setMovieTitle(movieTitle);
 		movieBean.setMovieYear(movieYear);
 		movieBean.setMovieGrade(grade);
-		System.out.println(grade);
+		movieBean.setNick(nick);
 		
 		setGradeService setGradeService = new setGradeService();
 		setGradeService.isSetGrade(movieBean);
 		
 
-//		System.out.println(id);
 		return null;
 	}
 

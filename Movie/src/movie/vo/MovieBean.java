@@ -9,9 +9,16 @@ public class MovieBean {
 	private String movieTitle;
 	private String movieSeq;
 	private String movieGrade;
+	private String nick;
 	
 	
 	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public String getMovieGrade() {
 		return movieGrade;
 	}

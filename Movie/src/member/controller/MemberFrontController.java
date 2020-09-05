@@ -10,20 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import member.action.MessageAction;
-import member.action.DupCheckAction;
-import member.action.ForgetAction;
+import member.action.MemberNickAction;
 import member.action.MemberEmailAction;
-import member.action.MemberLoginProAction;
-import member.action.MemberLogoutAction;
-import member.action.DupCheckAction;
 import member.action.MemberForgetAction;
-import member.action.MemberLoginProAction;
-import member.action.MemberLogoutAction;
-import member.action.MemberMailAction;
-import member.action.MemberSMSAction;
 import member.action.MemberJoinProAction;
 import member.action.MemberListAction;
+import member.action.MemberLoginProAction;
+import member.action.MemberLogoutAction;
+import member.action.MemberMessageAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -48,29 +42,14 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Message.me")) {
-			action = new MemberSMSAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		} else if(command.equals("/dupNick.me")) {
-			action = new DupCheckAction();
+			action = new MemberNickAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Email.me")) {
-    		System.out.println("Email.me");
-    		try {
-				action = new MemberMailAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}    		
+	  		
     	} else if (command.equals("/MemberLoginForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
@@ -112,9 +91,30 @@ public class MemberFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (command.equals("/Main.me")) { // 낙원(0902:Main.me 서블릿 추가)
+		} else if (command.equals("/Main.me")) { 
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
+		} else if (command.equals("/Message.me")) {
+			action = new MemberMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/Email.me")) {
+			action = new MemberEmailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

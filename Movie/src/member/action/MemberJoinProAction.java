@@ -19,9 +19,9 @@ public class MemberJoinProAction implements Action {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		String nick = request.getParameter("nick");
-		String phone = request.getParameter("phone");
+		String phone = request.getParameter("phoneNum");
 		
-		
+		System.out.println(phone);
 		MemberBEAN mb = new MemberBEAN();
 		mb.setEmail(email);
 		mb.setPass(pass);

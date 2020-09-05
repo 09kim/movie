@@ -16,7 +16,6 @@ public class setGradeService {
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
 		int insertCount = mo.insertGrade(movieBean);
-		System.out.println("sve : " + insertCount);
 		
 		if(insertCount>0) {
 			isInsert = true;

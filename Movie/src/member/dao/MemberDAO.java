@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import member.exception.MemberLoginException;
 import member.vo.MemberBEAN;
 import vo.MemberBean;
 
@@ -67,13 +68,13 @@ public class MemberDAO {
 
 		public boolean dupCheck(String params,String type) {
 			boolean checkResult = true;
-
+			System.out.println(params);
+			System.out.println(type);
 			try {
 				String sql = "SELECT " + type + " FROM member where " + type + "=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, params);
 				rs = pstmt.executeQuery();
-
 				if (rs.next()) {
 					checkResult = false;
 				}
@@ -89,26 +90,26 @@ public class MemberDAO {
 		}
 		
 		
-	public int login(MemberBean member) {
+	public String login(MemberBean member) throws Exception{
 		System.out.println("MemberDAO 도착했읍니다");
-		int isLogin = 0;
-		
+		String nick = "";
 		
 		try {
 			
-			String sql ="SELECT pass FROM member WHERE email=?";
+			String sql ="SELECT pass,nick FROM member WHERE email=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getEmail());
 			rs=pstmt.executeQuery();
-			
 			if(rs.next()) { // 이메일이 존재할 경우
+				System.out.println("rs.next()");
 				if(member.getPass().equals(rs.getString("pass"))) {
-					isLogin=1;
+					System.out.println("로그인가능");
+					nick = rs.getString("nick");
 				}else { // 패스워드가 일치하지 않을 경우
-					isLogin=-1;
+					throw new MemberLoginException("패스워드 불일치");
 				}
 			}else {
-				isLogin=0;
+				throw new MemberLoginException("없는 아이디 입니다.");
 			}
 			
 		} catch (SQLException e) {
@@ -119,7 +120,7 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		
-		return isLogin;
+		return nick;
 	}
 	
 	public boolean isLogin(MemberBean memberBean) {

@@ -32,14 +32,14 @@ font-size: 12px;word-spacing: 5px}
 .clear{clear: both;}
 </style>
 <%
-String email=(String)session.getAttribute("email");
-if(email == null && !(request.getServletPath().equals("/member/member_login.jsp"))){
+String nick=(String)session.getAttribute("nick");
+if(nick == null && !(request.getServletPath().equals("/member/member_login.jsp"))){
 	%>
 	<div id="login"><input type="button" value="로그인" onclick="location.href='MemberLoginForm.me'"></div>
 	<%
-}else if(email != null && !(request.getServletPath().equals("/member/member_login.jsp"))){
+}else if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){
 	%>
-	<div id="login"><a href="MemberModifyForm.me"><%=email %>님</a>  |
+	<div id="login"><a href="MemberModifyForm.me"><%=nick %>님</a>  |
 			<input type="button" value="로그아웃" onclick="location.href='MemberLogout.me'">
 	<%
 }
@@ -51,15 +51,15 @@ if(email == null && !(request.getServletPath().equals("/member/member_login.jsp"
 <ul>
 	<li><a href="Main.me">MAIN</a></li>
 <%
-if(email==null){%>
+if(nick==null){%>
 	<li><a href="MemberJoinForm.me">JOIN</a></li>
 <%	
 }
 %>
 <!-- 	<li><a href="MemberLoginForm.me">LOGIN</a></li> -->
 <%
-if(email!=null){
-	if(email.equals("admin@mail.com")){%>
+if(nick!=null){
+	if(nick.equals("admin")){%>
 			<li><a href="MemberList.me">MEMBERLIST</a></li>
 		<%
 		}

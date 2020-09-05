@@ -10,7 +10,7 @@ import member.svc.DupCheckService;
 import vo.ActionForward;
 import vo.MemberBean;
 
-public class DupCheckAction implements Action {
+public class MemberNickAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,7 +22,8 @@ public class DupCheckAction implements Action {
 		DupCheckService dupCheckService = new DupCheckService();
 		boolean isDup = dupCheckService.dupCheck(nick,"nick");
 		
-		if(isDup) {
+		
+		if(!isDup) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("닉네임 중복");

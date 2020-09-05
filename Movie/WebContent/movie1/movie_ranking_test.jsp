@@ -24,7 +24,7 @@
 	          dd = "0" + dd;
 	       }
        var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환 
-//        alert(today);
+       alert(today);
        
        $.ajax({
             url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key="
@@ -43,7 +43,8 @@
                 	    console.log(item.dailyBoxOfficeList[i].movieCd);
                 	    console.log(item.dailyBoxOfficeList[i].openDt);
                 	    console.log(item.dailyBoxOfficeList[i].audiAcc);
-                        
+                	    console.log(item.dailyBoxOfficeList[i].directorNm);
+                	    
                    }
                    
                 });

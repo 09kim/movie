@@ -76,7 +76,7 @@ $(document).ready(function(){
                            $('.link').eq(idx).text(title);
                            $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
                                  +item2.movieSeq+'&query='+title5);
-                           $('.c1').eq(idx).val(title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
+                           $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                            
                         if(image[0]){
                            

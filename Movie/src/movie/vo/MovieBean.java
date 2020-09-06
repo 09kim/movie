@@ -10,9 +10,21 @@ public class MovieBean {
 	private String movieSeq;
 	private String movieGrade;
 	private String nick;
+	private String director;
+	private String nation;
 	
-	
-	
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
 	public String getNick() {
 		return nick;
 	}

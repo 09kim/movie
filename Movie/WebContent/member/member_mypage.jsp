@@ -8,6 +8,18 @@
 	$(document).ready(function() {
 		var sortData = [];
 		var nick = $('#nick').val();
+		function goPython(param){
+			$.ajax('Python.mo',{
+				method:"post",
+				dataType:"json",
+				data:{
+					param:param
+				},
+				success:function(data){
+					alert("ㅇㅇ")
+				}
+			});
+		}
 		
 		$.ajax('MypageGener.me', {
 			method : "get",
@@ -39,10 +51,12 @@
 				nick : nick
 			},
 			success : function(data) {
+				goPython(data);
 				$.each(data.Movie,function(idx,item){
-						$.each(item,function(idx2,item2){
-							$('body').append(idx2+" : "+item2+"점 <br>");
-						});
+					
+// 						$.each(item,function(idx2,item2){
+// 							$('body').append(idx2+" : "+item2/2+"점 <br>");
+// 						});
 					});
 				
 			}

@@ -22,12 +22,16 @@ public class MovieSetGradeAction implements Action {
 			System.out.println(param[i]);
 		}
 		System.out.println(nick);
-		String movieTitle = param[0];
-		String movieSeq = param[1];
-		String movieRuntime = param[2];
-		String movieGenre = param[3];
-		String movieYear = param[4];
+		String movieDircetor = param[0];
+		String movieNation = param[1];
+		String movieTitle = param[2];
+		String movieSeq = param[3];
+		String movieRuntime = param[4];
+		String movieGenre = param[5];
+		String movieYear = param[6];
 		MovieBean movieBean = new MovieBean();
+		movieBean.setDirector(movieDircetor);
+		movieBean.setNation(movieNation);
 		movieBean.setMovieGenre(movieGenre);
 		movieBean.setMovieRuntime(movieRuntime);
 		movieBean.setMovieSeq(movieSeq);

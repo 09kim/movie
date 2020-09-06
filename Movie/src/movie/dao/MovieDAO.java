@@ -35,15 +35,17 @@ public class MovieDAO {
 	ResultSet rs ;
 	public int insertGrade(MovieBean movieBean) {
 		int insertCount=0;
-		String sql = "INSERT INTO grade values(idx,?,?,?,?,?,?,null) ";
+		String sql = "INSERT INTO grade values(idx,?,?,?,?,?,?,?,?,null) ";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movieBean.getNick());
-			pstmt.setString(2, movieBean.getMovieGrade());
-			pstmt.setString(3, movieBean.getMovieGenre());
-			pstmt.setString(4, movieBean.getMovieSeq());
-			pstmt.setString(5, movieBean.getMovieTitle());
-			pstmt.setString(6, movieBean.getMovieRuntime());
+			pstmt.setString(1, movieBean.getDirector());
+			pstmt.setString(2, movieBean.getNation());
+			pstmt.setString(3, movieBean.getNick());
+			pstmt.setString(4, movieBean.getMovieGrade());
+			pstmt.setString(5, movieBean.getMovieGenre());
+			pstmt.setString(6, movieBean.getMovieSeq());
+			pstmt.setString(7, movieBean.getMovieTitle());
+			pstmt.setString(8, movieBean.getMovieRuntime());
 			
 			insertCount = pstmt.executeUpdate();
 			

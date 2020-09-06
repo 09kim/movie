@@ -4,17 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import mypage.svc.MyPageGradeService;
+import mypage.svc.MypageGradeService;
 import vo.ActionForward;
 
-public class MyPageGradeAction implements Action {
+public class MypageGradeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MyPageGradeAction ¿€µø");
 		ActionForward forward = null;
 		
-		MyPageGradeService service = new MyPageGradeService();
+		MypageGradeService service = new MypageGradeService();
 		
 		
 		forward = new ActionForward();

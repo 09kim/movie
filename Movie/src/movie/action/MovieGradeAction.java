@@ -18,7 +18,7 @@ public class MovieGradeAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MovieGradeAction");
 		String type = request.getParameter("type");
-		
+		System.out.println(type);
 		Random random = new Random();
 		int rNum = random.nextInt(16);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
 		StringBuffer sb = new StringBuffer(); // 메모리 할당을 줄이기위한 Buffer 메서드
@@ -61,7 +61,7 @@ public class MovieGradeAction implements Action {
 			startCount = random.nextInt(2962)+1;
 			break;
 		case "액션":
-			startCount = random.nextInt(9191)+1;
+			startCount = random.nextInt(9211)+1;
 			break;
 		case "SF":
 			startCount = random.nextInt(2572)+1;
@@ -100,7 +100,7 @@ public class MovieGradeAction implements Action {
 			JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 			response.setContentType("application/json;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			System.out.println(jsonObject);
+//			System.out.println(jsonObject);
 			out.print(jsonObject);
 			out.flush();
 		

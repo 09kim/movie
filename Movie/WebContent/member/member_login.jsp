@@ -72,14 +72,8 @@
 
 </script>
 </head>
-<<<<<<< HEAD
-
-=======
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<!-- /낙원(0902:헤더 추가) -->
->>>>>>> refs/heads/낙원
 
 	<h1>Login</h1>
 	<form action="MemberLoginPro.me" method="post" id="join">

@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.49.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/kobis-opcl-rest-v1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/fmoni/Downloads/jython-standalone-2.7.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

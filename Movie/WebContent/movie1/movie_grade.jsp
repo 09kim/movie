@@ -214,6 +214,8 @@ $(document).ready(function(){
 <option id ="character" value="인물">인물</option>
 <option id ="horror" value="공포">공포</option>
 <option id ="mystery" value="미스터리">미스터리</option>
+<option id ="melo" value="멜로">멜로/로맨스</option>
+<option id ="adventure" value="어드벤처">어드벤처</option>
 </select>
 <div class="movieList"></div>
 

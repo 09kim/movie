@@ -18,7 +18,6 @@ import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieQueryProAction;
 import movie.action.MovieSetGradeAction;
-import movie.action.PythonAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -125,13 +124,6 @@ public class MovieFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_ranking.jsp");
 
-		}else if (command.equals("Python.mo")) {
-			action = new PythonAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 //		else if (command.equals("/MovieDirector.mo")) {
 //			forward = new ActionForward();

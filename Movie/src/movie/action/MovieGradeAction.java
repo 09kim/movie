@@ -6,13 +6,10 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
 
 import action.Action;
-import api.NaverMovieApi;
 import api.kmdbApi;
 import vo.ActionForward;
 
@@ -22,11 +19,10 @@ public class MovieGradeAction implements Action {
 		System.out.println("MovieGradeAction");
 		String type = request.getParameter("type");
 		
-		
 		Random random = new Random();
-		int rNum = random.nextInt(15);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
+		int rNum = random.nextInt(16);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
 		StringBuffer sb = new StringBuffer(); // 메모리 할당을 줄이기위한 Buffer 메서드
-		String genre = sb.append("코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처").toString(); // 장르저장
+		String genre = sb.append("코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처/멜로").toString(); // 장르저장
 
 		String[] getGenre = genre.split("/"); // 장르 스플릿
 		
@@ -87,7 +83,10 @@ public class MovieGradeAction implements Action {
 			startCount = random.nextInt(1888)+1;
 			break;
 		case "어드벤처":
-			startCount = 1;
+			startCount = random.nextInt(3697)+1;
+			break;
+		case "멜로":
+			startCount = random.nextInt(1158)+1;
 			break;
 		}
 		

@@ -8,18 +8,6 @@
 	$(document).ready(function() {
 		var sortData = [];
 		var nick = $('#nick').val();
-		function goPython(param){
-			$.ajax('Python.mo',{
-				method:"post",
-				dataType:"json",
-				data:{
-					param:param
-				},
-				success:function(data){
-					alert("ㅇㅇ")
-				}
-			});
-		}
 		
 		$.ajax('MypageGener.me', {
 			method : "get",

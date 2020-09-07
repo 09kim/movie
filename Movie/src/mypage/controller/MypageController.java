@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import mypage.action.MypageAction;
+import mypage.action.MypageGradeAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -27,8 +28,16 @@ public class MypageController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
 			
-		}else if(command.equals("MypageUpdate.mp")) {
-			action=new MypageAction();
+		} else if(command.equals("MypageUpdate.mp")) {
+			action = new MypageAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MypageGrade.mp")) {
+			action = new MypageGradeAction();
 			
 			try {
 				forward = action.execute(request, response);

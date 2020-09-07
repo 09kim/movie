@@ -18,7 +18,7 @@ public class MypageGradeAction implements Action {
 		
 		
 		forward = new ActionForward();
-		forward.setPath("/member/member_list.jsp");
+		forward.setPath("/mypage/mypagegrade_list.jsp");
 		
 		return forward;
 	}

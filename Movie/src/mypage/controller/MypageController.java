@@ -2,6 +2,7 @@ package mypage.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import mypage.action.MypageAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -23,20 +23,35 @@ public class MypageController extends HttpServlet {
 		ActionForward forward = null;
 		System.out.println(command);
 		
+		
+		
 		if(command.equals("/MypageForm.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
-			
-		}else if(command.equals("MypageUpdate.mp")) {
-			action=new MypageAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
+		}
+//		else if(command.equals())
+//		else if(command.equals("MypageUpdate.mp")) {
+//			action = new MypageAction();
+//			
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
+		if (forward != null) {
+			if (forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
 			}
 		}
+		
 	}
+	
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +59,7 @@ public class MypageController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 

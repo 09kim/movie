@@ -1,8 +1,9 @@
+<%@page import="vo.MemberBean"%>
 <%@page import="member.vo.MemberBEAN"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    MemberBEAN member = (MemberBEAN)request.getAttribute("member");
+    MemberBean member = (MemberBean)request.getAttribute("member");
 //     String email = (String)session.getAttribute("email");
 //     String nick = (String)session.getAttribute("nick");
     
@@ -16,12 +17,15 @@
 </head>
 <body>
 	<div>
-		이메일<br>
-		<input type="email" id="email" name="email" value="<%=member.getEmail()%>" >
-		닉네임<br>
+		이메일
+		<input type="email" id="email" name="email" value="<%=member.getEmail()%>" readonly><br>
+		닉네임
 		<input type="text" id="nick" name="nick" value="<%=member.getNick()%>" >
-		소개<br>
-		<input type="text" id="info" name="info">
+		<input type="button" id="nickdup" value="중복체크" Onclick="location.href=member_insert_Form.jsp"><br>
+		소개
+		<input type="text" id="info" name="info"><br>
+		선호하는 감독
+		
 	</div>
 </body>
 </html>

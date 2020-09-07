@@ -25,7 +25,7 @@
 <%} else{ %>
 <a href="GradeMovie.mo">평점</a>
 <a href="MemberLogout.me">로그아웃</a>
-<a href="">마이페이지</a>
+<a href="MypageForm.mp">마이페이지</a>
 <a href="MovieRanking.mo">박스오피스</a>
 <%} %>
 <br>

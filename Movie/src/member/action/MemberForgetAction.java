@@ -4,15 +4,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
-import api.SendEmail;
-import api.SendEmailForget;
 import api.SendMail;
-import member.svc.MemberMailService;
+import member.svc.DupCheckService;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MemberForgetAction implements Action{
 
@@ -27,8 +23,8 @@ public class MemberForgetAction implements Action{
 		System.out.println("받는 사람 email주소는 " + email);
 		SendMail sendMail = SendMail.getInstance(email);
 		
-		MemberMailService memberMailService = new MemberMailService();
-		boolean checkResult = memberMailService.dupCheck(email);
+		DupCheckService dupCheck = new DupCheckService();
+		boolean checkResult = dupCheck.dupCheck(email,"email");
 		
 		if(checkResult) {
 			response.setContentType("text/html;charset=UTF-8"); 
@@ -41,7 +37,6 @@ public class MemberForgetAction implements Action{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('사용할 수 있는 E-Mail 입니다.')");
 			out.println("</script>");
 			String certificationNum = sendMail.mailSend();
 			out.println("인증 메세지가 전송되었습니다.");

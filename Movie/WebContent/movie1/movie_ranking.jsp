@@ -64,43 +64,7 @@
         });
     });
     
-    function movie(movieCd) {
-        $("#memo").empty();
-        
-        var url = "http://ync.jupiterflow.com/jquery/searchMovieInfo?key=" + serviceKey + "&movieCd=";
-        url = url + movieCd;
-    
-        $.ajax({
-            url: url,
-            type: "GET",
-            dataType: "xml",
-            success: function (movie_data) {
-                console.log(movie_data);
-                
-                var str = "";
-                str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
-                str = str + "<a href='" + $(movie_data).find("naverMovieSrc").text() + "'>네이버바로가기</a>" ;
-                str = str + "<div>" + $(movie_data).find("movieNm").text() + "(";
-                str = str + $(movie_data).find("movieNmEn").text() + ")</div>";
-    
-                str = str + "<div>" + $(movie_data).find("nationNm").text() + ", " + $(movie_data).find("openDt").text() + "개봉, " + $(movie_data).find("showTm").text() + "분</div>";
-    
-                str = str + "<ul>";
-               
-                $(movie_data).find("actor").each(function () {
-                    str = str + "<li>" + $(this).find("peopleNm").text() + "</li>";
-                });
-                
-                str = str + "</ul>";
-                $("#memo").append(str);
-            },
-            
-            error: function () {
-                alert("Error...");
-            }
-            
-        });
-    }
+   
     
 </script>
 </head>

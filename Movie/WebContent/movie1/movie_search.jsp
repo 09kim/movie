@@ -146,25 +146,13 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<!-- /낙원(0902:헤더 추가) -->
-
-
->>>>>>> refs/heads/낙원
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
 <%String query=request.getParameter("query"); %>
 	<input type="hidden" id="query" name=query value="<%=query%>">
 <h1>국내영화</h1>
 	<section id="koreaList">
 	</section>
-	
 <h1>국외영화</h1>
 	<section id="foreignList">
 	</section>

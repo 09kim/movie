@@ -19,7 +19,7 @@ public class MemberLogoutAction implements Action {
 		ActionForward forward = null;
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("email");
+		session.removeAttribute("nick");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();

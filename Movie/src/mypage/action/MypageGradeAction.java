@@ -16,6 +16,8 @@ public class MypageGradeAction implements Action {
 		
 		MypageGradeService service = new MypageGradeService();
 		
+		int listCount = service.getGradeListCount();
+		
 		
 		forward = new ActionForward();
 		forward.setPath("/mypage/mypagegrade_list.jsp");

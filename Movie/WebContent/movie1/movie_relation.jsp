@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
 
 </body>
 </html>

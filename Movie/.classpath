@@ -16,6 +16,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javaSDK-2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.49.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/kobis-opcl-rest-v1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

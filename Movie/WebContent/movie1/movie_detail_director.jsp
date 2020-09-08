@@ -15,7 +15,7 @@
 				var director = $("#directorName").val();
 				director = director.replace(/ /g,'');
 				$.ajax('MovieDirector.mo',{
-					method:"get",
+					method:"post",
 					dataType :"json",
 					data:{query:director},
 					success:function(data){

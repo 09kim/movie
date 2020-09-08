@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import member.action.MessageAction;
-import member.action.DupCheckAction;
-import member.action.ForgetAction;
+import member.action.MemberNickAction;
 import member.action.MemberEmailAction;
-import member.action.MemberLoginProAction;
-import member.action.MemberLogoutAction;
+import member.action.MemberForgetAction;
 import member.action.MemberJoinProAction;
 import member.action.MemberListAction;
+import member.action.MemberLoginProAction;
+import member.action.MemberLogoutAction;
+import member.action.MemberMessageAction;
+import member.action.MemberMypageGenerAction;
+import member.action.MemberMypageTitleAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -27,10 +29,9 @@ public class MemberFrontController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
-
+		System.out.println(command);
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
 		if (command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_insert_form.jsp");
@@ -42,30 +43,14 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Message.me")) {
-			action = new MessageAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		} else if(command.equals("/dupNick.me")) {
-			action = new DupCheckAction();
+			action = new MemberNickAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Email.me")) {
-    		System.out.println("Email.me");
-    		try {
-				action = new MemberEmailAction();
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    		
+	  		
     	} else if (command.equals("/MemberLoginForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_login.jsp");
@@ -82,7 +67,7 @@ public class MemberFrontController extends HttpServlet {
 			forward.setPath("/member/member_forget.jsp");
 			
 		} else if(command.equals("/ForgetPro.me")) {
-			action = new ForgetAction();
+			action = new MemberForgetAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -103,6 +88,48 @@ public class MemberFrontController extends HttpServlet {
 			
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/Main.me")) { 
+			forward = new ActionForward();
+			forward.setPath("/index.jsp");
+		} else if (command.equals("/Message.me")) {
+			action = new MemberMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/Email.me")) {
+			action = new MemberEmailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberLogout.me")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Mypage.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_mypage.jsp");
+		} else if (command.equals("/MypageGener.me")) {
+			action = new MemberMypageGenerAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageTitle.me")) {
+			action = new MemberMypageTitleAction();
+			try {
+				action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

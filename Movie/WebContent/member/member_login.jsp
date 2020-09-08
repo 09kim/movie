@@ -72,7 +72,8 @@
 
 </script>
 </head>
-
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
 
 	<h1>Login</h1>
 	<form action="MemberLoginPro.me" method="post" id="join">

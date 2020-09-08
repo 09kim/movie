@@ -17,7 +17,7 @@ public class MemberJoinProService {
 		dao.setConnection(con);
 		int insertCount = dao.insertMember(mb);
 		System.out.println("sve : " + insertCount);
-		
+		System.out.println(mb.getPhone());
 		if(insertCount>0) {
 			isInsert = true;
 			commit(con);

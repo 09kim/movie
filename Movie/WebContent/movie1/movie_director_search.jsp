@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var director = $("#director").val();
 		director = director.replace(/ /g,'');
 		$.ajax('MovieSearchDirectorPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
 			data:{query:director},
 			success:function(data){

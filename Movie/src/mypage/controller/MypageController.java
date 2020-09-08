@@ -2,6 +2,7 @@ package mypage.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,20 +28,28 @@ public class MypageController extends HttpServlet {
 		if(command.equals("/MypageForm.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
-		} else if(command.equals("MypageUpdate.mp")) {
+		} else if(command.equals("/MypageUpdate.mp")) {
 			action = new MypageAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MypageGrade.mp")) {
+		} 		else if(command.equals("/MypageGrade.mp")) {
 			action = new MypageGradeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+		
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
 			}
 		}
 	}

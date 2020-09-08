@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// String nick = (String)session.getAttribute("nick"); 
+String nick = (String)session.getAttribute("nick"); 
 ArrayList<MypageBean> gradeList = (ArrayList<MypageBean>)request.getAttribute("gradeList");
-int listCount = 1;
+int listCount = (int)request.getAttribute("listCount");
 
 %>
 <!DOCTYPE html>
@@ -19,11 +19,11 @@ int listCount = 1;
 <br><br><br><br>
 
 내가 평가한 영화 목록 
-<span><%=listCount %></span>
 <%
 if(gradeList != null && listCount > 0){
 	for(int i=0; i < gradeList.size(); i++){
 %>
+<span><%=listCount %></span>
 <div id="gradelist">
 	<ul>
 		<li>
@@ -39,6 +39,10 @@ if(gradeList != null && listCount > 0){
 </div>
 <%
 	}
+} else {
+%>
+평가한 영화 목록이 비어있습니다.
+<%
 }
 %>
 </body>

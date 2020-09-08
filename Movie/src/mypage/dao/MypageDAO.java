@@ -75,6 +75,7 @@ public class MypageDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
+			gradeList = new ArrayList<MypageBean>();
 			while(rs.next()) {
 				MypageBean list = new MypageBean();
 				

@@ -117,14 +117,16 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/Mypage.me")) {
+			System.out.println("ㅇㅇ?");
 			forward = new ActionForward();
 			forward.setPath("/member/member_mypage.jsp");
+			System.out.println("ㅇㅇㅇㅇㅇ?");
+			
 		} else if (command.equals("/MypageGener.me")) {
 			action = new MemberMypageGenerAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("/MypageTitle.me")) {
@@ -132,7 +134,6 @@ public class MemberFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

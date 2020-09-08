@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css.mo" type="text/css" rel="stylesheet">
 <%String nick = (String)session.getAttribute("nick"); %>
 <meta charset="UTF-8">
 <title></title>

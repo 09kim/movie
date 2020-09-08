@@ -34,8 +34,8 @@ public class MemberMypageTitleAction implements Action {
 //		response.setContentType("application/json;charset=UTF-8");
 //		PrintWriter out = response.getWriter();
 //		out.flush();
-		interpreter = new PythonInterpreter();
-		interpreter.execfile("D:\\wordspace_py5\\Movie\\recommend.py");
+//		interpreter = new PythonInterpreter();
+//		interpreter.execfile("D:\\wordspace_py5\\Movie\\recommend.py");
 				
 		return null;
 	}

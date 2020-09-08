@@ -34,7 +34,6 @@ $(document).ready(function(){
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
-							
 						$('#list').append('<div class=nation>'+item2.nation+'</div>')
 						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
 								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')

@@ -20,7 +20,6 @@ public class MemberMypageGenerAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String nick = request.getParameter("nick");
-		System.out.println("왜안댐");
 		CategoryBean cb = new CategoryBean();
 		StringBuffer sb = new StringBuffer();
 		StringBuffer genre = new StringBuffer("코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/어드벤처");

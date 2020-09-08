@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<%String nick = (String)session.getAttribute("nick"); %>
+<link href="MovieCss.mo" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -14,6 +16,8 @@
 			var movieSeq = $("#movieSeq").val();
 			var query = $("#query").val();
 			var keyword = $("#keyword").val();
+			
+			
 			$.ajax({
 				url:"MovieDetail.mo",
 				method:"post",
@@ -58,6 +62,156 @@
 								}
 								
 							}
+						
+							
+							var nick = $('#nick').val()
+							console.log(nick)
+							if(nick != null ){
+								
+								
+							
+								function starClick(param,grade){
+									  	  $.ajax("setGrade.mo",{
+									  		  method:"post",
+									          data:{
+									         	   data:param,
+									         	   grade:grade,
+									         	   nick:nick
+									         	   },
+									          success:function(data){
+									            }
+									  	  }
+									) 
+								}	
+							
+							
+							$.ajax("MovieDetail.mo",{
+			               method:"get",
+			               dataType :"json",
+			               data:{movieSeq:movieSeq,
+								query:query,
+								keyword:keyword},
+			               success:function(data){
+			            	   var grade = 0;
+			                  $.each(data.Data,function(idx,item){
+			                     var i =1;
+			                     var l =1;
+			                     
+			                     $.each(item.Result,function(idx,item2){
+			                    	
+			                        var num = 0;
+			                        var image = item2.posters.split("|")
+			                        var title = item2.title
+			                        var titleNoSpace = title.replace(/ /g, '');
+			                        var title2 = titleNoSpace.replace(/!HS/g,'')
+			                        var title3 = title2.replace(/!HE/g,'')
+			                        var title5 = title3.trim();
+			                        
+			                    
+			                        
+			                        
+			                        // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+			                        for(var o=1;o<11;o++){
+			                        $('.c'+o).eq(idx).attr("id","p"+i++);
+			                        }
+			                    	 // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+			                        for(var o=1;o<11;o++){
+			                        $('.l'+o).eq(idx).attr("for","p"+l++);
+			                        }
+			                        
+			                    	 
+			                        $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
+			                        var garde= 0;
+									var movieSeq =""	
+				                        $('.c1').eq(idx).click(function(){
+				                           alert(title + " | " + "0.5점 등록");
+				                           var grade=1;
+				                           var data = $('.c1').eq(idx).val();
+				                           starClick(data,grade);
+				                           $('.thisMovie').eq(idx).hide();
+				                        });
+				                        
+				                        $('.c2').eq(idx).click(function(){
+				                           alert(title +  " | " + "1점 등록");
+				                        	var grade = 2;
+				                           var data = $('.c1').eq(idx).val();
+				                           starClick(data,grade);
+				                           $('.thisMovie').eq(idx).hide();
+				                          
+				                        });
+				                        $('.c3').eq(idx).click(function(){
+				                           alert(title +  " | " +  "1.5점 등록");
+				                           var grade = 3;
+				                           var data = $('.c1').eq(idx).val();
+				                           starClick(data,grade);
+				                           $('.thisMovie').eq(idx).hide();
+				                           
+				                        });
+				                        
+				                        $('.c4').eq(idx).click(function(){
+				                           alert(title +  " | " +  "2점 등록");
+				                           var grade = 4;
+				                           var data = $('.c1').eq(idx).val();
+				                           starClick(data,grade);
+				                           $('.thisMovie').eq(idx).hide();
+				                        });
+				                        
+				                        $('.c5').eq(idx).click(function(){
+				                           alert(title +  " | " +  "2.5점 등록");
+				                           var grade = 5;
+				                           var data = $('.c1').eq(idx).val();
+				                           starClick(data,grade); 
+				                           $('.thisMovie').eq(idx).hide();
+				                        });
+				                        
+				                        $('.c6').eq(idx).click(function(){
+				                            alert(title +  " | " +  "3점 등록");
+				                            var grade = 6;
+				                            var data = $('.c1').eq(idx).val();
+				                            starClick(data,grade);
+				                            $('.thisMovie').eq(idx).hide();
+				                            
+				                        });
+				                        $('.c7').eq(idx).click(function(){
+				                            alert(title +  " | " +  "3.5점 등록");
+				                            var grade=7;
+					                        var data = $('.c1').eq(idx).val();
+					                        starClick(data,grade);
+					                        $('.thisMovie').eq(idx).hide();
+				                        });
+				                        $('.c8').eq(idx).click(function(){
+				                            alert(title +  " | " +  "4점 등록");
+				                            var grade=8;
+					                        var data = $('.c1').eq(idx).val();
+					                        starClick(padataram,grade);
+					                        $('.thisMovie').eq(idx).hide();
+				                        });
+				                        $('.c9').eq(idx).click(function(){
+				                            alert(title +  " | " +  "4.5점 등록");
+				                            var grade=9;
+					                        var data = $('.c1').eq(idx).val();
+					                        starClick(data,grade);
+					                        $('.thisMovie').eq(idx).hide();
+				                        });
+				                        $('.c10').eq(idx).click(function(){
+				                            alert(title +  " | " +  "5점 등록");
+				                            var grade=10;
+					                        var data = $('.c1').eq(idx).val();
+					                        starClick(data,grade);
+					                        $('.thisMovie').eq(idx).hide();
+				                        });
+				              	  	 
+				                        
+			                  
+			                  });//each문 끝남
+			              });
+			           }
+							})
+			        };
+							
+							
+							
+							
 							
 							$('#detail').append('<div class=title>'+title5+'</div>')
 							$('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
@@ -88,6 +242,10 @@
 				
 			});
 			
+			
+			
+		
+
 			
 			
 			$('#directorMovies').click(function(){
@@ -148,15 +306,46 @@
   String query = request.getParameter("query");%>
 	<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
 	<input type="hidden" id="query" value="<%=query%>">
+	
+	
+		<div class=thisMovie>
+                     <div class=poster>
+                        <img class="poster_img">
+                        </div>
+                         <div class=title>
+                       <a class="link"></a>
+                        	<span class='star-input'>
+                        	<span class='input'>
+                        <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
+                        <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
+                        <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
+                        <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
+                        <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
+                        <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
+                        <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
+                        <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
+                        <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
+                        <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
+                        </span></span>
+                        </div>
+        </div>
+	
 	<section id="detail">
 	</section>
 	<section id="posters">
 	</section>
+	
+
+	
 	<section style=float:left; id="keyword">
 	</section>
 	<br><br><br><br><br><br>
 	<%String director=request.getParameter("director"); %>
 	<input type="hidden" id="director" name=director value="<%=director%>">
+	<input type="hidden" id ="nick" class="nick" value=<%=nick %>>
+		
+                     
+	
 	<section>
 	<a href="#" id="directorMovies">이 감독의 다른 영화</a>
 			<br>

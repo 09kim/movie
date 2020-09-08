@@ -7,14 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<!-- /낙원(0902:헤더 추가) -->
-
->>>>>>> refs/heads/낙원
 
 </body>
 </html>

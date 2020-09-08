@@ -42,14 +42,29 @@ $(document).ready(function(){
                         var title3 = title2.replace(/!HE/g,'')
                         var title5 = title3.trim();
                         
+                       
                         $('.movieList').append('<div class=thisMovie>'
                         +'<div class=poster>'
                         +'<img class="poster_img">'
                         +'</div>'
                          +'<div class=title>'
                         +'<a class="link"></a>'
-                        +'<button class="score1">☆</button><button class="score2">☆</button><button class="score3">☆</button><button class="score4">☆</button><button class="score5">☆</button>'
+                        + "<span class='star-input'>"
+                        +   "<span class='input'>"
+                        +'<input type="radio" name="star-input"id="p1" value="1"><label for="p1">1</label>'
+                        +'<input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>'
+                        +'<input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>'
+                        +'<input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>'
+                        +'<input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>'
+                        +'<input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>'
+                        +'<input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>'
+                        +'<input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>'
+                        +'<input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>'
+                        +'<input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>'
+                        + '</span>'
+                        +'</span>'
                         +'<a class="star" href=>별점등록</a>'
+                        +'</div>'
                         +'</div>');
                         
 //                         $('.poster_img:eq(idx)').attr("src="+image[idx]);
@@ -64,48 +79,50 @@ $(document).ready(function(){
                         }else{
                            $('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
                         }
+						
+                       
 
-                        
-                        $('.score1').eq(idx).click(function(){
-                           alert(title + "1점 등록");
-                           $('.score1').eq(idx).text("⭐");
-                           $('.score2').eq(idx).text("☆");
-                           $('.score3').eq(idx).text("☆");
-                           $('.score4').eq(idx).text("☆");
-                           $('.score5').eq(idx).text("☆");
+                        $('#p1').eq(idx).click(function(){
+                           alert(title + " | " + "0.5점 등록");
+                           
+                           
                         });
-                        $('.score2').eq(idx).click(function(){
-                           alert(title + "2점 등록");
-                           $('.score1').eq(idx).text("⭐");
-                           $('.score2').eq(idx).text("⭐");
-                           $('.score3').eq(idx).text("☆");
-                           $('.score4').eq(idx).text("☆");
-                           $('.score5').eq(idx).text("☆");
+                        $('#p2').eq(idx).click(function(){
+                           alert(title +  " | " + "1점 등록");
+                          
                         });
-                        $('.score3').eq(idx).click(function(){
-                           alert(title + "3점 등록");
-                           $('.score1').eq(idx).text("⭐");
-                           $('.score2').eq(idx).text("⭐");
-                           $('.score3').eq(idx).text("⭐");
-                           $('.score4').eq(idx).text("☆");
-                           $('.score5').eq(idx).text("☆");
+                        $('#p3').eq(idx).click(function(){
+                           alert(title +  " | " +  "1.5점 등록");
+                           
                         });
-                        $('.score4').eq(idx).click(function(){
-                           alert(title + "4점 등록");
-                           $('.score1').eq(idx).text("⭐");
-                           $('.score2').eq(idx).text("⭐");
-                           $('.score3').eq(idx).text("⭐");
-                           $('.score4').eq(idx).text("⭐");
-                           $('.score5').eq(idx).text("☆");
+                        $('#p4').eq(idx).click(function(){
+                           alert(title +  " | " +  "2점 등록");
+                           
                         });
-                        $('.score5').eq(idx).click(function(){
-                           alert(title + "5점 등록");
-                           $('.score1').eq(idx).text("⭐");
-                           $('.score2').eq(idx).text("⭐");
-                           $('.score3').eq(idx).text("⭐");
-                           $('.score4').eq(idx).text("⭐");
-                           $('.score5').eq(idx).text("⭐");
+                        $('#p5').eq(idx).click(function(){
+                           alert(title +  " | " +  "2.5점 등록");
+                           
                         });
+                        $('#p6').eq(idx).click(function(){
+                            alert(title +  " | " +  "3점 등록");
+                            
+                         });
+                         $('#p7').eq(idx).click(function(){
+                            alert(title +  " | " +  "3.5점 등록");
+                            
+                         });
+                         $('#p8').eq(idx).click(function(){
+                            alert(title +  " | " +  "4점 등록");
+                            
+                         });
+                         $('#p9').eq(idx).click(function(){
+                            alert(title +  " | " +  "4.5점 등록");
+                            
+                         });
+                         $('#p10').eq(idx).click(function(){
+                            alert(title +  " | " +  "5점 등록");
+                            
+                         });
                         
                         
                      });

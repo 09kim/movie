@@ -248,7 +248,6 @@ public class MemberDAO {
 	public ArrayList<MovieBean> selectTitle(String nick) {
 		String sql = "SELECT grade,title from grade where nick = ?";
 		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
-		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick);

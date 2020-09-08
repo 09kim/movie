@@ -11,7 +11,6 @@ import java.io.IOException;
 public class kmdbApi {
 
 	public String getMovie(String title) throws IOException {
-		System.out.println("qeury 메서드");
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?detail=Y&title="+title+"&listCount=30"
 						+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");

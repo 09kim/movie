@@ -27,7 +27,6 @@ public class MypageController extends HttpServlet {
 		if(command.equals("/MypageForm.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
-			
 		} else if(command.equals("MypageUpdate.mp")) {
 			action = new MypageAction();
 			
@@ -38,7 +37,6 @@ public class MypageController extends HttpServlet {
 			}
 		} else if(command.equals("/MypageGrade.mp")) {
 			action = new MypageGradeAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

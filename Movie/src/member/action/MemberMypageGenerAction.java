@@ -91,9 +91,9 @@ public class MemberMypageGenerAction implements Action {
 		}
 		Gson gson = new GsonBuilder().create();
 		String Json = gson.toJson(cb);
-		response.setContentType("application/json;charset=UTF-8");
 		JsonParser jp = new JsonParser();
 		JsonObject jo = (JsonObject) jp.parse(Json);
+		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		System.out.println(jo);
 		out.println(jo);

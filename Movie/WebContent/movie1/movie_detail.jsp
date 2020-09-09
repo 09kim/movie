@@ -14,6 +14,8 @@
 			var movieSeq = $("#movieSeq").val();
 			var query = $("#query").val();
 			var keyword = $("#keyword").val();
+			var movieNm = $("#movieNm").val();
+		    var openDt = $("#openDt").val();
 			$.ajax({
 				url:"MovieDetail.mo",
 				method:"post",
@@ -21,7 +23,9 @@
 				data:{
 					movieSeq:movieSeq,
 					query:query,
-					keyword:keyword
+					keyword:keyword,
+					movieNm:movieNm,
+					openDt:openDt
 					},
 				success:function(data){
 					
@@ -122,7 +126,7 @@
 								}
 									
 								$('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
-								$('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+								$('#subInfo').append('<div class=title><a href=MovieDetail.mo?movieId'+item2.movieId+'&movieSeq='
 										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
 								$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
 								$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
@@ -145,9 +149,14 @@
 <input type="submit" value="검색">
 </form>
 <%String movieSeq = request.getParameter("movieSeq");
-  String query = request.getParameter("query");%>
+  String query = request.getParameter("query");
+  String openDt = request.getParameter("openDt");
+  String movieNm = request.getParameter("movieNm");
+  %>
 	<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
 	<input type="hidden" id="query" value="<%=query%>">
+	<input type="hidden" id="openDt" value="<%=openDt %>">
+    <input type="hidden" id="movieNm" value="<%=movieNm %>">
 	<section id="detail">
 	</section>
 	<section id="posters">

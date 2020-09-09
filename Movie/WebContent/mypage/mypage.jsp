@@ -6,7 +6,6 @@
     String email = (String)session.getAttribute("email");
     String nick = (String)session.getAttribute("nick");
 
-// 	HttpSession session = 
 	%>
 <!DOCTYPE html>
 <html>

@@ -4,12 +4,12 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.action.DupCheckAction;
-import member.vo.MemberBEAN;
 import mypage.svc.MypageService;
 import vo.ActionForward;
+import vo.MemberBean;
 
 public class MypageAction implements Action {
 
@@ -17,25 +17,29 @@ public class MypageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String email = request.getParameter("email");
-		String nick = request.getParameter("nick");
+		System.out.println("email" );
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("nick");
+//		String nick = request.getParameter("nick");
 		
-		MemberBEAN memberBean = new MemberBEAN();
+		MemberBean memberBean = new MemberBean();
 		memberBean.setEmail(email);
 		memberBean.setNick(nick);
-		boolean isInsert = false;
+		boolean isselect = false;
 		String resultMsg = "";
 		
 		MypageService mypageService = new MypageService();
 		
 		try {
-			isInsert = mypageService.mypageinsert(memberBean);  
+			isselect = mypageService.selectMypage(memberBean);
 			
 		} catch (Exception e) {
 			resultMsg = e.getMessage();
 		}
 
 		ActionForward forward = null;
-		if (!isInsert) {
+		
+		if (!isselect) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('" + resultMsg + "');history.back();</script>");
@@ -45,8 +49,6 @@ public class MypageAction implements Action {
 		}
 		
 //		DupCheckAction dupcheckAction = new DupCheckAction();
-		
-		
 
 		return forward;
 	}

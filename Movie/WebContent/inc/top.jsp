@@ -84,7 +84,7 @@ String nick=(String)session.getAttribute("nick");
 	<div id="login">
 		<%
 		if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){ %>
-		<a href="../member/info.jsp"><%=nick %> 님 | </a>
+		<a href="MypageForm.mp"><%=nick %> 님 | </a>
 		<a href="MemberLogout.me">로그아웃</a>
 		<%
 		} else{ %>

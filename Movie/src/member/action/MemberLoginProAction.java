@@ -49,6 +49,10 @@ public class MemberLoginProAction implements Action {
 				forward.setPath("./");
 				HttpSession session = request.getSession();
 				session.setAttribute("nick", nick);
+				PrintWriter out = response.getWriter(); 
+				out.println("<script>");
+				out.println("alert('" + session.getAttribute("nick") + "')");
+				out.println("</script>");
 			}
 			
 		return forward;

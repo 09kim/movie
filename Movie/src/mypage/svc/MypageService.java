@@ -8,31 +8,34 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import member.dao.MemberDAO;
-import member.vo.MemberBEAN;
+import vo.MemberBean;
 
 public class MypageService {
 
-	public boolean mypageinsert(MemberBEAN memberBean) {
+	public boolean selectMypage(MemberBean memberBean) {
 		System.out.println("MypageService 도착!!");
-		boolean isInsert =false;
+		boolean isselect =false;
 		
 		Connection con = getConnection();
 		MemberDAO  dao = MemberDAO.getInstance();
 		dao.setConnection(con);
-		int insertCount = dao.insertMember(memberBean);
-		System.out.println("MypageService : " + insertCount);
 		
-		if(insertCount>0) {
-			isInsert = true;
+		int selectCount = dao.selectMypage(memberBean);
+		System.out.println("MypageService : " + isselect);
+		
+		if(selectCount>0) {
+			isselect = true;
 			commit(con);
 		}else {
 			rollback(con);
 			
 		}
 		close(con);
-		return isInsert;
+		return isselect;
 		
 		
 	}
+
+
 
 }

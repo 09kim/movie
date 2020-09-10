@@ -23,15 +23,13 @@ public class MypageAction implements Action {
 //		String nick = request.getParameter("nick");
 		
 		MemberBean memberBean = new MemberBean();
-		memberBean.setEmail(email);
-		memberBean.setNick(nick);
 		boolean isselect = false;
 		String resultMsg = "";
 		
 		MypageService mypageService = new MypageService();
 		
 		try {
-			isselect = mypageService.selectMypage(memberBean);
+			memberBean = mypageService.selectMypageinfo(nick);
 			
 		} catch (Exception e) {
 			resultMsg = e.getMessage();
@@ -39,16 +37,19 @@ public class MypageAction implements Action {
 
 		ActionForward forward = null;
 		
+		request.setAttribute("memberBean", memberBean);
+		
 		if (!isselect) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('" + resultMsg + "');history.back();</script>");
+			out.println("<script>alert('" + resultMsg + "');history.back();</script>"); 
 		} else {
-			forward = new ActionForward();
-			forward.setPath("./");
+//			forward = new ActionForward();
+//			forward.setPath("MypageForm.mp");
+//			forward.setPath("./");
 		}
 		
-//		DupCheckAction dupcheckAction = new DupCheckAction();
+//		DupCheckAction dupcheckAction = new DupCheckAction()
 
 		return forward;
 	}

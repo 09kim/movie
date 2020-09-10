@@ -8,30 +8,25 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import member.dao.MemberDAO;
+import mypage.dao.MypageDAO;
 import vo.MemberBean;
 
 public class MypageService {
 
-	public boolean selectMypage(MemberBean memberBean) {
+	public MemberBean selectMypageinfo(String nick) {
 		System.out.println("MypageService 도착!!");
-		boolean isselect =false;
+		
+		MemberBean memberBean = new MemberBean();
 		
 		Connection con = getConnection();
-		MemberDAO  dao = MemberDAO.getInstance();
+		MypageDAO  dao = MypageDAO.getInstance();
 		dao.setConnection(con);
 		
-		int selectCount = dao.selectMypage(memberBean);
-		System.out.println("MypageService : " + isselect);
+		memberBean = dao.selectMypageinfo(nick);
 		
-		if(selectCount>0) {
-			isselect = true;
-			commit(con);
-		}else {
-			rollback(con);
-			
-		}
 		close(con);
-		return isselect;
+		
+		return memberBean;
 		
 		
 	}

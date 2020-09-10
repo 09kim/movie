@@ -36,60 +36,7 @@ public class MemberDAO {
 	
 	ResultSet rs ;
 
-	public int selectMypage(MemberBean memberBean) {
-		int selectCount=0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		
-		try {
-			
-			String sql = "select * from member where nick=?";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			pstmt.setInt(1, memberBean.getIdx());
-			pstmt.setString(2, memberBean.getEmail());
-			pstmt.setString(3, memberBean.getPass());
-			pstmt.setString(4, memberBean.getNick());
-			pstmt.setString(5, memberBean.getPhone());
-			pstmt.setDate(6, memberBean.getDate());
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-			
-		}
-		
-		return selectCount;
-	}
 	
-	 public void updateMypage(MemberBean memberBean) {
-		 
-		PreparedStatement pstmt = null;
-			
-         
-         try {
-             String sql = "update member set email=?, pass=?, phone=? where nick=?";
-             pstmt = con.prepareStatement(sql);
-             
-             pstmt.setString(1, memberBean.getEmail());
-             pstmt.setString(2, memberBean.getPass());
-             pstmt.setString(3, memberBean.getPhone());
-             pstmt.setString(4, memberBean.getNick());
-             
-             pstmt.executeUpdate();
-             
-             
-             
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-     }
 	
 
 	   public int insertMember(MemberBEAN mb) {

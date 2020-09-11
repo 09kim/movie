@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
+import movie.action.MovieBoxOfficeAction;
+import movie.action.MovieBoxOfficeNationAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
@@ -125,10 +127,23 @@ public class MovieFrontController extends HttpServlet {
 			forward.setPath("/movie1/movie_ranking.jsp");
 
 		}
-//		else if (command.equals("/MovieDirector.mo")) {
-//			forward = new ActionForward();
-//			forward.setPath("/movie1/movie_detail_director.jsp");
-//		}
+		else if (command.equals("/BoxOffice.mo")) {
+			action = new MovieBoxOfficeAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoxOfficeNation.mo")) {
+			action = new MovieBoxOfficeNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

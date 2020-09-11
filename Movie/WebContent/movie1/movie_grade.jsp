@@ -29,7 +29,6 @@ $(document).ready(function(){
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
       $(".thisMovie").remove();
-      $(".thieMovie").remove();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",
@@ -75,7 +74,7 @@ $(document).ready(function(){
 //                         $('.poster_img:eq(idx)').attr("src="+image[idx]);
                            
                            $('.link').eq(idx).text(title);
-                           $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+                           $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
                                  +item2.movieSeq+'&query='+title5);
                            $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                            

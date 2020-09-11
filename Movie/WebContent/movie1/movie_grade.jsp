@@ -29,6 +29,7 @@ $(document).ready(function(){
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
       $(".thisMovie").remove();
+      $(".thieMovie").remove();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",

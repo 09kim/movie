@@ -105,6 +105,8 @@ public class kmdbApi {
 			sb.append(line + "\n");
 		}
 		
+		
+		
 		rd.close();
 		conn.disconnect();
 

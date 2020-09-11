@@ -27,5 +27,22 @@ public class setGradeService {
 		close(con);
 		return isInsert;
 	}
+	
+	public int selectGrade(MovieBean movieBean){
+		
+		Connection con = getConnection();
+		MovieDAO mo = MovieDAO.getInstance();
+		mo.setConnection(con);
+		int movieGrade = mo.selectGrade(movieBean);
+		
+		if(movieGrade > 0 ) {
+			commit(con);
+		}else {
+			rollback(con);
+			
+		}
+		close(con);
+		return movieGrade;
+	}
 
 }

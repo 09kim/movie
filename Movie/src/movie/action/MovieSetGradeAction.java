@@ -1,8 +1,11 @@
 package movie.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import movie.svc.setGradeService;
@@ -21,7 +24,6 @@ public class MovieSetGradeAction implements Action {
 		for(int i = 0; i<param.length; i++) {
 			System.out.println(param[i]);
 		}
-		System.out.println(nick);
 		String movieDircetor = param[0];
 		String movieNation = param[1];
 		String movieTitle = param[2];
@@ -40,10 +42,21 @@ public class MovieSetGradeAction implements Action {
 		movieBean.setMovieGrade(grade);
 		movieBean.setNick(nick);
 		
+		
+		
 		setGradeService setGradeService = new setGradeService();
 		setGradeService.isSetGrade(movieBean);
+		System.out.println(movieBean.getMovieGrade());
+		int movieGrade = setGradeService.selectGrade(movieBean);
+		System.out.println("-----------------------------------");
+		System.out.println(movieGrade);
+		response.setContentType("application/json;charset=UTF-8");
+		// Get the printwriter object from response to write the required json object to
+		// the output stream
+		PrintWriter out = response.getWriter();
+		out.println("<input type='hidden' id='movieGrade' value =" + movieGrade);
 		
-
+		request.setAttribute("movieGrade", movieGrade);
 		return null;
 	}
 

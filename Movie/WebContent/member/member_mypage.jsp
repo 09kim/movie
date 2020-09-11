@@ -38,12 +38,7 @@
 				nick : nick
 			},
 			success : function(data) {
-				goPython(data);
-				$.each(data.Movie,function(idx,item){
-					
-// 						$.each(item,function(idx2,item2){
-// 							$('body').append(idx2+" : "+item2/2+"점 <br>");
-// 						});
+				$.each(data,function(idx,item){
 					});
 				
 			}

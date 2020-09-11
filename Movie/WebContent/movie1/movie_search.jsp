@@ -13,7 +13,7 @@ $(document).ready(function(){
 		var query = $("#query").val();
 		query = query.replace(/ /g,'');
 		$.ajax('MovieSearchPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
 			data:{query:query},
 			success:function(data){
@@ -29,6 +29,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
@@ -42,7 +43,7 @@ $(document).ready(function(){
 								
 							$('#koreaList').append('<div class=nation>'+item2.nation+'</div>')
 							$('#koreaList').append('<div class=title><a href=MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+									+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 							$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 							$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>')
@@ -86,6 +87,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'')
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim();
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|")
@@ -96,7 +98,7 @@ $(document).ready(function(){
 							
 						$('#actorList').append('<div class=nation>'+item2.nation+'</div>')
 						$('#actorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#actorList').append('<div class=poster><img src='+image[0]+'></div>')
@@ -123,6 +125,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'')
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim();
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|")
@@ -133,7 +136,7 @@ $(document).ready(function(){
 							
 						$('#directorList').append('<div class=nation>'+item2.nation+'</div>')
 						$('#directorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#directorList').append('<div class=poster><img src='+image[0]+'></div>')

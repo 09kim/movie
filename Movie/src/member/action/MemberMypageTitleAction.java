@@ -1,5 +1,7 @@
 package member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,8 +36,10 @@ public class MemberMypageTitleAction implements Action {
 		JsonParser jsonParser = new JsonParser();
 		JsonArray jsonObject1 = (JsonArray) jsonParser.parse(grade);
 		JsonArray jsonObject2 = (JsonArray) jsonParser.parse(user);
-		System.out.println(jsonObject1);
-		System.out.println(jsonObject2);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(jsonObject2);
+		out.flush();
 		
 				
 		return null;

@@ -91,7 +91,6 @@
 			
 			
 			$('#directorMovies').click(function(){
-				
 				var director = $("#directorName").val();
 				director = director.replace(/ /g,'');
 				$.ajax('MovieDirector.mo',{
@@ -127,6 +126,7 @@
 								$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
 								$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 								$('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+								
 			                  });
 						});
 					}
@@ -148,15 +148,15 @@
   String query = request.getParameter("query");%>
 	<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
 	<input type="hidden" id="query" value="<%=query%>">
+	<div class="thisMovie">
 	<section id="detail">
 	</section>
 	<section id="posters">
 	</section>
 	<section style=float:left; id="keyword">
 	</section>
+	</div>
 	<br><br><br><br><br><br>
-	<%String director=request.getParameter("director"); %>
-	<input type="hidden" id="director" name=director value="<%=director%>">
 	<section>
 	<a href="#" id="directorMovies">이 감독의 다른 영화</a>
 			<br>

@@ -9,24 +9,15 @@ body {
 
 
 #main {
-	margin-top:86px;
+	width: 1280px;
+/* 	margin-top:86px; */
+	margin: 86px auto 0 auto;
 }
 
 
 
 /* ------------------ 헤더 부분 ------------------ */
 .div-top {
-/*   height: 30px; */
-/*   width: 100%; */
-/*   padding: 1rem; */
-/*   background: snow; */
-/* /*   position:fixed; */ */
-/*   position:absolute; */
-/*   top:0; */
-/*   display: flex; */
-/*   align-items: center; */
-/*   margin: 0 0 0 0; */
-
 	line-height: normal;
 	font-family: Roboto, sans-serif;
 	position: fixed;

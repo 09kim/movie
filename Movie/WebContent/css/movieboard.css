@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#boxoffice {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#choice {
+	float: right;
+}
+
+#list {
+	margin: 0 50px;
+}

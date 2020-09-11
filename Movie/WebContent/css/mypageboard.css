@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.mypage {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#sub_menu {
+	float: left;
+	width: 300px;
+}
+
+#myinfo {
+	float: right;
+	width: 980px;
+	margin: 0 auto;
+}

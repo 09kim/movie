@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../css/default.css" rel="stylesheet" type="text/css">
+<link href="css/default.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	
@@ -76,6 +76,7 @@
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
+<section id="main">
 	<h1>Login</h1>
 	<form action="MemberLoginPro.me" method="post" id="join">
 	<fieldset>
@@ -93,6 +94,7 @@
 		
 	</fieldset>
 	</form>
+</section>
 </body>
 </html>
 

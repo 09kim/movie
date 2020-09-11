@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/default.css" rel="stylesheet" type="text/css">
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<link href="css/movieboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script>
 
@@ -68,17 +69,33 @@
    
     
 </script>
+
 </head>
 <body>
-    <h1>박스오피스 순위</h1>
-    <div id="choice">
-        <input type="date" id="today">
-        <button id="ok">확인</button>
-    </div><br>
-    <div id="title"><b>일별 박스오피스</b></div>
-    <hr>
-    <div id="list"></div>
-    <hr>
-    <div id="memo"></div>
+<!-- 헤더 -->
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
+<!-- 헤더 -->
+
+<section id="main">
+    <div id="boxoffice">
+	    <div id="boxoffice-head">
+		    <header>
+	    		<h1>박스오피스 순위</h1>
+		    </header>
+		    <div id="choice">
+		    	<b>일별 박스오피스</b>
+		        <input type="date" id="today">
+		        <button id="ok">확인</button>
+		    </div>
+	    </div>
+<!-- 	    <div id="title"><b>일별 박스오피스</b></div> -->
+		<div class="clear"></div>
+	    <hr>
+	    <div id="list"></div>
+	    <hr>
+	    <div id="memo"></div>
+    </div>
+</section>
 </body>
 </html>

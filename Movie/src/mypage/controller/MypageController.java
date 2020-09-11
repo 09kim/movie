@@ -26,6 +26,13 @@ public class MypageController extends HttpServlet {
 		System.out.println(command);
 		
 		if(command.equals("/MypageForm.mp")) {
+			action = new MypageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MypageForm.mp")) {
 			forward = new ActionForward();
 			forward.setPath("/mypage/mypage.jsp");
 		} else if(command.equals("/MypageUpdate.mp")) {

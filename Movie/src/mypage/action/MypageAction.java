@@ -1,12 +1,15 @@
 package mypage.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.vo.MemberBEAN;
 import mypage.svc.MypageService;
 import vo.ActionForward;
+import vo.MemberBean;
 
 public class MypageAction implements Action {
 
@@ -14,16 +17,64 @@ public class MypageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String email = request.getParameter("email");
-		String nick = request.getParameter("nick");
+		System.out.println("email" );
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("nick");
+//		String nick = request.getParameter("nick");
 		
-		MemberBEAN memberBean = new MemberBEAN();
-		memberBean.setEmail(email);
-		memberBean.setNick(nick);
+		MemberBean memberBean = new MemberBean();
+//		boolean isselect = false;
+		String resultMsg = "";
 		
 		MypageService mypageService = new MypageService();
 		
+		try {
+			memberBean = mypageService.selectMypageinfo(nick);
+			
+		} catch (Exception e) {
+			resultMsg = e.getMessage();
+		}
+
+		ActionForward forward = null;
 		
-		return null;
+		
+		if (nick == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('" + resultMsg + "');history.back();</script>"); 
+		} else {
+//			forward = new ActionForward();
+//			forward.setPath("MypageForm.mp");
+//			forward.setPath("./");
+			request.setAttribute("memberBean", memberBean);
+			forward = new ActionForward();
+			forward.setPath("/mypage/mypage.jsp");
+		}
+		
+//		DupCheckAction dupcheckAction = new DupCheckAction()
+
+		return forward;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,6 +42,7 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
 <jsp:include page="/inc/top.jsp" />

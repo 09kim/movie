@@ -13,10 +13,13 @@ int listCount = (int)request.getAttribute("listCount");
 <head>
 <meta charset="UTF-8">
 <title>MyPage - GradeList</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!-- 헤더 -->
 <jsp:include page="/inc/top.jsp" />
-<br><br><br><br>
+<div class="clear"></div>
+<!-- 헤더 -->
 
 내가 평가한 영화 목록 
 <%

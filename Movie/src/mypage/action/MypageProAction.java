@@ -13,16 +13,14 @@ import mypage.svc.MypageService;
 import vo.ActionForward;
 import vo.MemberBean;
 
-public class MypageAction implements Action {
+public class MypageProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("mypageProAction~~~");
 		
-		String email = request.getParameter("email");
-		System.out.println("email");
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("nick");
-//		String nick = request.getParameter("nick");
 		
 		MemberBean memberBean = new MemberBean();
 		String resultMsg = "";
@@ -47,34 +45,18 @@ public class MypageAction implements Action {
 		} else {
 			request.setAttribute("memberBean", memberBean);
 			forward = new ActionForward();
-			forward.setPath("/mypage/mypage.jsp");
+			forward.setPath("/mypage/mypageForm.jsp");
+		
 		}
 		
-//		DupCheckAction dupcheckAction = new DupCheckAction();
+		DupCheckAction dupcheckAction = new DupCheckAction();
 		
-
+//		MemberNickAction memberNickAction = new MemberNickAction();
+//		memberBean = DupCheckService.DupCheck();
+//		boolean isDup = DupCheckService.dupCheck(nick,"nick");
+		
+		
 		return forward;
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

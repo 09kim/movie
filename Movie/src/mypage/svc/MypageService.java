@@ -24,6 +24,9 @@ public class MypageService {
 		
 		memberBean = dao.selectMypageinfo(nick);
 		
+		System.out.println("Service - " + nick);
+		System.out.println("Service - dao에서 갖고 온 이메일" + memberBean.getEmail());
+		
 		close(con);
 		
 		return memberBean;

@@ -46,8 +46,8 @@ public class MypageDAO {
 			String sql = "SELECT * FROM member where nick=?";
 			
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
 			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				memberBean.setEmail(rs.getString("email"));

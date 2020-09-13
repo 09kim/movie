@@ -30,8 +30,10 @@ public class MypageService {
 		close(con);
 		
 		return memberBean;
-
+		
+		
 	}
+
 
 
 }

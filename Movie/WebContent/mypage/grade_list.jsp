@@ -26,7 +26,7 @@ int listCount = (int)request.getAttribute("listCount");
 	<!-- 왼쪽메뉴 -->
 	<div id="sub_menu"> 
 		<ul>
-			<li><a href="MypageForm.mp">마이 페이지</a></li>
+			<li><a href="Mypage.mp">마이 페이지</a></li>
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="glounge.jsp"></a></li>
 		</ul> 

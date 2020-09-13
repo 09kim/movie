@@ -38,6 +38,9 @@ public class MypageDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	
+	
+	
+	
 	// 내 정보 조회 - 세은
 	public MemberBean selectMypageinfo(String nick) {
 		System.out.println("MypageDAO - getMypageInfo 도착");
@@ -49,7 +52,7 @@ public class MypageDAO {
 			String sql = "SELECT * FROM member where nick=?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, nick); // rs랑 자리 바꿈
+			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

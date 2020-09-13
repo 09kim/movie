@@ -13,6 +13,7 @@ public class MovieBean {
 	
 	
 	
+	
 	public String getNick() {
 		return nick;
 	}

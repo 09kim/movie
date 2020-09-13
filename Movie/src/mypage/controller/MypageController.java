@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import mypage.action.MypageAction;
+import mypage.action.MypageDeleteWishAction;
 import mypage.action.MypageGradeAction;
 import mypage.action.MypageProAction;
+import mypage.action.MypageSelectWishAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -27,7 +29,7 @@ public class MypageController extends HttpServlet {
 		System.out.println(command);
 		
 		if(command.equals("/Mypage.mp")) {
-			action = new MypageAction();
+			action = new MypageAction(); 
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -49,6 +51,21 @@ public class MypageController extends HttpServlet {
 			}
 		} 		else if(command.equals("/MypageGrade.mp")) {
 			action = new MypageGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageSelectWish.mp")) {
+			action = new MypageSelectWishAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/MypageDeleteWish.mp")) {
+			action = new MypageDeleteWishAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

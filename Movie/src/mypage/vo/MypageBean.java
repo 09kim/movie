@@ -10,10 +10,25 @@ public class MypageBean {
 	private String title;
 	private int runtime;
 	private String wish;
-	
+	private String poster;
 	private int listCount;
+	private String movieId;
 	
 	
+	
+	
+	public String getMovieId() {
+		return movieId;
+	}
+	public void setMovieId(String movieId) {
+		this.movieId = movieId;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 	public int getListCount() {
 		return listCount;
 	}

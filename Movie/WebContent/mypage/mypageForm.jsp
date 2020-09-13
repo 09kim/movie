@@ -27,12 +27,12 @@
 		<ul>
 			<li><a href="MypageForm.mp">마이 페이지</a></li>
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
-			<li><a href="glounge.jsp"></a></li>
+			<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
 		</ul> 
 	</div> 
 	<!-- 왼쪽메뉴 -->
 	
-		<div id="sub_menu"> 
+		<div id="myinfo"> 
 			<form action="MypagePro.mp" method="post" name="mypageform">
 			이메일
 			<input type="email" id="email" name="email" value="<%=memberBean.getEmail()%>"><br>

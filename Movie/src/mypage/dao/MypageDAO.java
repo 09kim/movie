@@ -25,7 +25,7 @@ public class MypageDAO {
 
 		return instance;
 	}
-	
+	 
 	
 	// --------------------------------------------------------------
 	// Service 클래스로부터  JdbcUtil 에서 제공받은 Connection 객체를 전달받기
@@ -163,6 +163,59 @@ public class MypageDAO {
 		}
 		
 		return gradeList;
+	}
+	
+	// 좋아요(wish) 리스트 조회 메서드 - 낙원
+	public ArrayList<MypageBean> selectWish(String nick) {
+		System.out.println("MypageDAO - selectWishMovie()");
+		ArrayList<MypageBean> wishMovie = null;
+		
+		try {
+			String sql = "SELECT * FROM wish WHERE nick=? and wish='Y'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			
+			wishMovie = new ArrayList<MypageBean>();
+			while(rs.next()) {
+				MypageBean wishInfo = new MypageBean();
+				wishInfo.setIdx(rs.getInt("idx"));
+				wishInfo.setNick(rs.getString("nick"));
+				wishInfo.setMovieSeq(rs.getInt("movieSeq"));
+				wishInfo.setTitle(rs.getString("title"));
+				wishInfo.setWish(rs.getString("wish"));
+				wishInfo.setPoster(rs.getString("poster"));
+				wishMovie.add(wishInfo);
+			}
+		} catch (SQLException e) {
+			System.out.println("MypageDAO - selectWishMovie 에러!: " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return wishMovie;
+	}
+
+
+
+	// 좋아요(wish) 취소(삭제) 메서드 - 낙원
+	public int deleteWish(MypageBean mypageBean) {
+		int deleteCount=0;
+		try {
+			int idx = mypageBean.getIdx();
+			String nick = mypageBean.getNick();
+			String sql = "DELETE FROM wish where idx=? and nick=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, nick);
+			deleteCount= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
 	}
 	
 	

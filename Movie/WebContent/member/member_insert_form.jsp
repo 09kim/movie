@@ -201,6 +201,7 @@ $(document).ready(function(){
 
 
 <form action="MemberJoinPro.me" method="get">
+<br><br><br><br><br><br><br>
 <fieldset>
 <legend>Nick Name</legend>
 <input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>

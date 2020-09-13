@@ -21,12 +21,32 @@
 		닉네임
 		<input type="text" id="nick" name="nick" value="<%=nick%>" >
 <!-- 		중복체크 -->
-		<input type="button" id="dupchek" name="dupchek" value="중복체크" ><br>
+		<input type="button" id="dupchek" name="dupchek" value="중복체크"><br>
+<!-- 		<button onclick="location.href='dupchek'">중복체크</button><br> -->
 		소개
 		<input type="text" id="infoup" name="info"><br>
 		선호하는 감독<br>
-		<input type="button" id="update" name="update" value="등록"> 
+<!-- 		<input type="button" id="update" name="update" value="등록">  -->
 		</form>
 	</section>
+<!-- 	<section id="update"> -->
+<!-- 	<input type="submit" value="등록" />&nbsp;&nbsp; -->
+<!-- 	</section> -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

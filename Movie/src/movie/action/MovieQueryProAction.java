@@ -19,7 +19,6 @@ public class MovieQueryProAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		String movieSeq = request.getParameter("movieSeq");
 		String query = request.getParameter("query");
-
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 

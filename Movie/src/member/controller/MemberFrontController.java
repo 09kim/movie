@@ -29,10 +29,9 @@ public class MemberFrontController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
-
+		System.out.println(command);
 		Action action = null;
 		ActionForward forward = null;
-		System.out.println(command);
 		if (command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_insert_form.jsp");

@@ -9,14 +9,18 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
+
 $(document).ready(function(){
-	
+		
 		var query = $("#query").val();
+		var nick = $("#nick").val();
+		console.log(nick);
 		query = query.replace(/ /g,'');
 		$.ajax('MovieSearchPro.mo',{
 			method:"post",
 			dataType :"json",
-			data:{query:query},
+			data:{query:query
+				},
 			success:function(data){
 				// 처음 결과 4개의 배열구조
 				$.each(data.Data,function(idx,item){
@@ -153,7 +157,10 @@ $(document).ready(function(){
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
+<%String nick = (String)session.getAttribute("nick"); %>
+
 	<input type="hidden" id="query" name=query value="<%=query%>">
+	<input type="hidden" id="nick" name=nick value="<%=nick%>">
 <h1>국내영화</h1>
 	<section id="koreaList">
 	</section>

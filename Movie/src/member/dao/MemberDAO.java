@@ -39,15 +39,16 @@ public class MemberDAO {
 
 	public int insertMember(MemberBEAN mb) {
 		int insertCount=0;
-		String sql = "SELECT MAX(idx) FROM member";
+		
 		try {
+			String sql = "SELECT MAX(idx) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			int maxNum = 1;
+			int maxNum = 0;
 			if (rs.next()) {
 				maxNum = rs.getInt(1) + 1;
 			}
-			System.out.println(maxNum);
+			System.out.println("뭐야" + maxNum);
 			sql = "INSERT INTO member VALUES(?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, maxNum);

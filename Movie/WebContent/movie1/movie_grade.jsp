@@ -51,7 +51,7 @@ $(document).ready(function(){
                         var title5 = title3.trim();
                         
                        
-                        
+
                         $('.movieList').append('<div class=thisMovie>'
                         +'<div class=poster>'
                         +'<img class="poster_img">'
@@ -60,6 +60,7 @@ $(document).ready(function(){
                         +'<a class="link"></a>'
                         + "<span class='star-input'>"
                         +   "<span class='input'>"
+                     
                         +'<input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>'
                         +'<input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>'
                         +'<input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>'
@@ -86,6 +87,7 @@ $(document).ready(function(){
                         }else{
                            $('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
                         }
+
                         
                         // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                         for(var o=1;o<11;o++){

@@ -20,8 +20,10 @@ public class MemberJoinProAction implements Action {
 		String pass = request.getParameter("pass");
 		String nick = request.getParameter("nick");
 		String phone = request.getParameter("phoneNum");
-		
+		System.out.println(request.getParameter("phone"));
 		System.out.println(phone);
+		System.out.println(nick);
+		System.out.println(email);
 		MemberBEAN mb = new MemberBEAN();
 		mb.setEmail(email);
 		mb.setPass(pass);

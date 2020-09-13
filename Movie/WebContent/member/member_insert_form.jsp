@@ -23,8 +23,6 @@ $(document).ready(function(){
 		});
 	});
 	
-	
-	
 	$('#certificationBtn').click(function() {
 		var cNum = $("#certificationNum").val();
 		if(cNum==$('#hiddenCnum').val()){
@@ -195,28 +193,34 @@ $(document).ready(function(){
 <div class="clear"></div>
 
 <form class="join_fr" action="MemberJoinPro.me" method="get">
+
 <fieldset>
 <legend>Nick Name</legend>
 <input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
 <div id="divNick"></div>
 </fieldset>
+
 <fieldset>
 <legend>Password</legend>
 <input type="password" name="pass" id="pass"> <br>
 </fieldset>
+
 <fieldset>
 <legend>Phone Number</legend>
 <input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증 번호 받기" ><br>
 <input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증 번호 입력">
 <div id="divPhone"></div>
 </fieldset>
+
 <fieldset>
 <legend>E-Mail</legend>
 <input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
+
 <input type="submit" value="가입">
+
 </form>
 
 

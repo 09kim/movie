@@ -8,11 +8,8 @@
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-
 
 </body>
 </html>

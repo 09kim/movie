@@ -14,6 +14,7 @@ import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
 import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
+import movie.action.MovieDetailByBox;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGradeAction;
@@ -141,6 +142,13 @@ public class MovieFrontController extends HttpServlet {
 				action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MovieDetailByBox.mo")) {
+			action = new MovieDetailByBox();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

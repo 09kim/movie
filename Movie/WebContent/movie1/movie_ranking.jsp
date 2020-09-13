@@ -9,24 +9,31 @@
 <script>
 
    $(document).ready(function() {
-      
+	
        
-//        function getNation(movieCd){
-//     	   $.ajax("BoxOfficeNation.mo",{
-//                method: "get",
-//                dataType: "json",
-//                data : {
-//             	   movieCd:movieCd
-//             	   	},
-//                success: function(data) { 
-//                    $.each(data, function(idx, item) {
-//                 	  $.each(item.movieInfo,function(idx2,item2){
-//                 			 alert(item2[3] );
-//                 	  });
-//                    });
-//                }
-//      	  });
-//        }
+       var result;
+       function getNation(openDt,title){
+    	   $.ajax("BoxOfficeNation.mo",{
+               method: "get",
+               dataType: "json",
+               async: false, // ajax 방식일때 리턴값만 비동기로 바꿔주는 부분
+               data : {
+            	   openDt:openDt,
+            	   title:title
+            	   	},
+               success: function(data) { 
+                   $.each(data.Data, function(idx, item) {
+                	  $.each(item.Result,function(idx2,item2){
+                		  var image = item2.posters.split("|");
+                		  result = image[0] +"|"+item2.nation;
+                	  });
+                   });
+                   
+               }
+      	  });
+    	   return result;
+    	   
+       }
    
        // 하루 전 날짜 구하기
        var d = new Date();
@@ -40,8 +47,6 @@
              dd = "0" + dd;
           }
        var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환 
-//        alert(today);
-       
        $.ajax({
             url: "BoxOffice.mo",
                     // &itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정(최대 10)
@@ -56,24 +61,19 @@
             	   $.each(item.dailyBoxOfficeList, function(idx,item2){
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
+                       var openDt = item2.openDt.replace(/-/g,'');
                        $('.boxOffice').append("<div class=ranking></div>"+
+                    		   "<img class=poster_img>"+
                     		   "<div><a class=movieName></a></div>"+
                     		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
                        $('.movieName').eq(idx).text(item2.movieNm);
-                       $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?movieNm='+titleNoSpace+'&openDt='+item2.openDt);
-//                        var nation = getNation(item2.movieCd);
-//                        $('.nation').eq(idx).text(nation);
+                       $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?movieNm='+titleNoSpace+'&openDt='+openDt);
+                       result = getNation(openDt,titleNoSpace);
+                       result = result.split("|");
+                       $('.poster_img').eq(idx).attr("src",result[0]);
+             		   $('.nation').eq(idx).text(result[1]);
             	   });
             	   
-//                     for(var i = 0; i < 10; i++){ // 영화 10개까지 받아오기
-                       
-//                        $('#ranking').append('<td>' + (i+1) + '</td>'); // 순위
-//                        $('#poster').append('<td>' + item.dailyBoxOfficeList[i].movieNm + '</td>'); // 포스터
-//                        $('#movieName').append('<td><a href=MovieDetailPro.mo?movieNm='+titleNoSpace+'&openDt='+item.dailyBoxOfficeList[i].openDt+'> '+item.dailyBoxOfficeList[i].movieNm + '</a></td>'); // 영화명
-//                        $('#openDate').append('<td>' + item.dailyBoxOfficeList[i].openDt + '</td>'); // 개봉일
-//                        $('#audiAcc').append('<td>' + item.dailyBoxOfficeList[i].audiAcc + '</td>'); // 누적관객수
-                       
-//                    }
                    
                 });
             }

@@ -43,36 +43,7 @@ public class BoxofficeApi {
 
 		return sb.toString();
 	}
-	public String getBoxOfficeNation(String movieCd) throws IOException {
-		String serviceKey = "4d549b0bc63467abbc7ffe4a1169333a";
-		StringBuilder urlBuilder = new StringBuilder("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" + serviceKey);
-		urlBuilder.append("&" + URLEncoder.encode("movieCd", "UTF-8") + "=" + movieCd);
-		
-		URL url = new URL(urlBuilder.toString());
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + conn.getResponseCode());
-		
-		BufferedReader rd;
-		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		} else {
-			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-		}
-		
-		StringBuilder sb = new StringBuilder();
-		String line;
-		while ((line = rd.readLine()) != null) {
-			sb.append(line + "\n");
-		}
-		
-		rd.close();
-		conn.disconnect();
-		
-
-		return sb.toString();
-	}
+	
 	
 
 }

@@ -252,11 +252,10 @@ public class kmdbApi {
 
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 
-		System.out.println("openDt 메서드 " + movieNm);
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
-		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + openDt); /* Service Key */
+		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); /* Service Key */
 		urlBuilder.append(
 				"&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(movieNm, "UTF-8")); /* 상영년도 */
 //		urlBuilder
@@ -281,7 +280,7 @@ public class kmdbApi {
 		
 		rd.close();
 		conn.disconnect();
-
+		System.out.println(sb.toString());
 
 		return sb.toString();
 	}

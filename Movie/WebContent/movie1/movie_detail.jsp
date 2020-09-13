@@ -16,8 +16,14 @@
 			var keyword = $("#keyword").val();
 			var movieNm = $("#movieNm").val();
 		    var openDt = $("#openDt").val();
+		    var url ;
+		    if(openDt!="null"){
+		    	url = "MovieDetailByBox.mo";
+		    }else{
+		    	url = "MovieDetail.mo";
+		    }
 			$.ajax({
-				url:"MovieDetail.mo",
+				url:url,
 				method:"post",
 				dataType :"json",
 				data:{

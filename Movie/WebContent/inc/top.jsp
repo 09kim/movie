@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="${pageContext.request.contextPath}/css/css.css" type="text/css" rel="stylesheet">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){

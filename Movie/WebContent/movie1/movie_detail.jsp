@@ -3,11 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String nick = (String)session.getAttribute("nick"); 
+int getGrade = (int)request.getAttribute("getGrade"); 
+String movieSeq = request.getParameter("movieSeq");
+String query = request.getParameter("query");%>
+<%String director=request.getParameter("director"); %>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<%String nick = (String)session.getAttribute("nick"); %>
-<%int getGrade = (int)request.getAttribute("getGrade"); %>
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
@@ -50,7 +53,7 @@
          
          $('#comment').click(function(){
          	cmtBtn();
-         })
+         });
          
          
          
@@ -110,7 +113,8 @@
                                           nick:nick
                                           },
                                      success:function(data){
-                                       }
+                                     location.reload();  
+                                     }
                                   }
                            ) 
                         }   
@@ -340,7 +344,7 @@
                   });
                }
          });
-            
+            $('.thisMovie').hide();
          });
          
          
@@ -349,28 +353,19 @@
 </script>
 </head>
 <body>
+<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
+<input type="hidden" id="query" value="<%=query%>">
+<input type="hidden" id="director" name=director value="<%=director%>">
+<input type="hidden" id ="nick" class="nick" value=<%=nick %>>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
+
 <section id="main">
+
 <section>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
-         <br>
-      <div id="subInfo"></div>
-      
-   <section id="list">
-   </section>
-<%String movieSeq = request.getParameter("movieSeq");
-  String query = request.getParameter("query");%>
-   <input type="hidden" id="movieSeq" value="<%=movieSeq%>">
-   <input type="hidden" id="query" value="<%=query%>">
-   
-      <div class=thisMovie>
-              <div class=poster>
-                 <img class="poster_img">
-                 </div>
-                  <div class=title>
-                <a class="link"></a>
-                    <span class='star-input'>
+   <br>
+ <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
                  <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
@@ -383,29 +378,23 @@
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-                 </div>
-        </div>
-        <% if(getGrade > 0){ %> 
+                 <% if(getGrade > 0){ %> 
         	 <%= getGrade/2  %> 점을 입력하셨습니다.
         	코멘트를 남겨보세요!
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>
+      	<%} %>  
+
+   <div id="subInfo"></div>
+   <section id="list">
+   </section>
+    <div class=thisMovie>
    <section id="detail">
    </section>
    <section id="posters">
    </section>
-   
-
-   
    <section style=float:left; id="keyword">
    </section>
-   <br><br><br><br><br><br>
-   <%String director=request.getParameter("director"); %>
-   
-   <input type="hidden" id="director" name=director value="<%=director%>">
-   <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
-      
-   
+   </div>
    </section>
    <div id="dialog-message" title="선택하세요." style="display:none">
    	평가하시려면 로그인이 필요해요. <br>

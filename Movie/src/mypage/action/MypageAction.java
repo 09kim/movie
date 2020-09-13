@@ -19,7 +19,6 @@ public class MypageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String email = request.getParameter("email");
-		System.out.println("email");
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("nick");
 //		String nick = request.getParameter("nick");

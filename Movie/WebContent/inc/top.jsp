@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <link href="${pageContext.request.contextPath}/css/css.css" type="text/css" rel="stylesheet">
-=======
->>>>>>> refs/heads/희주
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
 });
 </script>
-
-
 <%
 request.setCharacterEncoding("UTF-8");
 String nick=(String)session.getAttribute("nick");
 %>
-
 
 <header>
 <div class="div-top">
@@ -43,7 +37,7 @@ String nick=(String)session.getAttribute("nick");
 	<div id="login">
 		<%
 		if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){ %>
-		<a href="MypageForm.mp"><%=nick %> 님 | </a>
+		<a href="Mypage.mp"><%=nick %> 님 | </a>
 		<a href="MemberLogout.me">로그아웃</a>
 		<%
 		} else{ %>
@@ -53,5 +47,5 @@ String nick=(String)session.getAttribute("nick");
 		}
 		%>
 	</div>
-</nav> 
+</div>
 </header>

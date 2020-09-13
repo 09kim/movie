@@ -9,8 +9,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<!-- <script src="../../../Movie/js/jquery-3.5.1.js"></script> -->
+<script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -101,9 +100,9 @@ img {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="css/default.css" rel="stylesheet" type="text/css">
-<link href="css/mypageboard.css" rel="stylesheet" type="text/css">
+<title></title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
 <!-- 헤더 -->
@@ -140,6 +139,7 @@ img {
 			<%}%>
 			</tr>
 		</table>
+		</section>
 	<input type="hidden" name="idx" id="idx">
 	<input type="hidden" name="nick" id="nick">
 	<input type="hidden" name="title" id="title">

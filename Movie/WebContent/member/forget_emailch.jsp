@@ -5,18 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<!-- 낙원(0902:헤더 추가) -->
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<!-- /낙원(0902:헤더 추가) -->
-
-
->>>>>>> refs/heads/낙원
 	<form action="ForgetPro.me" method="POST">
 		<h2>비밀번호 찾기</h2>
 		<hr>

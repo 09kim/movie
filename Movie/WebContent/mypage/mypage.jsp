@@ -12,13 +12,13 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage - MyPage</title>
-<link href="css/default.css" rel="stylesheet" type="text/css">
-<link href="css/mypageboard.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 헤더 -->
 <jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+<div class="clear"></div> 
 <!-- 헤더 -->
 
 <section id="main">

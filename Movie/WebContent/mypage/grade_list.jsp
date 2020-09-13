@@ -13,8 +13,8 @@ int listCount = (int)request.getAttribute("listCount");
 <head>
 <meta charset="UTF-8">
 <title>MyPage - GradeList</title>
-<link href="css/default.css" rel="stylesheet" type="text/css">
-<link href="css/mypageboard.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 헤더 -->
@@ -34,12 +34,11 @@ int listCount = (int)request.getAttribute("listCount");
 	<!-- 왼쪽메뉴 -->
 	
 	<div id="myinfo">
-		내가 평가한 영화 목록 : 
+		내가 평가한 영화 목록 :<span><%=listCount %></span> 
 		<%
 		if(gradeList != null && listCount > 0){
 			for(int i=0; i < gradeList.size(); i++){
 		%>
-		<span><%=listCount %></span>
 		<div id="gradelist">
 			<ul>
 				<li>

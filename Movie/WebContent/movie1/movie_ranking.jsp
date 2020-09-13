@@ -5,14 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/default.css" rel="stylesheet" type="text/css">
-<link href="css/movieboard.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script>
 
    $(document).ready(function() {
-	
-       
        var result;
        function getNation(openDt,title){
     	   $.ajax("BoxOfficeNation.mo",{
@@ -88,16 +86,11 @@
    
    
 </script>
-
 </head>
 <body>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<%
-%>
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>
-<!-- 헤더 -->
-<!-- 헤더 -->
 </body>
 </html>

@@ -66,10 +66,10 @@
 							
 							var nick = $('#nick').val()
 							console.log(nick)
-							if(nick != null ){
-								
-								
 							
+							
+								
+								
 								function starClick(param,grade){
 									  	  $.ajax("setGrade.mo",{
 									  		  method:"post",
@@ -84,7 +84,7 @@
 									) 
 								}	
 							
-							
+							if(nick != 'null') {
 							$.ajax("MovieDetail.mo",{
 			               method:"get",
 			               dataType :"json",
@@ -96,7 +96,7 @@
 			                  $.each(data.Data,function(idx,item){
 			                     var i =1;
 			                     var l =1;
-			                     
+			                    
 			                     $.each(item.Result,function(idx,item2){
 			                    	
 			                        var num = 0;
@@ -206,13 +206,45 @@
 			                  });//each문 끝남
 			              });
 			           }
-							})
-			        };
+					})
+			} else {  
+				$('.l1').click(function(){
+					if(confirm("로그인 후 사용 가능합니다.") == true) {
+						return;
+					} else {
+						return;
+					}
+				})
+				
+				$('.l2').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l3').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l4').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l5').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l6').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l7').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l8').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l9').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+				
+				$('.l10').click(function(){
+					alert("로그인 후 사용 가능합니다.")	})
+             }  
 							
-							
-							
-							
-							
+
 							$('#detail').append('<div class=title>'+title5+'</div>')
 							$('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
 							$('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')

@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title></title>
 <%String nick = (String)session.getAttribute("nick"); %>
-<link href="MovieCss.mo" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">

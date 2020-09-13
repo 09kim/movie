@@ -8,8 +8,8 @@
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <%String nick = (String)session.getAttribute("nick"); %>
 <%int getGrade = (int)request.getAttribute("getGrade"); %>
-<link href="${pageContext.request.contextPath}/css/buttonCss.mo" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/MovieCss.mo" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -100,7 +100,6 @@
                   
                      
                      var nick = $('#nick').val()
-                     console.log(nick)
                       
                         function starClick(param,grade){
                                   $.ajax("setGrade.mo",{
@@ -347,39 +346,44 @@
          
          
    });
->>>>>>> refs/heads/testㅎㅎ
 </script>
 </head>
 <body>
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
+<section id="main">
+<section>
+   <a href="#" id="directorMovies">이 감독의 다른 영화</a>
+         <br>
+      <div id="subInfo"></div>
+      
+   <section id="list">
+   </section>
 <%String movieSeq = request.getParameter("movieSeq");
   String query = request.getParameter("query");%>
    <input type="hidden" id="movieSeq" value="<%=movieSeq%>">
    <input type="hidden" id="query" value="<%=query%>">
    
       <div class=thisMovie>
-                     <div class=poster>
-                        <img class="poster_img">
-                        </div>
-                         <div class=title>
-                       <a class="link"></a>
-                           <span class='star-input'>
-                           <span class='input'>
-                        <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
-                        <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
-                        <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
-                        <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
-                        <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
-                        <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
-                        <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
-                        <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
-                        <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
-                        <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
-                        </span></span>
-                        </div>
+              <div class=poster>
+                 <img class="poster_img">
+                 </div>
+                  <div class=title>
+                <a class="link"></a>
+                    <span class='star-input'>
+                    <span class='input'>
+                 <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
+                 <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
+                 <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
+                 <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
+                 <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
+                 <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
+                 <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
+                 <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
+                 <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
+                 <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
+                 </span></span>
+                 </div>
         </div>
         <% if(getGrade > 0){ %> 
         	 <%= getGrade/2  %> 점을 입력하셨습니다.
@@ -402,13 +406,6 @@
    <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
       
    
-   <section>
-   <a href="#" id="directorMovies">이 감독의 다른 영화</a>
-         <br>
-      <div id="subInfo"></div>
-      
-   <section id="list">
-   </section>
    </section>
    <div id="dialog-message" title="선택하세요." style="display:none">
    	평가하시려면 로그인이 필요해요. <br>
@@ -419,6 +416,6 @@
    		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
-   	
+   	</section>
 </body>
 </html>

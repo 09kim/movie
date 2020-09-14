@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import member.svc.DupCheckService;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MemberNickAction implements Action {
 

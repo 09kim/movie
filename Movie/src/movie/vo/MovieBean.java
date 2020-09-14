@@ -1,7 +1,5 @@
 package movie.vo;
 
-import java.sql.Date;
-
 public class MovieBean {
 	private String movieGenre;
 	private String movieRuntime;
@@ -12,7 +10,15 @@ public class MovieBean {
 	private String nick;
 	private String director;
 	private String nation;
+	private String openDt;
 	
+
+	public String getOpenDt() {
+		return openDt;
+	}
+	public void setOpenDt(String openDt) {
+		this.openDt = openDt;
+	}
 	public String getDirector() {
 		return director;
 	}
@@ -25,6 +31,7 @@ public class MovieBean {
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
+
 	public String getNick() {
 		return nick;
 	}

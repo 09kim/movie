@@ -1,11 +1,12 @@
 package member.svc;
 
-import static db.JdbcUtil.*;
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 
 import member.dao.MemberDAO;
-import vo.MemberBean;
+import member.vo.MemberBean;
 
 public class MemberLoginProService {
 	

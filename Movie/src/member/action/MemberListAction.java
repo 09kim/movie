@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.svc.MemberListService;
+import member.vo.MemberBean;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MemberListAction implements Action{
 
@@ -25,7 +25,8 @@ public class MemberListAction implements Action{
 		String orderType = request.getParameter("orderType");
 		
 		MemberListService service = new MemberListService();
-		ArrayList<MemberBean> memberList = service.getMemberList();
+		ArrayList<MemberBean
+		> memberList = service.getMemberList();
 		
 		if(orderTarget == null) {
 			memberList = service.getMemberList();

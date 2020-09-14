@@ -1,27 +1,10 @@
 package api;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.security.MessageDigest;
 import java.util.HashMap;
-import java.util.Properties;
 import java.util.Random;
-
-import javax.mail.Address;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.json.simple.JSONObject;
 
-import member.dao.MemberDAO;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
-import vo.MemberBean;
 
 
 /**

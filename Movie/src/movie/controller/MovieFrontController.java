@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
+import movie.action.MovieBoxOfficeAction;
+import movie.action.MovieBoxOfficeNationAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGetGradeAction;
@@ -41,9 +43,6 @@ public class MovieFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-//		} else if (command.equals("/MovieDetailPro.mo")) {
-//			forward = new ActionForward();
-//			forward.setPath("/movie1/movie_detail.jsp");
 		} else if (command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_search.jsp");
@@ -130,34 +129,36 @@ public class MovieFrontController extends HttpServlet {
 			forward.setPath("/movie1/movie_ranking.jsp");
 
 		}
-		
-		else if (command.equals("/buttonCss.mo")) {
-			forward = new ActionForward();
-			forward.setPath("/css/jquery-ui.css");
-		}
-		
-		else if (command.equals("/MovieReview.mo")) {
+		else if (command.equals("/BoxOffice.mo")) {
+			action = new MovieBoxOfficeAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoxOfficeNation.mo")) {
+			action = new MovieBoxOfficeNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieReview.mo")) {
 			action = new MovieReviewAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 
 			} 
-		}
-		
-		else if (command.equals("/MovieDetailPro.mo")) {
+		}else if (command.equals("/MovieDetailPro.mo")) {
 			action = new MovieGetGradeAction();
 			try {
 				forward = action.execute(request, response);
-				System.out.println(forward.getPath());
 			} catch (Exception e) {
 
 			} 
 		}
-//		else if (command.equals("/MovieDirector.mo")) {
-//			forward = new ActionForward();
-//			forward.setPath("/movie1/movie_detail_director.jsp");
-//		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {
@@ -166,7 +167,6 @@ public class MovieFrontController extends HttpServlet {
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
-				System.out.println(forward);
 			}
 		}
 		

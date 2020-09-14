@@ -8,7 +8,7 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import member.dao.MemberDAO;
-import vo.MemberBean;
+import member.vo.MemberBean;
 
 public class ForgetService {
 

@@ -1,25 +1,27 @@
-package member.svc;
-import static db.JdbcUtil.*;
+package mypage.svc;
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import member.dao.MemberDAO;
 import movie.vo.MovieBean;
+import mypage.dao.MypageDAO;
+import mypage.vo.MypageGenerBean;
 public class MemberMypageService {
 
-	public StringBuffer getMypageGener(String nick) {
+	public ArrayList<MypageGenerBean> getMypageGener(String nick) {
 		Connection con = getConnection();
-		MemberDAO dao = MemberDAO.getInstance();
+		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		StringBuffer sb = dao.selectGener(nick);
+		ArrayList<MypageGenerBean> list = dao.selectGener(nick);
 		close(con);
-		return sb;
+		return list;
 	}
 
 	public ArrayList<MovieBean> getMypageTitle(String nick) {
 		Connection con = getConnection();
-		MemberDAO dao = MemberDAO.getInstance();
+		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
 		ArrayList<MovieBean> list = dao.selectTitle(nick);
 		close(con);

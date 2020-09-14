@@ -30,9 +30,6 @@ public class MovieDirectorProAction implements Action{
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 
-
-		JsonArray ja = (JsonArray) jsonObject.get("Data"); // 이거안하면 나오는게 이상함
-
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);

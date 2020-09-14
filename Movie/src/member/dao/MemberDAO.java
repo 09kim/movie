@@ -9,9 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import member.exception.MemberLoginException;
-import member.vo.MemberBEAN;
-import movie.vo.MovieBean;
-import vo.MemberBean;
+import member.vo.MemberBean;
 
 public class MemberDAO {
 	private MemberDAO() {
@@ -37,7 +35,7 @@ public class MemberDAO {
 	
 	ResultSet rs ;
 
-	public int insertMember(MemberBEAN mb) {
+	public int insertMember(MemberBean mb) {
 		int insertCount=0;
 		
 		try {
@@ -225,48 +223,4 @@ public class MemberDAO {
 		return memberList;
 	}
 
-	// ------------------------------------------------------------------- 별점 용 메서드
-	public StringBuffer selectGener(String nick) {
-		String sql = "SELECT * from grade where nick = ?";
-		StringBuffer sb= new StringBuffer();
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, nick);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				sb = sb.append(rs.getString("gener")+",");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return sb;
-	}
-
-
-	public ArrayList<MovieBean> selectTitle(String nick) {
-		String sql = "SELECT grade,title from grade where nick = ?";
-		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, nick);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				MovieBean mb = new MovieBean();
-				mb.setMovieGrade(rs.getString("grade"));
-				mb.setMovieTitle(rs.getString("title"));
-				list.add(mb);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return list;
-	}
 }

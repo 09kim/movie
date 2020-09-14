@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -217,14 +218,7 @@ $(document).ready(function(){
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
-
-<input type="submit" value="가입">
-
 </form>
-
-
-
-
 
 
 </body>

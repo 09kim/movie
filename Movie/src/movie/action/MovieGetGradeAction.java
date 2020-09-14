@@ -14,7 +14,7 @@ public class MovieGetGradeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("getGradeACtion");
+		System.out.println("getGradeAction");
 		
 		System.out.println("-----------------------------------");
 		// Get the printwriter object from response to write the required json object to
@@ -28,15 +28,22 @@ public class MovieGetGradeAction implements Action {
 		movieBean.setMovieSeq(movieSeq);
 		setGradeService setGradeService = new setGradeService();
 		int getGrade = setGradeService.selectGrade(movieBean);
-		System.out.println(getGrade);
 		ActionForward forward = new ActionForward();
-		
-		
-		request.setAttribute("getGrade", getGrade);
-		forward.setRedirect(false);
-		forward.setPath("/movie1/movie_detail.jsp");
-		
-		return forward;
+		String grade = "";
+	      
+	      if((getGrade%2.0) == 0.0) {
+	         grade = (int)(getGrade/2)+"";
+	      }else {
+	         grade = getGrade/2.0 + "";
+	      }
+	      
+	      request.setAttribute("getGrade", grade);
+	      
+	      
+	      forward.setRedirect(false);
+	      forward.setPath("/movie1/movie_detail.jsp");
+	      
+	      return forward;
 	}
 
 }

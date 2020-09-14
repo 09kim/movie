@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="${pageContext.request.contextPath}/css/css.css" type="text/css" rel="stylesheet">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function(){
-});
-</script>
-
-
+<link href="${pageContext.request.contextPath}/css/default.css" type="text/css" rel="stylesheet">
 <%
 request.setCharacterEncoding("UTF-8");
 String nick=(String)session.getAttribute("nick");
 %>
+
 <header>
-<nav class="div-top">
-  <ul class="ul-top">
+<div class="div-top">
+   <ul class="ul-top">
       <li>
           <a class="a-home" href="Main.me">홈</a>
       </li>
@@ -38,7 +31,7 @@ String nick=(String)session.getAttribute("nick");
 	<div id="login">
 		<%
 		if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){ %>
-		<a href="Mypage.me?nick=<%=nick%>"><%=nick %> 님 | </a>
+		<a href="Mypage.mp"><%=nick %> 님 | </a>
 		<a href="MemberLogout.me">로그아웃</a>
 		<%
 		} else{ %>
@@ -48,5 +41,5 @@ String nick=(String)session.getAttribute("nick");
 		}
 		%>
 	</div>
-</nav> 
+</div>
 </header>

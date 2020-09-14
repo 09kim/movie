@@ -1,4 +1,4 @@
-<%@page import="vo.MemberBean"%>
+<%@page import="member.vo.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -42,12 +42,14 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
-<section id="listForm">
+<section id="main">
+	<section id="listForm">
 		<h2>회원 목록</h2>
 		<table>
 			<tr id="tr_top">
@@ -70,5 +72,6 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 			<%}%>
 		</table>
 	</section>
+</section>
 </body>
 </html>

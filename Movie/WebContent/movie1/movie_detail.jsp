@@ -3,12 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String nick = (String)session.getAttribute("nick"); 
+String getGrade = (String)request.getAttribute("getGrade"); 
+String movieSeq = request.getParameter("movieSeq");
+String query = request.getParameter("query");%>
+<%String director=request.getParameter("director"); %>
 <meta charset="UTF-8">
 <title></title>
-<%String nick = (String)session.getAttribute("nick"); %>
-<%int getGrade = (int)request.getAttribute("getGrade"); %>
-<link href="buttonCss.mo" type="text/css" rel="stylesheet">
-<link href="MovieCss.mo" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -20,6 +24,8 @@
          var movieSeq = $("#movieSeq").val();
          var query = $("#query").val();
          var keyword = $("#keyword").val();
+         
+         
          
          
          function selectBtn() {
@@ -49,7 +55,7 @@
          
          $('#comment').click(function(){
          	cmtBtn();
-         })
+         });
          
          
          
@@ -99,7 +105,6 @@
                   
                      
                      var nick = $('#nick').val()
-                     console.log(nick)
                       
                         function starClick(param,grade){
                                   $.ajax("setGrade.mo",{
@@ -110,7 +115,7 @@
                                           nick:nick
                                           },
                                      success:function(data){
-                                    	 location.reload();
+                                    	
                                      }
                                   }
                            ) 
@@ -139,7 +144,6 @@
                                  var title3 = title2.replace(/!HE/g,'')
                                  var title5 = title3.trim();
                                  
-                             
                                  
                                  
                                  // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
@@ -151,6 +155,44 @@
                                  $('.l'+o).eq(idx).attr("for","p"+l++);
                                  }
                                  
+                                 var getGrade = $('#getGrade').val()
+
+
+                                 switch(getGrade){
+                                 case "0.5" :
+                                	 $('.l1').focus();
+                                	 break;                                 
+                                 case "1" :
+                                	 $('.l2').focus();
+                                	 break;                             
+                              	 case "1.5":
+                             		 $('.l3').focus();
+                             	 	 break;
+                              	 case "2" :
+                              		 $('.l4').focus();
+                              		 break;
+                              	 case "2.5":
+                              		 $('.l5').focus();
+                              		 break;
+                              	 case "3" :
+                              		 $('.l6').focus();
+                              		 break;
+                              	 case "3.5" :
+                              		 $('.l7').focus();
+                              		 break;
+                              	 case "4" :
+                              		 $('.l8').focus()
+                              		 break;
+                              	 case "4.5":
+                              		 $('.l9').focus()
+                              		 break;
+                              	default:
+                              		$('.l10').focus();
+                              	
+                              		 }
+                              
+                             
+                                 
                                  
                                  $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                                  var garde= 0;
@@ -160,6 +202,7 @@
                                        var grade=1;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade);
+                                      
                                     });
                                     
                                     $('.c2').eq(idx).click(function(){
@@ -225,7 +268,6 @@
                                        
                                     });
                                    
-                                    
                            
                            });//each문 끝남
                        });
@@ -342,7 +384,7 @@
                   });
                }
          });
-            
+            $('.thisMovie').hide();
          });
          
          
@@ -351,64 +393,50 @@
 </script>
 </head>
 <body>
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
-<%String movieSeq = request.getParameter("movieSeq");
-  String query = request.getParameter("query");%>
-   <input type="hidden" id="movieSeq" value="<%=movieSeq%>">
-   <input type="hidden" id="query" value="<%=query%>">
-   
-      <div class=thisMovie>
-                     <div class=poster>
-                        <img class="poster_img">
-                        </div>
-                         <div class=title>
-                       <a class="link"></a>
-                           <span class='star-input'>
-                           <span class='input'>
-                        <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
-                        <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
-                        <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
-                        <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
-                        <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
-                        <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
-                        <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
-                        <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
-                        <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
-                        <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
-                        </span></span>
-                        </div>
-        </div>
-        <% if(getGrade > 0){ %> 
-        	 <%= getGrade/2  %> 점을 입력하셨습니다.
-        	코멘트를 남겨보세요!
+<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
+<input type="hidden" id="query" value="<%=query%>">
+<input type="hidden" id="director" name=director value="<%=director%>">
+<input type="hidden" id ="nick" class="nick" value=<%=nick %>>
+<input type="hidden" id="getGrade" value="<%=getGrade %>">
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
+
+<section id="main">
+
+<section>
+   <a href="#" id="directorMovies">이 감독의 다른 영화</a>
+   <br>
+ <span class='star-input'>
+                    <span class='input'>
+                 <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
+                 <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
+                 <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
+                 <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
+                 <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
+                 <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
+                 <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
+                 <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
+                 <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
+                 <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
+                 </span></span>
+                 <% if(!(getGrade.equals("0"))){ %> 
+              
+        	<%= getGrade %> 점을 입력하셨습니다. 코멘트를 남겨보세요!
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>
+      	<%} %>  
+
+
+   <div id="subInfo"></div>
+   <section id="list">
+   </section>
+    <div class=thisMovie>
    <section id="detail">
    </section>
    <section id="posters">
    </section>
-   
-
-   
    <section style=float:left; id="keyword">
    </section>
-   <br><br><br><br><br><br>
-   <%String director=request.getParameter("director"); %>
-   
-   <input type="hidden" id="director" name=director value="<%=director%>">
-   <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
-      
-   
-   <section>
-   <a href="#" id="directorMovies">이 감독의 다른 영화</a>
-         <br>
-      <div id="subInfo"></div>
-      
-   <section id="list">
-   </section>
+   </div>
    </section>
    <div id="dialog-message" title="선택하세요." style="display:none">
    	평가하시려면 로그인이 필요해요. <br>
@@ -419,6 +447,6 @@
    		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
-   	
+   	</section>
 </body>
 </html>

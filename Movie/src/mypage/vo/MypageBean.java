@@ -16,7 +16,6 @@ public class MypageBean {
 	
 	
 	
-	
 	public String getMovieId() {
 		return movieId;
 	}

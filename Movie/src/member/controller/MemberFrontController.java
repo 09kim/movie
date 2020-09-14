@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.action.MemberNickAction;
-import mypage.action.MemberMypageGenerAction;
+import mypage.action.MypageGenerAction;
 import mypage.action.MemberMypageTitleAction;
 import member.action.MemberEmailAction;
 import member.action.MemberForgetAction;
@@ -120,7 +120,7 @@ public class MemberFrontController extends HttpServlet {
 			forward.setPath("/member/member_mypage.jsp");
 			
 		} else if (command.equals("/MypageGener.me")) {
-			action = new MemberMypageGenerAction();
+			action = new MypageGenerAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

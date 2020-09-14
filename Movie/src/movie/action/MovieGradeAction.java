@@ -92,7 +92,6 @@ public class MovieGradeAction implements Action {
 
 //		System.out.println(getGenre[rNum]); // 랜덤인덱스 접근
 
-		System.out.println(startCount);
 		kmdbApi movie = new kmdbApi();
 		String json = movie.getMovieByGenre(genre2, type, startCount);
 		JsonParser jsonParser = new JsonParser();

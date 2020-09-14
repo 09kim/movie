@@ -1,7 +1,6 @@
 package mypage.vo;
 
-public class CategoryBean {
-//	코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처
+public class GenerCountBean implements MarkGenerBean{
 	private int 코메디;
 	private int 느와르;
 	private int 범죄;
@@ -18,18 +17,7 @@ public class CategoryBean {
 	private int 공포;
 	private int 어드벤처;
 	private int 미스터리;
-	public int get미스터리() {
-		return 미스터리;
-	}
-	public void set미스터리(int 미스터리) {
-		this.미스터리 = 미스터리;
-	}
-	public int get어드벤처() {
-		return 어드벤처;
-	}
-	public void set어드벤처(int 어드벤처) {
-		this.어드벤처 = 어드벤처;
-	}
+	
 	public int get코메디() {
 		return 코메디;
 	}
@@ -114,6 +102,17 @@ public class CategoryBean {
 	public void set공포(int 공포) {
 		this.공포 = 공포;
 	}
-	
+	public int get어드벤처() {
+		return 어드벤처;
+	}
+	public void set어드벤처(int 어드벤처) {
+		this.어드벤처 = 어드벤처;
+	}
+	public int get미스터리() {
+		return 미스터리;
+	}
+	public void set미스터리(int 미스터리) {
+		this.미스터리 = 미스터리;
+	}
 	
 }

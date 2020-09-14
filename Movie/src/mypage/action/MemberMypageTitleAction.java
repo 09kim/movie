@@ -19,11 +19,12 @@ public class MemberMypageTitleAction implements Action {
 		RestAPI_test rest = new RestAPI_test();
 		String grade = rest.getExpectedGrade(nick);
 		String user = rest.getRecommendUser(nick);
+		String naver = rest.getNaver();
 		JsonParser jsonParser = new JsonParser();
-		JsonArray jsonObject2 = (JsonArray) jsonParser.parse(user);
+		JsonArray jsonObject = (JsonArray) jsonParser.parse(naver);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println(jsonObject2);
+		out.println(jsonObject);
 		out.flush();
 		
 				

@@ -14,5 +14,6 @@
 <section id="main">
 마잌첵
 </section>
+<a href="Python.me?nick=<%=nick%>">파이썬테스트</a>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <%String nick = (String)session.getAttribute("nick"); %>
 <meta charset="UTF-8">
 <title></title>
-<link href="css/default.css" rel="stylesheet" type="text/css">
+<!-- <link href="css/default.css" rel="stylesheet" type="text/css"> -->
 </head>
 <body>
 <jsp:include page="/inc/top.jsp" />

@@ -25,7 +25,7 @@
                    $.each(data.Data, function(idx, item) {
                 	  $.each(item.Result,function(idx2,item2){
                 		  var image = item2.posters.split("|");
-                		  result = image[0] +"|"+item2.nation;
+                		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
                 	  });
                    });
                    
@@ -66,12 +66,12 @@
                     		   "<img class=poster_img>"+
                     		   "<div><a class=movieName></a></div>"+
                     		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
-                       $('.movieName').eq(idx).text(item2.movieNm);
-                       $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?movieNm='+titleNoSpace+'&openDt='+openDt);
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        $('.poster_img').eq(idx).attr("src",result[0]);
              		   $('.nation').eq(idx).text(result[1]);
+                       $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
+                       $('.movieName').eq(idx).text(item2.movieNm);
             	   });
             	   
                    

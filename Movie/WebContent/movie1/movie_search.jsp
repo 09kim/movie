@@ -46,12 +46,16 @@ $(document).ready(function(){
 								actors = actors + item2.actor[num].actorNm + ", ";	
 							}
 								
-							$('#koreaList').append('<div class=nation>'+item2.nation+'</div>')
+							$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#koreaList').append('<div class=title><a href=MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
-							$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>')
-							$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-							$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>')
+									+item2.movieSeq+'&query='+title6+'>'+title3+'</div>');
+							$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>');
+							$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+							if(image[0]){
+								$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>');
+							}else{
+								$('#koreaList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
+							}
 						}
 						else {
 							
@@ -59,12 +63,16 @@ $(document).ready(function(){
 								actors = actors + item2.actor[num].actorNm + ", ";	
 							}
 								
-							$('#foreignList').append('<div class=nation>'+item2.nation+'</div>')
+							$('#foreignList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#foreignList').append('<div class=title><a href=MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-							$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>')
-							$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-							$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>')
+									+item2.movieSeq+'&query='+title5+'>'+title3+'</div>');
+							$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>');
+							$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+							if(image[0]){
+								$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>');
+							}else{
+								$('#foreignList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
+							}
 						
 						}
 						
@@ -90,7 +98,7 @@ $(document).ready(function(){
 						var title = item2.title
 						var titleNoSpace = title.replace(/ /g, '');
 						var title2 = titleNoSpace.replace(/!HS/g,'')
-						var title3 = title2.replace(/!HE/g,'')
+						var title3 = title2.replace(/!HE/g,'');
 						var title5 = title3.trim();
 						var title6 =  encodeURIComponent(title5);
 						var actors="";
@@ -101,12 +109,16 @@ $(document).ready(function(){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 							
-						$('#actorList').append('<div class=nation>'+item2.nation+'</div>')
+						$('#actorList').append('<div class=nation>'+item2.nation+'</div>');
 						$('#actorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
-						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>')
-						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-						$('#actorList').append('<div class=poster><img src='+image[0]+'></div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>');
+						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>');
+						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+						if(image[0]){
+							$('#actorList').append('<div class=poster><img src='+image[0]+'></div>');
+						}else{
+							$('#actorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
+						}
 	                  });
 				});
 			}
@@ -127,8 +139,8 @@ $(document).ready(function(){
 						
 						var title = item2.title
 						var titleNoSpace = title.replace(/ /g, '');
-						var title2 = titleNoSpace.replace(/!HS/g,'')
-						var title3 = title2.replace(/!HE/g,'')
+						var title2 = titleNoSpace.replace(/!HS/g,'');
+						var title3 = title2.replace(/!HE/g,'');
 						var title5 = title3.trim();
 						var title6 =  encodeURIComponent(title5);
 						var actors="";
@@ -139,12 +151,16 @@ $(document).ready(function(){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 							
-						$('#directorList').append('<div class=nation>'+item2.nation+'</div>')
+						$('#directorList').append('<div class=nation>'+item2.nation+'</div>');
 						$('#directorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
-						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>')
-						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-						$('#directorList').append('<div class=poster><img src='+image[0]+'></div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>');
+						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>');
+						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+						if(image[0]){
+							$('#directorList').append('<div class=poster><img src='+image[0]+'></div>');
+						}else{
+							$('#directorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
+						}
 	                  });
 				});
 			}

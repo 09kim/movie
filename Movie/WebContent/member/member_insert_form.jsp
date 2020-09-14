@@ -218,22 +218,7 @@ $(document).ready(function(){
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
-
-<form action="MemberWritePro.me">
-이메일 : <input type="text" name="email"> &nbsp;&nbsp; <input type="button" value="이메일 중복체크" id="dupEmail"> <br> 
-패스워드 : <input type="password" name="pass"> <br> 
-닉네임 : <input type="text" name="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
-연락처 : <input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>
-		<input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증">
-	 
-<div id="divid"></div>
-<input type="submit" value="가입">
-
 </form>
-
-
-
-
 
 
 </body>

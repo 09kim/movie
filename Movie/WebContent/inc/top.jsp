@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="${pageContext.request.contextPath}/css/css.css" type="text/css" rel="stylesheet">
-<script type="text/javascript">
-
-$(document).ready(function(){
-});
-</script>
+<link href="${pageContext.request.contextPath}/css/default.css" type="text/css" rel="stylesheet">
 <%
 request.setCharacterEncoding("UTF-8");
 String nick=(String)session.getAttribute("nick");

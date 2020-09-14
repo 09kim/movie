@@ -14,7 +14,7 @@ public class MovieGetGradeAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("getGradeACtion");
+		System.out.println("getGradeAction");
 		
 		System.out.println("-----------------------------------");
 		// Get the printwriter object from response to write the required json object to

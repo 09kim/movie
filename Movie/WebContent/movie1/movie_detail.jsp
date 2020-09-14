@@ -120,7 +120,7 @@ String movieNm = request.getParameter("movieNm"); %>
                                           nick:nick
                                           },
                                      success:function(data){
-                                    	
+                                    	location.reload();
                                      }
                                   }
                            ) 

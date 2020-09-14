@@ -1,7 +1,7 @@
 import pymysql
 
-def getMember(id):
 
+def getMember():
     conn = pymysql.connect(host='localhost', user='root', password='1234',
                            db='got', charset='utf8')
     curs = conn.cursor(pymysql.cursors.DictCursor)
@@ -20,5 +20,4 @@ def getMember(id):
         for o in row2:
             member[i['nick']].update({o['title'] + "/" + str(o['movieSeq']): o['grade']})
 
-    return member,lst
-
+    return member, lst

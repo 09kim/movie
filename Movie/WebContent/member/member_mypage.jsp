@@ -8,7 +8,6 @@
 	$(document).ready(function() {
 		var sortData = [];
 		var nick = $('#nick').val();
-		
 		$.ajax('MypageGener.me', {
 			method : "get",
 			dataType : "json",
@@ -39,12 +38,7 @@
 				nick : nick
 			},
 			success : function(data) {
-				goPython(data);
-				$.each(data.Movie,function(idx,item){
-					
-// 						$.each(item,function(idx2,item2){
-// 							$('body').append(idx2+" : "+item2/2+"점 <br>");
-// 						});
+				$.each(data,function(idx,item){
 					});
 				
 			}
@@ -56,6 +50,8 @@
 <title></title>
 </head>
 <body>
+<jsp:include page="/inc/top.jsp" /><br><br>
+<div class="clear"></div>
 <input type="hidden" id="nick" value="<%=request.getParameter("nick") %>">
 </body>
 </html>

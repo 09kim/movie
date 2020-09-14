@@ -12,11 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
+import movie.action.MovieBoxOfficeAction;
+import movie.action.MovieBoxOfficeNationAction;
+import movie.action.MovieDetailByBox;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
+import movie.action.MovieGetGradeAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieQueryProAction;
+import movie.action.MovieReviewAction;
 import movie.action.MovieSetGradeAction;
 import vo.ActionForward;
 
@@ -39,9 +44,6 @@ public class MovieFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (command.equals("/MovieDetailPro.mo")) {
-			forward = new ActionForward();
-			forward.setPath("/movie1/movie_detail.jsp");
 		} else if (command.equals("/MovieSearch.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_search.jsp");
@@ -58,7 +60,7 @@ public class MovieFrontController extends HttpServlet {
 			forward.setPath("/movie1/movie_keyword_search.jsp");
 
 		} else if (command.equals("/MovieSearchKeywordPro.mo")) {
-			action = new MovieKeywordProAction();
+			action = new MovieKeywordProAction(); 
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
@@ -120,24 +122,64 @@ public class MovieFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/MovieCss.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/moviecss/movie.css");
 		}else if (command.equals("/MovieRanking.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_ranking.jsp");
 
 		}
-//		else if (command.equals("/MovieDirector.mo")) {
-//			forward = new ActionForward();
-//			forward.setPath("/movie1/movie_detail_director.jsp");
-//		}
+		else if (command.equals("/BoxOffice.mo")) {
+			action = new MovieBoxOfficeAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoxOfficeNation.mo")) {
+			action = new MovieBoxOfficeNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MovieDetailByBox.mo")) {
+			action = new MovieDetailByBox();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieReview.mo")) {
+			action = new MovieReviewAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		}else if (command.equals("/MovieDetailPro.mo")) {
+			action = new MovieGetGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
+				
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
+				System.out.println(forward);
 			}
 		}
+		
+		
 
 	}
 

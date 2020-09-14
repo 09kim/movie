@@ -10,7 +10,7 @@ rc('font', family=font_name)
 
 member = {}
 lst = []
-member,lst = sql.getMember("태윤")
+member,lst = sql.getMember()
 
 
 def sim_distance(data, name1, name2):
@@ -42,7 +42,7 @@ for i in li:
     score.append(i[0])
     names.append(i[1])
 
-print(li)
+
 
 
 def barchart(data, labels):  # data, labels 는 list 형태로 사용
@@ -101,8 +101,20 @@ def sim_pearson(data, name1, name2):
     return (sumXY - ((sumX * sumY) / count)) / sqrt(
         (sumPowX - (pow(sumX, 2) / count)) * (sumPowY - (pow(sumY, 2) / count)))
 
+# print(sim_pearson(member,"태윤","test1"))
 
-# print(top_match(member,'태윤',3))
+# def top_match(data, name, index=3, sim_function=sim_pearson):
+#     li=[]
+#     for i in data: #딕셔너리를 돌고
+#         if name!=i: #자기 자신이 아닐때만
+#             li.append((sim_function(data,name,i),i)) #sim_function()을 통해 상관계수를 구하고 li[]에 추가
+#     li.sort() #오름차순
+#     li.reverse() #내림차순
+#     return li[:index]
+
+
+
+
 
 def getRecommendation(data, person, sim_function=sim_pearson):
     result = top_match(member, person, len(data))
@@ -132,16 +144,9 @@ def getRecommendation(data, person, sim_function=sim_pearson):
         li.append((score_dic[key], key))  # list((tuple))의 리턴을 위해서.
     li.sort()  # 오름차순
     li.reverse()  # 내림차순
-    return li
+    return li[0:10]
 
 
 # for i in lst:
 #     print(getRecommendation(member, i))
 # print(getRecommendation(member,"태윤"))
-
-
-
-
-
-
-

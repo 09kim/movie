@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.svc.MemberListService;
+import member.vo.MemberBean;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MemberListAction implements Action{
 

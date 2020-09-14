@@ -13,6 +13,7 @@ public class MovieBean {
 	private String director;
 	private String nation;
 	
+
 	public String getDirector() {
 		return director;
 	}
@@ -25,6 +26,7 @@ public class MovieBean {
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
+
 	public String getNick() {
 		return nick;
 	}

@@ -13,6 +13,5 @@
 <div class="clear"></div>
 <section id="main">
 </section>
-
 </body>
 </html>

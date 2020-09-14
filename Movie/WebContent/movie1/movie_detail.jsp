@@ -4,7 +4,7 @@
 <html>
 <head>
 <%String nick = (String)session.getAttribute("nick"); 
-int getGrade = (int)request.getAttribute("getGrade"); 
+String getGrade = (String)request.getAttribute("getGrade"); 
 String movieSeq = request.getParameter("movieSeq");
 String query = request.getParameter("query");%>
 <%String director=request.getParameter("director"); %>
@@ -378,8 +378,8 @@ String query = request.getParameter("query");%>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-                 <% if(getGrade > 0){ %> 
-        	 <%= getGrade/2  %> 점을 입력하셨습니다.
+                 <% if(!getGrade.equals("0")){ %> 
+        	 <%= getGrade  %> 점을 입력하셨습니다.
         	코멘트를 남겨보세요!
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
       	<%} %>  

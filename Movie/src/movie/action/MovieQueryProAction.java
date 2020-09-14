@@ -38,7 +38,6 @@ public class MovieQueryProAction implements Action {
 
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		System.out.println(jsonObject);
 		out.print(jsonObject);
 		out.flush();
 

@@ -194,6 +194,7 @@ $(document).ready(function(){
 
 <form class="join_fr" action="MemberJoinPro.me" method="get">
 
+
 <fieldset>
 <legend>Nick Name</legend>
 <input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>

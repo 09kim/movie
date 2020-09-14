@@ -7,7 +7,9 @@
 int getGrade = (int)request.getAttribute("getGrade"); 
 String movieSeq = request.getParameter("movieSeq");
 String query = request.getParameter("query");%>
-<%String director=request.getParameter("director"); %>
+<%String director=request.getParameter("director"); 
+String openDt = request.getParameter("openDt");
+String movieNm = request.getParameter("movieNm"); %>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -24,7 +26,8 @@ String query = request.getParameter("query");%>
          var movieSeq = $("#movieSeq").val();
          var query = $("#query").val();
          var keyword = $("#keyword").val();
-         
+         var movieNm = $("#movieNm").val();
+         var openDt = $("#openDt").val();
          
          function selectBtn() {
         	 $('#dialog-message').dialog({
@@ -64,7 +67,9 @@ String query = request.getParameter("query");%>
             data:{
                movieSeq:movieSeq,
                query:query,
-               keyword:keyword
+               keyword:keyword,
+               openDt:openDt,
+               movieNm:movieNm
                },
             success:function(data){
                
@@ -72,7 +77,7 @@ String query = request.getParameter("query");%>
                   
                   $.each(item.Result,function(idx,item2){
                      
-                     var title = item2.title
+                     var title = item2.title 
                      var titleNoSpace = title.replace(/ /g, '');
                      var title2 = titleNoSpace.replace(/!HS/g,'')
                      var title3 = title2.replace(/!HE/g,'')
@@ -357,6 +362,8 @@ String query = request.getParameter("query");%>
 <input type="hidden" id="query" value="<%=query%>">
 <input type="hidden" id="director" name=director value="<%=director%>">
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
+<input type="hidden" id="movieNm" value="<%=movieNm %>">
+<input type="hidden" id="openDt" value="<%=openDt %>">
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 

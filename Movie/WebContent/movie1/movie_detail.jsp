@@ -13,9 +13,6 @@
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
 
-
-	
-
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문
 //       $('#btn').click(function(){
@@ -113,7 +110,8 @@
                                           nick:nick
                                           },
                                      success:function(data){
-                                       }
+                                    	 location.reload();
+                                     }
                                   }
                            ) 
                         }   
@@ -224,6 +222,7 @@
                                         var grade=10;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade);
+                                       
                                     });
                                    
                                     

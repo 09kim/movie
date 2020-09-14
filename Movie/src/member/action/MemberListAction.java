@@ -25,7 +25,8 @@ public class MemberListAction implements Action{
 		String orderType = request.getParameter("orderType");
 		
 		MemberListService service = new MemberListService();
-		ArrayList<MemberBean> memberList = service.getMemberList();
+		ArrayList<MemberBean
+		> memberList = service.getMemberList();
 		
 		if(orderTarget == null) {
 			memberList = service.getMemberList();

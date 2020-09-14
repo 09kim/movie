@@ -199,7 +199,7 @@ $(document).ready(function(){
 <div class="clear"></div><br><br><br>
 <body>
 <input type="hidden" id = "nick" class="nick" value=<%=nick %>>
-<select style="position: fixed;" id="categoryMovie">
+<select style="position: fixed; top:100px;" id="categoryMovie">
 <option >정렬기준</option>
 <option id ="random" value="random">랜덤</option>
 <option id ="comedy" value="코메디">코메디</option>
@@ -221,6 +221,6 @@ $(document).ready(function(){
 <option id ="adventure" value="어드벤처">어드벤처</option>
 </select>
 <div class="movieList"></div>
-
+야호
 </body>
 </html>

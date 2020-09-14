@@ -12,6 +12,7 @@
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <section id="main">
+마잌
 </section>
 </body>
 </html>

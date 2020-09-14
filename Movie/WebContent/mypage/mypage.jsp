@@ -14,7 +14,7 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
-		$.ajax('MypageGener.me', {
+		$.ajax('MypageGener.mp', {
 			method : "get",
 			dataType : "json",
 			data : {

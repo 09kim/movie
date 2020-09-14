@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import member.svc.MemberLoginProService;
+import member.vo.MemberBean;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MemberLoginProAction implements Action {
 

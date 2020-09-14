@@ -1,4 +1,4 @@
-package vo;
+package member.vo;
 
 public class MessageBean {
 	private String certificationNum; // 인증번호

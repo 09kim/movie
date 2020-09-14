@@ -1,4 +1,4 @@
-package movie.vo;
+package mypage.vo;
 
 public class CategoryBean {
 //	코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처

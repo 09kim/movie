@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.svc.MemberJoinProService;
-import member.vo.MemberBEAN;
 import mypage.svc.MypageDeleteWishService;
 import mypage.vo.MypageBean;
 import vo.ActionForward;

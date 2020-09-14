@@ -1,15 +1,56 @@
-<%@page import="vo.MemberBean"%>
+<%@page import="member.vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
-//     String email = (String)session.getAttribute("email");
     String nick = (String)session.getAttribute("nick");
-
 	%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var sortData = [];
+		var nick = $('#nick').val();
+		$.ajax('MypageGener.me', {
+			method : "get",
+			dataType : "json",
+			data : {
+				nick : nick
+			},
+			success : function(data) {
+				$.each(data,function(idx,item){
+					sortData.push({key:idx,value:item});
+					sortData.sort(function(a,b){
+						return(a.value>b.value)?-1:(a.value<b.value)?1:0;
+						
+					});
+				});
+				
+				$.each(sortData,function(idx,item){
+					if(item.value!=0){
+							$('.genre').append(item.key +" : "+item.value+"<br>");
+					}
+				});
+			}
+		});
+		
+// 		$.ajax('MypageTitle.me',{
+// 			method : "get",
+// 			dataType : "json",
+// 			data : {
+// 				nick : nick
+// 			},
+// 			success : function(data) {
+// 				$.each(data,function(idx,item){
+// 					});
+				
+// 			}
+// 		});
+		
+	});
+</script>
 <meta charset="UTF-8">
 <title>MyPage - MyPage</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -38,8 +79,11 @@
 		<input type="text" id="nick" name="nick" value="<%=nick%>" ><br>
 		소개
 		<input type="text" id="infoup" name="info"><br>
-		선호하는 감독 <br>
 		<a href="MypageForm.mp">프로필수정</a>
+		<fieldset>
+		<legend>선호 장르</legend>
+		<div class="genre"></div>
+		</fieldset>		
 	</div>
 </section>
 </body>

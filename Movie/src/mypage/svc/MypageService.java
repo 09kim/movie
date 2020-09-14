@@ -1,15 +1,12 @@
 package mypage.svc;
 
 import static db.JdbcUtil.close;
-import static db.JdbcUtil.commit;
 import static db.JdbcUtil.getConnection;
-import static db.JdbcUtil.rollback;
 
 import java.sql.Connection;
 
-import member.dao.MemberDAO;
+import member.vo.MemberBean;
 import mypage.dao.MypageDAO;
-import vo.MemberBean;
 
 public class MypageService {
 

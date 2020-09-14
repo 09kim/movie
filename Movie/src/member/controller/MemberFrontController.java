@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.action.MemberNickAction;
+import mypage.action.MemberMypageGenerAction;
+import mypage.action.MemberMypageTitleAction;
 import member.action.MemberEmailAction;
 import member.action.MemberForgetAction;
 import member.action.MemberJoinProAction;
@@ -18,8 +20,6 @@ import member.action.MemberListAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
-import member.action.MemberMypageGenerAction;
-import member.action.MemberMypageTitleAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -116,10 +116,8 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/Mypage.me")) {
-			System.out.println("ㅇㅇ?");
 			forward = new ActionForward();
 			forward.setPath("/member/member_mypage.jsp");
-			System.out.println("ㅇㅇㅇㅇㅇ?");
 			
 		} else if (command.equals("/MypageGener.me")) {
 			action = new MemberMypageGenerAction();

@@ -1,15 +1,17 @@
 package mypage.dao;
 
+import static db.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import member.vo.MemberBean;
+import movie.vo.MovieBean;
 import mypage.vo.MypageBean;
-import vo.MemberBean;
-
-import static db.JdbcUtil.*;
+import mypage.vo.MypageGenerBean;
 
 public class MypageDAO {
 
@@ -217,6 +219,54 @@ public class MypageDAO {
 		
 		return deleteCount;
 	}
+	
+	// ------------------------------------------------------------------- 별점 용 메서드 태윤
+		public ArrayList<MypageGenerBean> selectGener(String nick) {
+			String sql = "SELECT grade,gener from grade where nick = ?";
+			ArrayList<MypageGenerBean> list = new ArrayList<MypageGenerBean>();
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					MypageGenerBean mgb = new MypageGenerBean();
+					mgb.setGrade(rs.getInt("grade"));
+					mgb.setGenre(rs.getString("gener"));
+					list.add(mgb);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
+		}
+
+
+		public ArrayList<MovieBean> selectTitle(String nick) {
+			String sql = "SELECT grade,title from grade where nick = ?";
+			ArrayList<MovieBean> list = new ArrayList<MovieBean>();
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					MovieBean mb = new MovieBean();
+					mb.setMovieGrade(rs.getString("grade"));
+					mb.setMovieTitle(rs.getString("title"));
+					list.add(mb);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return list;
+		}
 	
 	
 	

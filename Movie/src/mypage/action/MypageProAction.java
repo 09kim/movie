@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import member.action.MemberNickAction;
-import member.svc.DupCheckService;
+import member.vo.MemberBean;
 import mypage.svc.MypageService;
 import vo.ActionForward;
-import vo.MemberBean;
 
 public class MypageProAction implements Action {
 

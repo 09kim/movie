@@ -1,4 +1,4 @@
-package member.action;
+package mypage.action;
 
 import java.io.PrintWriter;
 

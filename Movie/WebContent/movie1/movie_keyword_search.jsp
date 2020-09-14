@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}//css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -34,7 +35,6 @@ $(document).ready(function(){
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
-							
 						$('#list').append('<div class=nation>'+item2.nation+'</div>')
 						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
 								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')

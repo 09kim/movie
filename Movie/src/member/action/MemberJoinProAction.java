@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.svc.MemberJoinProService;
-import member.vo.MemberBEAN;
+import member.vo.MemberBean;
 import vo.ActionForward;
 
 public class MemberJoinProAction implements Action {
@@ -19,10 +19,12 @@ public class MemberJoinProAction implements Action {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		String nick = request.getParameter("nick");
-		String phone = request.getParameter("phone");
-		
-		
-		MemberBEAN mb = new MemberBEAN();
+		String phone = request.getParameter("phoneNum");
+		System.out.println(request.getParameter("phone"));
+		System.out.println(phone);
+		System.out.println(nick);
+		System.out.println(email);
+		MemberBean mb = new MemberBean();
 		mb.setEmail(email);
 		mb.setPass(pass);
 		mb.setNick(nick);

@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import member.dao.MemberDAO;
-import vo.MemberBean;
+import member.vo.MemberBean;
 
 public class MemberListService {
 

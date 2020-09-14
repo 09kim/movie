@@ -5,19 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
-		var phone = $("#phone").val();
+		var phone = $("#phoneNum").val();
 		alert(phone)
 		$.ajax('Message.me',{
 			data:{phone:phone},
 			success:function(rdata){
 				$('#divPhone').html(rdata);
-				$("#phoneNumBtn").attr("disabled","disabled");
+				$("#phoneNumBtn").attr("disabled",true);
 			}
 		});
 	});
@@ -25,13 +26,27 @@ $(document).ready(function(){
 	$('#certificationBtn').click(function() {
 		var cNum = $("#certificationNum").val();
 		if(cNum==$('#hiddenCnum').val()){
-			$('#divid').html("인증되셨습니다.");
+			$('#divPhone').html("인증되셨습니다.");
 			$("#phone").attr("readonly",true);
 			$("#certificationNum").attr("readonly",true);
-			$("#certificationBtn").attr("disabled","disabled");
-			alert("certificationNum");
+			$("#certificationBtn").attr("disabled",true);
+			alert("인증 되셨습니다.");
 		} else {
-			$('#divid').html("인증번호가 틀렸습니다.")
+			$('#divPhone').html("인증번호가 틀렸습니다.")
+		}
+	});
+	
+	$('#certification_email_Btn').click(function() {
+		var cNum = $("#certificationNum_email").val();
+		if(cNum==$('#hiddenCnum_email').val()){
+			$('#divEmail').html("인증되셨습니다.");
+			$("#email").attr("readonly",true);
+			$("#certificationNum_email").attr("readonly",true);
+			$("#certification_email_Btn").attr("disabled",true);
+			alert("이메일 인증 완료!");
+
+		} else {
+			$('#divEmail').html("인증번호가 틀렸습니다.")
 		}
 	});
 	
@@ -40,6 +55,7 @@ $(document).ready(function(){
 		$.ajax("dupNick.me",{
 			data:{nick:nick},
 			success:function(data){
+				alert(data)
 				$('#divNick').html(data);
 			}
 		});
@@ -84,8 +100,6 @@ $(document).ready(function(){
 				$('#st_msg').addClass('짧음')
 			}
 			
-			
-			
 			if(pass.length >= 8) strength += 1
 			if(pass.match(/([a-z].*[A-Z])|([A-Z].*[a-z]))/)) strength += 1
 			if(pass.match(/([a-zA-Z])/) && pass.match(/([0-9])/)) strength += 1
@@ -115,9 +129,6 @@ $(document).ready(function(){
 		})
 		
 		$('#emailBtn').click(function() {
-			// 이메일 인증 번호받기 재시도시 기존에 인증받아서 잠겼던 버튼과 코드입력창의 상태를 원상복구
-			$("#certificationNum_email").attr("readonly",false);
-			$("#certification_email_Btn").attr("disabled",false);
 			// 정규식 판별 변수
 			var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.([a-zA-Z]){2,3}$/i;
 			var checkResult = regExp.test( $("#email").val() );
@@ -137,7 +148,7 @@ $(document).ready(function(){
                 
                 code = parseInt(code);
                 
-                if ((ch < "0" || ch > "9") && (ch < "A" || ch > "Z") && ((code > 255) || (code < 0))){
+                if ((ch < "0" || ch > "9") && (ch < "A" || ch > "Z") && (code > 255 || code < 0)){
                     strLength = strLength + 3; //UTF-8 3byte 로 계산
                 }else{
                     strLength = strLength + 1;
@@ -164,32 +175,49 @@ $(document).ready(function(){
 				$.ajax('Email.me',{
 					data:{email:$('#email').val()},
 					success:function(rdata){
-						$('#divemail').html(rdata);
+						$("#emailBtn").attr("disabled",true);
+						$('#divEmail').html(rdata);
 					}
 				});
 			}
             
         });
+		
+		
 });
 </script>
+
 </head>
 <body>
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
 
+<form class="join_fr" action="MemberJoinPro.me" method="get">
 
-
-<!-- 0829 이메일 인증번호 체크 구현해야함 -->
-<form action="MemberJoinPro.me" method="get">
-이메일 : <input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
-<input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
-<div id="divemail"></div>
-패스워드 : pass <input type="password" id="pass" name="pass"><span id="regPass"></span>
-<span id="st_msg"></span><br>
- again pass <input type="password" id="againPass"><br>
-닉네임 : <input type="text" id="nick" name="nick" required="required"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
+<fieldset>
+<legend>Nick Name</legend>
+<input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
 <div id="divNick"></div>
-연락처 : <input type="text" id="phone" name="phone">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증번호" ><br>
-<input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증">
+</fieldset>
+
+<fieldset>
+<legend>Password</legend>
+<input type="password" name="pass" id="pass"> <br>
+</fieldset>
+
+<fieldset>
+<legend>Phone Number</legend>
+<input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증 번호 받기" ><br>
+<input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증 번호 입력">
 <div id="divPhone"></div>
+</fieldset>
+
+<fieldset>
+<legend>E-Mail</legend>
+<input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
+<input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
+<div id="divEmail"></div>
+</fieldset>
 
 <form action="MemberWritePro.me">
 이메일 : <input type="text" name="email"> &nbsp;&nbsp; <input type="button" value="이메일 중복체크" id="dupEmail"> <br> 
@@ -200,6 +228,13 @@ $(document).ready(function(){
 	 
 <div id="divid"></div>
 <input type="submit" value="가입">
+
 </form>
+
+
+
+
+
+
 </body>
 </html>

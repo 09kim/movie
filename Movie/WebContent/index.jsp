@@ -3,28 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String nick = (String)session.getAttribute("nick"); %>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
-<%if(session.getAttribute("email") == null){ %>
-<a href="GradeMovie.mo">평점</a>
-<a href="MemberLoginForm.me">로그인</a>
-<a href="MemberJoinForm.me">회원가입</a>
-<%} else if(session.getAttribute("email").equals("admin")){%>
-<a href="GradeMovie.mo">평점</a>
-<a href="MemberLogout.me">로그아웃</a>
-<a href="">회원관리</a>
-<%} else{ %>
-<a href="GradeMovie.mo">평점</a>
-<a href="MemberLogout.me">로그아웃</a>
-<a href="">마이페이지</a>
-<%} %>
-
-
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
+<section id="main">
+</section>
 </body>
 </html>

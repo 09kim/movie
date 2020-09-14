@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
 	<form action="ForgetPro.me" method="POST">
 		<h2>비밀번호 찾기</h2>
 		<hr>

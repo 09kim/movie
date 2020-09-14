@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import api.SendEmail;
-import member.svc.MemberEmailService;
+import member.svc.DupCheckService;
 import vo.ActionForward;
 
 
@@ -17,13 +17,12 @@ public class MemberEmailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberEmailAction!");
 		
-		ActionForward forward = null;
 		
 		String email = request.getParameter("email");
 		System.out.println("email주소는 " + email);
 		SendEmail sendEmail = new SendEmail();
-		MemberEmailService memberJoinProService = new MemberEmailService();
-		boolean checkResult = memberJoinProService.dupCheckEmail(email);
+		DupCheckService dupCheck = new DupCheckService();
+		boolean checkResult = dupCheck.dupCheck(email, "email");
 		
 		if(!checkResult) {
 			response.setContentType("text/html;charset=UTF-8");

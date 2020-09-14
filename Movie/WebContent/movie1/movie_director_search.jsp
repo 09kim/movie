@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -12,7 +13,7 @@ $(document).ready(function(){
 		var director = $("#director").val();
 		director = director.replace(/ /g,'');
 		$.ajax('MovieSearchDirectorPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
 			data:{query:director},
 			success:function(data){

@@ -5,17 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
+
 $(document).ready(function(){
-	
+		
 		var query = $("#query").val();
+		var nick = $("#nick").val();
+		console.log(nick);
 		query = query.replace(/ /g,'');
 		$.ajax('MovieSearchPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
-			data:{query:query},
+			data:{query:query
+				},
 			success:function(data){
 				// 처음 결과 4개의 배열구조
 				$.each(data.Data,function(idx,item){
@@ -29,6 +34,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
@@ -42,7 +48,7 @@ $(document).ready(function(){
 								
 							$('#koreaList').append('<div class=nation>'+item2.nation+'</div>')
 							$('#koreaList').append('<div class=title><a href=MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+									+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 							$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>')
 							$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 							$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>')
@@ -86,6 +92,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'')
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim();
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|")
@@ -96,7 +103,7 @@ $(document).ready(function(){
 							
 						$('#actorList').append('<div class=nation>'+item2.nation+'</div>')
 						$('#actorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#actorList').append('<div class=poster><img src='+image[0]+'></div>')
@@ -109,6 +116,7 @@ $(document).ready(function(){
 			method:"get",
 			dataType :"json",
 			data:{query:query},
+			async:false,
 			success:function(data){
 				
 				$.each(data.Data,function(idx,item){
@@ -122,6 +130,7 @@ $(document).ready(function(){
 						var title2 = titleNoSpace.replace(/!HS/g,'')
 						var title3 = title2.replace(/!HE/g,'')
 						var title5 = title3.trim();
+						var title6 =  encodeURIComponent(title5);
 						var actors="";
 						
 						var image = item2.posters.split("|")
@@ -132,7 +141,7 @@ $(document).ready(function(){
 							
 						$('#directorList').append('<div class=nation>'+item2.nation+'</div>')
 						$('#directorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>')
 						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>')
 						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
 						$('#directorList').append('<div class=poster><img src='+image[0]+'></div>')
@@ -145,16 +154,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
+<jsp:include page="/inc/top.jsp" />
+<div class="clear"></div>
 <%String query=request.getParameter("query"); %>
+<%String nick = (String)session.getAttribute("nick"); %>
+
 	<input type="hidden" id="query" name=query value="<%=query%>">
+	<input type="hidden" id="nick" name=nick value="<%=nick%>">
 <h1>국내영화</h1>
 	<section id="koreaList">
 	</section>
-	
 <h1>국외영화</h1>
 	<section id="foreignList">
 	</section>

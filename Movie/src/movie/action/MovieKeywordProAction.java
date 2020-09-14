@@ -37,8 +37,6 @@ public class MovieKeywordProAction implements Action{
 		out.print(jsonObject);
 		out.flush();
 		
-		
-		
 
 		return null;
 	}

@@ -360,7 +360,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	 	data:{comment:comment,
         			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
-        			 	 		  typeName:typeName
+        			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
         			 	 		  	$('#review').append(data);
@@ -379,7 +379,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-         alert(<%=returnCmt%>);
           
          
          

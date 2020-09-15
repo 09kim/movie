@@ -190,10 +190,9 @@ $(document).ready(function(){
 </head>
 <body>
 <jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+<div class="clear"></div><br><br><br><br>
 
 <form class="join_fr" action="MemberJoinPro.me" method="get">
-
 
 <fieldset>
 <legend>Nick Name</legend>

@@ -43,7 +43,7 @@ String query = request.getParameter("query");%>
         	 $('#dialog-comment').dialog({
         		 modal: true,
         		 buttons: {
-        			 "작성":function() {location.href="MemberLoginForm.me" },
+        			 "작성":function() {location.href="BoardReviewForm.bo" },
         			 "취소":function() {$(this).dialog('close'); },
         		 }
         	 

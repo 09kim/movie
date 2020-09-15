@@ -70,9 +70,9 @@ public class MovieDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return insertCount;
@@ -95,6 +95,7 @@ public class MovieDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return grade;

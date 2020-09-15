@@ -20,8 +20,6 @@ public class MovieQueryProAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		String movieSeq = request.getParameter("movieSeq");
 		String query = request.getParameter("query");
-		String movieNm = request.getParameter("movieNm");
-		String openDt = request.getParameter("openDt");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 
@@ -31,14 +29,7 @@ public class MovieQueryProAction implements Action {
 		else if(movieSeq != null && query != null) {
 			json = movie.getMovieDetail(movieSeq, query);
 		} 
-		else if (!(movieNm == null && openDt == null)) {
-			json = movie.getBoxoffice(openDt, movieNm);
-		}
 
-		System.out.println("movieSeq : " + movieSeq);
-		System.out.println("query : " + query);
-		System.out.println("movieNm : " + movieNm);
-		System.out.println("openDt : " + openDt);
 		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);

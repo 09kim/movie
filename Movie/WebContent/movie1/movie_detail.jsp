@@ -8,8 +8,7 @@ String getGrade = (String)request.getAttribute("getGrade");
 String movieSeq = request.getParameter("movieSeq");
 String query = request.getParameter("query");%>
 <%String director=request.getParameter("director"); 
-String openDt = request.getParameter("openDt");
-String movieNm = request.getParameter("movieNm"); %>
+ %>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -26,10 +25,7 @@ String movieNm = request.getParameter("movieNm"); %>
          var movieSeq = $("#movieSeq").val();
          var query = $("#query").val();
          var keyword = $("#keyword").val();
-         var movieNm = $("#movieNm").val();
-         var openDt = $("#openDt").val();
-         
-         
+         var nick = $('#nick').val()
          
          function selectBtn() {
         	 $('#dialog-message').dialog({
@@ -44,17 +40,8 @@ String movieNm = request.getParameter("movieNm"); %>
         	
          }
          
-         function cmtBtn() {
-        	 $('#dialog-comment').dialog({
-        		 modal: true,
-        		 buttons: {
-        			 "작성":function() {location.href="MemberLoginForm.me" },
-        			 "취소":function() {$(this).dialog('close'); },
-        		 }
-        	 
-        	 }); 
-        	
-         }
+         
+         
          
          $('#comment').click(function(){
          	cmtBtn();
@@ -69,9 +56,7 @@ String movieNm = request.getParameter("movieNm"); %>
             data:{
                movieSeq:movieSeq,
                query:query,
-               keyword:keyword,
-               openDt:openDt,
-               movieNm:movieNm
+               keyword:keyword
                },
             success:function(data){
                
@@ -109,7 +94,7 @@ String movieNm = request.getParameter("movieNm"); %>
                      }
                   
                      
-                     var nick = $('#nick').val()
+                     
                       
                         function starClick(param,grade){
                                   $.ajax("setGrade.mo",{
@@ -164,35 +149,47 @@ String movieNm = request.getParameter("movieNm"); %>
 
 
                                  switch(getGrade){
+                                 
                                  case "0.5" :
                                 	 $('.l1').focus();
+                                	 $('#isGrade').show();
                                 	 break;                                 
                                  case "1" :
                                 	 $('.l2').focus();
+                                	 $('#isGrade').show();
                                 	 break;                             
                               	 case "1.5":
                              		 $('.l3').focus();
+                             		$('#isGrade').show();
                              	 	 break;
                               	 case "2" :
                               		 $('.l4').focus();
+                              		$('#isGrade').show();
                               		 break;
                               	 case "2.5":
                               		 $('.l5').focus();
+                              		$('#isGrade').show();
                               		 break;
                               	 case "3" :
                               		 $('.l6').focus();
+                              		$('#isGrade').show();
                               		 break;
                               	 case "3.5" :
                               		 $('.l7').focus();
+                              		$('#isGrade').show();
                               		 break;
                               	 case "4" :
-                              		 $('.l8').focus()
+                              		 $('.l8').focus();
+                              		 $('#isGrade').show();
                               		 break;
                               	 case "4.5":
-                              		 $('.l9').focus()
+                              		 $('.l9').focus();
+                              		 $('#isGrade').show();
                               		 break;
-                              	default:
+                              	 case "5":
                               		$('.l10').focus();
+                              	$('#isGrade').show();
+                              	break;
                               	
                               		 }
                               
@@ -312,7 +309,6 @@ String movieNm = request.getParameter("movieNm"); %>
             	selectBtn();  })
              }  
                      
-
                      $('#detail').append('<div class=title>'+title5+'</div>')
                      $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
                      $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
@@ -322,6 +318,7 @@ String movieNm = request.getParameter("movieNm"); %>
                      $('#detail').append('<div class=runtime>'+item2.genre+'</div>')
                      $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
                      $('#detail').append("<input type='hidden' id ='directorName' value="+ item2.director[0].directorNm+ ">")
+                     $('#detail').append("<input type='hidden' id ='typeName' value="+ item2.type+ ">")
                      $('#detail').append('<div class=actors>'+actors+'</div>')
                      $('#detail').append('<div class=company>'+item2.company+'</div>')
                      $('#detail').append('<div class=plot>'+item2.plot+'</div>')
@@ -336,16 +333,53 @@ String movieNm = request.getParameter("movieNm"); %>
                            }
                            
                         }
+                        
+                        
                         });
                });
             }
             
          });
          
+        
+         
+         function cmtBtn() {
+        	 
+        	 var typeName = $('#typeName').val();
+        	 
+        	 
+        	 $('#dialog-comment').dialog({
+        		 modal: true,
+        		 buttons: {
+        			 "작성":function() { 
+        				 var comment = $('#opinion').val();	
+        			 	$.ajax({
+        			 		url:"MovieReview.mo",  
+        			 	 	method:"get",
+        			 	 	data:{comment:comment,
+        			 	 		  nick:nick,
+        			 	 		  movieSeq:movieSeq,
+        			 	 		  typeName:typeName
+        			 	 		  },
+        			 	 		  success:function(data) {
+        			 	 		  	$('#review').append(data);
+        			 	 		  }
+        			 	 	
+        			 	});
+        			 	
+        			 
+        			 
+        			 },
+        			 
+        			 "취소":function() {$(this).dialog('close'); },
+        		 }
+        	 
+        	 }); 
+        	
+         }
          
          
-      
-
+         
          
          
          $('#directorMovies').click(function(){
@@ -402,12 +436,7 @@ String movieNm = request.getParameter("movieNm"); %>
 <input type="hidden" id="query" value="<%=query%>">
 <input type="hidden" id="director" name=director value="<%=director%>">
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
-<<<<<<< HEAD
 <input type="hidden" id="getGrade" value="<%=getGrade %>">
-=======
-<input type="hidden" id="movieNm" value="<%=movieNm %>">
-<input type="hidden" id="openDt" value="<%=openDt %>">
->>>>>>> refs/remotes/origin/testㅎㅎ
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
@@ -429,12 +458,13 @@ String movieNm = request.getParameter("movieNm"); %>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
+               
                  <% if(!(getGrade.equals("0"))){ %> 
-              
+                <div id="isGrade">
         	<%= getGrade %> 점을 입력하셨습니다. 코멘트를 남겨보세요!
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>  
-
+      	<%} %>  </div>
+		<div id="review"></div>
 
    <div id="subInfo"></div>
    <section id="list">

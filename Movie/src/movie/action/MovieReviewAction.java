@@ -34,12 +34,12 @@ public class MovieReviewAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(nick+ "님의 리뷰 : " + comment);
 		
-//		ActionForward forward = new ActionForward();
-//		forward.setRedirect(false);
-//	    forward.setPath("/movie1/movie_detail.jsp");
-//	      
-//	    return forward;
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+	    forward.setPath("/movie1/movie_detail.jsp");
+	    System.out.println(rb.getContent());
+	    request.setAttribute("returnCmt", comment);
+	    return forward;
 		
 	}
 

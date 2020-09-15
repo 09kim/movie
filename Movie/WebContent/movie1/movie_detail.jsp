@@ -6,7 +6,8 @@
 <%String nick = (String)session.getAttribute("nick"); 
 String getGrade = (String)request.getAttribute("getGrade"); 
 String movieSeq = request.getParameter("movieSeq");
-String query = request.getParameter("query");%>
+String query = request.getParameter("query");
+String returnCmt = (String)request.getAttribute("returnCmt");%>
 <%String director=request.getParameter("director"); 
  %>
 <meta charset="UTF-8">
@@ -27,7 +28,7 @@ String query = request.getParameter("query");%>
          var keyword = $("#keyword").val();
          var nick = $('#nick').val()
          
-         function selectBtn() {
+         function selectBtn() { 
         	 $('#dialog-message').dialog({
         		 modal: true,
         		 buttons: {
@@ -364,10 +365,10 @@ String query = request.getParameter("query");%>
         			 	 		  success:function(data) {
         			 	 		  	$('#review').append(data);
         			 	 		  }
-        			 	 	
+        			 	 		
         			 	});
         			 	
-        			 
+        			 	$(this).dialog('close');
         			 
         			 },
         			 
@@ -378,8 +379,8 @@ String query = request.getParameter("query");%>
         	
          }
          
-         
-         
+         alert(<%=returnCmt%>);
+          
          
          
          $('#directorMovies').click(function(){

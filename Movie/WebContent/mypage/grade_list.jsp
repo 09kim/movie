@@ -45,7 +45,16 @@ int listCount = (int) request.getAttribute("listCount");
 					<li><a>Poster</a>
 						<div id="movieInfo">
 							<div><%=gradeList.get(i).getTitle()%></div>
-							<div><%=gradeList.get(i).getGrade()%></div>
+							<div>
+							<% 
+							double grade = gradeList.get(i).getGrade();
+							if((grade % 2.0) == 0){
+								out.print((int)(grade/2.0));
+							}else {
+								out.print(grade/2.0);
+							}
+							%>
+							</div>
 							<!--
 						 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
 						</div></li>

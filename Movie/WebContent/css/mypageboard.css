@@ -7,11 +7,49 @@
 
 #sub_menu {
 	float: left;
-	width: 300px;
+	width: 200px;
 }
 
 #myinfo {
 	float: right;
-	width: 980px;
+	width: 1080px;
 	margin: 0 auto;
+}
+
+
+#profilebox {
+	margin-bottom: 60px;
+}
+
+.profile-background {
+	width: 100%;
+	height: 220px;
+}
+
+.img-box {
+    width: 100px;
+    height: 100px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#profile-article {
+	margin-top: -50px; /* 프로필 사진 배경과 겹치게 */
+	padding-left: 20px;
+}
+
+.info-box {
+	margin-top: -75px;
+	margin-left: 120px;
+}
+
+.profile-update {
+	float: right;
+	margin-top: -45px;
 }

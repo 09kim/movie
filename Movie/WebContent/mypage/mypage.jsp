@@ -89,13 +89,29 @@
 	</div> 
 	
 	<div id="myinfo">
-		이메일
-		<input type="email" id="email" name="email" value="<%=memberBean.getEmail()%>"><br>
-		닉네임
-		<input type="text" id="nick" name="nick" value="<%=nick%>" ><br>
-		소개
-		<input type="text" id="infoup" name="info"><br>
-		<a href="MypageForm.mp">프로필수정</a>
+	<!-- css / 프로필 박스 (프로필 사진 및 수정 기능 넣을 곳) -->
+		<div id="profilebox">
+			<img class="profile-background" src="img/profile_yellow.jpg" onerror="this.src='img/profile_yellow.jpg'" />
+			<article id="profile-article">
+				<div class="img-box">
+					<img class="profile" src="img/noneprofile.jpg">
+				</div>
+				
+				<div class="info-box">
+					<%=nick%><br>
+					<%=memberBean.getEmail()%><br>
+					아직 소개글이 없습니다.
+				</div>
+				
+				<div class="clear"></div>
+				<div class="profile-update">
+					<a href="MypageForm.mp">프로필수정</a>
+				</div>
+			</article>
+		
+		</div>
+		
+		
 		<fieldset>
 		<legend>선호 장르</legend>
 		<span class="genre"></span> <span class="count"></span>

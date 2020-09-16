@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -25,12 +26,11 @@ public class MovieQueryProAction implements Action {
 		if (query != null && movieSeq == null) {
 			json = movie.getMovie(query);
 		} 
-		if (movieSeq != null && query != null) {
+		else if(movieSeq != null && query != null) {
 			json = movie.getMovieDetail(movieSeq, query);
 		} 
 
-
-
+		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 

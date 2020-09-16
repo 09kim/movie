@@ -5,9 +5,11 @@
 <head>
 <%String nick = (String)session.getAttribute("nick"); 
 String getGrade = (String)request.getAttribute("getGrade"); 
-String movieSeq = request.getParameter("movieSeq");
-String query = request.getParameter("query");%>
-<%String director=request.getParameter("director"); %>
+String movieSeq = (String)request.getParameter("movieSeq");
+String query = request.getParameter("query");
+String returnCmt = (String)request.getAttribute("returnCmt");%>
+<%String director=request.getParameter("director"); 
+ %>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
@@ -24,9 +26,8 @@ String query = request.getParameter("query");%>
          var movieSeq = $("#movieSeq").val();
          var query = $("#query").val();
          var keyword = $("#keyword").val();
-         
-         
-         function selectBtn() {
+         var nick = $('#nick').val()
+         function selectBtn() { 
         	 $('#dialog-message').dialog({
         		 modal: true,
         		 buttons: {
@@ -39,17 +40,7 @@ String query = request.getParameter("query");%>
         	
          }
          
-         function cmtBtn() {
-        	 $('#dialog-comment').dialog({
-        		 modal: true,
-        		 buttons: {
-        			 "작성":function() {location.href="MemberLoginForm.me" },
-        			 "취소":function() {$(this).dialog('close'); },
-        		 }
-        	 
-        	 }); 
-        	
-         }
+
          
          $('#comment').click(function(){
          	cmtBtn();
@@ -72,7 +63,7 @@ String query = request.getParameter("query");%>
                   
                   $.each(item.Result,function(idx,item2){
                      
-                     var title = item2.title
+                     var title = item2.title 
                      var titleNoSpace = title.replace(/ /g, '');
                      var title2 = titleNoSpace.replace(/!HS/g,'')
                      var title3 = title2.replace(/!HE/g,'')
@@ -102,7 +93,7 @@ String query = request.getParameter("query");%>
                      }
                   
                      
-                     var nick = $('#nick').val()
+                     
                       
                         function starClick(param,grade){
                                   $.ajax("setGrade.mo",{
@@ -113,7 +104,7 @@ String query = request.getParameter("query");%>
                                           nick:nick
                                           },
                                      success:function(data){
-                                     location.reload();  
+                                    	location.reload();
                                      }
                                   }
                            ) 
@@ -142,7 +133,6 @@ String query = request.getParameter("query");%>
                                  var title3 = title2.replace(/!HE/g,'')
                                  var title5 = title3.trim();
                                  
-                             
                                  
                                  
                                  // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
@@ -154,6 +144,56 @@ String query = request.getParameter("query");%>
                                  $('.l'+o).eq(idx).attr("for","p"+l++);
                                  }
                                  
+                                 var getGrade = $('#getGrade').val()
+
+
+                                 switch(getGrade){
+                                 
+                                 case "0.5" :
+                                	 $('.l1').focus();
+                                	 $('#isGrade').show();
+                                	 break;                                 
+                                 case "1" :
+                                	 $('.l2').focus();
+                                	 $('#isGrade').show();
+                                	 break;                             
+                              	 case "1.5":
+                             		 $('.l3').focus();
+                             		$('#isGrade').show();
+                             	 	 break;
+                              	 case "2" :
+                              		 $('.l4').focus();
+                              		$('#isGrade').show();
+                              		 break;
+                              	 case "2.5":
+                              		 $('.l5').focus();
+                              		$('#isGrade').show();
+                              		 break;
+                              	 case "3" :
+                              		 $('.l6').focus();
+                              		$('#isGrade').show();
+                              		 break;
+                              	 case "3.5" :
+                              		 $('.l7').focus();
+                              		$('#isGrade').show();
+                              		 break;
+                              	 case "4" :
+                              		 $('.l8').focus();
+                              		 $('#isGrade').show();
+                              		 break;
+                              	 case "4.5":
+                              		 $('.l9').focus();
+                              		 $('#isGrade').show();
+                              		 break;
+                              	 case "5":
+                              		$('.l10').focus();
+                              	$('#isGrade').show();
+                              	break;
+                              	
+                              		 }
+                              
+                             
+                                 
                                  
                                  $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                                  var garde= 0;
@@ -163,6 +203,7 @@ String query = request.getParameter("query");%>
                                        var grade=1;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade);
+                                      
                                     });
                                     
                                     $('.c2').eq(idx).click(function(){
@@ -225,9 +266,9 @@ String query = request.getParameter("query");%>
                                         var grade=10;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade);
+                                       
                                     });
                                    
-                                    
                            
                            });//each문 끝남
                        });
@@ -267,7 +308,6 @@ String query = request.getParameter("query");%>
             	selectBtn();  })
              }  
                      
-
                      $('#detail').append('<div class=title>'+title5+'</div>')
                      $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
                      $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
@@ -277,6 +317,7 @@ String query = request.getParameter("query");%>
                      $('#detail').append('<div class=runtime>'+item2.genre+'</div>')
                      $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
                      $('#detail').append("<input type='hidden' id ='directorName' value="+ item2.director[0].directorNm+ ">")
+                     $('#detail').append("<input type='hidden' id ='typeName' value="+ item2.type+ ">")
                      $('#detail').append('<div class=actors>'+actors+'</div>')
                      $('#detail').append('<div class=company>'+item2.company+'</div>')
                      $('#detail').append('<div class=plot>'+item2.plot+'</div>')
@@ -291,16 +332,51 @@ String query = request.getParameter("query");%>
                            }
                            
                         }
+                        
+                        
                         });
                });
             }
             
          });
+        
+         var returnCmt = $('#returnCmt').val();
+         function cmtBtn() {
+        	 
+        	 var typeName = $('#typeName').val();
+        	 
+        	 
+        	 $('#dialog-comment').dialog({
+        		 modal: true,
+        		 buttons: {
+        			 "작성":function() { 
+        				 var comment = $('#opinion').val();	
+        			 	$.ajax({
+        			 		url:"MovieReview.mo",  
+        			 	 	method:"get",
+        			 	 	data:{comment:comment,
+        			 	 		  nick:nick,
+        			 	 		  movieSeq:movieSeq,
+        			 	 		  typeName:typeName 
+        			 	 		  },
+        			 	 		  success:function(data) {
+        			 	 		  	$('#review').append(data);
+        			 	 		  }
+        			 	 		
+        			 	});
+        			 	
+        			 	$(this).dialog('close');
+        			 
+        			 },
+        			 
+        			 "취소":function() {$(this).dialog('close'); },
+        		 }
+        	 
+        	 }); 
+        	
+         }
          
-         
-         
-      
-
+          
          
          
          $('#directorMovies').click(function(){
@@ -357,6 +433,8 @@ String query = request.getParameter("query");%>
 <input type="hidden" id="query" value="<%=query%>">
 <input type="hidden" id="director" name=director value="<%=director%>">
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
+<input type="hidden" id="getGrade" value="<%=getGrade %>">
+<input type="hidden" id="returnCmt" value="<%=returnCmt %>">
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
@@ -365,6 +443,7 @@ String query = request.getParameter("query");%>
 <section>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
    <br>
+   <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
  <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
@@ -378,11 +457,14 @@ String query = request.getParameter("query");%>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-                 <% if(!getGrade.equals("0")){ %> 
-        	 <%= getGrade  %> 점을 입력하셨습니다.
-        	코멘트를 남겨보세요!
+               
+                 <% if(!(getGrade.equals("0"))){ %> 
+                <div id="isGrade">
+        	<%= getGrade %> 점을 입력하셨습니다. 
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>  
+      	<%} %>
+                	  </div>
+		<div id="review"></div>
 
    <div id="subInfo"></div>
    <section id="list">
@@ -406,5 +488,6 @@ String query = request.getParameter("query");%>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	</section>
+   	
 </body>
 </html>

@@ -128,6 +128,10 @@ public class MovieFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/movie1/movie_ranking.jsp");
 
+		}else if (command.equals("/ReviewPro.mo")) {
+			forward = new ActionForward();
+			forward.setPath("/board/board_review.jsp");
+
 		}
 		else if (command.equals("/BoxOffice.mo")) {
 			action = new MovieBoxOfficeAction();
@@ -144,21 +148,24 @@ public class MovieFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/MovieReview.mo")) {
+		}
+		else if (command.equals("/MovieReview.mo")) {
 			action = new MovieReviewAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 
 			} 
-		}else if (command.equals("/MovieDetailPro.mo")) {
+		}
+		else if (command.equals("/MovieDetailPro.mo")) {
 			action = new MovieGetGradeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 
 			} 
-		}
+		} 
+
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

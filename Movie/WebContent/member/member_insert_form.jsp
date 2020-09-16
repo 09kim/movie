@@ -191,6 +191,8 @@ $(document).ready(function(){
 <body>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
+<br><br><br><br><br>
+<div class="clear"></div><br><br><br><br>
 
 <form class="join_fr" action="MemberJoinPro.me" method="get">
 

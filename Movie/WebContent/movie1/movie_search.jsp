@@ -170,6 +170,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<section id="main">
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
@@ -187,5 +188,6 @@ $(document).ready(function(){
 	<section id="actorList"></section>
 <h1>감독 검색 결과</h1>
 	<section id="directorList"></section>
+</section>
 </body>
 </html>

@@ -18,7 +18,6 @@ public class MovieGradeAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MovieGradeAction");
 		String type = request.getParameter("type");
-		System.out.println(type);
 		Random random = new Random();
 		int rNum = random.nextInt(16);// 장르 선택을 랜덤하게 선택하기위한 난수생성 메서드
 		StringBuffer sb = new StringBuffer(); // 메모리 할당을 줄이기위한 Buffer 메서드

@@ -55,7 +55,7 @@ public class MovieDAO {
 				insertCount = -1;
 				pstmt.executeUpdate();
 			} else {
-				sql = "INSERT INTO grade values(idx,?,?,?,?,?,?,?,?,null) ";
+				sql = "INSERT INTO grade values(idx,?,?,?,?,?,?,?,?,?) ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, movieBean.getNick());
 				pstmt.setString(2, movieBean.getMovieGrade());
@@ -65,6 +65,7 @@ public class MovieDAO {
 				pstmt.setString(6, movieBean.getDirector());
 				pstmt.setString(7, movieBean.getNation());
 				pstmt.setString(8, movieBean.getMovieRuntime());
+				pstmt.setString(9, movieBean.getMoviePoster());
 				
 				insertCount = pstmt.executeUpdate();
 			}
@@ -92,7 +93,6 @@ public class MovieDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -116,7 +116,6 @@ public class MovieDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);

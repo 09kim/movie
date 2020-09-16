@@ -15,7 +15,7 @@ ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("
 </head>
 <body>
     <h2>리뷰내용 상세보기</h2>
-        <%=reviewList.get(1).getNick() %>
+<%--         <%=reviewList.get(0).getNick() %> --%>
          <%
             for(int i = 0; i < reviewList.size(); i++) {
             %>

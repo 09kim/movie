@@ -26,7 +26,6 @@ public class MovieActorProAction implements Action{
 			json = movie.getMovieDetailByActor(actor);
 		}
 
-		System.out.println(json);
 
 		JsonParser jsonParser = new JsonParser(); // Json 타입으로 변환하기 위한 JsonParser 객체 생성
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json); // Json 타입 오브젝트로 파싱

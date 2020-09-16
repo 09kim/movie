@@ -5,7 +5,7 @@
 <head>
 <%String nick = (String)session.getAttribute("nick"); 
 String getGrade = (String)request.getAttribute("getGrade"); 
-String movieSeq = request.getParameter("movieSeq");
+String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
 String returnCmt = (String)request.getAttribute("returnCmt");%>
 <%String director=request.getParameter("director"); 
@@ -40,8 +40,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-         
-         
+
          
          $('#comment').click(function(){
          	cmtBtn();
@@ -340,7 +339,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             }
             
          });
-         
         
          var returnCmt = $('#returnCmt').val();
          function cmtBtn() {
@@ -445,6 +443,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <section>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
    <br>
+   <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
  <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
@@ -461,9 +460,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                
                  <% if(!(getGrade.equals("0"))){ %> 
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다. 코멘트를 남겨보세요!
+        	<%= getGrade %> 점을 입력하셨습니다. 
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>  </div>
+      	<%} %>
+                	  </div>
 		<div id="review"></div>
 
    <div id="subInfo"></div>
@@ -488,5 +488,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	</section>
+   	
 </body>
 </html>

@@ -145,6 +145,8 @@ public class MovieDAO {
 				reviewBean.setTitle(rs.getString("title"));
 			}
 			
+			
+			
 			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getNick());

@@ -26,7 +26,6 @@ int endPage = pageInfo.getEndPage();
 <jsp:include page="../inc/top.jsp" />
 <div class="clear"></div><br><br><br>
 <body>
-    <a href="BoardReviewWriteForm.bo">리뷰 작성</a>
     <h1>리뷰 List</h1>
     
     <section>
@@ -44,7 +43,6 @@ int endPage = pageInfo.getEndPage();
             <%
             for(int i = 0; i < reviewList.size(); i++) {
             %>
-                <div>No. - <%=reviewList.get(i).getIdx() %></div>
                 <div>닉네임 - <a href="Mypage.mp?idx=<%=reviewList.get(i).getIdx() %>&page=<%=nowPage %>">
                     <%=reviewList.get(i).getNick() %></a></div>
                 <div>별점 - <%=reviewList.get(i).getGrade() %></div>

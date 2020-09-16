@@ -30,7 +30,7 @@ public class BoardReviewListService {
 		return listCount;
 	}
 
-	public ArrayList<ReviewBean> getReviewList(int page, int limit) {
+	public ArrayList<ReviewBean> getReviewList(int page, int limit,String nick) {
 		System.out.println("BoardReviewListService - getReviewList()");
 		
 		ArrayList<ReviewBean> reviewList = null;
@@ -40,7 +40,7 @@ public class BoardReviewListService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		reviewList = boardDAO.selectReviewList(page, limit);
+		reviewList = boardDAO.selectReviewList(page, limit, nick);
 		
 		close(con);
 		

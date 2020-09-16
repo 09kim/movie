@@ -102,7 +102,29 @@ public class MovieDAO {
 	}
 	
 	
-	// gener grade title
+	public String selectComment(MovieBean movieBean) {
+		String comment= "";
+		String sql = "SELECT content from review where nick = ? and movieSeq = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movieBean.getNick());
+			pstmt.setString(2, movieBean.getMovieSeq());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				comment = rs.getString("content");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comment;
+	}
+	
 	
 	public int insertComment(ReviewBean reviewBean) {
 		
@@ -122,6 +144,8 @@ public class MovieDAO {
 				reviewBean.setGenre(rs.getString("gener"));
 				reviewBean.setTitle(rs.getString("title"));
 			}
+			
+			
 			
 			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0)";
 			pstmt = con.prepareStatement(sql);

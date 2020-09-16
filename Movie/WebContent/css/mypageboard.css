@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+/* 마이 페이지 기본 틀 */
 .mypage {
 	width: 1280px;
 	margin: 0 auto;
@@ -8,15 +10,19 @@
 #sub_menu {
 	float: left;
 	width: 200px;
+	height: 100%;
 }
 
 #myinfo {
 	float: right;
 	width: 1080px;
 	margin: 0 auto;
+	height: 100%;
 }
+/* 마이 페이지 기본 틀 */
 
 
+/* 마이 페이지 프로필 */
 #profilebox {
 	margin-bottom: 60px;
 }
@@ -53,3 +59,25 @@
 	float: right;
 	margin-top: -45px;
 }
+/* 마이 페이지 프로필 */
+
+
+/* 마이 페이지 평가한 영화 */
+.grade-header {
+	display: block;
+	height: 32px;
+}
+
+.grade-header h2 {
+	float: left;
+	margin: 0;
+}
+
+.grade-header span {
+	display: inline-block;
+	margin: 7px 0px 0px 20px;
+	color: #5f656e;
+	font-size: 18px;
+}
+.
+/* 마이 페이지 평가한 영화 */

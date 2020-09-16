@@ -35,13 +35,18 @@ int listCount = (int) request.getAttribute("listCount");
 		<!-- 왼쪽메뉴 -->
 
 		<div id="myinfo">
-			내가 평가한 영화 목록 :<span><%=listCount%></span>
+			<header class="grade-header">
+				<h2>내가 평가한 영화</h2> <span><%=listCount%></span>
+			</header>
+			<div class="clear"></div>
+			<hr>
+			<div class="clear"></div>
+			<div id="gradelist">
+				<ul>
 			<%
 				if (gradeList != null && listCount > 0) {
 				for (int i = 0; i < gradeList.size(); i++) {
 			%>
-			<div id="gradelist">
-				<ul>
 					<li><a>Poster</a>
 						<div id="movieInfo">
 							<div><%=gradeList.get(i).getTitle()%></div>
@@ -58,16 +63,17 @@ int listCount = (int) request.getAttribute("listCount");
 							<!--
 						 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
 						</div></li>
+			<%
+				}
+			} 	
+				else {
+			%>
+			<li>아직 평가한 영화가 없습니다.</li>
+			<%
+				}
+			%>
 				</ul>
 			</div>
-			<%
-				}
-			} else {
-			%>
-			아직 평가한 영화가 없습니다.
-			<%
-				}
-			%>
 		</div>
 	</section>
 </body>

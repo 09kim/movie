@@ -40,14 +40,25 @@ ul, li {
 	box-shadow: rgba(232, 232, 232, 0.08) 0px 1px 0px 0px;
 	background: rgb(15, 15, 15);
 	transition: background-color 200ms ease 0s;
+	display: inline-block;
 }
 
-.div-top li {
-    margin: 0 10px 0 0;
+.header-menu li {
+	margin: 0 10px 0 0;
     padding: 0 0 0 0;
     border : 0;
+/*  	width: 100px; */
+	line-height:62px;
     float: left;
+    vertical-align: middle;
+ 	text-align: center;
+ 	display:inline-block;
 }
+
+.ul-top .top-menu {
+	width: 100px;
+}
+
 
 .div-top ul {
     list-style:none;
@@ -56,22 +67,21 @@ ul, li {
 }
 
 #search_bar {
-	position: absolute; 
-	right: 0;
-	padding : 0 14rem 0 0;
+	width: 400px;
+	margin-left: 200px;
 }
 
 #login {
-	position: absolute; 
-	right: 0;
-	padding : 0 4rem 0 0;
+ 	width: 200px;
 }
 
-#login a{
-	text-decoration: none; 
-	color: #333;
-}
-/* ------------------ 헤더 부분 ------------------ */
+/* #login a{ */
+/* 	text-decoration: none;  */
+/* 	color: #333; */
+/* 	vertical-align: middle; */
+/*  	text-align: center; */
+/* } */
+/* /* ------------------ 헤더 부분 ------------------ */ */
 
 
 

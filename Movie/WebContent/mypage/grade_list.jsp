@@ -47,22 +47,24 @@ int listCount = (int) request.getAttribute("listCount");
 				if (gradeList != null && listCount > 0) {
 				for (int i = 0; i < gradeList.size(); i++) {
 			%>
-					<li><a>Poster</a>
+					<li>
+						<a>Poster</a>
+						<div class="clear"></div>
 						<div id="movieInfo">
-							<div><%=gradeList.get(i).getTitle()%></div>
-							<div>
-							<% 
-							double grade = gradeList.get(i).getGrade();
-							if((grade % 2.0) == 0){
-								out.print((int)(grade/2.0));
-							}else {
-								out.print(grade/2.0);
-							}
-							%>
-							</div>
-							<!--
-						 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
-						</div></li>
+						<div><%=gradeList.get(i).getTitle()%></div>
+						<div>
+						<% 
+						double grade = gradeList.get(i).getGrade();
+						if((grade % 2.0) == 0){
+							out.print((int)(grade/2.0));
+						}else {
+							out.print(grade/2.0);
+						}
+						%>
+						</div>
+						 <!-- 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
+						</div>
+					</li>
 			<%
 				}
 			} 	

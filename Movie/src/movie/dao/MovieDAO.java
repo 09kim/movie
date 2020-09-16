@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import movie.vo.MovieBean;
+import movie.vo.ReviewBean;
 
 
 public class MovieDAO {
@@ -69,9 +70,9 @@ public class MovieDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return insertCount;
@@ -94,12 +95,56 @@ public class MovieDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		return grade;
 	}
 	
-
+	
+	// gener grade title
+	
+	public int insertComment(ReviewBean reviewBean) {
+		
+		int insertCount = 0;
+		
+		
+		
+		try {
+			
+			String sql = "SELECT * from grade where nick =? and movieSeq =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,reviewBean.getNick());
+			pstmt.setInt(2,reviewBean.getMovieSeq());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				reviewBean.setGrade(rs.getInt("grade"));
+				reviewBean.setGenre(rs.getString("gener"));
+				reviewBean.setTitle(rs.getString("title"));
+			}
+			
+			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getNick());
+			pstmt.setInt(2, reviewBean.getGrade());
+			pstmt.setString(3,reviewBean.getGenre());
+			pstmt.setInt(4, reviewBean.getMovieSeq());
+			pstmt.setString(5,reviewBean.getTitle());
+			pstmt.setString(6,reviewBean.getType());
+			pstmt.setString(7, reviewBean.getContent());
+			
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
 	
 
 }

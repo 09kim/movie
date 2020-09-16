@@ -28,15 +28,22 @@ public class MovieGetGradeAction implements Action {
 		movieBean.setMovieSeq(movieSeq);
 		setGradeService setGradeService = new setGradeService();
 		int getGrade = setGradeService.selectGrade(movieBean);
-		System.out.println(getGrade);
 		ActionForward forward = new ActionForward();
-		
-		
-		request.setAttribute("getGrade", getGrade);
-		forward.setRedirect(false);
-		forward.setPath("/movie1/movie_detail.jsp");
-		
-		return forward;
+		String grade = "";
+	      
+	      if((getGrade%2.0) == 0.0) {
+	         grade = (int)(getGrade/2)+"";
+	      }else {
+	         grade = getGrade/2.0 + "";
+	      }
+	      
+	      request.setAttribute("getGrade", grade);
+	      
+	      
+	      forward.setRedirect(false);
+	      forward.setPath("/movie1/movie_detail.jsp");
+	      
+	      return forward;
 	}
 
 }

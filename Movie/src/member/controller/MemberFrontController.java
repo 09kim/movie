@@ -2,6 +2,7 @@ package member.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import member.action.MemberNickAction;
-import mypage.action.MypageGenerAction;
-import mypage.action.MemberMypageTitleAction;
 import member.action.MemberEmailAction;
 import member.action.MemberForgetAction;
 import member.action.MemberJoinProAction;
@@ -20,7 +18,10 @@ import member.action.MemberListAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
+import member.action.MemberNickAction;
+import mypage.action.MemberMypageTitleAction;
 import vo.ActionForward;
+
 
 @WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
@@ -115,17 +116,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Mypage.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/member_mypage.jsp");
-			
-		} else if (command.equals("/MypageGener.me")) {
-			action = new MypageGenerAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/MypageTitle.me")) {
 			action = new MemberMypageTitleAction();
 			try {
@@ -133,6 +123,9 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/Python.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/member_mypage.jsp");
 		}
 
 		if (forward != null) {

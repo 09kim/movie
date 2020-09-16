@@ -10,7 +10,7 @@ import static db.JdbcUtil.*;
 
 public class MypageGradeService {
 
-	public int getGradeListCount() {
+	public int getGradeListCount(String nick) {
 		System.out.println("MypageGradeService - getGradeListCount() 작동");
 		int listCount = 0;
 		
@@ -18,7 +18,7 @@ public class MypageGradeService {
 		MypageDAO mypageDAO = MypageDAO.getInstance();
 		mypageDAO.setConnection(con);
 		
-		listCount = mypageDAO.selectGradeListCount();
+		listCount = mypageDAO.selectGradeListCount(nick);
 		
 		close(con);
 		
@@ -27,7 +27,7 @@ public class MypageGradeService {
 		return listCount;
 	}
 
-	public ArrayList<MypageBean> getGradeList() {
+	public ArrayList<MypageBean> getGradeList(String nick) {
 		System.out.println("MypageGradeService - getGradeList() 작동");
 		ArrayList<MypageBean> gradeList = null;
 		
@@ -35,7 +35,7 @@ public class MypageGradeService {
 		MypageDAO mypageDAO = MypageDAO.getInstance();
 		mypageDAO.setConnection(con);
 		
-		gradeList = mypageDAO.selectGradeList();
+		gradeList = mypageDAO.selectGradeList(nick);
 		
 		close(con);
 		

@@ -6,30 +6,30 @@
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var sortData = [];
+// 		var sortData = [];
 		var nick = $('#nick').val();
-		$.ajax('MypageGener.me', {
-			method : "get",
-			dataType : "json",
-			data : {
-				nick : nick
-			},
-			success : function(data) {
-				$.each(data,function(idx,item){
-					sortData.push({key:idx,value:item});
-					sortData.sort(function(a,b){
-						return(a.value>b.value)?-1:(a.value<b.value)?1:0;
+// 		$.ajax('MypageGener.me', {
+// 			method : "get",
+// 			dataType : "json",
+// 			data : {
+// 				nick : nick
+// 			},
+// 			success : function(data) {
+// 				$.each(data,function(idx,item){
+// 					sortData.push({key:idx,value:item});
+// 					sortData.sort(function(a,b){
+// 						return(a.value>b.value)?-1:(a.value<b.value)?1:0;
 						
-					});
-				});
+// 					});
+// 				});
 				
-				$.each(sortData,function(idx,item){
-					if(item.value!=0){
-							$('body').append(item.key +" : "+item.value+"<br>");
-					}
-				});
-			}
-		});
+// 				$.each(sortData,function(idx,item){
+// 					if(item.value!=0){
+// 							$('body').append(item.key +" : "+item.value+"<br>");
+// 					}
+// 				});
+// 			}
+// 		});
 		
 		$.ajax('MypageTitle.me',{
 			method : "get",
@@ -39,6 +39,7 @@
 			},
 			success : function(data) {
 				$.each(data,function(idx,item){
+					alert(item);
 					});
 				
 			}

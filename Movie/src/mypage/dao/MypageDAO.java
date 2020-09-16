@@ -98,15 +98,16 @@ public class MypageDAO {
 	
 
 	// 평가한 영화 개수 조회 메서드 - NHJ
-	public int selectGradeListCount() {
+	public int selectGradeListCount(String nick) {
 		int listCount = 0;
 		
 //		PreparedStatement pstmt = null;
 //		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT COUNT(*) FROM grade;";
+			String sql = "SELECT COUNT(*) FROM grade where nick =?;";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
 			
 			// 평가한 영화가 조회될 경우 (영화가 하나라도 존재할 경우)
@@ -129,15 +130,14 @@ public class MypageDAO {
 	
 	
 	// 평가 영화 조회 메서드 - NHJ
-	public ArrayList<MypageBean> selectGradeList() {
+	public ArrayList<MypageBean> selectGradeList(String nick) {
 		ArrayList<MypageBean> gradeList = null;
 		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM grade;";
+			String sql = "SELECT * FROM grade where nick=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
 			
 			gradeList = new ArrayList<MypageBean>();

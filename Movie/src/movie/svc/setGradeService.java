@@ -2,6 +2,7 @@ package movie.svc;
 
 import static db.JdbcUtil.*;
 
+
 import java.sql.Connection;
 
 import movie.dao.MovieDAO;
@@ -22,7 +23,6 @@ public class setGradeService {
 			commit(con);
 		}else {
 			rollback(con);
-			
 		}
 		close(con);
 		return isInsert;

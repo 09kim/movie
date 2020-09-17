@@ -19,51 +19,34 @@ import com.google.gson.JsonParser;
 
 import action.Action;
 import api.kmdbApi;
+import mypage.svc.MypageSelectWishListService;
 import mypage.svc.MypageSelectWishService;
 import mypage.vo.MypageBean;
 import vo.ActionForward;
 
-public class MypageSelectWishAction implements Action {
+public class MypageSelectWishListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		
-		System.out.println("MypageWishAction 작동");
+		System.out.println("MypageSelectWishListAction 작동");
 		
 		HttpSession session = request.getSession();
 		
 		String nick = (String)session.getAttribute("nick");
 		
-		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		
 		ActionForward forward = null;
 		
-		MypageSelectWishService mypageSelectWishService = new MypageSelectWishService();
+		MypageSelectWishListService mypageSelectWishListService = new MypageSelectWishListService();
 		
-		MypageBean wishMovie = null;
-		
-		wishMovie = mypageSelectWishService.selectWish(nick,movieSeq);
+		ArrayList<MypageBean> wishMovie = mypageSelectWishListService.selectWishList(nick);
 		
 		request.setAttribute("wishMovie", wishMovie);
 		
-		if (wishMovie==null) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("N");
-			out.flush(); 
-
-		} else {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("Y");
-			out.flush(); 
-
-		}
-		
-//        forward = new ActionForward();
+        forward = new ActionForward();
         
-//		forward.setPath("/mypage/mypage_wish.jsp");
+		forward.setPath("/mypage/mypage_wish.jsp");
 		
 		return forward;
 	}

@@ -222,6 +222,28 @@ public class MemberDAO {
 		return memberList;
 	}
 	
+	// 핸드폰번호로 email찾기 시 필요한 메서드(낙원:0917)
+			public String getEmail(String phone) {
+				String email = "";
+				System.out.println("인증 폰번호 : " + phone);
+				try {
+					String sql = "SELECT email FROM member where phone=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, phone);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						email = rs.getString("email");
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("MemberDAO - dupCheck() 오류!");
+				} finally {
+					close(rs);
+					close(pstmt);
+				}
+				return email;
+			}
+	
 	// 이메일로 패스워드 찾기시 패스워드 변경해주는 메서드(낙원:0917)
 	public int updatePassword(String email,String pass) {
 		int completeCount=0;

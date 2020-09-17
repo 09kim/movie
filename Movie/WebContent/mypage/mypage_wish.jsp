@@ -33,14 +33,12 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 // 			var wish = wishInfo[2];
 			var movieSeq = wishInfo[3];
 // 			var idx = wishInfo[4];
-			var refreshUrl = document.location.href;
    			 $.ajax('MypageChangeWish.mp',{
    					data:{nick:nick,movieSeq:movieSeq,title:title},
    					success:function(rdata){
   			 			if (confirm(title + "을(를) 보고싶어요 리스트에서 제외 하시겠습니까?")) {
   			 				if(rdata=="Y"){
-//   	   							window.location.replace("http://localhost:8080/Movie_Wish0915/MypageWish.mp");
-  	   							window.location.replace(refreshUrl);
+  	   							window.location.replace("http://localhost:8080/Movie/MypageWish.mp");
 		  	   						setTimeout(function() { // 너무 빨리 실행하면 충돌나서 딜레이 줌
 		  	   						location.reload();
 		  	   						}, 500);

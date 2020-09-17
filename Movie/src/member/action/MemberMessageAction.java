@@ -28,14 +28,14 @@ public class MemberMessageAction implements Action {
 			if (!result) {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("중복된 번호");
+				out.print("중복된 번호");
 
 			} else {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				String certificationNum = sendMessage.getCertificationNum(phone);
-				out.println("인증 메세지가 전송되었습니다.");
-				out.println("<input type='text' id='hiddenCnum' value=" + certificationNum + ">");
+				out.print("인증 메세지가 전송되었습니다.");
+				out.print("<input type='text' id='hiddenCnum' value=" + certificationNum + ">");
 				System.out.println(certificationNum);
 
 			}

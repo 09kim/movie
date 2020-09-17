@@ -15,6 +15,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">

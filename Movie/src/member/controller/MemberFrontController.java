@@ -77,7 +77,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/ForgetEmailChForm.me")) {
+		} else if(command.equals("/ForgetEmailChForm.me")) { // 삭제해도 될듯함(낙원:0917)
 			forward = new ActionForward();
 			forward.setPath("/member/forget_emailch.jsp");
 		} else if(command.equals("/MemberLogout.me")) {

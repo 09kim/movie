@@ -145,7 +145,7 @@ public class MypageDAO {
 				MypageBean list = new MypageBean();
 				
 				list.setIdx(rs.getInt("idx"));
-				list.setGener(rs.getString("gener"));
+				list.setGenre(rs.getString("gener"));
 				list.setGrade(rs.getInt("grade"));
 				list.setMovieSeq(rs.getInt("movieSeq"));
 				list.setNick(rs.getString("nick"));

@@ -42,7 +42,7 @@ int listCount = (int) request.getAttribute("listCount");
 			%>
 			<div id="gradelist">
 				<ul>
-					<li><a>Poster</a>
+					<li><a><img src=<%=gradeList.get(i).getPoster() %>></a>
 						<div id="movieInfo">
 							<div><%=gradeList.get(i).getTitle()%></div>
 							<div><%=gradeList.get(i).getGrade()%></div>

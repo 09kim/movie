@@ -15,9 +15,10 @@ public class kmdbApi {
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?detail=Y&title="+title+"&listCount=30"
 						+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
-//		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "605841J368J95E2I93M1"); /* Service Key */
-//		urlBuilder.append(
-//				"&" + URLEncoder.encode("val001", "UTF-8") + "=" + URLEncoder.encode("2019", "UTF-8")); /* 상영년도 */
+		urlBuilder.append(
+				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8"));
+		urlBuilder.append(
+				"&" + URLEncoder.encode("use", "UTF-8") + "=" + URLEncoder.encode("극장용", "UTF-8")); 
 //		urlBuilder
 //				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
 		URL url = new URL(urlBuilder.toString());
@@ -118,6 +119,8 @@ public class kmdbApi {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("director", "UTF-8") + "=" + URLEncoder.encode(director, "UTF-8")); 
+		urlBuilder.append(
+				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8")); 
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
 //		urlBuilder
@@ -152,6 +155,8 @@ public class kmdbApi {
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		
 		urlBuilder.append("&" + URLEncoder.encode("actor", "UTF-8") + "=" + URLEncoder.encode(actor, "UTF-8")); 
+		urlBuilder.append(
+				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8")); 
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
 //		urlBuilder

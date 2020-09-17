@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageDeleteWishAction;
+import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
@@ -68,6 +69,13 @@ public class MypageController extends HttpServlet {
 			action = new MypageDeleteWishAction();
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MypageGener.mp")) {
+			action = new MypageGenerAction();
+			try {
+				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

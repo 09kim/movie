@@ -221,6 +221,5 @@ $(document).ready(function(){
 <option id ="adventure" value="어드벤처">어드벤처</option>
 </select>
 <div class="movieList"></div>
-야호
 </body>
 </html>

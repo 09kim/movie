@@ -25,7 +25,6 @@ public class MovieDirectorAction implements Action {
 			json = movie.getMovieDetailByDirector(director);
 		}
 
-		System.out.println(json);
 
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);

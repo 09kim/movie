@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -25,7 +24,6 @@ public class MovieDirectorProAction implements Action{
 			json = movie.getMovieDetailByDirector(director);
 		}
 
-		System.out.println(json);
 
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
@@ -34,6 +32,7 @@ public class MovieDirectorProAction implements Action{
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);
 		out.flush();
+
 		
 		
 		

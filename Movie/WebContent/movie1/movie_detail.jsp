@@ -47,7 +47,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          });
          
          
-         
          $.ajax({
             url:"MovieDetail.mo",
             method:"post",
@@ -376,8 +375,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-          
-         
+        
          
          $('#directorMovies').click(function(){
             
@@ -444,6 +442,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
    <br>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
+   <%=returnCmt %>
  <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
@@ -457,14 +456,18 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-               
-                 <% if(!(getGrade.equals("0"))){ %> 
+                 
+                 <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다. 
+        	<%= getGrade %> 점을 입력하셨습니다. <%if(returnCmt != "null") {%> <%=nick %>님의 코멘트 :  <%=returnCmt %> 
   		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
       	<%} %>
                 	  </div>
+                	  
+                	  <input type="button" id ="updateCmt" value="수정">
+                	  <input type="button" id ="deleteCmt" value="삭제">
 		<div id="review"></div>
+<%} %> 
 
    <div id="subInfo"></div>
    <section id="list">

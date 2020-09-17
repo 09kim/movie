@@ -71,8 +71,7 @@
                        if(result[0]){
                        		$('.poster_img').eq(idx).attr("src",result[0]);
                        }else{
-                    	   var noImage = "<img src=../../../Movie/img/noImage.gif>"
-                    	 	$('.poster_img').eq(idx).attr("src",noImage);
+                    	 	$('.poster_img').eq(idx).attr("src","../../../Movie/img/noImage.gif");
                        }
              		   $('.nation').eq(idx).text(result[1]);
                        $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);

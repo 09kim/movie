@@ -25,7 +25,6 @@ public class MovieKeywordProAction implements Action{
 			json = movie.getMovieDetailByKeyword(keyword);
 		}
 
-		System.out.println(json);
 
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 import movie.vo.MovieBean;
 import mypage.dao.MypageDAO;
-import mypage.vo.MypageGenerBean;
+import mypage.vo.MypageGenreBean;
 public class MemberMypageService {
 
-	public ArrayList<MypageGenerBean> getMypageGener(String nick) {
+	public ArrayList<MypageGenreBean> getMypageGener(String nick) {
 		Connection con = getConnection();
 		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		ArrayList<MypageGenerBean> list = dao.selectGener(nick);
+		ArrayList<MypageGenreBean> list = dao.selectGener(nick);
 		close(con);
 		return list;
 	}

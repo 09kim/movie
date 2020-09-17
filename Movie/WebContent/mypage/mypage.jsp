@@ -14,7 +14,7 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
-		$.ajax('MypageGener.me', {
+		$.ajax('MypageGener.mp', {
 			method : "get",
 			dataType : "json",
 			data : {
@@ -85,6 +85,8 @@
 			<li><a href="Mypage.mp">마이 페이지</a></li>
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
+			<li><a href="BoardReviewList.bo">리뷰</a></li>
+            
 		</ul> 
 	</div> 
 	

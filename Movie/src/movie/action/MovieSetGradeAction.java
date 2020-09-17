@@ -1,11 +1,7 @@
 package movie.action;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import movie.svc.setGradeService;
@@ -20,6 +16,7 @@ public class MovieSetGradeAction implements Action {
 		String nick = request.getParameter("nick");
 		String grade = request.getParameter("grade");
 		String movieInfo = request.getParameter("data");
+		String moviePoster = request.getParameter("image");
 		String[] param = movieInfo.split("/");
 		for(int i = 0; i<param.length; i++) {
 			System.out.println(param[i]);
@@ -30,7 +27,7 @@ public class MovieSetGradeAction implements Action {
 		String movieSeq = param[3];
 		String movieRuntime = param[4];
 		String movieGenre = param[5];
-		String movieYear = param[6];
+		String movieYear = param[6]; // 나중에 테이블 나눌때 필요한 변수
 		MovieBean movieBean = new MovieBean();
 		movieBean.setDirector(movieDircetor);
 		movieBean.setNation(movieNation);
@@ -41,6 +38,7 @@ public class MovieSetGradeAction implements Action {
 		movieBean.setMovieYear(movieYear);
 		movieBean.setMovieGrade(grade);
 		movieBean.setNick(nick);
+		movieBean.setMoviePoster(moviePoster);
 		
 		
 		

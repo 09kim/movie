@@ -43,66 +43,11 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 
 	});
 </script>
-<style type="text/css">
-.btn-like {
-	color: transparent;
-	text-shadow: 0 0 2px rgba(255, 255, 255, .7), 0 0 0 #000;
-}
-
-.btn-like:hover {
-	text-shadow: 0 0 0 #ea0;
-}
-
-.btn-like.done {
-	color: inherit;
-	text-shadow: 0;
-}
-
-.btn-like.done:hover {
-	color: transparent;
-	text-shadow: 0 0 0 #777;
-}
-
-td {
-	border: 1px solid black;
-	padding: 1em;
-}
-
-table {
-	margin: auto;
-	width: auto;
-}
-
-#listForm tr {
-	border: 1px solid darkgray;
-}
-
-#listForm td {
-	border: 1px solid darkgray;
-}
-
-a {
-	text-decoration: none;
-}
-
-#tr_top {
-	background: orange;
-	width: auto;
-	text-align: center;
-}
-
-h2 {
-	text-align: center;
-}
-
-img {
-	width: 150px;
-}
-</style>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
 <!-- 헤더 -->
@@ -129,9 +74,10 @@ img {
 		<% for(MypageBean wishInfo : wishMovie) {%>
 					<td align="center">
 					<%if(wishInfo.getPoster()!=null){ %>
-					<a href="MovieDetailPro.mo?movieId=<%=wishInfo.getMovieId()%>&movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
+<!-- 					마이페이지에서는 디테일 페이지 이동할때 a태그에서 movieId 파라미터 제외함 (낙원:0915)-->
+					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
 					<%} else { %>
-					<a href="MovieDetailPro.mo?movieId=<%=wishInfo.getMovieId()%>&movieSeq=<%=wishInfo.getMovieSeq() %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
+					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq() %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
 					<%} %>
 					<%if(wishInfo.getWish().equals("Y")){ %>
 					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>,<%=wishInfo.getMovieId()%>">❤️</button></td>

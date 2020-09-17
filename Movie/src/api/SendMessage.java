@@ -15,12 +15,12 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class SendMessage {
 	
 	public String getCertificationNum(String phone) {
-// 낙원 sms
-		String api_key = "NCSBLSZUNYTRLHOV";
-		String api_secret = "LK2HBIOS9FOBMPZYKQ0JGXOVNYG46SCF";
+		// 낙원 sms(실제 테스트제외하고 사용 하지 말것.. 잔액 얼마 안남음)
+//				String api_key = "NCSBLSZUNYTRLHOV";
+//				String api_secret = "LK2HBIOS9FOBMPZYKQ0JGXOVNYG46SCF";
 //영운 sms
-//    String api_key = "NCSITQNQU9QOWCME";
-//    String api_secret = "Y65VCPF93UELIM05B0GKIN1ROZYTNXZH";
+    String api_key = "NCSITQNQU9QOWCME";
+    String api_secret = "Y65VCPF93UELIM05B0GKIN1ROZYTNXZH";
     Message coolsms = new Message(api_key, api_secret);
     Random r = new Random();
     String certificationNum = String.valueOf(r.nextInt(10)) + String.valueOf(r.nextInt(10)) +  String.valueOf(r.nextInt(10)) + String.valueOf(r.nextInt(10)) + String.valueOf(r.nextInt(10)) + String.valueOf(r.nextInt(10));
@@ -63,7 +63,10 @@ public class SendMessage {
 	
 	// 핸드폰으로 E-Mail주소 찾기시 사용하는 메서드(낙원:0917)
 		public String getCertificationNum(String phone,String email) {
-
+			// 낙원 sms(실제 테스트제외하고 사용 하지 말것.. 잔액 얼마 안남음)
+//			String api_key = "NCSBLSZUNYTRLHOV";
+//			String api_secret = "LK2HBIOS9FOBMPZYKQ0JGXOVNYG46SCF";	
+// 영운 sms(인증 코드확인 테스트할때 쓸것)
 		    String api_key = "NCSITQNQU9QOWCME";
 		    String api_secret = "Y65VCPF93UELIM05B0GKIN1ROZYTNXZH";
 		    Message coolsms = new Message(api_key, api_secret);
@@ -72,7 +75,8 @@ public class SendMessage {
 		    // 4 params(to, from, type, text) are mandatory. must be filled
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("to", phone); // 수신번호
-		    params.put("from", "01055201984"); // 발신번호
+		    params.put("from", "01095102042"); // 발신번호
+//		    params.put("from", "01055201984"); // 발신번호
 		    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
 		    params.put("text", "본인의 E-Mail주소는" + email + "입니다."); // 문자내용    
 		    params.put("app_version", "JAVA SDK v1.2"); // application name and version

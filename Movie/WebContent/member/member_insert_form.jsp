@@ -220,6 +220,7 @@ $(document).ready(function(){
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
+<input type="submit" value="회원가입">
 </form>
 
 

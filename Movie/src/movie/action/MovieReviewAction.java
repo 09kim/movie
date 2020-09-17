@@ -20,7 +20,6 @@ public class MovieReviewAction implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String typeName = request.getParameter("typeName");
 		String comment = request.getParameter("comment");
-		System.out.println("ReviewAction");
 		ReviewBean rb = new ReviewBean();
 		rb.setNick(nick);
 		rb.setMovieSeq(movieSeq);
@@ -37,7 +36,6 @@ public class MovieReviewAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 	    forward.setPath("/movie1/movie_detail.jsp");
-	    System.out.println(rb.getContent());
 	    request.setAttribute("returnCmt", comment);
 	    return forward;
 		

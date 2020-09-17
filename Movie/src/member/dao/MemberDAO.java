@@ -46,8 +46,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				maxNum = rs.getInt(1) + 1;
 			}
-			System.out.println("뭐야" + maxNum);
-			sql = "INSERT INTO member VALUES(?,?,?,?,?,now())";
+			sql = "INSERT INTO member VALUES(?,?,?,?,?,null,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, maxNum);
 			pstmt.setString(2, mb.getEmail());

@@ -13,10 +13,10 @@ import com.google.gson.JsonParser;
 
 import action.Action;
 import mypage.svc.MemberMypageService;
-import mypage.vo.GenerBean;
-import mypage.vo.GenerCountBean;
-import mypage.vo.MarkGenerBean;
-import mypage.vo.MypageGenerBean;
+import mypage.vo.GenreBean;
+import mypage.vo.GenreCountBean;
+import mypage.vo.MarkGenreBean;
+import mypage.vo.MypageGenreBean;
 import vo.ActionForward;
 
 public class MypageGenerAction implements Action {
@@ -26,13 +26,13 @@ public class MypageGenerAction implements Action {
 		String nick = request.getParameter("nick");
 		StringBuffer sbGener = new StringBuffer("코메디/느와르/범죄/공포(호러)/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/어드벤처");
 		MemberMypageService mms = new MemberMypageService();
-		ArrayList<MypageGenerBean> list = mms.getMypageGener(nick);
+		ArrayList<MypageGenreBean> list = mms.getMypageGener(nick);
 		String[] category = sbGener.toString().split("/");
 		// Db에서 가져온 카테고리 수
-		GenerBean gener = new GenerBean();
-		GenerCountBean count = new GenerCountBean();
+		GenreBean gener = new GenreBean();
+		GenreCountBean count = new GenreCountBean();
 
-		for (MypageGenerBean mgb : list) { // 저장한 영화 한개당 장르 및 점수 꺼냄
+		for (MypageGenreBean mgb : list) { // 저장한 영화 한개당 장르 및 점수 꺼냄
 			String[] category2 = mgb.getGenre().split(","); // 장르 쪼갬
 			for (int i = 0; i < category.length; i++) { // category 만큼 반복문 돌림
 				for (String s : category2) { //
@@ -113,7 +113,7 @@ public class MypageGenerAction implements Action {
 			}
 		}
 
-		ArrayList<MarkGenerBean> list2 = new ArrayList<MarkGenerBean>();
+		ArrayList<MarkGenreBean> list2 = new ArrayList<MarkGenreBean>();
 		list2.add(gener);
 		list2.add(count);
 		Gson gs = new Gson();

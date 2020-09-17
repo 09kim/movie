@@ -62,10 +62,10 @@
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
-                       $('.boxOffice').append("<div class=ranking></div>"+
+                       $('.raking-ul').append("<li>"+
                     		   "<img class=poster_img>"+
                     		   "<div><a class=movieName></a></div>"+
-                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
+                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div></li>");
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        $('.poster_img').eq(idx).attr("src",result[0]);
@@ -78,12 +78,8 @@
                 });
             }
        });
-       
-      
-       
-       
-   });
-   
+
+   }); 
    
 </script>
 </head>
@@ -91,6 +87,15 @@
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
     <h1>박스오피스 순위</h1>
-    <div class="boxOffice"></div>
+    <div class="boxOffice">
+    	<div class="ranking">
+    		<ul class="raking-ul">
+    		
+    		</ul>
+    	</div>
+    	<div class="box-forward">
+    		<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDEyIDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxMlYxNkgweiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiMyOTJBMzIiIHN0cm9rZT0iIzI5MkEzMiIgc3Ryb2tlLXdpZHRoPSIuMzUiIGQ9Ik0zLjQyOSAxMy40MDlMNC4zNTQgMTQuMjU4IDEwLjY4IDguNDYgMTEuMTQzIDguMDM2IDQuMzU0IDEuODEzIDMuNDI5IDIuNjYyIDkuMjkxIDguMDM2eiIvPgogICAgPC9nPgo8L3N2Zz4K">
+    	</div>
+    </div>
 </body>
 </html>

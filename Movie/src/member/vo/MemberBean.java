@@ -9,6 +9,7 @@ public class MemberBean {
 	private String email;
 	private String phone;
 	private Date date;
+	private String bio;
 
 
 	public Date getDate() {
@@ -57,6 +58,14 @@ public class MemberBean {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 
 }

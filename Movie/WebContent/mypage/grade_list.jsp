@@ -25,13 +25,14 @@ int listCount = (int) request.getAttribute("listCount");
 
 	<section id="main">
 		<!-- 왼쪽메뉴 -->
-		<div id="sub_menu">
+		<div id="sub_menu"> 
 			<ul>
 				<li><a href="Mypage.mp">마이 페이지</a></li>
 				<li><a href="MypageGrade.mp">평가한 영화</a></li>
 				<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
-			</ul>
-		</div>
+				<li><a href="BoardReviewList.bo">리뷰</a></li>
+			</ul> 
+		</div> 
 		<!-- 왼쪽메뉴 -->
 
 		<div id="myinfo">

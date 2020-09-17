@@ -2,10 +2,10 @@
 
 
 /* 마이 페이지 기본 틀 */
-.mypage {
-	width: 1280px;
-	margin: 0 auto;
-}
+/* .mypage { */
+/* 	width: 1280px; */
+/* 	margin: 0 auto; */
+/* } */
 
 #sub_menu {
 	float: left;
@@ -46,7 +46,7 @@
 }
 
 #profile-article {
-	margin-top: -50px; /* 프로필 사진 배경과 겹치게 */
+/* 	margin-top: -50px; 프로필 사진 배경과 겹치게 */
 	padding-left: 20px;
 }
 
@@ -57,7 +57,7 @@
 
 .profile-update {
 	float: right;
-	margin-top: -45px;
+	margin-top: -75px;
 }
 /* 마이 페이지 프로필 */
 

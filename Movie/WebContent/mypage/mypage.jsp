@@ -14,7 +14,7 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
-		$.ajax('MypageGener.mp', {
+		$.ajax('MypageGener.me', {
 			method : "get",
 			dataType : "json",
 			data : {
@@ -40,7 +40,7 @@
 						$.each(sortData2,function(idx2,item2){
 							if(item2.value!=0){
 								if(item.key==item2.key){
-									var count = item2.value/2/item.value;
+									var count = item2.value/ 2 /item.value;
 									$('.genre').append(item.key +" : "+item.value+ " " +count.toFixed(1)+"점 <br>");
 								}
 							}
@@ -86,23 +86,26 @@
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
 			<li><a href="BoardReviewList.bo">리뷰</a></li>
-            
 		</ul> 
 	</div> 
 	
 	<div id="myinfo">
 	<!-- css / 프로필 박스 (프로필 사진 및 수정 기능 넣을 곳) -->
 		<div id="profilebox">
-			<img class="profile-background" src="img/profile_yellow.jpg" onerror="this.src='img/profile_yellow.jpg'" />
+<!-- 			<img class="profile-background" src="img/profile_yellow.jpg" onerror="this.src='img/profile_yellow.jpg'" /> -->
 			<article id="profile-article">
 				<div class="img-box">
-					<img class="profile" src="img/noneprofile.jpg">
+					<img class="profile" src="img/noneprofile.png">
 				</div>
 				
 				<div class="info-box">
 					<%=nick%><br>
 					<%=memberBean.getEmail()%><br>
-					아직 소개글이 없습니다.
+					<%if(memberBean.getBio() != null){
+						out.print(memberBean.getBio());
+					} else {
+						out.print("아직 소개글이 작성되지 않았습니다.");
+					}%>
 				</div>
 				
 				<div class="clear"></div>

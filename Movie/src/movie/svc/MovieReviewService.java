@@ -7,18 +7,18 @@ import java.sql.Connection;
 
 import movie.dao.MovieDAO;
 import movie.vo.MovieBean;
+import movie.vo.ReviewBean;
 
-public class setGradeService {
-
-	public boolean isSetGrade(MovieBean movieBean){
+public class MovieReviewService {
+	public boolean isInsert(ReviewBean reviewBean){
 		boolean isInsert =false;
 		
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		int insertCount = mo.insertGrade(movieBean);
+		int insertCount = mo.insertComment(reviewBean);
 		
-		if(insertCount>0 || insertCount == -1) {
+		if(insertCount>0) {
 			isInsert = true;
 			commit(con);
 		}else {
@@ -28,21 +28,18 @@ public class setGradeService {
 		return isInsert;
 	}
 	
-	public int selectGrade(MovieBean movieBean){
+	public String getComment(MovieBean movieBean){
+		
 		
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		int movieGrade = mo.selectGrade(movieBean);
+		String comment = mo.selectComment(movieBean);
 		
-		if(movieGrade > 0 ) {
-			commit(con);
-		}else {
-			rollback(con);
-			
-		}
+		
 		close(con);
-		return movieGrade;
+		return comment;
 	}
-
+	
+	
 }

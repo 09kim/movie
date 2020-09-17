@@ -13,6 +13,6 @@
 <div class="clear"></div>
 <section id="main">
 </section>
-<a href="Python.me?nick=<%=nick%>">파이썬테스트</a>
+<a href="Python.me?nick=<%=nick%>">파이썬테스트</a> 
 </body>
 </html>

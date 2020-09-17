@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import movie.svc.MovieReviewService;
 import movie.svc.setGradeService;
 import movie.vo.MovieBean;
 import vo.ActionForward;
@@ -30,20 +31,26 @@ public class MovieGetGradeAction implements Action {
 		int getGrade = setGradeService.selectGrade(movieBean);
 		ActionForward forward = new ActionForward();
 		String grade = "";
-		
-		if((getGrade%2.0) == 0.0) {
-			grade = (int)(getGrade/2)+"";
-		}else {
-			grade = getGrade/2.0 + "";
-		}
-		
-		request.setAttribute("getGrade", grade);
-		
-		
-		forward.setRedirect(false);
-		forward.setPath("/movie1/movie_detail.jsp");
-		
-		return forward;
+
+	      
+	      if((getGrade%2.0) == 0.0) {
+	         grade = (int)(getGrade/2)+"";
+	      }else {
+	         grade = getGrade/2.0 + "";
+	      }
+	      
+	      request.setAttribute("getGrade", grade);
+	      
+	      
+	      // getComment 를 위한 구문들
+	      MovieReviewService movieReviewService = new MovieReviewService();
+	      String comment = movieReviewService.getComment(movieBean);
+	      request.setAttribute("returnCmt", comment);
+	      forward.setRedirect(false);
+	      forward.setPath("/movie1/movie_detail.jsp");
+	      
+	      return forward;
+
 	}
 
 }

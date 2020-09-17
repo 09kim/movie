@@ -1,6 +1,10 @@
 @charset "UTF-8";
 .clear{clear: both;} /*영역구분*/
 
+html {
+	line-height: normal;
+}
+
 /* ------------------ 바디 부분 ------------------ */
 body {
   margin: 0;
@@ -23,6 +27,8 @@ a {
 ul, li {
 	list-style:none;
 	color: #000;
+	display: list-item;
+    text-align: -webkit-match-parent;
 }
 
 /* ------------------ 헤더 부분 ------------------ */
@@ -43,7 +49,12 @@ ul, li {
 	display: inline-block;
 }
 
-.header-menu li {
+#header-menu {
+    width: 1280px;
+	margin: 0 auto;
+}
+
+#header-menu li {
 	margin: 0 10px 0 0;
     padding: 0 0 0 0;
     border : 0;
@@ -56,23 +67,31 @@ ul, li {
 }
 
 .ul-top .top-menu {
-	width: 100px;
+/* 	width: 100px; */
+	margin: 0 20px;
 }
 
 
 .div-top ul {
-    list-style:none;
-    margin:0;
-    padding:0;
+/*     list-style:none; */
+/*     margin:0; */
+/*     padding:0; */
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    overflow: hidden;
 }
 
 #search_bar {
-	width: 400px;
-	margin-left: 200px;
+/* 	width: 400px; */
+	margin-left: 500px;
+	margin-right: 50px;
 }
 
 #login {
- 	width: 200px;
+/*  	width: 200px; */
+ 	margin-left: 150px;
 }
 
 /* #login a{ */

@@ -8,7 +8,8 @@ String nick=(String)session.getAttribute("nick");
 
 <header>
 <div class="div-top">
-	<div class="header-menu">
+
+	<div id="header-menu">
 	   <ul class="ul-top">
 	      <li class="top-menu">
 	          <a class="a-home" href="Main.me">홈</a>

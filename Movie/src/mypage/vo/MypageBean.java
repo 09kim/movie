@@ -5,7 +5,7 @@ public class MypageBean {
 	private int idx;
 	private String nick;
 	private int grade;
-	private String gener;
+	private String genre;
 	private int movieSeq;
 	private String title;
 	private int runtime;
@@ -54,11 +54,11 @@ public class MypageBean {
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	public String getGener() {
-		return gener;
+	public String getGenre() {
+		return genre;
 	}
-	public void setGener(String gener) {
-		this.gener = gener;
+	public void setGenre(String gener) {
+		this.genre = gener;
 	}
 	public int getMovieSeq() {
 		return movieSeq;

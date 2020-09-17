@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
 import mypage.vo.MypageBean;
-import mypage.vo.MypageGenerBean;
+import mypage.vo.MypageGenreBean;
 
 public class MypageDAO {
 
@@ -145,7 +145,7 @@ public class MypageDAO {
 				MypageBean list = new MypageBean();
 				
 				list.setIdx(rs.getInt("idx"));
-				list.setGener(rs.getString("gener"));
+				list.setGenre(rs.getString("gener"));
 				list.setGrade(rs.getInt("grade"));
 				list.setMovieSeq(rs.getInt("movieSeq"));
 				list.setNick(rs.getString("nick"));
@@ -221,16 +221,16 @@ public class MypageDAO {
 	}
 	
 	// ------------------------------------------------------------------- 별점 용 메서드 태윤
-		public ArrayList<MypageGenerBean> selectGener(String nick) {
+		public ArrayList<MypageGenreBean> selectGener(String nick) {
 			String sql = "SELECT grade,gener from grade where nick = ?";
-			ArrayList<MypageGenerBean> list = new ArrayList<MypageGenerBean>();
+			ArrayList<MypageGenreBean> list = new ArrayList<MypageGenreBean>();
 			
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, nick);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					MypageGenerBean mgb = new MypageGenerBean();
+					MypageGenreBean mgb = new MypageGenreBean();
 					mgb.setGrade(rs.getInt("grade"));
 					mgb.setGenre(rs.getString("gener"));
 					list.add(mgb);

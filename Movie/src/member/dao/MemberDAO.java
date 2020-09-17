@@ -221,5 +221,33 @@ public class MemberDAO {
 		}
 		return memberList;
 	}
+	
+	// 이메일로 패스워드 찾기시 패스워드 변경해주는 메서드(낙원:0917)
+	public int updatePassword(String email,String pass) {
+		int completeCount=0;
+		
+		try {
+			String sql = "SELECT * FROM member where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sql = "UPDATE member SET pass=? where email=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pass);
+				pstmt.setString(2, email);
+				completeCount= pstmt.executeUpdate();
+			} else {
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return completeCount;
+	}
 
 }

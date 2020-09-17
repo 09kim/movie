@@ -6,10 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
 		var phone = $("#phoneNum").val();
@@ -18,7 +17,13 @@ $(document).ready(function(){
 			data:{phone:phone},
 			success:function(rdata){
 				$('#divPhone').html(rdata);
+				if(rdata!="중복된 번호"){
 				$("#phoneNumBtn").attr("disabled",true);
+				$("#phone").attr("readonly",true);
+				alert("인증번호를 전송했습니다.");
+				}else{
+					alert("중복된 번호입니다.");
+				}
 			}
 		});
 	});
@@ -31,8 +36,10 @@ $(document).ready(function(){
 			$("#certificationNum").attr("readonly",true);
 			$("#certificationBtn").attr("disabled",true);
 			alert("인증 되셨습니다.");
+			$('.confirm').eq(2).val("Y");
 		} else {
-			$('#divPhone').html("인증번호가 틀렸습니다.")
+			$('#divPhone').html("인증번호가 틀렸습니다.");
+			$('.confirm').eq(2).val("N");
 		}
 	});
 	
@@ -44,21 +51,33 @@ $(document).ready(function(){
 			$("#certificationNum_email").attr("readonly",true);
 			$("#certification_email_Btn").attr("disabled",true);
 			alert("이메일 인증 완료!");
+			$('.confirm').eq(3).val("Y");
 
 		} else {
-			$('#divEmail').html("인증번호가 틀렸습니다.")
+			$('#divEmail').html("인증번호가 틀렸습니다.");
+			$('.confirm').eq(3).val("N");
 		}
 	});
 	
 	$('#dupNick').click(function(){
-		var nick = $('#nick').val();		
-		$.ajax("dupNick.me",{
-			data:{nick:nick},
-			success:function(data){
-				alert(data)
-				$('#divNick').html(data);
-			}
-		});
+		var nick = $('#nick').val();
+		if(nick==""){
+			alert("닉네임을 입력해주세요.");
+			return false;
+		} else {
+			$.ajax("dupNick.me",{
+				data:{nick:nick},
+				success:function(rdata){
+					if(rdata=="닉네임 중복"){
+						$('.confirm').eq(0).val("N");
+					} 
+					if(rdata=="사용가능 닉네임") {
+						$('.confirm').eq(0).val("Y");
+					}
+					$('#divNick').html(rdata);
+				}
+			});
+		}
 	});
 	
 	var pw = $('#pass').val(); 
@@ -66,27 +85,31 @@ $(document).ready(function(){
 	var reg = /^(?=.*?^[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@]).{8,15}$/;
 	
 	// 패스워드 정규식
-	$('#pass').keyup(function() {
+// 	$('#pass').keyup(function() {
 			
-	if(false == reg.test(pw)) {
-			$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-				return false;
-	//			/^[가-힣a-zA-z]{3.10}$/
-			}else {
-				$('#regPass').html('사용 가능')
-			}
+// 	if(false == reg.test(pw)) {
+// 			$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+// 			$('.confirm').eq(1).val("N");
+// 				return false;
+// 	//			/^[가-힣a-zA-z]{3.10}$/
+// 			}else {
+// 				$('#regPass').html('사용 가능')
+// 				$('.confirm').eq(1).val("Y");
+// 			}
 		
-			if(/(\w)\1\1\1/.test(pw)) {
-				$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
-				return false;
+// 			if(/(\w)\1\1\1/.test(pw)) {
+// 				$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
+// 				$('.confirm').eq(1).val("N");
+// 				return false;
 			
-				}
-			if(pw.search(/\s/) != -1) {
-				$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
-				return false;
+// 				}
+// 			if(pw.search(/\s/) != -1) {
+// 				$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
+// 				$('.confirm').eq(1).val("N");
+// 				return false;
 				
-				}
-			});
+// 				}
+// 			});
 		
 		
 		$('#pass').keyup(function() {
@@ -98,6 +121,7 @@ $(document).ready(function(){
 			if(pass.length < 8) {
 				$('#st_msg').removeClass()
 				$('#st_msg').addClass('짧음')
+// 				$('.confirm').eq(1).val("N");
 			}
 			
 			if(pass.length >= 8) strength += 1
@@ -132,46 +156,14 @@ $(document).ready(function(){
 			// 정규식 판별 변수
 			var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.([a-zA-Z]){2,3}$/i;
 			var checkResult = regExp.test( $("#email").val() );
-			// 바이트수 판별 변수
-			var limit = 50; // DB의 email 컬럼의 데이터 길이값에 해당
-			var str = $("#email").val();
-			var strLength = 0;
-			var strTitle = "";
-            var strPiece = "";
-            var check = false;
             
-            for (i = 0; i < str.length; i++){
-                var code = str.charCodeAt(i);
-                var ch = str.substr(i,1).toUpperCase();
-                //체크 하는 문자를 저장
-                strPiece = str.substr(i,1)
-                
-                code = parseInt(code);
-                
-                if ((ch < "0" || ch > "9") && (ch < "A" || ch > "Z") && (code > 255 || code < 0)){
-                    strLength = strLength + 3; //UTF-8 3byte 로 계산
-                }else{
-                    strLength = strLength + 1;
-                }
-                
-                if(strLength>limit){ //제한 길이 확인
-                    check = true;
-                }else{
-                    strTitle = strTitle+strPiece; //제한길이 보다 작으면 자른 문자를 붙여준다.
-                }
-                
-            }
-            // 바이트수가 초과한 경우
-            if(check){
-                alert(limit+"byte를 초과했습니다.");
-            }
-            $("#email").val(strTitle);
             // 정규식에 위배되는 경우
             if (!checkResult){
 				alert('이메일 양식을 확인해주세요.');
+				$('.confirm').eq(3).val("N");
 			}
             // 바이트 수를 초과하지 않고 정규식에 위배 되지 않는 경우
-			if(checkResult==true && check==false){
+			if(checkResult==true){
 				$.ajax('Email.me',{
 					data:{email:$('#email').val()},
 					success:function(rdata){
@@ -183,6 +175,59 @@ $(document).ready(function(){
             
         });
 		
+		// 회원가입 버튼 동작
+		$('.join_fr').submit(function(){
+			if($('#nick').val()==""){
+				alert("닉네임을 입력하세요");
+				$('#nick').focus();
+				return false;
+			}
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요");
+				$('#pass').focus();
+				return false;
+			}
+			if($('#phoneNum').val()==""){
+				alert("핸드폰 번호를 입력하세요");
+				$('#phoneNum').focus();
+				return false;
+			}
+			if($('#certificationNum').val()==""){
+				alert("핸드폰 인증코드를 입력하세요");
+				$('#certificationNum').focus();
+				return false;
+			}
+			if($('#email').val()==""){
+				alert("이메일을 입력하세요");
+				$('#email').focus();
+				return false;
+			}
+			if($('#certificationNum_email').val()==""){
+				alert("이메일 인증코드를 입력하세요");
+				$('#certificationNum_email').focus();
+				return false;
+			}
+			
+			if($('.confirm').eq(0).val()=="N"||$('.confirm').eq(0).val()==""){
+				alert("닉네임 설정에 문제가 있습니다.");
+				return false;
+			}
+// 			if($('.confirm').eq(1).val()=="N"||$('.confirm').eq(1).val()==""){
+// 				alert("패스워드 설정에 문제가 있습니다.");
+// 				return false;
+// 			}
+			if($('.confirm').eq(2).val()=="N"||$('.confirm').eq(2).val()==""){
+				alert("핸드폰 인증에 문제가 있습니다.");
+				return false;
+			}
+			if($('.confirm').eq(3).val()=="N"||$('.confirm').eq(3).val()==""){
+				alert("이메일 인증에 문제가 있습니다.");
+				return false;
+			}
+			
+			
+		});
+		
 		
 });
 </script>
@@ -191,9 +236,9 @@ $(document).ready(function(){
 <body>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-<br><br><br><br><br>
-<div class="clear"></div><br><br><br><br>
+<!-- 헤더 -->
 
+<section id="main">
 <form class="join_fr" action="MemberJoinPro.me" method="get">
 
 <fieldset>
@@ -220,9 +265,14 @@ $(document).ready(function(){
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
-<input type="submit" value="회원가입">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="submit" value="Submit" class="submit">
+<input type="reset" value="Cancel" class="cancel">
 </form>
-
+</section>
 
 </body>
 </html>

@@ -41,7 +41,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
   	   							window.location.replace("http://localhost:8080/Movie/MypageWish.mp");
 		  	   						setTimeout(function() { // 너무 빨리 실행하면 충돌나서 딜레이 줌
 		  	   						location.reload();
-		  	   						}, 500);
+		  	   						}, 800);
   	   							}
   		 			} else {
   		 				return false;
@@ -71,6 +71,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 			<li><a href="Mypage.mp">마이 페이지</a></li>
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
+			<li><a href="BoardReviewList.bo">리뷰</a></li>
 		</ul> 
 	</div> 
 	

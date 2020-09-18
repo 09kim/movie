@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
-import mypage.action.MypageDeleteWishAction;
 import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
 import mypage.action.MypageProAction;

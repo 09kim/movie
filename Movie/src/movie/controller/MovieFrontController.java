@@ -114,6 +114,7 @@ public class MovieFrontController extends HttpServlet {
 		}else if (command.equals("/MovieCss.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/moviecss/movie.css");
+			
 		}else if (command.equals("/setGrade.mo")) {
 			action = new MovieSetGradeAction();
 			try {

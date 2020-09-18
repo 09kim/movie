@@ -15,6 +15,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -27,6 +28,24 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          var query = $("#query").val();
          var keyword = $("#keyword").val();
          var nick = $('#nick').val()
+         var refreshUrl = document.location.href;
+         
+         
+         
+         
+		 $.ajax('MypageSelectWish.mp',{
+			data:{movieSeq:movieSeq},
+			success:function(rdata){
+				if(rdata=="Y"){
+					$('.btn-like').addClass("done")
+				} else {
+					$('.btn-like').removeClass("done")
+				}
+			}
+		});
+         
+         
+         
          function selectBtn() { 
         	 $('#dialog-message').dialog({
         		 modal: true,
@@ -72,6 +91,20 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      var stills = item2.stlls.split("|")
                      var keyword = item2.keywords.split(",")
                      var actors="";
+                     
+                     $('.btn-like').click(function() {
+            			 $.ajax('MypageChangeWish.mp',{
+            					data:{movieSeq:movieSeq,title:title5,poster:image[0]},
+            					success:function(rdata){
+            						if(!$('.btn-like').hasClass("done")){
+            							$('.btn-like').addClass("done")
+            						} else {
+            							$('.btn-like').removeClass("done")
+            						}
+            					}
+            				});
+            			});
+                     
                      for(var num = 0; num < item2.staff.length ; num++){
                         if(item2.staff.length>11){
                            if(num==11){
@@ -468,6 +501,9 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 		<div id="review"></div>
 
    <div id="subInfo"></div>
+   <div id="wish">
+   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
+   	</div>
    <section id="list">
    </section>
     <div class=thisMovie>

@@ -165,9 +165,37 @@ public class MypageDAO {
 		
 		return gradeList;
 	}
-	
 	// 좋아요(wish) 리스트 조회 메서드 - 낙원
-	public ArrayList<MypageBean> selectWish(String nick) {
+		public MypageBean selectWish(String nick,int movieSeq) {
+			System.out.println("MypageDAO - selectWish()");
+			MypageBean wishMovie = null;
+			
+			try {
+				String sql = "SELECT * FROM wish WHERE nick=? and wish='Y' and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				rs = pstmt.executeQuery();
+				MypageBean wishInfo = new MypageBean();
+				
+				wishMovie = new MypageBean();
+				if(rs.next()) {
+					wishInfo.setWish(rs.getString("wish"));
+					wishInfo.setPoster(rs.getString("poster"));
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				System.out.println("MypageDAO - selectWishMovie 에러!: " + e.getMessage());
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return wishMovie;
+		}
+		
+	// 좋아요(wish) 리스트 조회 메서드 - 낙원
+	public ArrayList<MypageBean> selectWishList(String nick) {
 		System.out.println("MypageDAO - selectWishMovie()");
 		ArrayList<MypageBean> wishMovie = null;
 		
@@ -198,25 +226,45 @@ public class MypageDAO {
 	}
 
 
-
-	// 좋아요(wish) 취소(삭제) 메서드 - 낙원
-	public int deleteWish(MypageBean mypageBean) {
-		int deleteCount=0;
+	// 좋아요 및 좋아요취소를 동시에하는 메서드(낙원:0917)
+	// deleteWish()메서드 삭제(낙원:0917)
+	public int changeWish(MypageBean mypageBean) {
+		int completeCount=0;
+		
 		try {
-			int idx = mypageBean.getIdx();
 			String nick = mypageBean.getNick();
-			String sql = "DELETE FROM wish where idx=? and nick=?";
+			int movieSeq = mypageBean.getMovieSeq();
+			String title = mypageBean.getTitle();
+			String poster = mypageBean.getPoster();
+			String movieId = mypageBean.getMovieId();
+			String sql = "SELECT * FROM wish where nick=? and movieSeq=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			pstmt.setString(2, nick);
-			deleteCount= pstmt.executeUpdate();
+			pstmt.setString(1, nick);
+			pstmt.setInt(2, movieSeq);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sql = "DELETE FROM wish where nick=? and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				completeCount= pstmt.executeUpdate();
+			} else {
+				sql = "INSERT INTO wish VALUES(null,?,?,?,?,'Y')";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				pstmt.setString(3, title);
+				pstmt.setString(4, poster);
+				completeCount = pstmt.executeUpdate();
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
-		
-		return deleteCount;
+		return completeCount;
 	}
 	
 	// ------------------------------------------------------------------- 별점 용 메서드 태윤
@@ -267,6 +315,13 @@ public class MypageDAO {
 			return list;
 		}
 	
+		
+		
+		
+		
+		
+		
+		
 	
 	
 }

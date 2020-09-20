@@ -12,6 +12,7 @@ int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
 int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
+String nick=(String)session.getAttribute("nick");
 
 %>
 <!DOCTYPE html>
@@ -26,7 +27,9 @@ int endPage = pageInfo.getEndPage();
 <jsp:include page="../inc/top.jsp" />
 <div class="clear"></div><br><br><br>
 <body>
-    <h1>리뷰 List</h1>
+    
+    <h1><%=nick %> 님이 남긴 리뷰</h1>
+     
     
     <section>
         

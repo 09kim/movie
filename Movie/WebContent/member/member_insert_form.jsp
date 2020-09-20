@@ -6,9 +6,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
+	// 회원가입 버튼 동작
+	$('.join_fr').submit(function(){
+		if($('#nick').val()==""){
+			alert("닉네임을 입력하세요");
+			$('#nick').focus();
+			return false;
+		}
+		if($('#pass').val()==""){
+			alert("비밀번호를 입력하세요");
+			$('#pass').focus();
+			return false;
+		}
+		if($('#phoneNum').val()==""){
+			alert("핸드폰 번호를 입력하세요");
+			$('#phoneNum').focus();
+			return false;
+		}
+		if($('#certificationNum').val()==""){
+			alert("핸드폰 인증코드를 입력하세요");
+			$('#certificationNum').focus();
+			return false;
+		}
+		if($('#email').val()==""){
+			alert("이메일을 입력하세요");
+			$('#email').focus();
+			return false;
+		}
+		if($('#certificationNum_email').val()==""){
+			alert("이메일 인증코드를 입력하세요");
+			$('#certificationNum_email').focus();
+			return false;
+		}
+		
+		if($('.confirm').eq(0).val()=="Y"==false){
+			alert("닉네임 설정에 문제가 있습니다.");
+			return false;
+		}
+		if($('.confirm').eq(1).val()=="Y"==false){
+			alert("패스워드 설정에 문제가 있습니다.");
+			return false;
+		}
+		if($('.confirm').eq(2).val()=="Y"==false){
+			alert("핸드폰 인증에 문제가 있습니다.");
+			return false;
+		}
+		if($('.confirm').eq(3).val()=="Y"==false){
+			alert("이메일 인증에 문제가 있습니다.");
+			return false;
+		}
+	});		
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
 		var phone = $("#phoneNum").val();
@@ -80,71 +132,71 @@ $(document).ready(function(){
 		}
 	});
 	
-	var pw = $('#pass').val(); 
-// 	var reg = /^[a-zA-Z0-9!@]{8,15}$/;
-	var reg = /^(?=.*?^[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@]).{8,15}$/;
-	
-	// 패스워드 정규식
-// 	$('#pass').keyup(function() {
+	// 패스워드 정규식 & 보안강도 표시 (낙원:0919)
+	$('#pass').keyup(function() {
+			var pw = $('#pass').val(); 
 			
-// 	if(false == reg.test(pw)) {
-// 			$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-// 			$('.confirm').eq(1).val("N");
-// 				return false;
-// 	//			/^[가-힣a-zA-z]{3.10}$/
-// 			}else {
-// 				$('#regPass').html('사용 가능')
-// 				$('.confirm').eq(1).val("Y");
-// 			}
-		
-// 			if(/(\w)\1\1\1/.test(pw)) {
-// 				$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
-// 				$('.confirm').eq(1).val("N");
-// 				return false;
+			var lengthReg = /(?=.{8,15})/;
+			var upperReg = /[A-Z]/;
+			var lowerReg = /[a-z]/;
+			var numReg = /[0-9]/;
+			var specialReg = /[!@]/;
 			
-// 				}
-// 			if(pw.search(/\s/) != -1) {
-// 				$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
-// 				$('.confirm').eq(1).val("N");
-// 				return false;
+			var length = lengthReg.test(pw);
+			var lower = null;
+			var upper = null;
+			var num = null;
+			var special = null;
+			
+			if(length){
+				lower = lowerReg.test(pw);
+				upper = upperReg.test(pw);
+				num = numReg.test(pw);
+				special = specialReg.test(pw);
+				if(lower&&upper&&num&&special){ // 강함(영어 대문자+소문자+숫자+특수문자)
+		            $('#st_msg').removeClass();
+			        $('#st_msg').addClass('강함');
+			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
+			        $('#regPass').html('사용 가능');
+    				$('.confirm').eq(1).val("Y");
+				} 
+				else if((lower||upper)&&(num||special)){ // 중간(영어 대/소문자 + 숫자(또는 특수문자))
+				    $('#st_msg').removeClass();
+			        $('#st_msg').addClass('중간');
+			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
+			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+			        $('.confirm').eq(1).val("N");
+				} else { // 한가지 조합으로만 8글자 입력했을 경우
+					$('#st_msg').removeClass();
+					$('#st_msg').addClass('약함');
+					$('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
+					$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+					 $('.confirm').eq(1).val("N");
+				}
 				
-// 				}
-// 			});
-		
-		
-		$('#pass').keyup(function() {
-			$('#st_msg').html(checkStrength($('#pass').val()))
-		});
-		
-		function checkStrength(pass) {
-			var strength = 0;
-			if(pass.length < 8) {
-				$('#st_msg').removeClass()
-				$('#st_msg').addClass('짧음')
-// 				$('.confirm').eq(1).val("N");
-			}
-			
-			if(pass.length >= 8) strength += 1
-			if(pass.match(/([a-z].*[A-Z])|([A-Z].*[a-z]))/)) strength += 1
-			if(pass.match(/([a-zA-Z])/) && pass.match(/([0-9])/)) strength += 1
-			if(pass.match(/([!,@])/)) strength += 1
-			
-			if(strength < 2) {
-				$('#st_msg').removeClass()
-				$('#st_msg').addClass('약함')
-                return '약함'
-                
-			} else if(strength == 2) {
-				$('#st_msg').removeClass()
-                $('#st_msg').addClass('중간')
-                return '중간'
-                
 			} else {
-				$('#st_msg').removeClass()
-                $('#st_msg').addClass('강함')
-                return '강함'
-			}                                
-		}
+	        	$('#st_msg').removeClass();
+	        	$('#st_msg').addClass('짧음');
+		        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
+		        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+		        $('.confirm').eq(1).val("N");
+				if (pw.length==0) {
+						$('#st_msg').hide();
+		        } else {
+		        	$('#st_msg').show();
+		        }
+			}
+	        
+			if(/(\w)\1\1\1/.test(pw)) {
+				$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
+				 $('.confirm').eq(1).val("N");
+			}
+			if(pw.search(/\s/) != -1) {
+				$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
+				$('.confirm').eq(1).val("N");
+			}
+	});
+	
 		/// 이메일 체크
 		$( function(){
 			$( '#email' ).on("blur keyup", function() {
@@ -161,9 +213,7 @@ $(document).ready(function(){
             if (!checkResult){
 				alert('이메일 양식을 확인해주세요.');
 				$('.confirm').eq(3).val("N");
-			}
-            // 바이트 수를 초과하지 않고 정규식에 위배 되지 않는 경우
-			if(checkResult==true){
+			} else { // 정규식에 위배되지 않는 경우
 				$.ajax('Email.me',{
 					data:{email:$('#email').val()},
 					success:function(rdata){
@@ -172,64 +222,11 @@ $(document).ready(function(){
 					}
 				});
 			}
-            
         });
 		
-		// 회원가입 버튼 동작
-		$('.join_fr').submit(function(){
-			if($('#nick').val()==""){
-				alert("닉네임을 입력하세요");
-				$('#nick').focus();
-				return false;
-			}
-			if($('#pass').val()==""){
-				alert("비밀번호를 입력하세요");
-				$('#pass').focus();
-				return false;
-			}
-			if($('#phoneNum').val()==""){
-				alert("핸드폰 번호를 입력하세요");
-				$('#phoneNum').focus();
-				return false;
-			}
-			if($('#certificationNum').val()==""){
-				alert("핸드폰 인증코드를 입력하세요");
-				$('#certificationNum').focus();
-				return false;
-			}
-			if($('#email').val()==""){
-				alert("이메일을 입력하세요");
-				$('#email').focus();
-				return false;
-			}
-			if($('#certificationNum_email').val()==""){
-				alert("이메일 인증코드를 입력하세요");
-				$('#certificationNum_email').focus();
-				return false;
-			}
-			
-			if($('.confirm').eq(0).val()=="N"||$('.confirm').eq(0).val()==""){
-				alert("닉네임 설정에 문제가 있습니다.");
-				return false;
-			}
-// 			if($('.confirm').eq(1).val()=="N"||$('.confirm').eq(1).val()==""){
-// 				alert("패스워드 설정에 문제가 있습니다.");
-// 				return false;
-// 			}
-			if($('.confirm').eq(2).val()=="N"||$('.confirm').eq(2).val()==""){
-				alert("핸드폰 인증에 문제가 있습니다.");
-				return false;
-			}
-			if($('.confirm').eq(3).val()=="N"||$('.confirm').eq(3).val()==""){
-				alert("이메일 인증에 문제가 있습니다.");
-				return false;
-			}
-			
-			
-		});
 		
-		
-});
+	
+}); //ready();
 </script>
 
 </head>
@@ -250,6 +247,8 @@ $(document).ready(function(){
 <fieldset>
 <legend>Password</legend>
 <input type="password" name="pass" id="pass"> <br>
+<div id="regPass"></div>
+<div id="st_msg"></div>
 </fieldset>
 
 <fieldset>

@@ -58,7 +58,7 @@
             success: function(data) {
                 
                $.each(data, function(idx, item) {
-            	   $.each(item.dailyBoxOfficeList, function(idx,item2){
+            	   $.each(item.weeklyBoxOfficeList, function(idx,item2){
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');

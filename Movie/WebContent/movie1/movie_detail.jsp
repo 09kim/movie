@@ -32,18 +32,17 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          
          
          
-         
+        
 		 $.ajax('MypageSelectWish.mp',{
 			data:{movieSeq:movieSeq},
 			success:function(rdata){
 				if(rdata=="Y"){
 					$('.btn-like').addClass("done")
-				} else {
+				} else { 
 					$('.btn-like').removeClass("done")
 				}
 			}
 		});
-         
          
          
          function selectBtn() { 
@@ -64,7 +63,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          $('#comment').click(function(){
          	cmtBtn();
          });
-         
          
          
          $.ajax({
@@ -92,7 +90,11 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      var keyword = item2.keywords.split(",")
                      var actors="";
                      
-                     $('.btn-like').click(function() {
+                     
+                    
+                     $('.btn-like').click(function() {  
+                    	 if(nick != 'null'){
+                     
             			 $.ajax('MypageChangeWish.mp',{
             					data:{movieSeq:movieSeq,title:title5,poster:image[0]},
             					success:function(rdata){
@@ -103,7 +105,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             						}
             					}
             				});
-            			});
+            			} else {selectBtn()}}); 
                      
                      for(var num = 0; num < item2.staff.length ; num++){
                         if(item2.staff.length>11){
@@ -385,6 +387,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	 		  },
         			 	 		  success:function(data) {
         			 	 		  	$('#review').append(data);
+        			 	 		    location.reload();
         			 	 		  }
         			 	 		
         			 	});
@@ -400,8 +403,68 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-          
          
+         $('#updateCmt').click(function(){var typeName = $('#typeName').val();
+         $('#dialog-comment').dialog({
+    		 modal: true,
+    		 buttons: {
+    			 "수정":function() { 
+    				 var comment = $('#opinion').val();	
+    			 	$.ajax({
+    			 		url:"MovieCmtUpdate.mo",  
+    			 	 	method:"get",
+    			 	 	data:{comment:comment,  
+    			 	 		  nick:nick,
+    			 	 		  movieSeq:movieSeq,
+    			 	 		  typeName:typeName 
+    			 	 		  },
+    			 	 		  success:function(data) {
+    			 	 		    location.reload();
+    			 	 		  }
+    			 	 		
+    			 	});
+    			 	
+    			 	$(this).dialog('close');
+    			 
+    			 },
+    			 
+    			 "취소":function() {$(this).dialog('close'); },
+    		 }
+    	 
+    	 }); 
+         
+         });
+         
+         $('#deleteCmt').click(function(){var typeName = $('#typeName').val();
+             $('#delete-message').dialog({
+        		 modal: true,
+        		 buttons: {
+        			 "삭제":function() { 
+        				 var comment = $('#opinion').val();	
+        			 	$.ajax({
+        			 		url:"MovieCmtDelete.mo",  
+        			 	 	method:"get",
+        			 	 	data:{comment:comment,  
+        			 	 		  nick:nick,
+        			 	 		  movieSeq:movieSeq,
+        			 	 		  typeName:typeName 
+        			 	 		  },
+        			 	 		  success:function(data) {
+        			 	 			location.reload();
+        			 	 		  }
+        			 	 		
+        			 	});
+        			 	
+        			 	$(this).dialog('close');
+        			 
+        			 },
+        			 
+        			 "취소":function() {$(this).dialog('close'); },
+        		 }
+        	 
+        	 }); 
+             
+             });
          
          $('#directorMovies').click(function(){
             
@@ -468,7 +531,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
    <br>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
- <span class='star-input'>
+  <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
                  <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
@@ -481,14 +544,22 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-               
-                 <% if(!(getGrade.equals("0"))){ %> 
+                 
+                 <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다. 
-  		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>
-                	  </div>
+        	<%= getGrade %> 점을 입력하셨습니다 
+        	<% if(returnCmt.equals("")){ %>
+        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
+        	<%}else{ %>
+        	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
+  			    	 
+     			     <input type="button" id ="updateCmt" value="수정">
+       	             <input type="button" id ="deleteCmt" value="삭제">
+                </div>
+                	  <%} %>
+                	  
 		<div id="review"></div>
+<%} %> 
 
    <div id="subInfo"></div>
    <div id="wish">
@@ -515,6 +586,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	</section>
+   	
+   	<div id="delete-message" title="코멘트" style="display:none">
+   		정말로 삭제 하시겠습니까?
+   	</div>
    	
 </body>
 </html>

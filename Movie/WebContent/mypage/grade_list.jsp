@@ -25,25 +25,18 @@ int listCount = (int) request.getAttribute("listCount");
 
 	<section id="main">
 		<!-- 왼쪽메뉴 -->
-		<div id="sub_menu"> 
+		<div id="sub_menu">
 			<ul>
 				<li><a href="Mypage.mp">마이 페이지</a></li>
 				<li><a href="MypageGrade.mp">평가한 영화</a></li>
-				<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
+				<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
 				<li><a href="BoardReviewList.bo">리뷰</a></li>
-			</ul> 
-		</div> 
+			</ul>
+		</div>
 		<!-- 왼쪽메뉴 -->
 
 		<div id="myinfo">
-			<header class="grade-header">
-				<h2>내가 평가한 영화</h2> <span><%=listCount%></span>
-			</header>
-			<div class="clear"></div>
-			<hr>
-			<div class="clear"></div>
-			<div id="gradelist">
-				<ul>
+			내가 평가한 영화 목록 :<span><%=listCount%></span>
 			<%
 				if (gradeList != null && listCount > 0) {
 				for (int i = 0; i < gradeList.size(); i++) {
@@ -52,31 +45,21 @@ int listCount = (int) request.getAttribute("listCount");
 				<ul>
 					<li><a><img src=<%=gradeList.get(i).getPoster() %>></a>
 						<div id="movieInfo">
-						<div><%=gradeList.get(i).getTitle()%></div>
-						<div>
-						<% 
-						double grade = gradeList.get(i).getGrade();
-						if((grade % 2.0) == 0){
-							out.print((int)(grade/2.0));
-						}else {
-							out.print(grade/2.0);
-						}
-						%>
-						</div>
-						 <!-- 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
-						</div>
-					</li>
-			<%
-				}
-			} 	
-				else {
-			%>
-			<li>아직 평가한 영화가 없습니다.</li>
-			<%
-				}
-			%>
+							<div><%=gradeList.get(i).getTitle()%></div>
+							<div><%=gradeList.get(i).getGrade()%></div>
+							<!--
+						 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
+						</div></li>
 				</ul>
 			</div>
+			<%
+				}
+			} else {
+			%>
+			아직 평가한 영화가 없습니다.
+			<%
+				}
+			%>
 		</div>
 	</section>
 </body>

@@ -1,43 +1,14 @@
 @charset "UTF-8";
 
-/* 박스 오피스 관련 */
-.boxOffice, .movie-grade {
+#boxoffice {
 	width: 1280px;
 	margin: 0 auto;
-	margin: 86px auto 0 auto;
 }
 
-.boxOffice li, .movie-box li{
-	display: block;
-	float: left;
-	margin: 25px 1em;
+#choice {
+	float: right;
 }
 
-
-.poster_img {
-	width: 180px;
+#list {
+	margin: 0 50px;
 }
-
-
-.box-forward {
-	display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    box-sizing: border-box;
-    border: 1px solid rgb(249, 249, 249);
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
-    background-size: 12px;
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
-    transition: opacity 300ms ease 0s
-}
-
-.box-forward > img {
-	opacity: 0.4;
-}
-/* 박스 오피스 관련 */

@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -26,7 +25,6 @@ public class MovieActorRoleAction implements Action {
 			json = movie.getActorByMovie(movieSeq);
 		}
 
-		System.out.println(json); 
 
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);

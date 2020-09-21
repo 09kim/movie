@@ -31,6 +31,7 @@ public class MovieGetGradeAction implements Action {
 		int getGrade = setGradeService.selectGrade(movieBean);
 		ActionForward forward = new ActionForward();
 		String grade = "";
+
 	      
 	      if((getGrade%2.0) == 0.0) {
 	         grade = (int)(getGrade/2)+"";
@@ -49,6 +50,7 @@ public class MovieGetGradeAction implements Action {
 	      forward.setPath("/movie1/movie_detail.jsp");
 	      
 	      return forward;
+
 	}
 
 }

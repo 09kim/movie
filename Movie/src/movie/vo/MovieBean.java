@@ -11,8 +11,15 @@ public class MovieBean {
 	private String director;
 	private String nation;
 	private String openDt;
+	private String moviePoster;
 	
 
+	public String getMoviePoster() {
+		return moviePoster;
+	}
+	public void setMoviePoster(String moviePoster) {
+		this.moviePoster = moviePoster;
+	}
 	public String getOpenDt() {
 		return openDt;
 	}

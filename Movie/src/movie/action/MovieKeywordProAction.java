@@ -18,7 +18,6 @@ public class MovieKeywordProAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String keyword = request.getParameter("keyword");
-		System.out.println(keyword);
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
@@ -26,7 +25,6 @@ public class MovieKeywordProAction implements Action{
 			json = movie.getMovieDetailByKeyword(keyword);
 		}
 
-		System.out.println(json);
 
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);

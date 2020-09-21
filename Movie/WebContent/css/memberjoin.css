@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+#st_msg>#box1{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg>#box2{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg>#box3{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg>#box4{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+
+
+
+
+#st_msg.짧음>#box1{
+border: 1px solid red;
+background-color : red;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.짧음>#box2{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.짧음>#box3{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.짧음>#box4{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+
+#st_msg.약함>#box1{
+border: 1px solid red;
+background-color : red;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.약함>#box2{
+border: 1px solid yellow;
+background-color : yellow;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.약함>#box3{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.약함>#box4{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+
+#st_msg.중간>#box1{
+border: 1px solid red;
+background-color : red;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.중간>#box2{
+border: 1px solid yellow;
+background-color : yellow;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.중간>#box3{
+border: 1px solid orange;
+background-color : orange;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.중간>#box4{
+border: 1px solid gray;
+background-color : gray;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+
+#st_msg.강함>#box1{
+border: 1px solid red;
+background-color : red;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.강함>#box2{
+border: 1px solid yellow;
+background-color : yellow;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.강함>#box3{
+border: 1px solid orange;
+background-color : orange;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+#st_msg.강함>#box4{
+border: 1px solid green;
+background-color : green;
+width: 150px;
+height: 10px;
+display: inline-block;
+}
+
+
+
+ #st_msg.짧음{ 
+ color: red; 
+ } 
+ #st_msg.약함{ 
+ color: yellow; 
+ } 
+ #st_msg.중간{ 
+ color: orange; 
+ } 
+ #st_msg.강함{ 
+ color: green; 
+ } 
+

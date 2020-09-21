@@ -89,7 +89,8 @@
 	
 		<input type="submit" value="로그인"> 
 		<input type="button" value="회원가입" onclick="location.href='MemberJoinForm.me'">
-		<a href="ForgetForm.me">비밀번호 찾기</a>
+		<a href="ForgetPassword.me">E-Mail로 비밀번호 찾기</a>
+		<a href="ForgetEmail.me">E-Mail주소 찾기</a>
 		<input type="button" value="취소" onclick="history.back()">
 		
 	</fieldset>

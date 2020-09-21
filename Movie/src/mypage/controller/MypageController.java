@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import mypage.action.MypageAction;
-import mypage.action.MypageDeleteWishAction;
+import mypage.action.MypageChangeWishAction;
+import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
+import mypage.action.MypageSelectWishListAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -56,6 +58,14 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MypageWish.mp")) {
+			action = new MypageSelectWishListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		} else if (command.equals("/MypageSelectWish.mp")) {
 			action = new MypageSelectWishAction();
 			try {
@@ -64,10 +74,17 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (command.equals("/MypageDeleteWish.mp")) {
-			action = new MypageDeleteWishAction();
+		} else if (command.equals("/MypageChangeWish.mp")) {
+			action = new MypageChangeWishAction();
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MypageGener.mp")) {
+			action = new MypageGenerAction();
+			try {
+				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

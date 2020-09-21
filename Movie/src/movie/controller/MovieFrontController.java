@@ -14,6 +14,8 @@ import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
 import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
+import movie.action.MovieCmtDeleteAction;
+import movie.action.MovieCmtUpdateAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGetGradeAction;
@@ -114,6 +116,7 @@ public class MovieFrontController extends HttpServlet {
 		}else if (command.equals("/MovieCss.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/moviecss/movie.css");
+			
 		}else if (command.equals("/setGrade.mo")) {
 			action = new MovieSetGradeAction();
 			try {
@@ -165,6 +168,21 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		} 
+		else if (command.equals("/MovieCmtUpdate.mo")) {
+			action = new MovieCmtUpdateAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+
+			}  
+		} else if (command.equals("/MovieCmtDelete.mo")) {
+			action = new MovieCmtDeleteAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		}
 
 
 		if (forward != null) {

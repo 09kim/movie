@@ -8,7 +8,6 @@
 <%String nick = (String)session.getAttribute("nick"); %>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -55,7 +54,7 @@ $(document).ready(function(){
                         
                        
 
-                        $('.movieList').append('<li><div class=thisMovie>'
+                        $('.movieList').append('<div class=thisMovie>'
                         +'<div class=poster>'
                         +'<img class="poster_img">'
                         +'</div>'
@@ -74,7 +73,7 @@ $(document).ready(function(){
                         +'<input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>'
                         +'<input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>'
                         +'<input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>'
-                        + '</span></span></div></div>' );
+                        + '</span></span>' );
                         
 //                         $('.poster_img:eq(idx)').attr("src="+image[idx]);
                            
@@ -199,42 +198,30 @@ $(document).ready(function(){
 </script>
 </head>
 <jsp:include page="../inc/top.jsp" />
-<div class="clear"></div>
+<div class="clear"></div><br><br><br>
 <body>
-<div class="movie-grade">
-	<input type="hidden" id = "nick" class="nick" value=<%=nick %>>
-	<select style="position: fixed; top:100px;" id="categoryMovie">
-		<option >정렬기준</option>
-		<option id ="random" value="random">랜덤</option>
-		<option id ="comedy" value="코메디">코메디</option>
-		<option id ="nwar" value="느와르">느와르</option>
-		<option id ="crime" value="범죄">범죄</option>
-		<option id ="drama" value="드라마">드라마</option>
-		<option id ="romance" value="로맨스">로맨스</option>
-		<option id ="thriller" value="스릴러">스릴러</option>
-		<option id ="war" value="전쟁">전쟁</option>
-		<option id ="family" value="가족">가족</option>
-		<option id ="fantasy" value="판타지">판타지</option>
-		<option id ="action" value="액션">액션</option>
-		<option id ="sf" value="SF">SF</option>
-		<option id ="animation" value="애니메이션">애니메이션</option>
-		<option id ="character" value="인물">인물</option>
-		<option id ="horror" value="공포">공포</option>
-		<option id ="mystery" value="미스터리">미스터리</option>
-		<option id ="melo" value="멜로">멜로/로맨스</option>
-		<option id ="adventure" value="어드벤처">어드벤처</option>
-	</select>
-	
-	<div class="movie-box">
-	    	<div class="div-list">
-	    		<ul class="movieList">
-	    		
-	    		</ul>
-	    	</div>
-	    	<div class="box-forward">
-	    		<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDEyIDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMEgxMlYxNkgweiIvPgogICAgICAgIDxwYXRoIGZpbGw9IiMyOTJBMzIiIHN0cm9rZT0iIzI5MkEzMiIgc3Ryb2tlLXdpZHRoPSIuMzUiIGQ9Ik0zLjQyOSAxMy40MDlMNC4zNTQgMTQuMjU4IDEwLjY4IDguNDYgMTEuMTQzIDguMDM2IDQuMzU0IDEuODEzIDMuNDI5IDIuNjYyIDkuMjkxIDguMDM2eiIvPgogICAgPC9nPgo8L3N2Zz4K">
-	    	</div>
-	    </div>
-</div>
+<input type="hidden" id = "nick" class="nick" value=<%=nick %>>
+<select style="position: fixed; top:100px;" id="categoryMovie">
+<option >정렬기준</option>
+<option id ="random" value="random">랜덤</option>
+<option id ="comedy" value="코메디">코메디</option>
+<option id ="nwar" value="느와르">느와르</option>
+<option id ="crime" value="범죄">범죄</option>
+<option id ="drama" value="드라마">드라마</option>
+<option id ="romance" value="로맨스">로맨스</option>
+<option id ="thriller" value="스릴러">스릴러</option>
+<option id ="war" value="전쟁">전쟁</option>
+<option id ="family" value="가족">가족</option>
+<option id ="fantasy" value="판타지">판타지</option>
+<option id ="action" value="액션">액션</option>
+<option id ="sf" value="SF">SF</option>
+<option id ="animation" value="애니메이션">애니메이션</option>
+<option id ="character" value="인물">인물</option>
+<option id ="horror" value="공포">공포</option>
+<option id ="mystery" value="미스터리">미스터리</option>
+<option id ="melo" value="멜로">멜로/로맨스</option>
+<option id ="adventure" value="어드벤처">어드벤처</option>
+</select>
+<div class="movieList"></div>
 </body>
 </html>

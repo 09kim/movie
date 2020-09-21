@@ -133,7 +133,7 @@ public class MovieDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				reviewBean.setGrade(rs.getInt("grade"));
-				reviewBean.setGenre(rs.getString("gener"));
+				reviewBean.setGenre(rs.getString("genre"));
 				reviewBean.setTitle(rs.getString("title"));
 			}
 

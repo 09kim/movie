@@ -271,7 +271,8 @@ public class MypageDAO {
 	
 	// ------------------------------------------------------------------- 별점 용 메서드 태윤
 		public ArrayList<MypageGenreBean> selectGener(String nick) {
-
+			pstmt = null;
+			rs = null;
 			String sql = "SELECT grade,genre from grade where nick = ?";
 			ArrayList<MypageGenreBean> list = new ArrayList<MypageGenreBean>();
 			

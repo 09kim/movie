@@ -68,7 +68,11 @@
                     		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
-                       $('.poster_img').eq(idx).attr("src",result[0]);
+                       if(result[0]){
+                       		$('.poster_img').eq(idx).attr("src",result[0]);
+                       }else{
+                    	 	$('.poster_img').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+                       }
              		   $('.nation').eq(idx).text(result[1]);
                        $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
                        $('.movieName').eq(idx).text(item2.movieNm);

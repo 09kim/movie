@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
 import mypage.vo.MypageBean;
-import mypage.vo.MypageGenerBean;
+import mypage.vo.MypageGenreBean;
 
 public class MypageDAO {
 
@@ -145,14 +145,13 @@ public class MypageDAO {
 				MypageBean list = new MypageBean();
 				
 				list.setIdx(rs.getInt("idx"));
-				list.setGener(rs.getString("gener"));
+				list.setGenre(rs.getString("genre"));
 				list.setGrade(rs.getInt("grade"));
 				list.setMovieSeq(rs.getInt("movieSeq"));
 				list.setNick(rs.getString("nick"));
 				list.setRuntime(rs.getInt("runtime"));
 				list.setTitle(rs.getString("title"));
-				list.setWish(rs.getString("wish"));
-				
+				list.setPoster(rs.getString("poster"));
 				gradeList.add(list);
 			}
 			
@@ -166,9 +165,37 @@ public class MypageDAO {
 		
 		return gradeList;
 	}
-	
 	// 좋아요(wish) 리스트 조회 메서드 - 낙원
-	public ArrayList<MypageBean> selectWish(String nick) {
+		public MypageBean selectWish(String nick,int movieSeq) {
+			System.out.println("MypageDAO - selectWish()");
+			MypageBean wishMovie = null;
+			
+			try {
+				String sql = "SELECT * FROM wish WHERE nick=? and wish='Y' and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				rs = pstmt.executeQuery();
+				MypageBean wishInfo = new MypageBean();
+				
+				wishMovie = new MypageBean();
+				if(rs.next()) {
+					wishInfo.setWish(rs.getString("wish"));
+					wishInfo.setPoster(rs.getString("poster"));
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				System.out.println("MypageDAO - selectWishMovie 에러!: " + e.getMessage());
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return wishMovie;
+		}
+		
+	// 좋아요(wish) 리스트 조회 메서드 - 낙원
+	public ArrayList<MypageBean> selectWishList(String nick) {
 		System.out.println("MypageDAO - selectWishMovie()");
 		ArrayList<MypageBean> wishMovie = null;
 		
@@ -199,40 +226,60 @@ public class MypageDAO {
 	}
 
 
-
-	// 좋아요(wish) 취소(삭제) 메서드 - 낙원
-	public int deleteWish(MypageBean mypageBean) {
-		int deleteCount=0;
+	// 좋아요 및 좋아요취소를 동시에하는 메서드(낙원:0917)
+	// deleteWish()메서드 삭제(낙원:0917)
+	public int changeWish(MypageBean mypageBean) {
+		int completeCount=0;
+		
 		try {
-			int idx = mypageBean.getIdx();
 			String nick = mypageBean.getNick();
-			String sql = "DELETE FROM wish where idx=? and nick=?";
+			int movieSeq = mypageBean.getMovieSeq();
+			String title = mypageBean.getTitle();
+			String poster = mypageBean.getPoster();
+			String movieId = mypageBean.getMovieId();
+			String sql = "SELECT * FROM wish where nick=? and movieSeq=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			pstmt.setString(2, nick);
-			deleteCount= pstmt.executeUpdate();
+			pstmt.setString(1, nick);
+			pstmt.setInt(2, movieSeq);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sql = "DELETE FROM wish where nick=? and movieSeq=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				completeCount= pstmt.executeUpdate();
+			} else {
+				sql = "INSERT INTO wish VALUES(null,?,?,?,?,'Y')";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setInt(2, movieSeq);
+				pstmt.setString(3, title);
+				pstmt.setString(4, poster);
+				completeCount = pstmt.executeUpdate();
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
-		
-		return deleteCount;
+		return completeCount;
 	}
 	
 	// ------------------------------------------------------------------- 별점 용 메서드 태윤
-		public ArrayList<MypageGenerBean> selectGener(String nick) {
-			String sql = "SELECT grade,gener from grade where nick = ?";
-			ArrayList<MypageGenerBean> list = new ArrayList<MypageGenerBean>();
+		public ArrayList<MypageGenreBean> selectGener(String nick) {
+			String sql = "SELECT grade,genre from grade where nick = ?";
+			ArrayList<MypageGenreBean> list = new ArrayList<MypageGenreBean>();
 			
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, nick);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					MypageGenerBean mgb = new MypageGenerBean();
+					MypageGenreBean mgb = new MypageGenreBean();
 					mgb.setGrade(rs.getInt("grade"));
-					mgb.setGenre(rs.getString("gener"));
+					mgb.setGenre(rs.getString("genre"));
 					list.add(mgb);
 				}
 			} catch (SQLException e) {
@@ -267,7 +314,36 @@ public class MypageDAO {
 			
 			return list;
 		}
+
+		public StringBuffer selectNation(String nick) {
+			String sql = "SELECT nation, COUNT(*) FROM grade where nick = ? GROUP BY nation HAVING COUNT(*) > 1;";
+			StringBuffer sb = new StringBuffer();
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					sb.append(rs.getString(1)+" : "+rs.getString(2)+"/");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return sb;
+		}
 	
+		
+		
+		
+		
+		
+		
+		
 	
 	
 }

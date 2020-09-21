@@ -11,22 +11,22 @@ import mypage.dao.MypageDAO;
 import mypage.vo.MypageBean;
 
 
-public class MypageDeleteWishService {
-	public boolean deleteWish(MypageBean mypageBean){
-		System.out.println("MypageDeleteService");
-		boolean isDelete =false;
-		
-		Connection con = getConnection();
-		MypageDAO mypageDAO = MypageDAO.getInstance();
-		mypageDAO.setConnection(con);
-		int updateCount = mypageDAO.deleteWish(mypageBean);
-		if(updateCount>0) {
-			isDelete = true;
-			commit(con);
-		}else {
-			rollback(con);
-		}
-		close(con);
-		return isDelete;
-	}
+public class MypageDeleteWishService { // 안써서 삭제할 예정(낙원:0917)
+//	public boolean deleteWish(MypageBean mypageBean){
+//		System.out.println("MypageDeleteService");
+//		boolean isDelete =false;
+//		
+//		Connection con = getConnection();
+//		MypageDAO mypageDAO = MypageDAO.getInstance();
+//		mypageDAO.setConnection(con);
+//		int updateCount = mypageDAO.deleteWish(mypageBean);
+//		if(updateCount>0) {
+//			isDelete = true;
+//			commit(con);
+//		}else {
+//			rollback(con);
+//		}
+//		close(con);
+//		return isDelete;
+//	}
 }

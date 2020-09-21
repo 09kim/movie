@@ -25,12 +25,12 @@ public class MemberNickAction implements Action {
 		if(!isDup) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("닉네임 중복");
+			out.print("닉네임 중복");
 			
 		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("사용가능 닉네임");
+			out.print("사용가능 닉네임");
 		}
 		
 		return null;

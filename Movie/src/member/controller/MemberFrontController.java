@@ -13,12 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import member.action.MemberEmailAction;
 import member.action.MemberForgetAction;
+import member.action.MemberForgetEmailAction;
+import member.action.MemberForgetPasswordAction;
 import member.action.MemberJoinProAction;
 import member.action.MemberListAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
 import member.action.MemberNickAction;
+import member.action.MemberUpdatePasswordAction;
 import mypage.action.MemberMypageTitleAction;
 import vo.ActionForward;
 
@@ -74,7 +77,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/ForgetEmailChForm.me")) {
+		} else if(command.equals("/ForgetEmailChForm.me")) { // 삭제해도 될듯함(낙원:0917)
 			forward = new ActionForward();
 			forward.setPath("/member/forget_emailch.jsp");
 		} else if(command.equals("/MemberLogout.me")) {
@@ -126,6 +129,36 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/Python.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/member_mypage.jsp");
+		} else if(command.equals("/ForgetPassword.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_email.jsp");
+			
+		} else if(command.equals("/ForgetPasswordPro.me")) {
+			action = new MemberForgetPasswordAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ForgetEmail.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/forget_phone.jsp");
+			
+		} else if(command.equals("/ForgetEmailPro.me")) {
+			action = new MemberForgetEmailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/MemberUpdatePasswordPro.me")) {
+			action = new MemberUpdatePasswordAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

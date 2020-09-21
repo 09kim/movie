@@ -101,7 +101,6 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("/MovieActorRole.mo")) {
@@ -114,6 +113,7 @@ public class MovieFrontController extends HttpServlet {
 		}else if (command.equals("/MovieCss.mo")) {
 			forward = new ActionForward();
 			forward.setPath("/moviecss/movie.css");
+			
 		}else if (command.equals("/setGrade.mo")) {
 			action = new MovieSetGradeAction();
 			try {
@@ -138,7 +138,6 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoxOfficeNation.mo")) {

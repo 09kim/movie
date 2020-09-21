@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import mypage.dao.MypageDAO;
 import mypage.vo.MypageBean;
 
-public class MypageSelectWishService {
+public class MypageSelectWishListService {
 
-	public MypageBean selectWish(String nick,int movieSeq) {
+	public ArrayList<MypageBean> selectWishList(String nick) {
 		System.out.println("MypageWishService - getWishMovie");
 		
+		ArrayList<MypageBean> wishMovie = null;
 		Connection con = getConnection();
 		MypageDAO mypageDAO = MypageDAO.getInstance();
 		mypageDAO.setConnection(con);
 		
-		MypageBean wishMovie =mypageDAO.selectWish(nick,movieSeq);
+		wishMovie = mypageDAO.selectWishList(nick);
 		
 		close(con);
 		

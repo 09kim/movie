@@ -7,25 +7,25 @@ import java.util.ArrayList;
 
 import movie.vo.MovieBean;
 import mypage.dao.MypageDAO;
-import mypage.vo.MypageGenerBean;
-public class MemberMypageService {
+import mypage.vo.MypageGenreBean;
+public class MypagePreferedThings {
 
-	public ArrayList<MypageGenerBean> getMypageGener(String nick) {
+	public ArrayList<MypageGenreBean> getMypageGener(String nick) {
 		Connection con = getConnection();
 		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		ArrayList<MypageGenerBean> list = dao.selectGener(nick);
+		ArrayList<MypageGenreBean> list = dao.selectGener(nick);
 		close(con);
 		return list;
 	}
 
-	public ArrayList<MovieBean> getMypageTitle(String nick) {
+	public StringBuffer getMypageNation(String nick) {
 		Connection con = getConnection();
 		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		ArrayList<MovieBean> list = dao.selectTitle(nick);
+		StringBuffer nation = dao.selectNation(nick);
 		close(con);
-		return list;
+		return nation;
 	}
 
 }

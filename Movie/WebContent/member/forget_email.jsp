@@ -6,131 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
+<!-- <script src="../../../Movie/js/jquery-3.5.1.js"></script> -->
 <script type="text/javascript">
-
 $(document).ready(function(){
-	// 회원가입 버튼 동작
-	$('.join_fr').submit(function(){
-		if($('#nick').val()==""){
-			alert("닉네임을 입력하세요");
-			$('#nick').focus();
-			return false;
-		}
-		if($('#pass').val()==""){
-			alert("비밀번호를 입력하세요");
-			$('#pass').focus();
-			return false;
-		}
-		if($('#phoneNum').val()==""){
-			alert("핸드폰 번호를 입력하세요");
-			$('#phoneNum').focus();
-			return false;
-		}
-		if($('#certificationNum').val()==""){
-			alert("핸드폰 인증코드를 입력하세요");
-			$('#certificationNum').focus();
-			return false;
-		}
-		if($('#email').val()==""){
-			alert("이메일을 입력하세요");
-			$('#email').focus();
-			return false;
-		}
-		if($('#certificationNum_email').val()==""){
-			alert("이메일 인증코드를 입력하세요");
-			$('#certificationNum_email').focus();
-			return false;
-		}
-		
-		if($('.confirm').eq(0).val()=="Y"==false){
-			alert("닉네임 설정에 문제가 있습니다.");
-			return false;
-		}
-		if($('.confirm').eq(1).val()=="Y"==false){
-			alert("패스워드 설정에 문제가 있습니다.");
-			return false;
-		}
-		if($('.confirm').eq(2).val()=="Y"==false){
-			alert("핸드폰 인증에 문제가 있습니다.");
-			return false;
-		}
-		if($('.confirm').eq(3).val()=="Y"==false){
-			alert("이메일 인증에 문제가 있습니다.");
-			return false;
-		}
-	});		
-	// 핸드폰 인증번호
-	$('#phoneNumBtn').click(function() {
-		var phone = $("#phoneNum").val();
-		alert(phone)
-		$.ajax('Message.me',{
-			data:{phone:phone},
-			success:function(rdata){
-				$('#divPhone').html(rdata);
-				if(rdata!="중복된 번호"){
-				$("#phoneNumBtn").attr("disabled",true);
-				$("#phone").attr("readonly",true);
-				alert("인증번호를 전송했습니다.");
-				}else{
-					alert("중복된 번호입니다.");
-				}
-			}
-		});
-	});
-	
-	$('#certificationBtn').click(function() {
-		var cNum = $("#certificationNum").val();
-		if(cNum==$('#hiddenCnum').val()){
-			$('#divPhone').html("인증되셨습니다.");
-			$("#phone").attr("readonly",true);
-			$("#certificationNum").attr("readonly",true);
-			$("#certificationBtn").attr("disabled",true);
-			alert("인증 되셨습니다.");
-			$('.confirm').eq(2).val("Y");
-		} else {
-			$('#divPhone').html("인증번호가 틀렸습니다.");
-			$('.confirm').eq(2).val("N");
-		}
-	});
-	
-	$('#certification_email_Btn').click(function() {
-		var cNum = $("#certificationNum_email").val();
-		if(cNum==$('#hiddenCnum_email').val()){
-			$('#divEmail').html("인증되셨습니다.");
-			$("#email").attr("readonly",true);
-			$("#certificationNum_email").attr("readonly",true);
-			$("#certification_email_Btn").attr("disabled",true);
-			alert("이메일 인증 완료!");
-			$('.confirm').eq(3).val("Y");
-
-		} else {
-			$('#divEmail').html("인증번호가 틀렸습니다.");
-			$('.confirm').eq(3).val("N");
-		}
-	});
-	
-	$('#dupNick').click(function(){
-		var nick = $('#nick').val();
-		if(nick==""){
-			alert("닉네임을 입력해주세요.");
-			return false;
-		} else {
-			$.ajax("dupNick.me",{
-				data:{nick:nick},
-				success:function(rdata){
-					if(rdata=="닉네임 중복"){
-						$('.confirm').eq(0).val("N");
-					} 
-					if(rdata=="사용가능 닉네임") {
-						$('.confirm').eq(0).val("Y");
-					}
-					$('#divNick').html(rdata);
-				}
-			});
-		}
-	});
+	$('#divPass').children().hide();
 	
 	// 패스워드 정규식 & 보안강도 표시 (낙원:0919)
 	$('#pass').keyup(function() {
@@ -197,12 +78,30 @@ $(document).ready(function(){
 			}
 	});
 	
+	$('#certification_email_Btn').click(function() {
+		var cNum = $("#certificationNum_email").val();
+		if(cNum==$('#hiddenCnum_email').val()){
+			$('#divEmail').html("인증되셨습니다.");
+			$("#email").attr("readonly",true);
+			$("#certificationNum_email").attr("readonly",true);
+			$("#certification_email_Btn").attr("disabled",true);
+			alert("이메일 인증 완료!");
+			$('#divPass').children().show();
+			$('.confirm').eq(0).val("Y");
+		} else {
+			$('#divEmail').html("인증번호가 틀렸습니다.");
+			$('.confirm').eq(0).val("N");
+		}
+	});
+	
+	
 		/// 이메일 체크
 		$( function(){
 			$( '#email' ).on("blur keyup", function() {
 				$(this).val( $(this).val().replace( /[^0-9a-zA-Z-_\\@.]/g, '' ) );
 			});
 		})
+		
 		
 		$('#emailBtn').click(function() {
 			// 정규식 판별 변수
@@ -212,21 +111,53 @@ $(document).ready(function(){
             // 정규식에 위배되는 경우
             if (!checkResult){
 				alert('이메일 양식을 확인해주세요.');
-				$('.confirm').eq(3).val("N");
-			} else { // 정규식에 위배되지 않는 경우
-				$.ajax('Email.me',{
+				$('.confirm').eq(0).val("N");
+			}
+            // 바이트 수를 초과하지 않고 정규식에 위배 되지 않는 경우
+			if(checkResult==true){
+				$.ajax('ForgetPasswordPro.me',{
 					data:{email:$('#email').val()},
 					success:function(rdata){
-						$("#emailBtn").attr("disabled",true);
 						$('#divEmail').html(rdata);
 					}
 				});
 			}
+            
         });
 		
 		
-	
-}); //ready();
+		// 패스워드 변경 버튼 동작 (낙원:0919)
+		$('.update_fr').submit(function(){
+			
+			if($('#email').val()==""){
+				alert("이메일을 입력하세요");
+				$('#email').focus();
+				return false;
+			}
+			if($('#certificationNum_email').val()==""){
+				alert("이메일 인증코드를 입력하세요");
+				$('#certificationNum_email').focus();
+				return false;
+			}
+			if($('.confirm').eq(0).val()=="Y"==false){
+				alert("이메일 인증에 문제가 있습니다.");
+				return false;
+			}
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요");
+				$('#pass').focus();
+				return false;
+			}
+			if($('.confirm').eq(1).val()=="Y"==false){
+				alert("패스워드 설정에 문제가 있습니다.");
+				return false;
+			}
+			
+		});	
+		
+		
+		
+});
 </script>
 
 </head>
@@ -236,27 +167,16 @@ $(document).ready(function(){
 <!-- 헤더 -->
 
 <section id="main">
-<form class="join_fr" action="MemberJoinPro.me" method="get">
+<form class="update_fr" action="MemberUpdatePasswordPro.me" method="get">
 
-<fieldset>
-<legend>Nick Name</legend>
-<input type="text" name="nick" id="nick"> &nbsp;&nbsp; <input type="button" value="닉네임 중복체크" id="dupNick"> <br>
-<div id="divNick"></div>
-</fieldset>
-
+<div id="divPass">
 <fieldset>
 <legend>Password</legend>
 <input type="password" name="pass" id="pass"> <br>
 <div id="regPass"></div>
 <div id="st_msg"></div>
 </fieldset>
-
-<fieldset>
-<legend>Phone Number</legend>
-<input type="text" id="phoneNum" name="phoneNum">  &nbsp;&nbsp; <input type="button" id="phoneNumBtn" value="인증 번호 받기" ><br>
-<input type="text" id="certificationNum">  &nbsp;&nbsp;  <input type="button" id="certificationBtn" value="인증 번호 입력">
-<div id="divPhone"></div>
-</fieldset>
+</div>
 
 <fieldset>
 <legend>E-Mail</legend>
@@ -264,8 +184,6 @@ $(document).ready(function(){
 <input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
 <div id="divEmail"></div>
 </fieldset>
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
 <input type="hidden" class="confirm">
 <input type="hidden" class="confirm">
 <input type="submit" value="Submit" class="submit">

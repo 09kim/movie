@@ -10,6 +10,7 @@ import api.SendMail;
 import member.svc.DupCheckService;
 import vo.ActionForward;
 
+// 액션 삭제해도 될듯함(낙원:0917)
 public class MemberForgetAction implements Action{
 
 	@Override

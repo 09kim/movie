@@ -256,7 +256,7 @@ public class kmdbApi {
 	}
 
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
-
+		System.out.println("getBoxOffice");
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
@@ -285,7 +285,7 @@ public class kmdbApi {
 		
 		rd.close();
 		conn.disconnect();
-		System.out.println(sb.toString());
+		System.out.println("여기오류?"+ sb.toString());
 
 		return sb.toString();
 	}

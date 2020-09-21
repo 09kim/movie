@@ -52,18 +52,18 @@
 			}
 		});
 		
-// 		$.ajax('MypageTitle.me',{
-// 			method : "get",
-// 			dataType : "json",
-// 			data : {
-// 				nick : nick
-// 			},
-// 			success : function(data) {
-// 				$.each(data,function(idx,item){
-// 					});
+		$.ajax('MypageNation.mp',{
+			method : "get",
+			dataType : "json",
+			data : {
+				nick : nick
+			},
+			success : function(data) {
+				$.each(data,function(idx,item){
+					});
 				
-// 			}
-// 		});
+			}
+		});
 		
 	});
 </script>
@@ -84,7 +84,7 @@
 		<ul>
 			<li><a href="Mypage.mp">마이 페이지</a></li>
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
-			<li><a href="MypageSelectWish.mp">좋아요 누른 영화</a></li>
+			<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
 			<li><a href="BoardReviewList.bo">리뷰</a></li>
             
 		</ul> 
@@ -98,10 +98,20 @@
 		소개
 		<input type="text" id="infoup" name="info"><br>
 		<a href="MypageForm.mp">프로필수정</a>
+		<div class="favorite">
 		<fieldset>
 		<legend>선호 장르</legend>
 		<span class="genre"></span> <span class="count"></span>
-		</fieldset>		
+		</fieldset>
+		<fieldset>
+		<legend>선호 국가</legend>
+		<span class="nation"></span> <span class="count"></span>
+		</fieldset>
+		<fieldset>
+		<legend>선호 감독</legend>
+		<span class="director"></span> <span class="count"></span>
+		</fieldset>
+		</div>			
 	</div>
 </section>
 </body>

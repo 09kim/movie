@@ -109,6 +109,7 @@
 		</ul> 
 	</div> 
 	
+<!-- 	여기부분 자꾸 NullPoniter 뜸 -->
 	<div id="myinfo">
 		이메일
 		<input type="email" id="email" name="email" value="<%=memberBean.getEmail()%>"><br>
@@ -132,7 +133,7 @@
 		</fieldset>
 		</div>			
 	</div>
-<%-- <jsp:include page="/mypage/grade_list.jsp"/> --%>
+<%-- <jsp:include page="/mypage/grade_list.jsp"/> --%> 
 </section>
 </body>
 </html>

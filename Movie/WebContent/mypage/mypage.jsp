@@ -41,7 +41,7 @@
 							if(item2.value!=0){
 								if(item.key==item2.key){
 									var count = item2.value/2/item.value;
-									$('.genre').append(item.key +" : "+item.value+ " " +count.toFixed(1)+"점 <br>");
+									$('.genre').append(item.key +" : "+item.value+ "개  " +count.toFixed(1)+"점 <br>");
 								}
 							}
 						});

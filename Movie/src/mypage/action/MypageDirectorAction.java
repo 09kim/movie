@@ -11,16 +11,17 @@ import action.Action;
 import mypage.svc.MypagePreferedThings;
 import vo.ActionForward;
 
-public class MypageNationAction implements Action {
+public class MypageDirectorAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String nick = request.getParameter("nick");
 		MypagePreferedThings mpt = new MypagePreferedThings();
-		JsonObject nation = mpt.getMypageNation(nick);
+		JsonObject jo = mpt.getMypageDirector(nick);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(nation);
+		System.out.println(jo);
+		out.print(jo);
 		out.flush();
 		return null;
 	}

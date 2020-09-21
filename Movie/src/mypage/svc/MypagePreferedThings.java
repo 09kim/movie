@@ -5,6 +5,8 @@ import static db.JdbcUtil.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 import movie.vo.MovieBean;
 import mypage.dao.MypageDAO;
 import mypage.vo.MypageGenreBean;
@@ -19,13 +21,22 @@ public class MypagePreferedThings {
 		return list;
 	}
 
-	public StringBuffer getMypageNation(String nick) {
+	public JsonObject getMypageNation(String nick) {
 		Connection con = getConnection();
 		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		StringBuffer nation = dao.selectNation(nick);
+		JsonObject nation = dao.selectNation(nick);
 		close(con);
 		return nation;
+	}
+
+	public JsonObject getMypageDirector(String nick) {
+		Connection con =getConnection();
+		MypageDAO dao = MypageDAO.getInstance();
+		dao.setConnection(con);
+		JsonObject Director = dao.selectDirector(nick);
+		close(con);
+		return Director;
 	}
 
 }

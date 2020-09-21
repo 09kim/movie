@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
 import mypage.vo.MypageBean;
@@ -269,6 +271,8 @@ public class MypageDAO {
 	
 	// ------------------------------------------------------------------- 별점 용 메서드 태윤
 		public ArrayList<MypageGenreBean> selectGener(String nick) {
+			pstmt = null;
+			rs = null;
 			String sql = "SELECT grade,genre from grade where nick = ?";
 			ArrayList<MypageGenreBean> list = new ArrayList<MypageGenreBean>();
 			
@@ -315,17 +319,22 @@ public class MypageDAO {
 			return list;
 		}
 
-		public StringBuffer selectNation(String nick) {
-			String sql = "SELECT nation, COUNT(*) FROM grade where nick = ? GROUP BY nation HAVING COUNT(*) > 1;";
-			StringBuffer sb = new StringBuffer();
+		public JsonObject selectNation(String nick) {
+			String sql = "SELECT nation, COUNT(*), SUM(grade) FROM grade where nick = ? GROUP BY nation HAVING COUNT(*) > 1 order by count(*) desc limit 0,10";
+			JsonObject jo1 = new JsonObject();
+			JsonObject jo2 = new JsonObject();
 			
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, nick);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					sb.append(rs.getString(1)+" : "+rs.getString(2)+"/");
+					JsonObject jo3 = new JsonObject();
+					jo3.addProperty("nation", rs.getString(2));
+					jo3.addProperty("avgGrade", rs.getString(3));
+					jo2.add(rs.getString(1), jo3);
 				}
+				jo1.add(nick, jo2);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -334,7 +343,29 @@ public class MypageDAO {
 				close(pstmt);
 			}
 			
-			return sb;
+			return jo1;
+		}
+
+		public JsonObject selectDirector(String nick) {
+			String sql = "SELECT director,COUNT(*) FROM grade where nick = ? GROUP BY director HAVING COUNT(*) > 1 order by count(*) desc limit 0,10";
+			JsonObject jo1 = new JsonObject();
+			JsonObject jo2 = new JsonObject();
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					jo2.addProperty("director", rs.getString(1));
+				}
+				jo1.add(nick, jo2);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return jo1;
 		}
 	
 		

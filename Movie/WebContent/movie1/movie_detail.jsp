@@ -38,8 +38,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 			success:function(rdata){
 				if(rdata=="Y"){
 					$('.btn-like').addClass("done")
-				} else { 
-					$('.btn-like').removeClass("done")
+				} else { // 여기 역시 기본값이 없는 클래스 이기때문에 remove 는 필요없음!
+					$('.btn-like').removeClass("done") 
 				}
 			}
 		});
@@ -100,7 +100,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             					success:function(rdata){
             						if(!$('.btn-like').hasClass("done")){
             							$('.btn-like').addClass("done")
-            						} else {
+            						} else { // 여긴 필요할꺼 같음! if문에 done 이 잇냐 없냐로 체크하기 때문에~
             							$('.btn-like').removeClass("done")
             						}
             					}

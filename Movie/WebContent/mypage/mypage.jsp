@@ -15,7 +15,7 @@
 		var sortData2 = [];
 		var nick = $('#nick').val();
 		$.ajax('MypageGener.mp', {
-			method : "get",
+			method : "post",
 			dataType : "json",
 			data : {
 				nick : nick
@@ -53,14 +53,33 @@
 		});
 		
 		$.ajax('MypageNation.mp',{
-			method : "get",
+			method : "post",
 			dataType : "json",
 			data : {
 				nick : nick
 			},
 			success : function(data) {
 				$.each(data,function(idx,item){
+					$.each(item,function(idx2,item2){
+						var count = item2.avgGrade/2/item2.nation;
+						$('.nation').append(idx2 +" : "+item2.nation+"개 "+ count.toFixed(1) +"점 <br>"); 
 					});
+				});
+				
+			}
+		});
+		
+		$.ajax('MypageDirector.mp',{
+			method : "post",
+			dataType : "json",
+			data : {
+				nick : nick
+			},
+			success : function(data) {
+				$.each(data,function(idx,item){
+					
+					$('.director').append(item.director);
+				});
 				
 			}
 		});
@@ -101,18 +120,19 @@
 		<div class="favorite">
 		<fieldset>
 		<legend>선호 장르</legend>
-		<span class="genre"></span> <span class="count"></span>
+		<span class="genre"></span>
 		</fieldset>
 		<fieldset>
 		<legend>선호 국가</legend>
-		<span class="nation"></span> <span class="count"></span>
+		<span class="nation"></span>
 		</fieldset>
 		<fieldset>
 		<legend>선호 감독</legend>
-		<span class="director"></span> <span class="count"></span>
+		<span class="director"></span> 
 		</fieldset>
 		</div>			
 	</div>
+<%-- <jsp:include page="/mypage/grade_list.jsp"/> --%>
 </section>
 </body>
 </html>

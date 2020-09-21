@@ -258,8 +258,7 @@ public class kmdbApi {
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("getBoxOffice");
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1"
-				+ "&weekGb=0");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
 		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); /* Service Key */
 		urlBuilder.append(

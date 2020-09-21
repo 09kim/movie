@@ -14,6 +14,7 @@ import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
 import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
+import mypage.action.MypageNationAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
 import mypage.action.MypageSelectWishListAction;
@@ -83,6 +84,13 @@ public class MypageController extends HttpServlet {
 			}
 		}else if (command.equals("/MypageGener.mp")) {
 			action = new MypageGenerAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MypageNation.mp")) {
+			action = new MypageNationAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

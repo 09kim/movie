@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import movie.vo.MovieBean;
 import mypage.dao.MypageDAO;
 import mypage.vo.MypageGenreBean;
-public class MemberMypageService {
+public class MypagePreferedThings {
 
 	public ArrayList<MypageGenreBean> getMypageGener(String nick) {
 		Connection con = getConnection();
@@ -19,13 +19,13 @@ public class MemberMypageService {
 		return list;
 	}
 
-	public ArrayList<MovieBean> getMypageTitle(String nick) {
+	public StringBuffer getMypageNation(String nick) {
 		Connection con = getConnection();
 		MypageDAO dao = MypageDAO.getInstance();
 		dao.setConnection(con);
-		ArrayList<MovieBean> list = dao.selectTitle(nick);
+		StringBuffer nation = dao.selectNation(nick);
 		close(con);
-		return list;
+		return nation;
 	}
 
 }

@@ -314,6 +314,28 @@ public class MypageDAO {
 			
 			return list;
 		}
+
+		public StringBuffer selectNation(String nick) {
+			String sql = "SELECT nation, COUNT(*) FROM grade where nick = ? GROUP BY nation HAVING COUNT(*) > 1;";
+			StringBuffer sb = new StringBuffer();
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					sb.append(rs.getString(1)+" : "+rs.getString(2)+"/");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return sb;
+		}
 	
 		
 		

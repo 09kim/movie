@@ -101,7 +101,6 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("/MovieActorRole.mo")) {
@@ -139,7 +138,6 @@ public class MovieFrontController extends HttpServlet {
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoxOfficeNation.mo")) {

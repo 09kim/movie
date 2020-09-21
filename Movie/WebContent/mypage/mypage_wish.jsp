@@ -11,6 +11,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 <head>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -20,7 +21,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 
 			if (wish == "Y") {
 				$(this).addClass("done");
-			} else {
+			} else { // 기본이 없는 클래스라 remove가 필요없음
 				$(this).removeClass("done");
 			}
 		});
@@ -51,8 +52,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 </script>
 <meta charset="UTF-8">
 <title></title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
+
 </head>
 <body> 
 <!-- 헤더 -->

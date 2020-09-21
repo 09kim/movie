@@ -80,7 +80,8 @@ $(document).ready(function(){
                            $('.link').eq(idx).text(title);
                            $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
                                  +item2.movieSeq+'&query='+title5);
-                           $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
+                           var nation = item2.nation.split(",");
+                           $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
 							                           
                         if(image[0]){
                            $('.poster_img').eq(idx).attr("src",image[0]);
@@ -161,7 +162,7 @@ $(document).ready(function(){
 	                            alert(title +  " | " +  "4점 등록");
 	                            var grade=8;
 		                        var data = $('.c1').eq(idx).val();
-		                        starClick(padataram,grade,image);
+		                        starClick(data,grade,image);
 		                        $('.thisMovie').eq(idx).hide();
 	                        });
 	                        $('.c9').eq(idx).click(function(){

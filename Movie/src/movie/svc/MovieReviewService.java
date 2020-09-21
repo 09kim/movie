@@ -29,6 +29,7 @@ public class MovieReviewService {
 	}
 	
 	public String getComment(MovieBean movieBean){
+		System.out.println("getComment");
 		
 		
 		Connection con = getConnection();

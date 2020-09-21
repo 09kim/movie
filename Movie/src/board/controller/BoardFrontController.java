@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.*;
 import board.action.*;
 import member.action.*;
+import movie.action.*;
 import mypage.action.*;
 import vo.*;
 
@@ -60,7 +61,14 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		 }
+		 } else if (command.equals("/BoardReply.bo")) {
+			action = new BoardReplyAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		}
 		
 		
 		

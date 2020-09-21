@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import action.Action;
-import mypage.svc.MemberMypageService;
+import mypage.svc.MypagePreferedThings;
 import mypage.vo.GenreBean;
 import mypage.vo.GenreCountBean;
 import mypage.vo.MarkGenreBean;
@@ -25,7 +25,7 @@ public class MypageGenerAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String nick = request.getParameter("nick");
 		StringBuffer sbGener = new StringBuffer("코메디/느와르/범죄/공포(호러)/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/어드벤처");
-		MemberMypageService mms = new MemberMypageService();
+		MypagePreferedThings mms = new MypagePreferedThings();
 		ArrayList<MypageGenreBean> list = mms.getMypageGener(nick);
 		String[] category = sbGener.toString().split("/");
 		// Db에서 가져온 카테고리 수

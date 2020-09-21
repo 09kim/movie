@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
+import mypage.action.MypageDirectorAction;
 import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
+import mypage.action.MypageNationAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
 import mypage.action.MypageSelectWishListAction;
@@ -58,7 +60,7 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MypageWish.mp")) {
+		} else if (command.equals("/MypageWish.mp")) { // 액션이름을 바꾸는게 좋아보임! 헷갈려요!
 			action = new MypageSelectWishListAction();
 			try {
 				forward = action.execute(request, response);
@@ -88,6 +90,20 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/MypageNation.mp")) {
+			action = new MypageNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MypageDirector.mp")) {
+			action = new MypageDirectorAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {
@@ -106,7 +122,7 @@ public class MypageController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 

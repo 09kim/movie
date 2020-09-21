@@ -105,7 +105,6 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 <div class="clear"></div>
 <body>
     <h2>리뷰내용 상세보기</h2>
-<%--         <%=reviewList.get(0).getNick() %> --%>
          <%
             for(int i = 0; i < reviewList.size(); i++) {
             %>

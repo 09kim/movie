@@ -28,6 +28,42 @@ public class MovieReviewService {
 		return isInsert;
 	}
 	
+	public boolean isDelete(ReviewBean reviewBean){
+		boolean isDelete =false;
+		
+		Connection con = getConnection();
+		MovieDAO mo = MovieDAO.getInstance();
+		mo.setConnection(con);
+		int insertCount = mo.deleteComment(reviewBean);
+		
+		if(insertCount>0) {
+			isDelete = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return isDelete;
+	}
+	
+	public boolean isUpdate(ReviewBean reviewBean){
+		boolean isInsert =false;
+		
+		Connection con = getConnection();
+		MovieDAO mo = MovieDAO.getInstance();
+		mo.setConnection(con);
+		int insertCount = mo.updateComment(reviewBean);
+		
+		if(insertCount>0) {
+			isInsert = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return isInsert;
+	}
+	
 	public String getComment(MovieBean movieBean){
 		System.out.println("getComment");
 		

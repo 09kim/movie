@@ -11,11 +11,11 @@ import movie.svc.MovieReviewService;
 import movie.vo.ReviewBean;
 import vo.ActionForward;
 
-public class MovieReviewAction implements Action {
+public class MovieCmtUpdateAction implements Action {
 
-	@Override
+	@Override 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MovieCmtUpdateAction!");
 		String nick = request.getParameter("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String typeName = request.getParameter("typeName");
@@ -27,7 +27,7 @@ public class MovieReviewAction implements Action {
 		rb.setContent(comment);
 		
 		MovieReviewService movieReviewService = new MovieReviewService();
-		boolean isInsert = movieReviewService.isInsert(rb);
+		boolean isInsert = movieReviewService.isUpdate(rb);
 		
 		if(isInsert) {
 		response.setContentType("text/html;charset=UTF-8");

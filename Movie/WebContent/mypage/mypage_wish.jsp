@@ -40,7 +40,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 	   					success:function(rdata){
 	  			 				if(rdata=="Y"){
 	  	   							window.location.replace("http://localhost:8080/Movie/MypageWish.mp");
-	  	   							}
+  	   							}
 	   						}
 	 					});
 	 			} else {

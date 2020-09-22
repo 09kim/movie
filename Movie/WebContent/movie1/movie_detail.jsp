@@ -376,12 +376,13 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         		 modal: true,
         		 buttons: {
         			 "작성":function() { 
-        				 var comment = $('#opinion').val();	
+        				 var review = $('#opinion').val();	
         			 	$.ajax({
         			 		url:"MovieReview.mo",  
         			 	 	method:"get",
-        			 	 	data:{comment:comment,
-        			 	 		  nick:nick,
+        			 	 	data:{
+        			 	 		nick:nick,  
+        			 	 		review:review,
         			 	 		  movieSeq:movieSeq,
         			 	 		  typeName:typeName 
         			 	 		  },
@@ -409,11 +410,11 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
     		 modal: true,
     		 buttons: {
     			 "수정":function() { 
-    				 var comment = $('#opinion').val();	
+    				 var review = $('#opinion').val();	
     			 	$.ajax({
     			 		url:"MovieReviewUpdate.mo",  
     			 	 	method:"get",
-    			 	 	data:{comment:comment,  
+    			 	 	data:{review:review,  
     			 	 		  nick:nick,
     			 	 		  movieSeq:movieSeq,
     			 	 		  typeName:typeName 
@@ -440,11 +441,11 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         		 modal: true,
         		 buttons: {
         			 "삭제":function() { 
-        				 var comment = $('#opinion').val();	
+        				 var review = $('#opinion').val();	
         			 	$.ajax({
         			 		url:"MovieReviewDelete.mo",  
         			 	 	method:"get",
-        			 	 	data:{comment:comment,  
+        			 	 	data:{review:review,  
         			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
         			 	 		  typeName:typeName 

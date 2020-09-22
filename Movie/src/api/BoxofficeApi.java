@@ -14,9 +14,11 @@ public class BoxofficeApi {
 		String serviceKey = "4d549b0bc63467abbc7ffe4a1169333a";
 //		Date today = new Date();
 //		System.out.println(today);
+		
+		
 		StringBuilder urlBuilder = new StringBuilder("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="
                 + serviceKey + "&itemPerPage=10" + "&weekGb=0");
-		urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + targetDt); // serviceKey
+		urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + targetDt); 
 		
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();

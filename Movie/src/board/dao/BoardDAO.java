@@ -149,7 +149,7 @@ public class BoardDAO {
 		return 0;
 	}
 	
-	public ArrayList<ReviewBean> getComment(ReviewBean reviewBean){
+	public ArrayList<ReviewBean> getReview(ReviewBean reviewBean){
 		ArrayList<ReviewBean> list = null;
 		System.out.println("boardDAO");
 		try {

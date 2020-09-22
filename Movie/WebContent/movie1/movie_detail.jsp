@@ -60,7 +60,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          
 
          
-         $('#comment').click(function(){
+         $('#review').click(function(){
          	cmtBtn();
          });
          
@@ -386,7 +386,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
-        			 	 		  	$('#review').append(data);
+        			 	 		  	$('#reviewResult').append(data);
         			 	 		    location.reload();
         			 	 		  }
         			 	 		
@@ -411,7 +411,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
     			 "수정":function() { 
     				 var comment = $('#opinion').val();	
     			 	$.ajax({
-    			 		url:"MovieCmtUpdate.mo",  
+    			 		url:"MovieReviewUpdate.mo",  
     			 	 	method:"get",
     			 	 	data:{comment:comment,  
     			 	 		  nick:nick,
@@ -442,7 +442,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 "삭제":function() { 
         				 var comment = $('#opinion').val();	
         			 	$.ajax({
-        			 		url:"MovieCmtDelete.mo",  
+        			 		url:"MovieReviewDelete.mo",  
         			 	 	method:"get",
         			 	 	data:{comment:comment,  
         			 	 		  nick:nick,
@@ -549,7 +549,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 <div id="isGrade">
         	<%= getGrade %> 점을 입력하셨습니다 
         	<% if(returnCmt.equals("")){ %>
-        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
+        	<input id="review" name="review" type="button" value ="리뷰 남기러 가기">
         	<%}else{ %>
         	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
   			    	 
@@ -558,7 +558,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 </div>
                 	  <%} %>
                 	  
-		<div id="review"></div>
+		<div id="reviewResult"></div>
 <%} %> 
 
    <div id="subInfo"></div>

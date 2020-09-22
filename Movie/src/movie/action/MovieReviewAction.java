@@ -32,7 +32,7 @@ public class MovieReviewAction implements Action {
 		if(isInsert) {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(nick+ "님의 코멘트 : " + comment);
+		out.print(nick+ "님의 리뷰 : " + comment);
 		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

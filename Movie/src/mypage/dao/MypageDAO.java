@@ -155,7 +155,7 @@ public class MypageDAO {
 				list.setTitle(rs.getString("title"));
 				list.setPoster(rs.getString("poster"));
 				gradeList.add(list);
-			}
+			} 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

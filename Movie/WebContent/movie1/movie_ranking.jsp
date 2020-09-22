@@ -39,7 +39,7 @@
        var d = new Date();
        var yy = d.getFullYear();
        var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
-       var dd = d.getDate() - 1; // 하루 전 날짜 
+       var dd = d.getDate() - 2; // 하루 전 날짜 
           if(mm < 10){
              mm = "0" + mm; 
           }

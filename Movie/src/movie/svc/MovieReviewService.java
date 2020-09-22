@@ -16,7 +16,7 @@ public class MovieReviewService {
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		int insertCount = mo.insertComment(reviewBean);
+		int insertCount = mo.insertReview(reviewBean);
 		
 		if(insertCount>0) {
 			isInsert = true;
@@ -34,7 +34,7 @@ public class MovieReviewService {
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		int insertCount = mo.deleteComment(reviewBean);
+		int insertCount = mo.deleteReview(reviewBean);
 		
 		if(insertCount>0) {
 			isDelete = true;
@@ -47,35 +47,33 @@ public class MovieReviewService {
 	}
 	
 	public boolean isUpdate(ReviewBean reviewBean){
-		boolean isInsert =false;
+		boolean isUpdate =false;
 		
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		int insertCount = mo.updateComment(reviewBean);
+		int insertCount = mo.updateReview(reviewBean);
 		
 		if(insertCount>0) {
-			isInsert = true;
+			isUpdate = true;
 			commit(con);
 		}else {
 			rollback(con);
 		}
 		close(con);
-		return isInsert;
+		return isUpdate;
 	}
 	
-	public String getComment(MovieBean movieBean){
-		System.out.println("getComment");
-		
+	public String getReview(MovieBean movieBean){
 		
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);
-		String comment = mo.selectComment(movieBean);
+		String review = mo.selectReview(movieBean);
 		
 		
 		close(con);
-		return comment;
+		return review;
 	}
 	
 	

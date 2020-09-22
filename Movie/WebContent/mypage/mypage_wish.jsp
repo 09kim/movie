@@ -77,14 +77,15 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 		<table>
 				<tr>
 		<% for(MypageBean wishInfo : wishMovie) {%>
+		<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
 					<td id="wishMovie" align="center">
 					<%if(wishInfo.getPoster()!=null){ %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
+					<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
 					<%} else { %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq() %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
+					<a href="MovieDetailPro.mo?movieSeq=<%=a %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
 					<%} %>
 					<%if(wishInfo.getWish().equals("Y")){ %>
-					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td>
+					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button></td>
 					<% }%>
 			<%}%>
 			</tr>

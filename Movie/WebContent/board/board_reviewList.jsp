@@ -45,13 +45,14 @@ String nick=(String)session.getAttribute("nick");
             
             <%
             for(int i = 0; i < reviewList.size(); i++) {
-            %>
+            	
+            %> <%  String a = String.format("%05d" ,reviewList.get(i).getMovieSeq()); %>
                 <div>닉네임 - <a href="Mypage.mp?idx=<%=reviewList.get(i).getIdx() %>&page=<%=nowPage %>">
                     <%=reviewList.get(i).getNick() %></a></div>
                 <div>별점 - <%=reviewList.get(i).getGrade() %></div>
                 <div>장르 - <%=reviewList.get(i).getGenre() %></div>
                 <div>영화번호 - <%=reviewList.get(i).getMovieSeq() %></div>
-                <div>영화제목 -<a href="MovieDetailPro.mo?query=<%=reviewList.get(i).getTitle() %>&movieSeq=<%=reviewList.get(i).getMovieSeq() %>"><%=reviewList.get(i).getTitle() %></a> </div>
+                <div>영화제목 -<a href="MovieDetailPro.mo?query=<%=reviewList.get(i).getTitle() %>&movieSeq=<%=a %>"><%=reviewList.get(i).getTitle() %></a> </div>
                 <div>타입 - <%=reviewList.get(i).getType_name() %></div>
                 <div>내용 - <%=reviewList.get(i).getContent() %></div>
                 <div>좋아요 - <%=reviewList.get(i).getLike_count() %></div>

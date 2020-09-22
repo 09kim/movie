@@ -15,16 +15,17 @@ public class MovieReviewAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("MOVIEREVIEW!@#@!#!#!$@!$@!$!@$@!@!$@!$@!");
 		String nick = request.getParameter("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String typeName = request.getParameter("typeName");
-		String comment = request.getParameter("comment");
+		String review = request.getParameter("review");
 		ReviewBean rb = new ReviewBean();
+		System.out.println(nick);
 		rb.setNick(nick);
 		rb.setMovieSeq(movieSeq);
 		rb.setType(typeName);
-		rb.setContent(comment);
+		rb.setContent(review);
 		
 		MovieReviewService movieReviewService = new MovieReviewService();
 		boolean isInsert = movieReviewService.isInsert(rb);
@@ -32,7 +33,7 @@ public class MovieReviewAction implements Action {
 		if(isInsert) {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(nick+ "님의 코멘트 : " + comment);
+		out.print(nick+ "님의 리뷰 : " + review);
 		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

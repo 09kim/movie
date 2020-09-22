@@ -100,7 +100,7 @@ public class MovieDAO {
 		return grade;
 	}
 
-	public String selectComment(MovieBean movieBean) {
+	public String selectReview(MovieBean movieBean) {
 		String comment = "";
 		String sql = "SELECT content from review where nick = ? and movieSeq = ?";
 		try {
@@ -121,7 +121,7 @@ public class MovieDAO {
 		return comment;
 	}
 
-	public int insertComment(ReviewBean reviewBean) {
+	public int insertReview(ReviewBean reviewBean) {
 
 		int insertCount = 0;
 
@@ -160,7 +160,7 @@ public class MovieDAO {
 		return insertCount;
 	}
 
-	public int deleteComment(ReviewBean reviewBean) {
+	public int deleteReview(ReviewBean reviewBean) {
 
 		int deleteCount = 0;
 
@@ -182,7 +182,7 @@ public class MovieDAO {
 		return deleteCount;
 	}
 
-	public int updateComment(ReviewBean reviewBean) {
+	public int updateReview(ReviewBean reviewBean) {
 		int insertCount = 0;
 
 		try {

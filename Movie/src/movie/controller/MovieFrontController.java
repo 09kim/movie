@@ -10,7 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import movie.action.*;
+import movie.action.MovieActorProAction;
+import movie.action.MovieActorRoleAction;
+import movie.action.MovieBoxOfficeAction;
+import movie.action.MovieBoxOfficeNationAction;
+import movie.action.MovieReviewDeleteAction;
+import movie.action.MovieReviewUpdateAction;
+import movie.action.MovieDirectorAction;
+import movie.action.MovieDirectorProAction;
+import movie.action.MovieGetGradeAction;
+import movie.action.MovieGradeAction;
+import movie.action.MovieKeywordProAction;
+import movie.action.MovieQueryProAction;
+import movie.action.MovieReviewAction;
+import movie.action.MovieSetGradeAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -153,15 +166,15 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		} 
-		else if (command.equals("/MovieCmtUpdate.mo")) {
-			action = new MovieCmtUpdateAction();
+		else if (command.equals("/MovieReviewUpdate.mo")) {
+			action = new MovieReviewUpdateAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 
 			}  
-		} else if (command.equals("/MovieCmtDelete.mo")) {
-			action = new MovieCmtDeleteAction();
+		} else if (command.equals("/MovieReviewDelete.mo")) {
+			action = new MovieReviewDeleteAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

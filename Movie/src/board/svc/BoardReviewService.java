@@ -19,7 +19,7 @@ public class BoardReviewService {
 		Connection con = getConnection();
 		BoardDAO mo = BoardDAO.getInstance();
 		mo.setConnection(con);
-		ArrayList<ReviewBean> reviewList = mo.getComment(reviewBean);
+		ArrayList<ReviewBean> reviewList = mo.getReview(reviewBean);
 		
 		close(con);
 		return reviewList;

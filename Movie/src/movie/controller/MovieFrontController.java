@@ -10,20 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import movie.action.MovieActorProAction;
-import movie.action.MovieActorRoleAction;
-import movie.action.MovieBoxOfficeAction;
-import movie.action.MovieBoxOfficeNationAction;
-import movie.action.MovieCmtDeleteAction;
-import movie.action.MovieCmtUpdateAction;
-import movie.action.MovieDirectorAction;
-import movie.action.MovieDirectorProAction;
-import movie.action.MovieGetGradeAction;
-import movie.action.MovieGradeAction;
-import movie.action.MovieKeywordProAction;
-import movie.action.MovieQueryProAction;
-import movie.action.MovieReviewAction;
-import movie.action.MovieSetGradeAction;
+import movie.action.*;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -181,6 +168,11 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		}
+		
+		
+		
+		
+		
 
 
 		if (forward != null) {

@@ -29,26 +29,8 @@ public class BoardFrontController extends HttpServlet {
 		 ActionForward forward = null;
 		
 		
-		 if(command.equals("/BoardReviewWriteForm.bo")) {
-			 forward = new ActionForward();
-			 forward.setPath("/board/board_reviewWrite.jsp");
-			 
-		 } else if(command.equals("/BoardReviewWritePro.bo")) {
-			 action = new BoardReviewWriteProAction();
-			 try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		 } else if(command.equals("/BoardReviewList.bo")) {
+		 if(command.equals("/BoardReviewList.bo")) {
 			 action = new BoardReviewListAction();
-			 try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		 } else if(command.equals("/BoardReviewDetail.bo")) {
-			 action = new BoardReviewDetailAction();
 			 try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -61,15 +43,7 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		 } else if (command.equals("/BoardReply.bo")) {
-			action = new BoardReplyAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-
-			} 
-		}
-		
+		 } 
 		
 		
 		

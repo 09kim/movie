@@ -6,7 +6,6 @@
 
 <%
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
-ArrayList<ReplyBean> replyList = (ArrayList<ReplyBean>)request.getAttribute("replyList");
 String nick = (String)session.getAttribute("nick"); 
 int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 
@@ -31,8 +30,9 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
        var nick = $('#nick').val()
        var reply = $('#reply').val();
 	   
+       
          function selectBtn() { 
-             $('#dialog-reply').dialog({
+             $('#dialog-message').dialog({
                  modal: true,
                  buttons: {
                      "로그인":function() {location.href="MemberLoginForm.me" },
@@ -46,38 +46,32 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 
          
          
-         $('.replyWrite').click(function(){
+         $('#replyWrite').click(function(){
             replyBtn();
          });
 
         
          var returnReply = $('#returnReply').val();
          function replyBtn() {
-//         	 alert("제발");
-        	 var $replyWrite = $('.replyWrite').on('click', function() {
-                 var idx = $replyWrite.index(this); 
-//                  alert("idx : " + idx);
+
+
 	             $('#dialog-reply').dialog({
 	                 modal: true,
 	                 buttons: {
 	                     "작성":function() { 
 	                         var reply = $('#opinion').val();
-	                         var nick = $('#nick').val();
-	                         var movieSeq = $('#movieSeq').val();
-	                         idx = $replyWrite.index(this); 
-	//                          alert(reply);
-	//                          alert(nick);
-	//                          alert(movieSeq);
 	                         
 	                         $.ajax({
-	                            url:"BoardReply.bo",  
+	                            url:"BoardReply.mo",  
 	                            method:"get",
 	                            data:{reply:reply,
 	                                  nick:nick,
 	                                  movieSeq:movieSeq,
 	                                  },
 	                                  success:function(data) {
-	                                    $('#reply').eq(idx).append(data);
+                                	  $('#reply').append(data);
+	                                    
+	                                    location.reload();
 	                                  }
 	                                
 	                        });
@@ -90,12 +84,10 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 	                 }
 	             
 	             }); 
-           }); 
-             
-             
-             
-            
          }
+         
+         
+        
          
    });
       
@@ -115,21 +107,33 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
                 <div>좋아요 - <%=reviewList.get(i).getLike_count() %></div>
 <%--                 <div>댓글수 - <%=replyList.get(i).getReply_count() %></div> --%>
                 <hr>
-                <div id="reply"></div>
-                <hr>
                 <input id="like_count" name="like_count" type="button" value="좋아요">
                 <input id="replyWrite" name="replyWrite" class="replyWrite" type="button" value="댓글쓰기">
                 <hr>
-                
-            <%
-            }
-            %>   
+                <div id="reply"></div>
+                <div>
+                    <input type="button" id ="updateReply" value="수정">
+                    <input type="button" id ="deleteReply" value="삭제">
+                </div>
+                <hr>
+          <%} %>
+              
     
     <input type="hidden" value="<%=nick %>" id="nick">        
-    <input type="hidden" value="<%=movieSeq %>" id="movieSeq">        
+    <input type="hidden" value="<%=movieSeq %>" id="movieSeq"> 
+    
+    <div id="dialog-message" title="선택하세요." style="display:none">
+    댓글을 등록하려면 로그인이 필요해요. <br>
+    회원가입 또는 로그인하고 댓글을 남겨주세요.
+    </div>
+    
     <div id="dialog-reply" title="댓글" style="display:none">
         <textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
-        이 리뷰에 대한 <%=nick %> 님의 댓글을 남겨주세요.
+        이 리뷰에 대한 <%=nick %>님의 댓글을 남겨주세요.
+    </div>
+    
+    <div id="delete-message" title="코멘트" style="display:none">
+        정말로 삭제 하시겠습니까?
     </div>            
             
             

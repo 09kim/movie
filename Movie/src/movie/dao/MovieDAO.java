@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import board.vo.*;
 import movie.vo.MovieBean;
 import movie.vo.ReviewBean;
 
@@ -197,6 +198,47 @@ public class MovieDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+
+	public int insertReply(ReplyBean replyBean) {
+		System.out.println("MovieDAO - insertReply()");
+		
+		int insertCount = 0;
+
+		try {
+
+			String sql = "SELECT * from reply where nick=? and movieSeq=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getNick());
+			pstmt.setInt(2, replyBean.getMovieSeq());
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				replyBean.setReply(rs.getString("reply"));
+				replyBean.setReply_count(rs.getInt("reply_count"));
+				
+			}
+
+			sql = "INSERT INTO reply values(idx,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getNick());
+			pstmt.setInt(2, replyBean.getMovieSeq());
+			pstmt.setString(3, replyBean.getReply());
+			pstmt.setInt(4, replyBean.getReply_count());
+			pstmt.setInt(5, replyBean.getRe_ref());
+			pstmt.setInt(6, replyBean.getRe_seq());
+
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("insertReply() 오류 - " + e.getMessage());
 		} finally {
 			close(rs);
 			close(pstmt);

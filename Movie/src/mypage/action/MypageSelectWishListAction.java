@@ -29,7 +29,6 @@ public class MypageSelectWishListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
 		System.out.println("MypageSelectWishListAction 작동");
 		
 		HttpSession session = request.getSession();

@@ -26,7 +26,7 @@ public class MypageChangeWishAction implements Action {
 		String poster = request.getParameter("poster");
 		String movieId = request.getParameter("movieId");
 		String wish = request.getParameter("wish");
-		
+		System.out.println("무비시퀀스 : " + movieSeq);
 		MypageBean mypageBean = new MypageBean();
 		mypageBean.setNick(nick);
 		mypageBean.setPoster(poster);

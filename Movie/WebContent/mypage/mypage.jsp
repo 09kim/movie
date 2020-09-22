@@ -14,6 +14,17 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
+		
+		function getSrc(director){
+			$.ajax('MypageDirectorSrc.mp',{
+				method : "post",
+				data : {director:director},
+				success : function(data){
+					$('.director').append(data);
+					$('.director').append(director+"<br>");
+				}
+			});	
+		}
 		$.ajax('MypageGener.mp', {
 			method : "post",
 			dataType : "json",
@@ -77,12 +88,17 @@
 			},
 			success : function(data) {
 				$.each(data,function(idx,item){
-					
-					$('.director').append(item.director);
+					$.each(item,function(idx2,item2){
+ 						getSrc(item2.director);
+						
+					});
 				});
 				
 			}
 		});
+		
+		
+		
 		
 	});
 </script>
@@ -129,7 +145,7 @@
 		</fieldset>
 		<fieldset>
 		<legend>선호 감독</legend>
-		<span class="director"></span> 
+		<div class="director"></div> 
 		</fieldset>
 		</div>			
 	</div>

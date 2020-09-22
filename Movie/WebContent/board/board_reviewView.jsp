@@ -105,17 +105,13 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
                 <div>내용 - <%=reviewList.get(i).getContent() %></div>
                 <hr>
                 <div>좋아요 - <%=reviewList.get(i).getLike_count() %></div>
-<%--                 <div>댓글수 - <%=replyList.get(i).getReply_count() %></div> --%>
+                <input type="hidden" id="" value="<%=reviewList.get(i).getIdx() %>">
                 <hr>
                 <input id="like_count" name="like_count" type="button" value="좋아요">
-                <input id="replyWrite" name="replyWrite" class="replyWrite" type="button" value="댓글쓰기">
+                <a href="BoardReviewDetail.bo?movieSeq=<%=reviewList.get(i).getMovieSeq() %>&idx=<%=reviewList.get(i).getIdx() %>">댓글</a>
                 <hr>
-                <div id="reply"></div>
-                <div>
-                    <input type="button" id ="updateReply" value="수정">
-                    <input type="button" id ="deleteReply" value="삭제">
-                </div>
-                <hr>
+               
+                
           <%} %>
               
     

@@ -103,26 +103,16 @@ public class BoardDAO {
 		ArrayList<ReviewBean> list = null;
 		System.out.println("boardDAO");
 		try {
-			String sql = "SELECT * from review where nick =? and movieSeq =?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, reviewBean.getNick());
-			pstmt.setInt(2, reviewBean.getMovieSeq());
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				reviewBean.setGrade(rs.getInt("grade"));
-				reviewBean.setLike_count(rs.getInt("like_count"));
-				reviewBean.setContent(rs.getString("content"));
-			}
-
-			sql = "select * from review where movieSeq = ? ORDER BY idx DESC";
+			String sql = "select * from review where movieSeq = ? ORDER BY idx DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reviewBean.getMovieSeq());
 			rs = pstmt.executeQuery();
 			list = new ArrayList<ReviewBean>();
 			while (rs.next()) {
 				ReviewBean reviewB = new ReviewBean();
+				reviewB.setIdx(rs.getInt("idx"));
 				reviewB.setNick(rs.getString("nick"));
+				reviewB.setMovieSeq(rs.getInt("movieSeq"));
 				reviewB.setContent(rs.getString("content"));
 				reviewB.setGrade(rs.getInt("grade"));
 				reviewB.setLike_count(rs.getInt("like_count"));

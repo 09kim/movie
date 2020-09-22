@@ -24,6 +24,8 @@ public class BoardReviewService {
 		close(con);
 		return reviewList;
 	}
+
+	
 	
 	
 	

@@ -15,8 +15,8 @@ public class BoxofficeApi {
 //		Date today = new Date();
 //		System.out.println(today);
 		StringBuilder urlBuilder = new StringBuilder("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="
-                + serviceKey + "&itemPerPage=10" + "&weekGb=0");
-		urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + targetDt); // serviceKey
+                + serviceKey + "&itemPerPage=10&multiMovieYn=N&weekGb=0");
+		urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + targetDt); 
 		
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -38,8 +38,7 @@ public class BoxofficeApi {
 		
 		rd.close();
 		conn.disconnect();
-		
-
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
 	

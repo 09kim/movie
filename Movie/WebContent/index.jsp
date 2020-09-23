@@ -9,7 +9,8 @@
 <!-- <link href="css/default.css" rel="stylesheet" type="text/css"> -->
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
+<jsp:include page="/inc/top2.jsp" />
+<%-- <jsp:include page="/inc/top.jsp" /> --%>
 <div class="clear"></div>
 <section id="main">
 </section>

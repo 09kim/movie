@@ -162,14 +162,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                               $.each(item.Result,function(idx,item2){
                                 
                                  var num = 0;
-                                 var image = item2.posters.split("|")
-                                 var title = item2.title
+                                 var image = item2.posters.split("|");
+                                 var title = item2.title;
                                  var titleNoSpace = title.replace(/ /g, '');
-                                 var title2 = titleNoSpace.replace(/!HS/g,'')
-                                 var title3 = title2.replace(/!HE/g,'')
+                                 var title2 = titleNoSpace.replace(/!HS/g,'');
+                                 var title3 = title2.replace(/!HE/g,'');
                                  var title5 = title3.trim();
-                                 
-                                 
                                  
                                  // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                                  for(var o=1;o<11;o++){
@@ -360,6 +358,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         }
                         
                         
+                        var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "&part=snippet&type=video";
+                       
+						                        
+                        
+                        
                         });
                });
             }
@@ -510,6 +514,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          });
             $('.thisMovie').hide();
          });
+         
          
          
          

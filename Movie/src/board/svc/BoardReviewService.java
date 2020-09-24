@@ -25,8 +25,21 @@ public class BoardReviewService {
 		return reviewList;
 	}
 
-	
-	
+	public ReviewBean selectReview(int idx, int movieSeq) {
+		System.out.println("BoardReviewService - selectReview");
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		ReviewBean reviewBean = boardDAO.getReviewDetail(idx, movieSeq);
+		
+		close(con);
+		
+		return reviewBean;
+		
+	}
+
 	
 	
 }

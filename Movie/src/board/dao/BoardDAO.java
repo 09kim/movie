@@ -134,34 +134,91 @@ public class BoardDAO {
 	}
 
 
-	public ArrayList<ReplyBean> getReply(ReplyBean replyBean) {
-		System.out.println("BoardDAO - getReply()");
-
-		ArrayList<ReplyBean> replyList = new ArrayList<ReplyBean>();
-
+	public ReviewBean getReviewDetail(int idx, int movieSeq) {
+		System.out.println("BoardDAO");
+		
+		ReviewBean reviewBean = new ReviewBean();
+		
 		try {
-			String sql = "SELECT * from reply where re_ref=? and movieSeq=? ORDER BY idx DESC";
+			String sql = "SELECT * FROM review WHERE idx=? AND movieSeq=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, replyBean.getRe_ref());
-			pstmt.setInt(2, replyBean.getMovieSeq());
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, movieSeq);
 			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				System.out.println(rs.getString(1));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getString(3));
-				ReplyBean reply = new ReplyBean();
-				reply.setNick(rs.getString("nick"));
-				reply.setReply(rs.getString("reply"));
+			
+			if(rs.next()) {
+				reviewBean.setIdx(rs.getInt("idx"));
+				reviewBean.setGrade(rs.getInt("grade"));
+				reviewBean.setMovieSeq(rs.getInt("movieSeq"));
+				reviewBean.setTitle(rs.getString("title"));
+				reviewBean.setContent(rs.getString("content"));
+				
 			}
-
+			
 		} catch (SQLException e) {
-
+			e.printStackTrace();
+			System.out.println("BoardDAO - getReviewDetail() 에러 : " + e.getMessage());
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
+		
+		return reviewBean;
+	}
 
+	public int insertReply(ReplyBean replyBean) {
+		System.out.println("BoardDAO - insertReply()");
+		int insertCount = 0;
+		
+		try {
+			String sql = "INSERT INTO reply VALUES(idx,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getNick());
+			pstmt.setInt(2, replyBean.getMovieSeq());
+			pstmt.setString(3, replyBean.getReply());
+			pstmt.setInt(4, replyBean.getRe_ref());
+			
+			insertCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - insertReply() 에러 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+	
+
+	public ArrayList<ReplyBean> getListReply(ReplyBean replyBean) {
+		System.out.println("BoardDAO - getListReply()");
+		
+		ArrayList<ReplyBean> replyList = new ArrayList<ReplyBean>();
+		
+		try {
+			String sql = "select * from reply where movieSeq=? ORDER BY idx DESC, date DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, replyBean.getMovieSeq());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReplyBean reply = new ReplyBean();
+				reply.setNick(rs.getString("nick"));
+				reply.setReply(rs.getString("reply"));
+				reply.setData(rs.getDate("date"));
+				
+				replyList.add(reply);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - getListReply() 에러: " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
 		return replyList;
 	}
 

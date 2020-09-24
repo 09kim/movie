@@ -28,7 +28,7 @@ String nick=(String)session.getAttribute("nick");
 <div class="clear"></div><br><br><br>
 <body>
     
-    <h1><%=nick %> 님이 남긴 리뷰</h1>
+    <h1><%=nick %>님이 남긴 리뷰</h1>
      
     
     <section>

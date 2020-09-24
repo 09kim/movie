@@ -355,8 +355,7 @@ html, body {
 </style>
 </head>
 <body>
-<jsp:include page="/inc/top2.jsp" />
-<%-- <jsp:include page="/inc/top.jsp" /> --%>
+<jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <!-- 헤더 -->
 

@@ -14,16 +14,17 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
-		
+		var img;
 		function getSrc(director){
 			$.ajax('MypageDirectorSrc.mp',{
 				method : "post",
 				data : {director:director},
+				async: false,
 				success : function(data){
-					$('.director').append(data);
-					$('.director').append(director+"<br>");
+					img = data; // 리턴을 안하고 여기서하면 왜 순차적으로 안들고 오는것인가!!!!
 				}
 			});	
+			return img;
 		}
 		$.ajax('MypageGener.mp', {
 			method : "post",
@@ -89,7 +90,10 @@
 			success : function(data) {
 				$.each(data,function(idx,item){
 					$.each(item,function(idx2,item2){
- 						getSrc(item2.director);
+ 						var img = getSrc(item2.director);
+ 						$('.director').append(img);
+ 						$('.director').append(item2.director+"<br>");
+ 						
 						
 					});
 				});

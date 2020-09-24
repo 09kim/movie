@@ -359,7 +359,23 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         
                         
                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
-                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "&part=snippet&type=video";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "예고편&part=id&type=video";
+                        
+                        $.ajax({
+                        	 type : "GET",
+                        	 dataType : "JSON",
+                        	 url : url,
+                        	 contentType : "application/json",
+                        	 success : function(jsonData) {
+                        	 
+                        		 var link = jsonData.items[0].id.videoId;
+                        		 $('#trailer').append("<iframe src='https://www.youtube.com/embed/"+link + "' width='700' height='500'>" )
+                        		 },
+                        	 error : function(xhr, status, error) {
+                        	 console.log("유튜브 요청 에러: "+error);
+                        	 }
+                        	 });
+                        
                        
 						                        
                         
@@ -596,6 +612,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    	<div id="delete-message" title="코멘트" style="display:none">
    		정말로 삭제 하시겠습니까?
    	</div>
+   	
+   	<div id="trailer"></div>
    	
 </body>
 </html>

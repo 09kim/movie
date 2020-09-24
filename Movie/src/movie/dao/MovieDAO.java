@@ -205,4 +205,9 @@ public class MovieDAO {
 		return insertCount;
 	}
 
+	public int setWordForChart(MovieBean mb) {
+		
+		return 0;
+	}
+
 }

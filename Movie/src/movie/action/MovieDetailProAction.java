@@ -13,7 +13,7 @@ import action.Action;
 import api.kmdbApi;
 import vo.ActionForward;
 
-public class MovieQueryProAction implements Action {
+public class MovieDetailProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

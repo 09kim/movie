@@ -39,13 +39,17 @@
        var d = new Date();
        var yy = d.getFullYear();
        var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
-       var dd = d.getDate() - 1; // 하루 전 날짜 
+       var dd = d.getDate()  ; // 이틀 전 날짜(주간 구하기용) 
           if(mm < 10){
              mm = "0" + mm; 
           }
           if(dd < 10){
              dd = "0" + dd;
           }
+       if(d.getDay()!=1){
+    	   dd = dd-d.getDay();
+       }
+//           alert(dd); 일요일 구하는 메서드
        var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환 
        $.ajax({
             url: "BoxOffice.mo",
@@ -56,7 +60,6 @@
             	targetDt:today,
             },
             success: function(data) {
-                
                $.each(data, function(idx, item) {
             	   $.each(item.weeklyBoxOfficeList, function(idx,item2){
             		   var title = item2.movieNm;

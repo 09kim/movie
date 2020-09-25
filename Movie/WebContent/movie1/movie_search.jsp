@@ -30,7 +30,7 @@ $(document).ready(function(){
 			async:false,
 			success:function(data){
 				temp = data.main.temp;
-				weather = data.weather.main;
+				weather = data.weather[0].main;
 				$('#temp').val(temp);
 				$('#weather').val(weather);
 			}

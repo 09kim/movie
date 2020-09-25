@@ -11,8 +11,37 @@
 // 기본검색기능을 담당하는 뷰페이지
 
 
-
 $(document).ready(function(){
+	
+	var latitude, longitude;
+	var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
+	var temp,weather;
+	
+	function getLocation(){
+		window.navigator.geolocation.getCurrentPosition(current_position);
+	}
+	
+	function current_position(position){
+		latitude = position.coords.latitude;
+		longitude = position.coords.longitude;
+		$.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
+				+"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
+			dataType:"json",
+			async:false,
+			success:function(data){
+				temp = data.main.temp;
+				weather = data.weather.main;
+				$('#temp').val(temp);
+				$('#weather').val(weather);
+			}
+		});
+	}
+		
+	window.addEventListener("load",getLocation);
+	
+	
+	
+	
 		
 		var query = $("#query").val();
 		var nick = $("#nick").val();
@@ -183,7 +212,8 @@ $(document).ready(function(){
 <%String nick = (String)session.getAttribute("nick"); %>
 
 	<input type="hidden" id="query" name=query value="<%=query%>">
-	<input type="hidden" id="nick" name=nick value="<%=nick%>">
+	<input type="hidden" id="temp">
+	<input type="hidden" id="weather">
 <h1>국내영화</h1>
 	<section id="koreaList">
 	</section>

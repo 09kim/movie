@@ -20,7 +20,8 @@ public class BoardReplyProAction implements Action {
 		System.out.println("BoardReplyProAction");
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		String nick = request.getParameter("nick");
+		HttpSession session = request.getSession();
+		String nick = (String)session.getAttribute("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String reply = request.getParameter("reply");
 		Date date = new Date(System.currentTimeMillis());
@@ -39,16 +40,10 @@ public class BoardReplyProAction implements Action {
 		BoardReplyService boardReplyService = new BoardReplyService();
 		boolean isSuccess = boardReplyService.insertReply(replyBean);
 			
-		if(isSuccess == true) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print(nick + "님의 댓글 : " + reply);
-		}
-		
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/board/board_reviewDetail.jsp");
+		forward.setPath("BoardReviewView.bo");
 		
 	    return forward;
 		

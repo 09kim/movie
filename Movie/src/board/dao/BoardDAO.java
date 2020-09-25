@@ -178,6 +178,7 @@ public class BoardDAO {
 			pstmt.setString(3, replyBean.getReply());
 			pstmt.setInt(4, replyBean.getRe_ref());
 			
+			
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

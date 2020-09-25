@@ -35,6 +35,7 @@ public class BoardReviewDetailAction implements Action {
 		ReviewBean reviewBean = boardReviewService.selectReview(idx, movieSeq);
 		request.setAttribute("reviewBean", reviewBean);
 		
+		System.out.println(reviewBean.getIdx());
 		
 		// 댓글 리스트 불러오기
 		BoardReplyService boardReplyService = new BoardReplyService();

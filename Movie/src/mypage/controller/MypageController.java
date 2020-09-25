@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
+import mypage.action.MypageCollectionAction;
 import mypage.action.MypageDirectorAction;
 import mypage.action.MypageDirectorSrcAction;
 import mypage.action.MypageGenerAction;
@@ -109,6 +110,13 @@ public class MypageController extends HttpServlet {
 			action = new MypageDirectorAction();
 			try {
 				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageCollection.mp")) {
+			action = new MypageCollectionAction();
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

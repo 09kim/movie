@@ -18,15 +18,19 @@ public class MovieDetailProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("UTF-8");
-		String movieSeq = request.getParameter("movieSeq");
+		String seq = request.getParameter("movieSeq");
+		int movieSeq = 0;
+		if(seq!=null) {
+			movieSeq = Integer.parseInt(seq);
+		}
 		String query = request.getParameter("query");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 
-		if (query != null && movieSeq == null) {
+		if (query != null && movieSeq == 0) {
 			json = movie.getMovie(query);
 		} 
-		else if(movieSeq != null && query != null) {
+		else if(movieSeq != 0 && query != null) {
 			json = movie.getMovieDetail(movieSeq, query);
 		} 
 

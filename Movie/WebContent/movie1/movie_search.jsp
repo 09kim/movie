@@ -10,6 +10,8 @@
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
 
+
+
 $(document).ready(function(){
 		
 		var query = $("#query").val();
@@ -49,7 +51,7 @@ $(document).ready(function(){
 							if(image[0]){
 								$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');
 								$('#koreaList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&movieTitle='+title6+'&image='+image[0]+'>'+title3+'</div>');
+										+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
 								$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>');
 								$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 								$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>');
@@ -68,7 +70,7 @@ $(document).ready(function(){
 								$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>');
 								$('#foreignList').append('<div class=nation>'+item2.nation+'</div>');
 								$('#foreignList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&movieTitle='+title5+'&image='+image[0]+'>'+title3+'</div>');
+										+item2.movieSeq+'&query='+title5+'&image='+image[0]+'>'+title3+'</div>');
 								$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>');
 								$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 							}
@@ -114,7 +116,7 @@ $(document).ready(function(){
 						if(image[0]){
 							$('#actorList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#actorList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId'+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&movieTitle='+title6+'&image='+image[0]+'>'+title3+'</div>');
+									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
 							$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>');
 							$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 							$('#actorList').append('<div class=poster><img src='+image[0]+'></div>');
@@ -158,7 +160,7 @@ $(document).ready(function(){
 							$('#directorList').append('<div class=poster><img src='+image[0]+'></div>');
 							$('#directorList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#directorList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId'+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&movieTitle='+title6+'&image='+image[0]+'>'+title3+'</div>');
+									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
 							$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>');
 							$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 						}

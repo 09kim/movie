@@ -184,7 +184,7 @@ public class MovieFrontController extends HttpServlet {
 		} else if (command.equals("/MovieDetailBySearch.mo")) {
 			action = new MovieDetailBySearch();
 			try {
-				action.execute(request, response);
+				forward =action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

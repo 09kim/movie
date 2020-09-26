@@ -1,5 +1,8 @@
 package movie.action;
 
+import java.net.URL;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,7 @@ public class MovieDetailBySearch implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
@@ -34,7 +38,9 @@ public class MovieDetailBySearch implements Action {
 		if(nick!=null) {
 			movieChartService.setChart(mb);
 		}
-		forward.setPath("MovieDetailPro.mo");
+		
+		forward.setRedirect(true);
+		forward.setPath("MovieDetailPro.mo?movieSeq="+movieSeq+"&query="+URLEncoder.encode(movieTitle, "UTF-8")); // URL 한글처리 해줘야함~!
 
 		return forward;
 	}

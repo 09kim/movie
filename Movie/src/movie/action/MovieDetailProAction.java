@@ -35,7 +35,6 @@ public class MovieDetailProAction implements Action {
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 
 
-		System.out.println(jsonObject);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(jsonObject);

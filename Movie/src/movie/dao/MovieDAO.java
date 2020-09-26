@@ -215,16 +215,20 @@ public class MovieDAO {
 			pstmt.setString(2, mb.getNick());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				sql = "SELECT COUNT(*),title from chart c JOIN chart_nick cn ON c.idx = cn.chart_idx where c.nick =?";
+				sql = "SELECT title,count from chart c JOIN chart_nick cn ON c.idx = cn.chart_idx where c.nick =?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mb.getNick());
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 //					if (rs.getString("title").equals(mb.getMovieTitle()) && rs.getInt("COUNT(*)") < 4) {
 					if (rs.getString("title").equals(mb.getMovieTitle())) {
-						sql = "UPDATE chart set count = count +1";
+						sql = "UPDATE chart set count = count +1 where title = ?";
+						System.out.println("이걸 반복하나요?");
 						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, mb.getMovieTitle());
 						pstmt.executeUpdate();
+						resultCount = 2;
+						return resultCount;
 					}
 				}
 

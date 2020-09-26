@@ -19,6 +19,19 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
+$(document).keydown(function (e) { // 새로고침 금지
+    
+    if (e.which === 116) {
+        if (typeof event == "object") {
+            event.keyCode = 0;
+        }
+        return false;
+    } else if (e.which === 82 && e.ctrlKey) {
+        return false;
+    }
+}); 
+
+
 
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문

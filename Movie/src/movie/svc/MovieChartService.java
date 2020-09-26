@@ -19,15 +19,18 @@ public class MovieChartService {
 
 		if (setResult > 0) {
 			setResult = 0;
-				setResult = dao.setChartNickForChart(mb);
-				if(setResult >0) {
-					setResult = 0;
-						setResult = dao.setWeatherForChart(mb);
-						if(setResult >0) {
-							con.commit();
-						}
+			setResult = dao.setChartNickForChart(mb);
+			if (setResult > 0) {
+				setResult = 0;
+				setResult = dao.setWeatherForChart(mb);
+				if (setResult > 0) {
+					con.commit();
 				}
-			
+			}
+
+		} else if (setResult == 2) {
+			con.commit();
+			return;
 		} else {
 			con.rollback();
 		}
@@ -35,7 +38,5 @@ public class MovieChartService {
 		close(con);
 
 	}
-
-	
 
 }

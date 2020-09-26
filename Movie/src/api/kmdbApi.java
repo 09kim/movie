@@ -12,7 +12,7 @@ public class kmdbApi {
 	public String getMovie(String title) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?detail=Y&title="+title+"&listCount=100"
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?title="+title+"&listCount=100"
 						+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
 //		urlBuilder.append(

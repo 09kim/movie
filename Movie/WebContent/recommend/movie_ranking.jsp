@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%String nick = (String)session.getAttribute("nick"); %>
 <title>Insert title here</title>
+<!-- <meta charset="utf-8"> -->
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
+<!-- <script src="js/bootstrap.min.js"></script> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
@@ -95,7 +101,8 @@
 </script>
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
+<input type="hidden" value="<%=nick%>">
+<%-- <jsp:include page="/inc/top.jsp" /> --%>
 <div class="clear"></div>
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>

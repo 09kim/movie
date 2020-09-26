@@ -1,6 +1,5 @@
 package movie.action;
 
-import java.net.URL;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;

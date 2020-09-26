@@ -17,11 +17,11 @@ public class MovieActorRoleAction implements Action {
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
+		String movieSeq = request.getParameter("movieSeq");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		
-		if (movieSeq!=0) {
+		if (movieSeq!=null) {
 			json = movie.getActorByMovie(movieSeq);
 		}
 

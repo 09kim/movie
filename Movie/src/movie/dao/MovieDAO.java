@@ -3,12 +3,11 @@ package movie.dao;
 import static db.JdbcUtil.close;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
+import movie.exception.MovieChartExeption;
 import movie.vo.MovieBean;
 import movie.vo.ReviewBean;
 
@@ -206,51 +205,102 @@ public class MovieDAO {
 		return insertCount;
 	}
 
-	public int setWordForChart(MovieBean mb) throws Exception {
-		pstmt = null;
-		rs = null;
-		int resultCount =0;
-		
-		String sql = "SELECT * from chart where title=? and nick=?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, mb.getMovieTitle());
-		pstmt.setString(2, mb.getNick());
-		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			sql = "INSERT INTO chart_nick VALUES(null,?,?)";
+	public int setWordForChart(MovieBean mb) {
+		int resultCount = 0;
+
+		try {
+			String sql = "SELECT * from chart where title=? and nick=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, rs.getInt("idx"));
-			pstmt.setString(2, rs.getString("nick"));
-			resultCount = pstmt.executeUpdate();
-			
-			sql = "SELECT COUNT(*),title from chart c JOIN chart_nick cn ON c.idx = cn.char_idx where c.nick =?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mb.getNick());
+			pstmt.setString(1, mb.getMovieTitle());
+			pstmt.setString(2, mb.getNick());
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				if(rs.getString("title").equals(mb.getMovieTitle())&&rs.getInt("COUNT(*)")<4) {
-					sql = "UPDATE chart set count = count +1";
-					pstmt = con.prepareStatement(sql);
-					pstmt.executeUpdate();
+			if (rs.next()) {
+				sql = "SELECT COUNT(*),title from chart c JOIN chart_nick cn ON c.idx = cn.chart_idx where c.nick =?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mb.getNick());
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+//					if (rs.getString("title").equals(mb.getMovieTitle()) && rs.getInt("COUNT(*)") < 4) {
+					if (rs.getString("title").equals(mb.getMovieTitle())) {
+						sql = "UPDATE chart set count = count +1";
+						pstmt = con.prepareStatement(sql);
+						pstmt.executeUpdate();
+					}
 				}
+
+			} else {
+				sql = "INSERT INTO chart VALUES(null,?,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mb.getMovieSeq());
+				pstmt.setString(2, mb.getMovieTitle());
+				pstmt.setString(3, mb.getMoviePoster());
+				pstmt.setInt(4, 1);
+				pstmt.setString(5, mb.getNick());
+				resultCount = pstmt.executeUpdate();
+
 			}
-			
-			
-		}else {
-			sql = "INSERT INTO chart VALUES(null,?,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, mb.getMovieSeq());
-			pstmt.setString(2, mb.getMovieTitle());
-			pstmt.setString(3, mb.getMoviePoster());
-			pstmt.setInt(4, 0);
-			pstmt.setString(5, mb.getNick());
-			resultCount = pstmt.executeUpdate();
-			
-			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
-		
 
 		return resultCount;
+	}
+
+	public int setChartNickForChart(MovieBean mb) {
+		System.out.println("setChartNickForChart");
+		String sql = "SELECT * from chart where title=? and nick=?";
+		int insertResult = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getMovieTitle());
+			pstmt.setString(2, mb.getNick());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				sql = "INSERT INTO chart_nick VALUES(null,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("idx"));
+				insertResult = pstmt.executeUpdate();
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return insertResult;
+	}
+
+	public int setWeatherForChart(MovieBean mb) {
+		System.out.println("setWeatherForChart");
+		String sql = "SELECT * from chart where title=? and nick=?";
+		int insertResult = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getMovieTitle());
+			pstmt.setString(2, mb.getNick());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				sql = "INSERT INTO chart_weather VALUES(null,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("idx"));
+				pstmt.setString(2, mb.getWeather());
+				pstmt.setInt(3, mb.getTemp());
+				insertResult = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return insertResult;
 	}
 
 }

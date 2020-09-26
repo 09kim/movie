@@ -18,18 +18,21 @@ public class MovieDetailBySearch implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String movieTitle = request.getParameter("query");
 		String moviePoster = request.getParameter("image");
-
+		int temp = Integer.parseInt(request.getParameter("temp"));
+		String weather = request.getParameter("weather");
 		MovieBean mb = new MovieBean();
 		mb.setNick(nick);
 		mb.setMovieSeq(movieSeq);
 		mb.setMovieTitle(movieTitle);
 		mb.setMoviePoster(moviePoster);
-		
+		mb.setTemp(temp);
+		mb.setWeather(weather);
 		MovieChartService movieChartService = new MovieChartService();
 		ActionForward forward = new ActionForward();
 		
+		
 		if(nick!=null) {
-			movieChartService.setWordForChart(mb);
+			movieChartService.setChart(mb);
 		}
 		forward.setPath("MovieDetailPro.mo");
 

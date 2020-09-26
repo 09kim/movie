@@ -46,16 +46,16 @@ public class kmdbApi {
 		return sb.toString();
 	}
 
-	public String getMovieDetail(int movieSeq, String query) throws IOException {
-
+	public String getMovieDetail(String movieSeq, String query) throws IOException {
+		System.out.println("getMovieDetail");
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
-		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + movieSeq); /* Service Key */
+		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + movieSeq);
 		urlBuilder.append(
-				"&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); /* 상영년도 */
+				"&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); 
 //		urlBuilder
-//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
+//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -186,10 +186,10 @@ public class kmdbApi {
 		return sb.toString();
 	}
 	
-	public String getActorByMovie(int movieSeq) throws IOException {
+	public String getActorByMovie(String movieSeq) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
-		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + movieSeq); 
+		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + URLEncoder.encode(movieSeq, "UTF-8")); 
 
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
@@ -285,7 +285,6 @@ public class kmdbApi {
 		
 		rd.close();
 		conn.disconnect();
-		System.out.println("여기오류?"+ sb.toString());
 
 		return sb.toString();
 	}

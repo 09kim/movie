@@ -22,9 +22,9 @@ String nick=(String)session.getAttribute("nick");
       <li class="nav-item active">
         <a class="nav-link text-white" href="Main.me">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="MovieRanking.mo">BoxOffice</a>
-      </li>
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link text-white" href="MovieRanking.mo">BoxOffice</a> -->
+<!--       </li> -->
       <li class="nav-item">
         <a class="nav-link text-white" href="GradeMovie.mo">Grade</a>
       </li>

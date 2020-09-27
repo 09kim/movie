@@ -19,6 +19,19 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
+$(document).keydown(function (e) { // 새로고침 금지
+    
+    if (e.which === 116) {
+        if (typeof event == "object") {
+            event.keyCode = 0;
+        }
+        return false;
+    } else if (e.which === 82 && e.ctrlKey) {
+        return false;
+    }
+}); 
+
+
 
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문
@@ -496,13 +509,15 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         for(var num = 0; num < item2.actor.length ; num++){
                            actors = actors + item2.actor[num].actorNm + ", ";   
                         }
+                        if(image[0]){
+	                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+	                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+	                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+	                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+	                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+	                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                        }
                            
-                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
-                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
-                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
-                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
                            });
                   });
                }

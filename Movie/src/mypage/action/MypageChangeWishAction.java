@@ -26,7 +26,7 @@ public class MypageChangeWishAction implements Action {
 		String poster = request.getParameter("poster");
 		String movieId = request.getParameter("movieId");
 		String wish = request.getParameter("wish");
-		
+		System.out.println("무비시퀀스 : " + movieSeq);
 		MypageBean mypageBean = new MypageBean();
 		mypageBean.setNick(nick);
 		mypageBean.setPoster(poster);
@@ -39,7 +39,7 @@ public class MypageChangeWishAction implements Action {
 		boolean isChange = false;
 
 		MypageChangeWishService mypageChangeWishService = new MypageChangeWishService();
-			isChange = mypageChangeWishService.changeWish(mypageBean);
+		isChange = mypageChangeWishService.changeWish(mypageBean);
 
 		ActionForward forward = null;
 		if (!isChange) {
@@ -56,7 +56,7 @@ public class MypageChangeWishAction implements Action {
 //			forward.setRedirect(true);
 //			forward.setPath("MypageWish.mp");
 		}
-		return forward;
+		return null;
 	}
 
 }

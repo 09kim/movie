@@ -11,6 +11,7 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 <head>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -20,42 +21,38 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 
 			if (wish == "Y") {
 				$(this).addClass("done");
-			} else {
+			} else { // 기본이 없는 클래스라 remove가 필요없음
 				$(this).removeClass("done");
 			}
 		});
 
 		$('.btn-like').click(function() {
-			var wishInfo = $(this).val().split(",");
-			var nick = wishInfo[0];
-			var title = wishInfo[1];
-// 			var wish = wishInfo[2];
-			var movieSeq = wishInfo[3];
-// 			var idx = wishInfo[4];
-   			 $.ajax('MypageChangeWish.mp',{
-   					data:{nick:nick,movieSeq:movieSeq,title:title},
-   					success:function(rdata){
-  			 			if (confirm(title + "을(를) 보고싶어요 리스트에서 제외 하시겠습니까?")) {
-  			 				if(rdata=="Y"){
-  	   							window.location.replace("http://localhost:8080/Movie/MypageWish.mp");
-		  	   						setTimeout(function() { // 너무 빨리 실행하면 충돌나서 딜레이 줌
-		  	   						location.reload();
-		  	   						}, 800);
+				var wishInfo = $(this).val().split(",");
+				var nick = wishInfo[0];
+				var title = wishInfo[1];
+				var wish = wishInfo[2];
+				var movieSeq = wishInfo[3];
+				var idx = wishInfo[4];
+ 			if (confirm(title + "을(를) 보고싶어요 리스트에서 제외 하시겠습니까?")) {
+
+	   			 $.ajax('MypageChangeWish.mp',{
+	   					data:{nick:nick,movieSeq:movieSeq,title:title},
+	   					success:function(rdata){
+	  			 				if(rdata=="Y"){
+	  			 					location.reload();
   	   							}
-  		 			} else {
-  		 				return false;
-  		 			}
-   						
-   				}
- 			});
+	   						}
+	 					});
+	 			} else {
+	 				alert("취소 하셨습니다.");
+	 			}
 		});
 
 	});
 </script>
 <meta charset="UTF-8">
 <title></title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
+
 </head>
 <body> 
 <!-- 헤더 -->
@@ -75,7 +72,6 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 	</div> 
 	
 	<div id="myinfo">
-		<form action="MypageChangeWish.mp" name="fr" method="get" id="fr">
 		<section id="listForm">
 		<h2><%=nick %>님의 보고싶어요 리스트</h2>
 		<table>
@@ -94,7 +90,6 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 			</tr>
 		</table>
 		</section>
-</form>	
 	</div>
 </section>
 

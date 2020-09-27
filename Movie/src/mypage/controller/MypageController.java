@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
+import mypage.action.MypageDirectorAction;
+import mypage.action.MypageDirectorSrcAction;
 import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
+import mypage.action.MypageNationAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
 import mypage.action.MypageSelectWishListAction;
@@ -22,43 +25,43 @@ import vo.ActionForward;
 @WebServlet("*.mp")
 public class MypageController extends HttpServlet {
 
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
-		
+
 		Action action = null;
 		ActionForward forward = null;
 		System.out.println(command);
-		
-		if(command.equals("/Mypage.mp")) {
-			action = new MypageAction(); 
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/MypageForm.mp")) {
-			action = new MypageProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/MypageUpdate.mp")) {
+		if (command.equals("/Mypage.mp")) {
 			action = new MypageAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 		else if(command.equals("/MypageGrade.mp")) {
+		} else if (command.equals("/MypageForm.mp")) {
+			action = new MypageProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageUpdate.mp")) {
+			action = new MypageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageGrade.mp")) {
 			action = new MypageGradeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MypageWish.mp")) {
+		} else if (command.equals("/MypageWish.mp")) { // 액션이름을 바꾸는게 좋아보임! 헷갈려요!
 			action = new MypageSelectWishListAction();
 			try {
 				forward = action.execute(request, response);
@@ -81,17 +84,38 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/MypageGener.mp")) {
+		} else if (command.equals("/MypageDirectorSrc.mp")) {
+			action = new MypageDirectorSrcAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageGener.mp")) {
 			action = new MypageGenerAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MypageNation.mp")) {
+			action = new MypageNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageDirector.mp")) {
+			action = new MypageDirectorAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		if(forward != null) {
-			if(forward.isRedirect()) {
+
+		if (forward != null) {
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
@@ -99,14 +123,16 @@ public class MypageController extends HttpServlet {
 			}
 		}
 	}
-	
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 

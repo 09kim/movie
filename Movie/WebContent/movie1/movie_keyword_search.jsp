@@ -35,12 +35,15 @@ $(document).ready(function(){
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
-						$('#list').append('<div class=nation>'+item2.nation+'</div>')
-						$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-								+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-						$('#list').append('<div class=runtime>'+item2.runtime+'</div>')
-						$('#list').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-						$('#list').append('<div class=poster><img src='+image[0]+'></div>')
+						if(image[0]){
+							
+							$('#list').append('<div class=nation>'+item2.nation+'</div>')
+							$('#list').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+									+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+							$('#list').append('<div class=runtime>'+item2.runtime+'</div>')
+							$('#list').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+							$('#list').append('<div class=poster><img src='+image[0]+'></div>')
+						}
 	                  });
 				});
 			}

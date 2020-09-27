@@ -14,8 +14,20 @@
 		var sortData = [];
 		var sortData2 = [];
 		var nick = $('#nick').val();
+		var img;
+		function getSrc(director){
+			$.ajax('MypageDirectorSrc.mp',{
+				method : "post",
+				data : {director:director},
+				async: false,
+				success : function(data){
+					img = data; // 리턴을 안하고 여기서하면 왜 순차적으로 안들고 오는것인가!!!!
+				}
+			});	
+			return img;
+		}
 		$.ajax('MypageGener.mp', {
-			method : "get",
+			method : "post",
 			dataType : "json",
 			data : {
 				nick : nick
@@ -41,7 +53,7 @@
 							if(item2.value!=0){
 								if(item.key==item2.key){
 									var count = item2.value/2/item.value;
-									$('.genre').append(item.key +" : "+item.value+ " " +count.toFixed(1)+"점 <br>");
+									$('.genre').append(item.key +" : "+item.value+ "개  " +count.toFixed(1)+"점 <br>");
 								}
 							}
 						});
@@ -52,18 +64,45 @@
 			}
 		});
 		
-// 		$.ajax('MypageTitle.me',{
-// 			method : "get",
-// 			dataType : "json",
-// 			data : {
-// 				nick : nick
-// 			},
-// 			success : function(data) {
-// 				$.each(data,function(idx,item){
-// 					});
+		$.ajax('MypageNation.mp',{
+			method : "post",
+			dataType : "json",
+			data : {
+				nick : nick
+			},
+			success : function(data) {
+				$.each(data,function(idx,item){
+					$.each(item,function(idx2,item2){
+						var count = item2.avgGrade/2/item2.nation;
+						$('.nation').append(idx2 +" : "+item2.nation+"개 "+ count.toFixed(1) +"점 <br>"); 
+					});
+				});
 				
-// 			}
-// 		});
+			}
+		});
+		
+		$.ajax('MypageDirector.mp',{
+			method : "post",
+			dataType : "json",
+			data : {
+				nick : nick
+			},
+			success : function(data) {
+				$.each(data,function(idx,item){
+					$.each(item,function(idx2,item2){
+ 						var img = getSrc(item2.director);
+ 						$('.director').append(img);
+ 						$('.director').append(item2.director+"<br>");
+ 						
+						
+					});
+				});
+				
+			}
+		});
+		
+		
+		
 		
 	});
 </script>
@@ -90,6 +129,7 @@
 		</ul> 
 	</div> 
 	
+<!-- 	여기부분 자꾸 NullPoniter 뜸 -->
 	<div id="myinfo">
 		이메일
 		<input type="email" id="email" name="email" value="<%=memberBean.getEmail()%>"><br>
@@ -98,11 +138,22 @@
 		소개
 		<input type="text" id="infoup" name="info"><br>
 		<a href="MypageForm.mp">프로필수정</a>
+		<div class="favorite">
 		<fieldset>
 		<legend>선호 장르</legend>
-		<span class="genre"></span> <span class="count"></span>
-		</fieldset>		
+		<span class="genre"></span>
+		</fieldset>
+		<fieldset>
+		<legend>선호 국가</legend>
+		<span class="nation"></span>
+		</fieldset>
+		<fieldset>
+		<legend>선호 감독</legend>
+		<div class="director"></div> 
+		</fieldset>
+		</div>			
 	</div>
+<%-- <jsp:include page="/mypage/grade_list.jsp"/> --%> 
 </section>
 </body>
 </html>

@@ -43,6 +43,7 @@ public class MypageSelectWishAction implements Action {
 		
 		MypageBean wishMovie = null;
 		
+		
 		wishMovie = mypageSelectWishService.selectWish(nick,movieSeq);
 		
 		request.setAttribute("wishMovie", wishMovie);

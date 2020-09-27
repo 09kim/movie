@@ -27,16 +27,17 @@ public class MovieReviewAction implements Action {
 		rb.setContent(comment);
 		
 		MovieReviewService movieReviewService = new MovieReviewService();
-		movieReviewService.isInsert(rb);
+		boolean isInsert = movieReviewService.isInsert(rb);
 		
+		if(isInsert) {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print(nick+ "님의 리뷰 : " + comment);
-		
+		out.print(nick+ "님의 코멘트 : " + comment);
+		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 	    forward.setPath("/movie1/movie_detail.jsp");
-	    request.setAttribute("returnCmt", comment);
+//	    request.setAttribute("returnCmt", comment);
 	    return forward;
 		
 	}

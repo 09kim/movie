@@ -19,6 +19,19 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
+$(document).keydown(function (e) { // 새로고침 금지
+    
+    if (e.which === 116) {
+        if (typeof event == "object") {
+            event.keyCode = 0;
+        }
+        return false;
+    } else if (e.which === 82 && e.ctrlKey) {
+        return false;
+    }
+}); 
+
+
 
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문
@@ -32,18 +45,17 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          
          
          
-         
+        
 		 $.ajax('MypageSelectWish.mp',{
 			data:{movieSeq:movieSeq},
 			success:function(rdata){
 				if(rdata=="Y"){
 					$('.btn-like').addClass("done")
-				} else {
-					$('.btn-like').removeClass("done")
+				} else { // 여기 역시 기본값이 없는 클래스 이기때문에 remove 는 필요없음!
+					$('.btn-like').removeClass("done") 
 				}
 			}
 		});
-         
          
          
          function selectBtn() { 
@@ -64,7 +76,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          $('#comment').click(function(){
          	cmtBtn();
          });
-         
          
          
          $.ajax({
@@ -92,18 +103,22 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      var keyword = item2.keywords.split(",")
                      var actors="";
                      
-                     $('.btn-like').click(function() {
+                     
+                    
+                     $('.btn-like').click(function() {  
+                    	 if(nick != 'null'){
+                     
             			 $.ajax('MypageChangeWish.mp',{
             					data:{movieSeq:movieSeq,title:title5,poster:image[0]},
             					success:function(rdata){
             						if(!$('.btn-like').hasClass("done")){
             							$('.btn-like').addClass("done")
-            						} else {
+            						} else { // 여긴 필요할꺼 같음! if문에 done 이 잇냐 없냐로 체크하기 때문에~
             							$('.btn-like').removeClass("done")
             						}
             					}
             				});
-            			});
+            			} else {selectBtn()}}); 
                      
                      for(var num = 0; num < item2.staff.length ; num++){
                         if(item2.staff.length>11){
@@ -228,13 +243,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                               
                              
                                  
-                                 
-                                 $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+item2.nation+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
+                                 var nation = item2.nation.split(",");
+                                 $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                                  var image= image[0];
                                  var garde= 0;
                           		 var movieSeq =""   
                                     $('.c1').eq(idx).click(function(){
-                                       alert(title + " | " + "0.5점 등록");
                                        var grade=1;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
@@ -242,14 +256,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                                     });
                                     
                                     $('.c2').eq(idx).click(function(){
-                                       alert(title +  " | " + "1점 등록");
                                        var grade = 2;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
                                       
                                     });
                                     $('.c3').eq(idx).click(function(){
-                                       alert(title +  " | " +  "1.5점 등록");
                                        var grade = 3;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
@@ -257,46 +269,39 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                                     });
                                     
                                     $('.c4').eq(idx).click(function(){
-                                       alert(title +  " | " +  "2점 등록");
                                        var grade = 4;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
                                     });
                                     
                                     $('.c5').eq(idx).click(function(){
-                                       alert(title +  " | " +  "2.5점 등록");
                                        var grade = 5;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image); 
                                     });
                                     
                                     $('.c6').eq(idx).click(function(){
-                                        alert(title +  " | " +  "3점 등록");
                                         var grade = 6;
                                         var data = $('.c1').eq(idx).val();
                                         starClick(data,grade,image);
                                         
                                     });
                                     $('.c7').eq(idx).click(function(){
-                                        alert(title +  " | " +  "3.5점 등록");
                                         var grade=7;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
                                     });
                                     $('.c8').eq(idx).click(function(){
-                                        alert(title +  " | " +  "4점 등록");
                                         var grade=8;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
                                     });
                                     $('.c9').eq(idx).click(function(){
-                                        alert(title +  " | " +  "4.5점 등록");
                                         var grade=9;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
                                     });
                                     $('.c10').eq(idx).click(function(){
-                                        alert(title +  " | " +  "5점 등록");
                                         var grade=10;
                                        var data = $('.c1').eq(idx).val();
                                        starClick(data,grade,image);
@@ -395,6 +400,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	 		  },
         			 	 		  success:function(data) {
         			 	 		  	$('#review').append(data);
+        			 	 		    location.reload();
         			 	 		  }
         			 	 		
         			 	});
@@ -410,8 +416,68 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-          
          
+         $('#updateCmt').click(function(){var typeName = $('#typeName').val();
+         $('#dialog-comment').dialog({
+    		 modal: true,
+    		 buttons: {
+    			 "수정":function() { 
+    				 var comment = $('#opinion').val();	
+    			 	$.ajax({
+    			 		url:"MovieCmtUpdate.mo",  
+    			 	 	method:"get",
+    			 	 	data:{comment:comment,  
+    			 	 		  nick:nick,
+    			 	 		  movieSeq:movieSeq,
+    			 	 		  typeName:typeName 
+    			 	 		  },
+    			 	 		  success:function(data) {
+    			 	 		    location.reload();
+    			 	 		  }
+    			 	 		
+    			 	});
+    			 	
+    			 	$(this).dialog('close');
+    			 
+    			 },
+    			 
+    			 "취소":function() {$(this).dialog('close'); },
+    		 }
+    	 
+    	 }); 
+         
+         });
+         
+         $('#deleteCmt').click(function(){var typeName = $('#typeName').val();
+             $('#delete-message').dialog({
+        		 modal: true,
+        		 buttons: {
+        			 "삭제":function() { 
+        				 var comment = $('#opinion').val();	
+        			 	$.ajax({
+        			 		url:"MovieCmtDelete.mo",  
+        			 	 	method:"get",
+        			 	 	data:{comment:comment,  
+        			 	 		  nick:nick,
+        			 	 		  movieSeq:movieSeq,
+        			 	 		  typeName:typeName 
+        			 	 		  },
+        			 	 		  success:function(data) {
+        			 	 			location.reload();
+        			 	 		  }
+        			 	 		
+        			 	});
+        			 	
+        			 	$(this).dialog('close');
+        			 
+        			 },
+        			 
+        			 "취소":function() {$(this).dialog('close'); },
+        		 }
+        	 
+        	 }); 
+             
+             });
          
          $('#directorMovies').click(function(){
             
@@ -443,13 +509,15 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         for(var num = 0; num < item2.actor.length ; num++){
                            actors = actors + item2.actor[num].actorNm + ", ";   
                         }
+                        if(image[0]){
+	                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+	                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+	                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+	                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+	                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+	                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                        }
                            
-                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
-                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
-                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
-                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
                            });
                   });
                }
@@ -478,7 +546,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    <a href="#" id="directorMovies">이 감독의 다른 영화</a>
    <br>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
- <span class='star-input'>
+  <span class='star-input'>
                     <span class='input'>
                  <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
                  <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
@@ -491,14 +559,22 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                  <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
                  <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
                  </span></span>
-               
-                 <% if(!(getGrade.equals("0"))){ %> 
+                 
+                 <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다. 
-  		    <input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
-      	<%} %>
-                	  </div>
+        	<%= getGrade %> 점을 입력하셨습니다 
+        	<% if(returnCmt.equals("")){ %>
+        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
+        	<%}else{ %>
+        	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
+  			    	 
+     			     <input type="button" id ="updateCmt" value="수정">
+       	             <input type="button" id ="deleteCmt" value="삭제">
+                </div>
+                	  <%} %>
+                	  
 		<div id="review"></div>
+<%} %> 
 
    <div id="subInfo"></div>
    <div id="wish">
@@ -525,6 +601,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	</section>
+   	
+   	<div id="delete-message" title="코멘트" style="display:none">
+   		정말로 삭제 하시겠습니까?
+   	</div>
    	
 </body>
 </html>

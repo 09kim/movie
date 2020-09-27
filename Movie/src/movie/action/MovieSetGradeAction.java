@@ -24,7 +24,7 @@ public class MovieSetGradeAction implements Action {
 		String movieDircetor = param[0];
 		String movieNation = param[1];
 		String movieTitle = param[2];
-		String movieSeq = param[3];
+		int movieSeq = Integer.parseInt(param[3]);
 		String movieRuntime = param[4];
 		String movieGenre = param[5];
 		String movieYear = param[6]; // 나중에 테이블 나눌때 필요한 변수

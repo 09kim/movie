@@ -168,16 +168,26 @@ public class BoardDAO {
 
 	public int insertReply(ReplyBean replyBean) {
 		System.out.println("BoardDAO - insertReply()");
+		
 		int insertCount = 0;
 		
 		try {
-			String sql = "INSERT INTO reply VALUES(idx,?,?,?,?,now())";
+			String sql = "select max(re_ref) from reply";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			int num = 0;;
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO reply VALUES(idx,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, replyBean.getNick());
 			pstmt.setInt(2, replyBean.getMovieSeq());
 			pstmt.setString(3, replyBean.getReply());
-			pstmt.setInt(4, replyBean.getRe_ref());
-			
+			pstmt.setInt(4, num);
 			
 			insertCount = pstmt.executeUpdate();
 			
@@ -185,6 +195,7 @@ public class BoardDAO {
 			e.printStackTrace();
 			System.out.println("BoardDAO - insertReply() 에러 : " + e.getMessage());
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		
@@ -221,6 +232,52 @@ public class BoardDAO {
 		}
 		
 		return replyList;
+	}
+
+	public int updateReply(ReplyBean replyBean) {
+		System.out.println("BoardDAO - updateReply()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "update reply set reply=? where nick=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getReply());
+			pstmt.setString(2, replyBean.getNick());
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - updateReply() 에러: " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+				
+		return insertCount;
+	}
+
+	public int deleteReply(int re_ref) {
+		System.out.println("BoardDAO - deleteReply()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "delete from reply where re_ref=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);
+			
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+				
+		return insertCount;
 	}
 
 }

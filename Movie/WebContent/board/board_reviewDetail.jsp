@@ -29,6 +29,18 @@ $(document).ready(function() {
     var idx = $('#idx').val();
     var returnReply = $('#returnReply').val();
     
+    $(function() {
+    	
+    	$("#replyContent").on('keyup', function() {
+    		var able = true;
+    		able = $(this).val().length > 0 ? false : true;
+    		
+    		$("replyBtn").attr("disabled", able);
+			
+		});
+		
+	});
+    
     $("#replyBtn").on("click", function() {
 			
         var reply = $('#replyContent').val();
@@ -48,12 +60,94 @@ $(document).ready(function() {
 				alert("댓글 작성 완료");
 				
 //              location.href="BoardReviewDetail.bo?movieSeq=" + $('#movieSeq').val() + "&idx=" + $('#idx').val();
-	
 				location.reload();
-				
 			}
 			
 		});
+		
+	});
+    
+    $("#updateReply").on("click", function() {
+    	
+    	var reply = $('#replyContent').val();
+    	
+    	$.ajax({
+            url: "BoardReplyUpdate.bo",
+            method: "get",
+            data: {
+                idx:idx,
+                movieSeq:movieSeq,
+                nick:nick,
+                reply:reply
+            },
+            success: function(data) {
+                
+                $('#replyShow').append(data);
+                alert("댓글 수정 완료");
+                
+                location.reload();
+            }
+            
+        });
+		
+	});
+    
+//     $('#deleteReply').click(function() {
+		
+//     	$('#delete-message').dialog({
+//     		modal: true,
+//     		buttons: {
+//     			"삭제": function() {
+    				
+// 					var reply = $('#replyContent').val();
+					
+// 					$.ajax({
+// 			            url: "BoardReplyDelete.bo",
+// 			            method: "get",
+// 			            data: {
+// 			                idx:idx,
+// 			                movieSeq:movieSeq,
+// 			                nick:nick,
+// 			                reply:reply
+// 			            },
+// 			            success: function(data) {
+// 			                location.reload();
+// 			            }
+// 			        });
+					
+// 					$(this).dialog('close');
+// 				},
+				
+// 				"취소": function() {
+// 					$(this).dialog('close');
+// 				}
+//     		}
+    		
+//     	});
+    	
+// 	});
+    
+    $("#deleteReply").on("click", function() {
+		
+//     	var reply = $('#replyContent').val();
+    	
+    	$.ajax({
+    		url: "BoardReplyDelete.bo",
+            method: "get",
+            data: {
+                idx:idx,
+                movieSeq:movieSeq,
+                nick:nick,
+//                 reply:reply
+            },
+            success: function(data) {
+                
+//                 $('#replyShow').append(data);
+                alert("댓글 삭제 완료");
+                
+                location.reload();
+            }
+    	});
 	});
 	
 });
@@ -77,14 +171,13 @@ $(document).ready(function() {
 <div>별점 - <%=reviewBean.getGrade() %></div>
 <div>영화번호 - <%=reviewBean.getMovieSeq() %></div>
 <div>리뷰내용 - <%=reviewBean.getContent() %></div>
-
+<br>
 
     <div>
         <textarea rows="5" cols="30" id="replyContent"></textarea>
+<!--         <input type="text" size="60" id="replyContent" > -->
         <input type="button" value="댓글쓰기" id="replyBtn" >
-    
-		<input type="button" id ="updateReply" value="수정">
-	    <input type="button" id ="deleteReply" value="삭제">
+<!--         <button type="submit" id="replyBtn" disabled="disabled">댓글쓰기</button> -->
     </div>
 <hr>
 <div id="replyShow"></div>
@@ -92,15 +185,26 @@ $(document).ready(function() {
 
 <h3><%=reviewBean.getTitle() %> 리뷰의 댓글</h3>
 
-<%if(replyList!=null){ %>
+<%if(replyList != null){ %>
 
 	<%for(ReplyBean rb : replyList) { %>
-	    <div>닉네임 - <%=rb.getNick() %></div>
-	    <div>댓글 - <%=rb.getReply() %></div>
-	    <div>날짜 - <%=rb.getDate() %></div>
+	    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
+	    
+	    <%if(nick.equals(rb.getNick())) { %>
+			<input type="button" id ="updateReply" value="수정">
+		    <input type="button" id ="deleteReply" value="삭제">
+	    <%} %>
+	    </div>
 	    <hr>
+	    
     <%} %>
+    
 <%} %>
+
+
+<div id="delete-message" title="댓글" style="display:none">
+    삭제 하시겠습니까?
+</div>
 
 </body>
 </html>

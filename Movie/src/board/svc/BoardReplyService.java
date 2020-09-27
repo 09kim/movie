@@ -50,4 +50,50 @@ public class BoardReplyService {
 		return replyList;
 	}
 
+	public boolean updateReply(ReplyBean replyBean) {
+		System.out.println("BoardReplyService - updateReply()");
+		
+		boolean isSuccess = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int insertCount = boardDAO.updateReply(replyBean);
+		
+		if(insertCount > 0) {
+			commit(con);
+			isSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean deleteReply(int re_ref) {
+		System.out.println("BoardReplyService - deleteReply()");
+		
+		boolean isSuccess = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int insertCount = boardDAO.deleteReply(re_ref);
+		
+		if(insertCount > 0) {
+			commit(con);
+			isSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSuccess;
+	}
+
 }

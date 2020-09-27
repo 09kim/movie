@@ -9,9 +9,19 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/icon/demo-files/demo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/icon/style.css">
+    <!--[if lt IE 8]><!-->
+    <link rel="stylesheet" href="ie7/ie7.css">
+    <!--<![endif]-->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/icon/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+<style>
+
+</style>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -52,7 +62,6 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 </script>
 <meta charset="UTF-8">
 <title></title>
-
 </head>
 <body> 
 <!-- 헤더 -->
@@ -79,12 +88,17 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 		<% for(MypageBean wishInfo : wishMovie) {%>
 					<td id="wishMovie" align="center">
 					<%if(wishInfo.getPoster()!=null){ %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
+				<div id="posters"><a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %></div>
 					<%} else { %>
 					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq() %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
 					<%} %>
 					<%if(wishInfo.getWish().equals("Y")){ %>
-					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td>
+<%-- 					<button class="btn-like btn-primary-outline" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td> --%>
+<%-- 					<button class="btn-like btn-outline-light" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td> --%>
+<%-- 					<div id="like"><button class="btn-like btn-primary-outline" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>"><span class="icon-heart-solid"></span></button></td></div> --%>
+					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>"><span class="icon-heart-solid"></span></button></td>
+<!-- <span class="icon-heart-regular"></span> -->
+<!-- <span class="icon-heart-solid"></span> -->
 					<% }%>
 			<%}%>
 			</tr>

@@ -358,7 +358,6 @@ html, body {
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <!-- 헤더 -->
-
 <!-- <form class="join_fr" action="MemberJoinPro.me" method="get"> -->
 <section id="main">
 <div id="login-page" class="row">

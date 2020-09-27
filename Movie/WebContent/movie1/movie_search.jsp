@@ -36,11 +36,6 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 $(document).ready(function(){
 	
 	var latitude, longitude;
@@ -102,11 +97,32 @@ $(document).ready(function(){
 							for(var num = 0; num < item2.actor.length ; num++){
 								actors = actors + item2.actor[num].actorNm + ", ";	
 							}
-<<<<<<< HEAD
 						
-						
+						    // div 클래스 .koreaList 하나 추가함, css 테스트 해봐야함 - 낙원 : 0927
+							$('.koreaList').append('<div class="swiper-slide">');
 							$('.koreaList').append(' <div class="poster">');
-=======
+							
+							if(image[0]){
+								$('.koreaList').append('<figure><img src='+image[0]+'></figure>');
+							}else{
+								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>');
+							}
+							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div>'); // 랭킹 보여줌
+							$('.koreaList').append('<div class="mx">');
+							$('.koreaList').append('<span class="icon m ir_pm">MX</span>');
+							$('.koreaList').append('<span class="icon b ir_pm">Boutique</span>');
+							$('.koreaList').append('</div>');
+							$('.koreaList').append('</div>');
+							$('.koreaList').append('<div class="infor">');
+							$('.koreaList').append('<h3><span class="icon all ir_pm">전체관람가</span> <strong>침묵</strong></h3>');
+							$('.koreaList').append('<div class="infor_btn">');
+							$('.koreaList').append('<a href="#">상세정보</a>');
+							$('.koreaList').append('<a href="#">예매하기</a>');
+							$('.koreaList').append('</div>');
+							$('.koreaList').append('</div>');
+							$('.koreaList').append('</div>');
+							// 낙원 div - 끝
+							
 								
 							if(image[0]){
 								$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');
@@ -121,40 +137,22 @@ $(document).ready(function(){
 // 							}
 						}
 						else {
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
-							
-<<<<<<< HEAD
-=======
 							for(var num = 0; num < item2.actor.length ; num++){
 								actors = actors + item2.actor[num].actorNm + ", ";	
 							}
 								
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 							if(image[0]){
-<<<<<<< HEAD
-								$('.koreaList').append('<figure><img src='+image[0]+'></figure>');
-							}else{
-								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>');
-=======
 								$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>');
 								$('#foreignList').append('<div class=nation>'+item2.nation+'</div>');
 								$('#foreignList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
 										+item2.movieSeq+'&query='+title5+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
 								$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>');
 								$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 							}
-<<<<<<< HEAD
-							
-							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div></div>'); // 랭킹 보여줌
-
-
-=======
 // 							else{ 포스터 없는거는 거의 대부분 안유명한거라 뺌
 // 								$('#foreignList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 // 							}
 						
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 						}
 						
 	                  });
@@ -186,16 +184,6 @@ $(document).ready(function(){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 							
-<<<<<<< HEAD
-// 						$('#actorList').append('<div class=nation>'+item2.nation+'</div>');
-// 						$('#actorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-// 								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>');
-// 						$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>');
-// 						$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
-// 						if(image[0]){
-// 							$('#actorList').append('<div class=poster><img src='+image[0]+'></div>');
-// 						}else{
-=======
 						if(image[0]){
 							$('#actorList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#actorList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId'+item2.movieId+'&movieSeq='
@@ -205,7 +193,6 @@ $(document).ready(function(){
 							$('#actorList').append('<div class=poster><img src='+image[0]+'></div>');
 						}
 // 						else{
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 // 							$('#actorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 // 						}
 	                  });
@@ -239,16 +226,6 @@ $(document).ready(function(){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
 							
-<<<<<<< HEAD
-// 						$('#directorList').append('<div class=nation>'+item2.nation+'</div>');
-// 						$('#directorList').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-// 								+item2.movieSeq+'&query='+title6+'>'+title3+'</div>');
-// 						$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>');
-// 						$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
-// 						if(image[0]){
-// 							$('#directorList').append('<div class=poster><img src='+image[0]+'></div>');
-// 						}else{
-=======
 						if(image[0]){
 							$('#directorList').append('<div class=poster><img src='+image[0]+'></div>');
 							$('#directorList').append('<div class=nation>'+item2.nation+'</div>');
@@ -258,7 +235,6 @@ $(document).ready(function(){
 							$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 						}
 // 						else{
->>>>>>> branch '태윤' of https://github.com/fmoni1306/movie.git
 // 							$('#directorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 // 						}
 	                  });

@@ -26,6 +26,7 @@
                 	  $.each(item.Result,function(idx2,item2){
                 		  var image = item2.posters.split("|");
                 		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
+                		  alert(result)
                 	  });
                    });
                    
@@ -67,7 +68,7 @@
                     		   "<div><a class=movieName></a></div>"+
                     		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
                        result = getNation(openDt,titleNoSpace);
-                       result = result.split("|");
+ 	                      result = result.split("|");
                        if(result[0]){
                        		$('.poster_img').eq(idx).attr("src",result[0]);
                        }else{

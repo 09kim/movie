@@ -74,29 +74,29 @@ $(window).load( function() { //실행될 코드 })
 							}
 						
 						
-							$('.koreaList').append('<div class="swiper-slide">');
-							$('.koreaList').append(' <div class="poster">');
+							$('.koreaList').append('<div class="swiper-slide">').trigger("create");
+							$('.koreaList').append(' <div class="poster">').trigger("create");
 							
 							if(image[0]){
-								$('.koreaList').append('<figure><img src='+image[0]+'></figure>');
+								$('.koreaList').append('<figure><img src='+image[0]+'></figure>').trigger("create");
 							}else{
-								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>');
+								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>').trigger("create");
 							}
 							
-							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div>'); // 랭킹 보여줌
-							$('.koreaList').append('<div class="mx">');
-							$('.koreaList').append('<span class="icon m ir_pm">MX</span>');
-							$('.koreaList').append('<span class="icon b ir_pm">Boutique</span>');
-							$('.koreaList').append('</div>');
-							$('.koreaList').append('</div>');
-							$('.koreaList').append('<div class="infor">');
-							$('.koreaList').append('<h3><span class="icon all ir_pm">전체관람가</span> <strong>침묵</strong></h3>');
-							$('.koreaList').append('<div class="infor_btn">');
-							$('.koreaList').append('<a href="#">상세정보</a>');
-							$('.koreaList').append('<a href="#">예매하기</a>');
-							$('.koreaList').append('</div>');
-							$('.koreaList').append('</div>');
-							$('.koreaList').append('</div>');
+							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div>').trigger("create"); // 랭킹 보여줌
+							$('.koreaList').append('<div class="mx">').trigger("create");
+							$('.koreaList').append('<span class="icon m ir_pm">MX</span>').trigger("create");
+							$('.koreaList').append('<span class="icon b ir_pm">Boutique</span>').trigger("create");
+							$('.koreaList').append('</div>').trigger("create");
+							$('.koreaList').append('</div>').trigger("create");
+							$('.koreaList').append('<div class="infor">').trigger("create");
+							$('.koreaList').append('<h3><span class="icon all ir_pm">전체관람가</span> <strong>침묵</strong></h3>').trigger("create");
+							$('.koreaList').append('<div class="infor_btn">').trigger("create");
+							$('.koreaList').append('<a href="#">상세정보</a>').trigger("create");
+							$('.koreaList').append('<a href="#">예매하기</a>').trigger("create");
+							$('.koreaList').append('</div>').trigger("create");
+							$('.koreaList').append('</div>').trigger("create");
+							$('.koreaList').append('</div>').trigger("create");
 
 
 // 							$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');

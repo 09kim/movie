@@ -25,6 +25,9 @@ $(document).ready(function() {
 	
 	
 	
+	
+	
+	
 	var query = $("#query").val();
 	query = query.replace(/ /g,'');
 	var nick = $("#nick").val();
@@ -48,14 +51,34 @@ $(document).ready(function() {
 					var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
 					var nation = item2.nation
 					if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
-						var src = item2.posters.split("|")[0]; 
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
+// 						$('.koreaList').append('<img class=poster>');
+// 						$('.boxOffice').append('<img class=poster>');
                        if(image[0]){
-						$('.koreaList').append("<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>");
+// 						$('.koreaList').append("<img src='"+image[0]+"'>");
+// 						$('.koreaList').append("<img class=poster_img src='"+image[0]+"'>");
+//                              $('.koreaList').children('.poster').eq(idx).attr("src",imageSrc);
+//                              $('.koreaList').find('.poster').eq(idx2).attr("src",imageSrc);
+// 								$('.koreaList').append('<img class="poster">');
+// 								$('.boxOffice').append('<img class=poster>');
+								$('.koreaList').append('<img class=poster>');
+								$('.poster').eq(idx).attr("src",image[0]);
+// 								$('.koreaList').append('<img class=poster src="'+image[0]+'">');
+//                              $('.koreaList').children('.poster').eq(idx).attr("src",src);
+//                              $('.poster').eq(idx).attr("src",image[0]);
+//                              $('.koreaList').children('.poster').eq(idx).attr("src",image[0]);
+//                              alert($('.koreaList').find('.poster').eq(idx).attr("src"));
                        }else{
-//                     	   // 이미지 없으면 표시 안함
+//                     	   $('.poster').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+//                     	   $('img').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+//                     	   $('.boxOffice').children('.poster').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+//                     	   $('.koreaList').children('.poster').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+// 						$('.koreaList').append("<img src='../../../Movie/img/noImage.gif'>");
+// 						$('.koreaList').append("<img class=poster_img src='../../../Movie/img/noImage.gif'>");
+//                           	 $('.poster').eq(idx).attr("src","");
+//                           	alert($('.poster_img').eq(idx).attr("src"));
                        }
 					
 					} else {
@@ -77,6 +100,42 @@ $(document).ready(function() {
 			
 			
 			
+			$('.koreaList').slick({
+		        dots: false,
+		        infinite: false,
+		        arrows: true,
+		        speed: 300,
+		        slidesToShow: 4,
+		        slidesToScroll: 3,
+		        responsive: [
+		          {
+		            breakpoint: 1024,
+		            settings: {
+		              slidesToShow: 3,
+		              slidesToScroll: 3,
+		              infinite: true,
+		              dots: true
+		            }
+		          },
+		          {
+		            breakpoint: 600,
+		            settings: {
+		              slidesToShow: 2,
+		              slidesToScroll: 2
+		            }
+		          },
+		          {
+		            breakpoint: 480,
+		            settings: {
+		              slidesToShow: 1,
+		              slidesToScroll: 1
+		            }
+		          }
+		          // You can unslick at a given breakpoint now by adding:
+		          // settings: "unslick"
+		          // instead of a settings object
+		        ]
+		      });
 			
 			
 			
@@ -85,64 +144,8 @@ $(document).ready(function() {
 			
 			
 			
-// 			$('.koreaList').slick({
-// 				  dots: false,
-// 				  infinite: false,
-// 				  breakpoint: 1024,
-// 				  speed: 300,
-// 				  slidesToShow: 4,
-// 				  centerMode: true,
-// 				  variableWidth: true
-// 				});
 			
-// 			$('.koreaList').slick({
-// 				  dots: false,
-// 				  infinite: false,
-// 				  breakpoint: 1024,
-// 				  speed: 300,
-// 				  slidesToShow: 4,
-// 				  centerMode: true,
-// 				  variableWidth: true
-// 				});
 			
-				$('.koreaList').slick({
-					adaptiveHeight: false,
-			        dots: false,
-			        infinite: false,
-			        arrows: true,
-			        speed: 300,
-			        slidesToShow: 4,
-			        slidesToScroll: 3,
-			        centerMode: true,
-			        responsive: [
-			          {
-			            breakpoint: 1024,
-			            settings: {
-			              slidesToShow: 3,
-			              slidesToScroll: 3,
-			              infinite: true,
-			              dots: true
-			            }
-			          },
-			          {
-			            breakpoint: 600,
-			            settings: {
-			              slidesToShow: 2,
-			              slidesToScroll: 2
-			            }
-			          },
-			          {
-			            breakpoint: 480,
-			            settings: {
-			              slidesToShow: 1,
-			              slidesToScroll: 1
-			            }
-			          }
-			          // You can unslick at a given breakpoint now by adding:
-			          // settings: "unslick"
-			          // instead of a settings object
-			        ]
-			      });
 			
 			
 		} 
@@ -151,26 +154,10 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 }); // ready()끝;
 </script>
 
-<style>
-.slick-slide>img{width:50px; height:150px;}
-</style>
+
 </head>
 <body>
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
@@ -183,6 +170,7 @@ $(document).ready(function() {
 	<div class="koreaList">
 	</div>
 	
+<!-- 	<div class="boxOffice"></div> -->
 	
 
 </body>

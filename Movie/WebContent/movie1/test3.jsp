@@ -55,34 +55,41 @@ $(window).load( function() { //실행될 코드 })
 					var count = item.Count
 						
 					$.each(item.Result,function(idx,item2){
-						// 가져오너 Data 안에 Result 데이터를가져옴( 우리가원하는 값들이 여기 모두 들어있음)
-						var title = item2.title // 타이블을 변수 지정
-						var titleNoSpace = title.replace(/ /g, ''); // 타이틀 공백제거
-						var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
-						var title3 = title2.replace(/!HE/g,'')
-						var title5 = title3.trim(); // 양쪽끝에 공백을 제거해줌
-						var title6 =  encodeURIComponent(title5);
-						var actors="";
 						
-						var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
-						var nation = item2.nation
+						const koreaList = document.createElement("div");
+						koreaList.id = 'koreaList';
+						const newContent = document.createTextNode("Hi there and greetings!"); 
+						koreaList.newDiv.appendChild(newContent);  
 						
-						if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
+						
+// 						// 가져오너 Data 안에 Result 데이터를가져옴( 우리가원하는 값들이 여기 모두 들어있음)
+// 						var title = item2.title // 타이블을 변수 지정
+// 						var titleNoSpace = title.replace(/ /g, ''); // 타이틀 공백제거
+// 						var title2 = titleNoSpace.replace(/!HS/g,'') // 검색어는 !HS , !HE 로 둘러 싸여있어서 제거해줌
+// 						var title3 = title2.replace(/!HE/g,'')
+// 						var title5 = title3.trim(); // 양쪽끝에 공백을 제거해줌
+// 						var title6 =  encodeURIComponent(title5);
+// 						var actors="";
+						
+// 						var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
+// 						var nation = item2.nation
+						
+// 						if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
 							
-							for(var num = 0; num < item2.actor.length ; num++){
-								actors = actors + item2.actor[num].actorNm + ", ";	
-							}
+// 							for(var num = 0; num < item2.actor.length ; num++){
+// 								actors = actors + item2.actor[num].actorNm + ", ";	
+// 							}
 						
 						
-							$('.koreaList').append(' <div class="poster">');
+// 							$('.koreaList').append(' <div class="poster">');
 							
-							if(image[0]){
-								$('.koreaList').append('<figure><img src='+image[0]+'></figure>');
-							}else{
-								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>');
-							}
+// 							if(image[0]){
+// 								$('.koreaList').append('<figure><img src='+image[0]+'></figure>');
+// 							}else{
+// 								$('.koreaList').append('<figure><img src=../../../Movie/img/noImage.gif></figure>');
+// 							}
 							
-							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div></div>'); // 랭킹 보여줌
+// 							$('.koreaList').append('<div class="rank"><strong>'+idx+'</strong></div></div>'); // 랭킹 보여줌
 
 
 						}
@@ -195,7 +202,8 @@ $(window).load( function() { //실행될 코드 })
                     <div class="movie_chart">
                         <div class="swiper-container2">
                            <div class="chart_cont1 swiper-wrapper">
-	                           <div class="koreaList">
+<!-- 	                           <div class="koreaList"> -->
+	                           <div id="koreaList">
 	                           
 								</div>
 							 </div>
@@ -208,7 +216,6 @@ $(window).load( function() { //실행될 코드 })
             </div>
         </div>
     </section>  
-
 
 
 

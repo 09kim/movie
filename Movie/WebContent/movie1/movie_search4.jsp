@@ -4,30 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%String nick = (String)session.getAttribute("nick"); %>
 <title>Insert title here</title>
-<jsp:include page="/inc/top.jsp" />
+<!-- <meta charset="utf-8"> -->
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 <!-- <script src="js/bootstrap.min.js"></script> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
-<%-- <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
+
+
 $(document).ready(function() {
-	
-	
-	
-	
-	
-	
-	
-	var query = $("#query").val();
-	query = query.replace(/ /g,'');
+   
 	var nick = $("#nick").val();
+	query = query.replace(/ /g,'');
 	$.ajax('MovieSearchPro.mo',{
 		method:"post",
 		dataType :"json",
@@ -47,16 +43,24 @@ $(document).ready(function() {
 					
 					var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
 					var nation = item2.nation
+					
 					if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
-						var src = item2.posters.split("|")[0]; 
+						
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
-                       if(image[0]){
-						$('.koreaList').append("<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>");
-                       }else{
-//                     	   // 이미지 없으면 표시 안함
-                       }
+						$('.koreaList').append('<div class=movie><div class=ranking></div>'+
+	                             '<img class=poster>'+
+// 	                             '<div class=nation>'+item2.nation+'</div>'+
+// 	                             '<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
+// 									+item2.movieSeq+'&query='+title5+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>'+
+// 	                             '<div class=runtime>'+item2.runtime+'</div>'+
+	                             '<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+	                       if(image[0]!=""){
+	                             $('.poster').eq(idx).attr("src",image[0]);
+	                       }else{
+	                           $('.poster').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+	                       }
 					
 					} else {
 // 						for(var num = 0; num < item2.actor.length ; num++){
@@ -74,79 +78,8 @@ $(document).ready(function() {
                      }
 					});
                   });
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-// 			$('.koreaList').slick({
-// 				  dots: false,
-// 				  infinite: false,
-// 				  breakpoint: 1024,
-// 				  speed: 300,
-// 				  slidesToShow: 4,
-// 				  centerMode: true,
-// 				  variableWidth: true
-// 				});
-			
-// 			$('.koreaList').slick({
-// 				  dots: false,
-// 				  infinite: false,
-// 				  breakpoint: 1024,
-// 				  speed: 300,
-// 				  slidesToShow: 4,
-// 				  centerMode: true,
-// 				  variableWidth: true
-// 				});
-			
-				$('.koreaList').slick({
-					adaptiveHeight: false,
-			        dots: false,
-			        infinite: false,
-			        arrows: true,
-			        speed: 300,
-			        slidesToShow: 4,
-			        slidesToScroll: 3,
-			        centerMode: true,
-			        responsive: [
-			          {
-			            breakpoint: 1024,
-			            settings: {
-			              slidesToShow: 3,
-			              slidesToScroll: 3,
-			              infinite: true,
-			              dots: true
-			            }
-			          },
-			          {
-			            breakpoint: 600,
-			            settings: {
-			              slidesToShow: 2,
-			              slidesToScroll: 2
-			            }
-			          },
-			          {
-			            breakpoint: 480,
-			            settings: {
-			              slidesToShow: 1,
-			              slidesToScroll: 1
-			            }
-			          }
-			          // You can unslick at a given breakpoint now by adding:
-			          // settings: "unslick"
-			          // instead of a settings object
-			        ]
-			      });
-			
-			
-		} 
-	}); // ajax끝 
+                }
+            }); // ajax끝
 	
 	
 	
@@ -154,36 +87,56 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
+               $('.koreaList').slick({
+                  dots: false,
+                  infinite: false,
+                  arrows: true,
+                  speed: 300,
+                  slidesToShow: 4,
+                  slidesToScroll: 3,
+                  responsive: [
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                      }
+                    },
+                    {
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                      }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                  ]
+                }); // slick() 끝
+               
+       
 }); // ready()끝;
 </script>
-
-<style>
-.slick-slide>img{width:50px; height:150px;}
-</style>
 </head>
 <body>
+<input type="hidden" value="<%=nick%>">
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
-<%String query=request.getParameter("query"); %>
-<%String nick = (String)session.getAttribute("nick"); %>
-<input type="hidden" id="query" name=query value="<%=query%>">
-<input type="hidden" id="nick" name=nick value="<%=nick%>">
 <div class="clear"></div>
    <h1>국내영화</h1>
+<!-- 	<section id="koreaList"> -->
+<!-- 	</section> -->
 	<div class="koreaList">
 	</div>
-	
-	
 
 </body>
 </html>

@@ -11,7 +11,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset19.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style19.css">
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style19.css"> --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/swiper.css">
     
     <!-- 파비콘 -->
@@ -361,7 +361,8 @@ $(window).load( function() { //실행될 코드 })
         
     </script>
     <style>
-   .movie_chart {overflow: hidden; }
+    
+.movie_chart {overflow: hidden; }
 .movie_chart > div > div > div > div {display: inline-block; width: 292px; margin-right: 23px; }
 .movie_chart > div > div > div > div:last-child {margin-right: 0;}
 .movie_chart > div > div > div > div .poster {position: relative;}

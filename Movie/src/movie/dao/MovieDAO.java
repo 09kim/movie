@@ -307,4 +307,23 @@ public class MovieDAO {
 		return insertResult;
 	}
 
+	public String getPoster(String movieSeq) {
+		String sql = "SELECT poster from grade where movieSeq=?";
+		String poster = "";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movieSeq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				poster = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return poster;
+	}
+
 }

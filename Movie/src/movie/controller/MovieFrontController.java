@@ -19,9 +19,12 @@ import movie.action.MovieCmtUpdateAction;
 import movie.action.MovieDetailBySearch;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
+import movie.action.MovieExpectedGrade;
 import movie.action.MovieGetGradeAction;
+import movie.action.MovieGetPosterForExpectationAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
+import movie.action.MovieNaverRankingAction;
 import movie.action.MovieDetailProAction;
 import movie.action.MovieReviewAction;
 import movie.action.MovieSetGradeAction;
@@ -189,7 +192,30 @@ public class MovieFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if (command.equals("/MovieNaver.mo")) {
+			action = new MovieNaverRankingAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MovieExpected.mo")) {
+			action = new MovieExpectedGrade();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetPoster.mo")) {
+			action = new MovieGetPosterForExpectationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 
 
 		if (forward != null) {

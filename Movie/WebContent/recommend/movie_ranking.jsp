@@ -152,7 +152,6 @@ $(document).ready(function() {
 <body>
 <input type="hidden" value="<%=nick%>">
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
-<div class="clear"></div>
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>
 

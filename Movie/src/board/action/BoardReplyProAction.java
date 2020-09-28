@@ -19,12 +19,14 @@ public class BoardReplyProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardReplyProAction");
 		
+		ActionForward forward = null;
+		
+		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String reply = request.getParameter("reply");
-//		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		Date date = new Date(System.currentTimeMillis());
 		String currDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		currDate = request.getParameter("date");
@@ -35,17 +37,33 @@ public class BoardReplyProAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
-//		replyBean.setRe_ref(re_ref);
 		replyBean.setData(date);
 		
 		
-		BoardReplyService boardReplyService = new BoardReplyService();
-		boolean isSuccess = boardReplyService.insertReply(replyBean);
+		if(reply.equals("")) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('댓글을 등록하세요')");
+			out.print("history.back()");
+			out.print("</script>");
 			
-		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("BoardReviewView.bo");
+		} else {
+			
+			BoardReplyService boardReplyService = new BoardReplyService();
+			boolean isSuccess = boardReplyService.insertReply(replyBean);
+			
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('댓글 작성 완료')");
+			out.print("</script>");
+			
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("BoardReviewView.bo");
+		}
+			
 		
 	    return forward;
 		

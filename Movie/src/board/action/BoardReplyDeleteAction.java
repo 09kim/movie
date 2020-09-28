@@ -17,9 +17,6 @@ public class BoardReplyDeleteAction implements Action {
 		System.out.println("BoardReplyDeleteAction");
 		
 		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-//		ReplyBean replyBean = new ReplyBean();
-//		int re_ref = replyBean.getRe_ref();
-		System.out.println(re_ref);
 		
 		BoardReplyService boardReplyService = new BoardReplyService();
 		boolean isSuccess = boardReplyService.deleteReply(re_ref);

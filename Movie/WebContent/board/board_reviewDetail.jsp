@@ -17,6 +17,8 @@ String nick = (String)session.getAttribute("nick");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
@@ -27,19 +29,7 @@ $(document).ready(function() {
 	var nick = $('#nick').val()
     var movieSeq = $("#movieSeq").val();
     var idx = $('#idx').val();
-    var returnReply = $('#returnReply').val();
-    
-    $(function() {
-    	
-    	$("#replyContent").on('keyup', function() {
-    		var able = true;
-    		able = $(this).val().length > 0 ? false : true;
-    		
-    		$("replyBtn").attr("disabled", able);
-			
-		});
-		
-	});
+
     
     // 댓글 쓰기
     $("#replyBtn").on("click", function() {
@@ -58,7 +48,7 @@ $(document).ready(function() {
 			success: function(data) {
 				
 				$('#replyShow').append(data);
-				alert("댓글 작성 완료");
+// 				alert("댓글 작성 완료");
 				
 //              location.href="BoardReviewDetail.bo?movieSeq=" + $('#movieSeq').val() + "&idx=" + $('#idx').val();
 				location.reload();
@@ -68,71 +58,7 @@ $(document).ready(function() {
 		
 	});
     
-    // 댓글 수정
-    $("#updateReply").on("click", function() {
-    	
-    	var reply = $('#replyContent').val();
-    	
-    	$.ajax({
-            url: "BoardReplyUpdate.bo",
-            method: "get",
-            data: {
-                idx:idx,
-                movieSeq:movieSeq,
-                nick:nick,
-                reply:reply
-            },
-            success: function(data) {
-                
-                $('#replyShow').append(data);
-                alert("댓글 수정 완료");
-                
-                location.reload();
-            }
-            
-        });
-		
-	});
-    
-    // 댓글 삭제
-//     $('#deleteReply').click(function() {
-		
-//     	$('#delete-message').dialog({
-//     		modal: true,
-//     		buttons: {
-//     			"삭제": function() {
-    				
-// 					var reply = $('#replyContent').val();
-					
-// 					$.ajax({
-// 			            url: "BoardReplyDelete.bo",
-// 			            method: "get",
-// 			            data: {
-// 			                idx:idx,
-// 			                movieSeq:movieSeq,
-// 			                nick:nick,
-// 			                reply:reply
-// 			            },
-// 			            success: function(data) {
-// 			                location.reload();
-// 			            }
-// 			        });
-					
-// 					$(this).dialog('close');
-// 				},
-				
-// 				"취소": function() {
-// 					$(this).dialog('close');
-// 				}
-//     		}
-    		
-//     	});
-    	
-// 	});
-
-	
 });
-
 
 
 </script>
@@ -156,9 +82,7 @@ $(document).ready(function() {
 
     <div>
         <textarea rows="5" cols="30" id="replyContent"></textarea>
-<!--         <input type="text" size="60" id="replyContent" > -->
         <input type="button" value="댓글쓰기" id="replyBtn" >
-<!--         <button type="submit" id="replyBtn" disabled="disabled">댓글쓰기</button> -->
     </div>
 <hr>
 <div id="replyShow"></div>
@@ -180,34 +104,85 @@ $(document).ready(function() {
         
 	    <script type="text/javascript">
 	    
+	    // 댓글 수정
+        $('#updateReply_<%=rb.getRe_ref() %>').click(function() {
+            
+            $('#dialog-message').dialog({
+                modal: true,
+                buttons: {
+                    "수정": function() {
+                        
+                        var nick = $('#nick').val()
+                        var movieSeq = $("#movieSeq").val();
+                        var idx = $('#idx').val();
+                        var reply = $('#replyUpdate').val();
+                        
+                        $.ajax({
+                            url: "BoardReplyUpdate.bo?re_ref=<%=rb.getRe_ref() %>",
+                            method: "get",
+                            data: {
+                                idx:idx,
+                                movieSeq:movieSeq,
+                                nick:nick,
+                                reply:reply
+                            },
+                            success: function(data) {
+                                location.reload();
+                            }
+                        });
+                        
+                        $(this).dialog('close');
+                    },
+                    
+                    "취소": function() {
+                        $(this).dialog('close');
+                    }
+                }
+                
+            });
+            
+        });
+	    
+	    
 	    // 댓글 삭제
-	    $("#deleteReply_<%=rb.getRe_ref() %>").click(function() {
+	    $('#deleteReply_<%=rb.getRe_ref() %>').click(function() {
 	        
-	      var reply = $('#replyContent').val();
-	        
-	        $.ajax({
-	            url: "BoardReplyDelete.bo",
-	            method: "get",
-	            data: {
-	                idx:idx,
-	                movieSeq:movieSeq,
-	                nick:nick,
-	                reply:reply
-	            },
-	            success: function(data) {
+	        $('#delete-message').dialog({
+	            modal: true,
+	            buttons: {
+	                "삭제": function() {
+	                    
+	                	var nick = $('#nick').val()
+	                    var movieSeq = $("#movieSeq").val();
+	                    var idx = $('#idx').val();
+	                    var reply = $('#replyContent').val();
+	                    
+	                    $.ajax({
+	                        url: "BoardReplyDelete.bo?re_ref=<%=rb.getRe_ref() %>",
+	                        method: "get",
+	                        data: {
+	                            idx:idx,
+	                            movieSeq:movieSeq,
+	                            nick:nick,
+	                            reply:reply
+	                        },
+	                        success: function(data) {
+	                            location.reload();
+	                        }
+	                    });
+	                    
+	                    $(this).dialog('close');
+	                },
 	                
-	                 $('#replyShow').append(data);
-	                alert("댓글 삭제 완료");
-	                
-	                location.reload();
-	            },
-	            error: function(data) {
-	            	console("에러");
-				}
+	                "취소": function() {
+	                    $(this).dialog('close');
+	                }
+	            }
 	            
 	        });
 	        
 	    });
+
 	    
 	    </script>
 	    
@@ -215,6 +190,10 @@ $(document).ready(function() {
     
 <%} %>
 
+<div id="dialog-message" title="댓글 수정" style="display:none">
+    <textarea id="replyUpdate" name="replyUpdate" cols="30" rows="5"></textarea>
+     댓글을 수정해주세요.
+</div>
 
 <div id="delete-message" title="댓글" style="display:none">
     삭제 하시겠습니까?

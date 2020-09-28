@@ -11,27 +11,27 @@ import movie.svc.MovieReviewService;
 import movie.vo.ReviewBean;
 import vo.ActionForward;
 
-public class MovieCmtDeleteAction implements Action {
+public class MovieReviewUpdateAction implements Action {
 
-	@Override
+	@Override 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovieCmtDeleteAction!");
 		String nick = request.getParameter("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String typeName = request.getParameter("typeName");
-		String comment = request.getParameter("comment");
+		String review = request.getParameter("review");
 		ReviewBean rb = new ReviewBean();
 		rb.setNick(nick);
 		rb.setMovieSeq(movieSeq);
 		rb.setType(typeName);
-		rb.setContent(comment);
+		rb.setContent(review);
 		
 		MovieReviewService movieReviewService = new MovieReviewService();
-		boolean isInsert = movieReviewService.isDelete(rb);
+		boolean isUpdate = movieReviewService.isUpdate(rb);
 		
-		if(isInsert) {
+		if(isUpdate) {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		out.print(nick+ "님의 리뷰 : " + review);
 		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

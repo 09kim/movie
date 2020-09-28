@@ -14,8 +14,8 @@ import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
 import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
-import movie.action.MovieCmtDeleteAction;
-import movie.action.MovieCmtUpdateAction;
+import movie.action.MovieReviewDeleteAction;
+import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieDetailBySearch;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
@@ -170,15 +170,15 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		} 
-		else if (command.equals("/MovieCmtUpdate.mo")) {
-			action = new MovieCmtUpdateAction();
+		else if (command.equals("/MovieReviewUpdate.mo")) {
+			action = new MovieReviewUpdateAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 
 			}  
-		} else if (command.equals("/MovieCmtDelete.mo")) {
-			action = new MovieCmtDeleteAction();
+		} else if (command.equals("/MovieReviewDelete.mo")) {
+			action = new MovieReviewDeleteAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
@@ -214,7 +214,6 @@ public class MovieFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 		
 
 

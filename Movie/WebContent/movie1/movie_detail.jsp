@@ -16,10 +16,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<script src="../../../Movie/js/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
 
@@ -380,7 +380,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                            }
                            
                         }
-                        
+                        $('.detailH2').text("영화 "+title5+"의 상세 정보"); 
                         
                         });
                });
@@ -420,6 +420,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                             $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
                             $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
                             $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                            $('.directorH2').text(director+"의 다른 영화들");
                       }
                          
                          });
@@ -544,10 +545,24 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <div class="clear"></div>
 
 <section id="main">
-
-<div class="main">
-<!--    <a href="#" id="directorMovies">이 감독의 다른 영화</a> -->
-   <br>
+<div id="wish">
+   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
+</div>
+<div id="dialog-message" title="선택하세요." style="display:none">
+   	평가하시려면 로그인이 필요해요. <br>
+   	회원가입 또는 로그인하고 별점을 기록해보세요.
+   	</div>
+   	
+   	<div id="dialog-comment" title="코멘트" style="display:none">
+   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
+   		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
+   	</div>
+   	
+   	
+   	<div id="delete-message" title="코멘트" style="display:none">
+   		정말로 삭제 하시겠습니까?
+   	</div>
+	<div>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
   <span class='star-input'>
                     <span class='input'>
@@ -578,12 +593,11 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 	  
 		<div id="review"></div>
 <%} %> 
-
-   <div id="subInfo"></div>
-   <div id="wish">
-   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
-   	</div>
+	</div>
+	
+<div class="main">
     <div class=thisMovie>
+    <h2 class="detailH2"></h2>
    <div id="detail">
    </div>
    <div id="posters">
@@ -591,22 +605,21 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    <div style=float:left; id="keyword">
    </div>
    </div>
+   <div id="subInfo"><h2 class="directorH2"></h2></div>
    </div>
-   <div id="dialog-message" title="선택하세요." style="display:none">
-   	평가하시려면 로그인이 필요해요. <br>
-   	회원가입 또는 로그인하고 별점을 기록해보세요.
-   	</div>
    	
-   	<div id="dialog-comment" title="코멘트" style="display:none">
-   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
-   		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
-   	</div>
    	</section>
-   	
-   	<div id="delete-message" title="코멘트" style="display:none">
-   		정말로 삭제 하시겠습니까?
-   	</div>
 <script type="text/javascript">
+$(document).ready(function(){
+	$('.main').slick({
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  slidesToShow: 1,
+		  adaptiveHeight: true
+		});	
+
+});
 
 </script>
    	

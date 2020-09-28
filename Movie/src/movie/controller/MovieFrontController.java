@@ -16,12 +16,13 @@ import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
 import movie.action.MovieReviewDeleteAction;
 import movie.action.MovieReviewUpdateAction;
+import movie.action.MovieDetailBySearch;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieGetGradeAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
-import movie.action.MovieQueryProAction;
+import movie.action.MovieDetailProAction;
 import movie.action.MovieReviewAction;
 import movie.action.MovieSetGradeAction;
 import vo.ActionForward;
@@ -38,7 +39,7 @@ public class MovieFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		if (command.equals("/MovieDetail.mo")) {
-			action = new MovieQueryProAction();
+			action = new MovieDetailProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -50,7 +51,7 @@ public class MovieFrontController extends HttpServlet {
 			forward.setPath("/movie1/movie_search.jsp");
 
 		} else if (command.equals("/MovieSearchPro.mo")) {
-			action = new MovieQueryProAction();
+			action = new MovieDetailProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -180,6 +181,14 @@ public class MovieFrontController extends HttpServlet {
 			} catch (Exception e) {
 
 			} 
+		} else if (command.equals("/MovieDetailBySearch.mo")) {
+			action = new MovieDetailBySearch();
+			try {
+				forward =action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

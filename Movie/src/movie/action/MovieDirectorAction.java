@@ -16,11 +16,9 @@ import vo.ActionForward;
 public class MovieDirectorAction implements Action {
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		String director = request.getParameter("query");
 		kmdbApi movie = new kmdbApi();
 		String json = null;
-		
 		if (director!=null) {
 			json = movie.getMovieDetailByDirector(director);
 		}
@@ -30,7 +28,6 @@ public class MovieDirectorAction implements Action {
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
 
 
-		JsonArray ja = (JsonArray) jsonObject.get("Data"); // 이거안하면 나오는게 이상함
 
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();

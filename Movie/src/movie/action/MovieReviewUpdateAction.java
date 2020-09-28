@@ -19,6 +19,7 @@ public class MovieReviewUpdateAction implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String typeName = request.getParameter("typeName");
 		String review = request.getParameter("review");
+		System.out.println(review);
 		ReviewBean rb = new ReviewBean();
 		rb.setNick(nick);
 		rb.setMovieSeq(movieSeq);

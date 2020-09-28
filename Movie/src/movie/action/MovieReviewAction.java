@@ -21,7 +21,7 @@ public class MovieReviewAction implements Action {
 		String typeName = request.getParameter("typeName");
 		String review = request.getParameter("review");
 		ReviewBean rb = new ReviewBean();
-		System.out.println(nick);
+		System.out.println(review);
 		rb.setNick(nick);
 		rb.setMovieSeq(movieSeq);
 		rb.setType(typeName);

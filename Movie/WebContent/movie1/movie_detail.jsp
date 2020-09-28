@@ -36,9 +36,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 //         return false;
 //     }
 // }); 
-
-
-
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문
 //       $('#btn').click(function(){
@@ -75,9 +72,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-
          
-         $('#review').click(function(){
+         $('#comment').click(function(){
          	cmtBtn();
          });
          
@@ -202,8 +198,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                                  }
                                  
                                  var getGrade = $('#getGrade').val()
-
-
                                  switch(getGrade){
                                  
                                  case "0.5" :
@@ -444,17 +438,14 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	$.ajax({
         			 		url:"MovieReview.mo",  
         			 	 	method:"get",
-        			 	 	data:{
-        			 	 		nick:nick,  
-        			 	 		review:review,
         			 	 	async: false,
-        			 	 	data:{comment:comment,
+        			 	 	data:{review:review,
         			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
         			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
-        			 	 		  	$('#reviewResult').append(data);
+        			 	 		  	$('#review').append(data);
         			 	 		    location.reload();
         			 	 		  }
         			 	 		
@@ -481,9 +472,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
     			 	$.ajax({
     			 		url:"MovieReviewUpdate.mo",  
     			 	 	method:"get",
-    			 	 	data:{review:review,  
     			 	 	async: false,
-    			 	 	data:{comment:comment,  
+    			 	 	data:{review:review,  
     			 	 		  nick:nick,
     			 	 		  movieSeq:movieSeq,
     			 	 		  typeName:typeName 
@@ -514,9 +504,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	$.ajax({
         			 		url:"MovieReviewDelete.mo",  
         			 	 	method:"get",
-        			 	 	data:{review:review,  
         			 	 	async: false,
-        			 	 	data:{comment:comment,  
+        			 	 	data:{review:review,  
         			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
         			 	 		  typeName:typeName 
@@ -587,7 +576,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 <div id="isGrade">
         	<%= getGrade %> 점을 입력하셨습니다 
         	<% if(returnCmt.equals("")){ %>
-        	<input id="review" name="review" type="button" value ="리뷰 남기러 가기">
+        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
         	<%}else{ %>
         	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
   			    	 
@@ -596,7 +585,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 </div>
                 	  <%} %>
                 	  
-		<div id="reviewResult"></div>
+		<div id="review"></div>
 <%} %> 
 	</div>
 	
@@ -623,9 +612,7 @@ $(document).ready(function(){
 		  slidesToShow: 1,
 		  adaptiveHeight: true
 		});	
-
 });
-
 </script>
    	
 </body>

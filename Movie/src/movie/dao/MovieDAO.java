@@ -125,7 +125,7 @@ public class MovieDAO {
 	public int insertReview(ReviewBean reviewBean) {
 
 		int insertCount = 0;
-
+		System.out.println(reviewBean.getContent()+"여기는 DAO ~");
 		try {
 
 			String sql = "SELECT * from grade where nick =? and movieSeq =?";
@@ -133,7 +133,7 @@ public class MovieDAO {
 			pstmt.setString(1, reviewBean.getNick());
 			pstmt.setInt(2, reviewBean.getMovieSeq());
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				reviewBean.setGrade(rs.getInt("grade"));
 				reviewBean.setGenre(rs.getString("genre"));
 				reviewBean.setTitle(rs.getString("title"));

@@ -17,7 +17,6 @@ public class MovieGetPosterForExpectationAction implements Action {
 		MovieGetPosterForExpectationService movieGetPosterForExpectationService = new MovieGetPosterForExpectationService();
 		
 		String poster = movieGetPosterForExpectationService.getPoster(movieSeq);
-		System.out.println(poster);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(poster);

@@ -42,10 +42,10 @@ public class MovieGetGradeAction implements Action {
 	      request.setAttribute("getGrade", grade);
 	      
 	      
-	      // getComment 를 위한 구문들
+	      // getReview 를 위한 구문들
 	      MovieReviewService movieReviewService = new MovieReviewService();
-	      String comment = movieReviewService.getComment(movieBean);
-	      request.setAttribute("returnCmt", comment);
+	      String review = movieReviewService.getReview(movieBean);
+	      request.setAttribute("returnCmt", review);
 	      forward.setRedirect(false);
 	      forward.setPath("/movie1/movie_detail.jsp");
 	      

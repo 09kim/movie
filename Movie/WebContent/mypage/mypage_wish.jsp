@@ -86,19 +86,28 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 		<table>
 				<tr>
 		<% for(MypageBean wishInfo : wishMovie) {%>
+		<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
 					<td id="wishMovie" align="center">
 					<%if(wishInfo.getPoster()!=null){ %>
+<<<<<<< HEAD
 				<div id="posters"><a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq()%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %></div>
+=======
+					<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
 					<%} else { %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=wishInfo.getMovieSeq() %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
+					<a href="MovieDetailPro.mo?movieSeq=<%=a %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
 					<%} %>
 					<%if(wishInfo.getWish().equals("Y")){ %>
+<<<<<<< HEAD
 <%-- 					<button class="btn-like btn-primary-outline" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td> --%>
 <%-- 					<button class="btn-like btn-outline-light" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>">❤️</button></td> --%>
 <%-- 					<div id="like"><button class="btn-like btn-primary-outline" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>"><span class="icon-heart-solid"></span></button></td></div> --%>
 					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=wishInfo.getMovieSeq() %>,<%=wishInfo.getIdx()%>"><span class="icon-heart-solid"></span></button></td>
 <!-- <span class="icon-heart-regular"></span> -->
 <!-- <span class="icon-heart-solid"></span> -->
+=======
+					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button></td>
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
 					<% }%>
 			<%}%>
 			</tr>

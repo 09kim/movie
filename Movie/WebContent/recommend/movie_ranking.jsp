@@ -21,8 +21,13 @@
 
 
 $(document).ready(function() {
+<<<<<<< HEAD
    
    
+=======
+	
+	
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
        var result;
        function getNation(openDt,title){
           $.ajax("BoxOfficeNation.mo",{
@@ -59,7 +64,11 @@ $(document).ready(function() {
              dd = "0" + dd;
           }
        if(d.getDay()!=0){
+<<<<<<< HEAD
           dd = dd-d.getDay();
+=======
+    	   dd = dd-d.getDay();
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
        }
 //           alert(dd); 일요일 구하는 메서드
        var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환 
@@ -73,24 +82,44 @@ $(document).ready(function() {
             },
             success: function(data) {
                $.each(data, function(idx, item) {
+<<<<<<< HEAD
                   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
                      var title = item2.movieNm;
+=======
+            	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
+            		   var title = item2.movieNm;
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
                        
                        
                        $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
+<<<<<<< HEAD
                              "<img class=poster_img>"+
                              "<div><a class=movieName></a></div>"+
                              "<div class=openDate></div><div class=audiAcc></div><div class=nation></div></div>");
+=======
+                    		   "<img class=poster_img>"+
+                    		   "<div><a class=movieName></a></div>"+
+                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div></div>");
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        if(result[0]){
+<<<<<<< HEAD
                              $('.poster_img').eq(idx2).attr("src",result[0]);
+=======
+                       		$('.poster_img').eq(idx2).attr("src",result[0]);
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                        }else{
+<<<<<<< HEAD
                            $('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
+=======
+                    	 	$('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                        }
+<<<<<<< HEAD
                       $('.nation').eq(idx2).text(result[1]);
                        $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
                        $('.movieName').eq(idx2).text(item2.movieNm);
@@ -100,9 +129,21 @@ $(document).ready(function() {
                        
                   });
                  
+=======
+             		   $('.nation').eq(idx2).text(result[1]);
+                       $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
+                       $('.movieName').eq(idx2).text(item2.movieNm);
+                       
+                      
+                       
+                       
+            	   });
+            	  
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                    
                 });
                $('.boxOffice').slick({
+<<<<<<< HEAD
                   dots: false,
                   infinite: false,
                   arrows: true,
@@ -138,6 +179,43 @@ $(document).ready(function() {
                     // instead of a settings object
                   ]
                 });
+=======
+            	   dots: false,
+            	   infinite: false,
+            	   arrows: true,
+            	   speed: 300,
+            	   slidesToShow: 4,
+            	   slidesToScroll: 3,
+            	   responsive: [
+            	     {
+            	       breakpoint: 1024,
+            	       settings: {
+            	         slidesToShow: 3,
+            	         slidesToScroll: 3,
+            	         infinite: true,
+            	         dots: true
+            	       }
+            	     },
+            	     {
+            	       breakpoint: 600,
+            	       settings: {
+            	         slidesToShow: 2,
+            	         slidesToScroll: 2
+            	       }
+            	     },
+            	     {
+            	       breakpoint: 480,
+            	       settings: {
+            	         slidesToShow: 1,
+            	         slidesToScroll: 1
+            	       }
+            	     }
+            	     // You can unslick at a given breakpoint now by adding:
+            	     // settings: "unslick"
+            	     // instead of a settings object
+            	   ]
+            	 });
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
                
             }
        });
@@ -152,7 +230,10 @@ $(document).ready(function() {
 <body>
 <input type="hidden" value="<%=nick%>">
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
+<<<<<<< HEAD
 <div class="clear"></div>
+=======
+>>>>>>> branch 'master' of https://github.com/fmoni1306/movie.git
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>
 

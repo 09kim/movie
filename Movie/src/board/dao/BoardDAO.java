@@ -218,6 +218,7 @@ public class BoardDAO {
 				ReplyBean reply = new ReplyBean();
 				reply.setNick(rs.getString("nick"));
 				reply.setReply(rs.getString("reply"));
+				reply.setRe_ref(rs.getInt("re_ref"));
 				reply.setData(rs.getDate("date"));
 				
 				replyList.add(reply);

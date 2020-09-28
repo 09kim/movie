@@ -16,8 +16,9 @@ public class BoardReplyDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardReplyDeleteAction");
 		
-		ReplyBean replyBean = new ReplyBean();
-		int re_ref = replyBean.getRe_ref();
+		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
+//		ReplyBean replyBean = new ReplyBean();
+//		int re_ref = replyBean.getRe_ref();
 		System.out.println(re_ref);
 		
 		BoardReplyService boardReplyService = new BoardReplyService();

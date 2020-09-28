@@ -41,6 +41,7 @@ $(document).ready(function() {
 		
 	});
     
+    // 댓글 쓰기
     $("#replyBtn").on("click", function() {
 			
         var reply = $('#replyContent').val();
@@ -67,6 +68,7 @@ $(document).ready(function() {
 		
 	});
     
+    // 댓글 수정
     $("#updateReply").on("click", function() {
     	
     	var reply = $('#replyContent').val();
@@ -92,6 +94,7 @@ $(document).ready(function() {
 		
 	});
     
+    // 댓글 삭제
 //     $('#deleteReply').click(function() {
 		
 //     	$('#delete-message').dialog({
@@ -126,29 +129,7 @@ $(document).ready(function() {
 //     	});
     	
 // 	});
-    
-    $("#deleteReply").on("click", function() {
-		
-//     	var reply = $('#replyContent').val();
-    	
-    	$.ajax({
-    		url: "BoardReplyDelete.bo",
-            method: "get",
-            data: {
-                idx:idx,
-                movieSeq:movieSeq,
-                nick:nick,
-//                 reply:reply
-            },
-            success: function(data) {
-                
-//                 $('#replyShow').append(data);
-                alert("댓글 삭제 완료");
-                
-                location.reload();
-            }
-    	});
-	});
+
 	
 });
 
@@ -191,11 +172,44 @@ $(document).ready(function() {
 	    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
 	    
 	    <%if(nick.equals(rb.getNick())) { %>
-			<input type="button" id ="updateReply" value="수정">
-		    <input type="button" id ="deleteReply" value="삭제">
+			<input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
+		    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
 	    <%} %>
-	    </div>
-	    <hr>
+        </div>
+        <hr>  
+        
+	    <script type="text/javascript">
+	    
+	    // 댓글 삭제
+	    $("#deleteReply_<%=rb.getRe_ref() %>").click(function() {
+	        
+	      var reply = $('#replyContent').val();
+	        
+	        $.ajax({
+	            url: "BoardReplyDelete.bo",
+	            method: "get",
+	            data: {
+	                idx:idx,
+	                movieSeq:movieSeq,
+	                nick:nick,
+	                reply:reply
+	            },
+	            success: function(data) {
+	                
+	                 $('#replyShow').append(data);
+	                alert("댓글 삭제 완료");
+	                
+	                location.reload();
+	            },
+	            error: function(data) {
+	            	console("에러");
+				}
+	            
+	        });
+	        
+	    });
+	    
+	    </script>
 	    
     <%} %>
     

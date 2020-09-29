@@ -10,12 +10,8 @@
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 <!-- <script src="js/bootstrap.min.js"></script> -->
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/slick.css" rel="stylesheet" type="text/css">
 <%-- <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
@@ -51,60 +47,30 @@ $(document).ready(function() {
 					
 					var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
 					var nation = item2.nation
-					var movieSeq = item2.movieSeq
 					if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
 						var src = item2.posters.split("|")[0]; 
 						for(var num = 0; num < item2.actor.length ; num++){
 							actors = actors + item2.actor[num].actorNm + ", ";	
 						}
                        if(image[0]){
-                    	 
-						$('.koreaList').append('<div class="row">'+
-								'<div class="col-sm-6 col-md-4">'+
-								'<div class="thumbnail">'+
-								'<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+query+'>'+
-								"<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>"+
-								'</a>'+
-								'<div class="caption">'+
-								'<h3>Thumbnail label</h3>'+
-								' <p>...</p>'+
-								'<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>'+
-								'</div>'+
-								'</div>'+
-								'</div>');
-// 						$('.koreaList').append("<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>");
+						$('.koreaList').append("<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>");
                        }else{
 //                     	   // 이미지 없으면 표시 안함
                        }
 					
 					} else {
-						for(var num = 0; num < item2.actor.length ; num++){
-							actors = actors + item2.actor[num].actorNm + ", ";	
-						}
+// 						for(var num = 0; num < item2.actor.length ; num++){
+// 							actors = actors + item2.actor[num].actorNm + ", ";	
+// 						}
 							
-						if(image[0]){
-// 							$('.foreignList').append('<div class="row">'+
-// 									'<div class="col-sm-6 col-md-4">'+
-// 									'<div class="thumbnail">'+
-// 									'<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+query+'>'+
-// 									"<img class='poster_img' style='width:150px;height:300px;padding-right:20px;' src='"+image[0]+"'>"+
-// 									'</a>'+
-// 									'<div class="caption">'+
-// 									'<h3>Thumbnail label</h3>'+
-// 									' <p>...</p>'+
-// 									'<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>'+
-// 									'</div>'+
-// 									'</div>'+
-// 									'</div>');
-							$('.foreignList').append('<div class="movie"></div>');
-							
-							$('.movie').append('<div class=poster><img src='+image[0]+'></div>');
-							$('.movie').append('<div class=nation>'+item2.nation+'</div>');
-							$('.movie').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title5+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
-							$('.movie').append('<div class=runtime>'+item2.runtime+'</div>');
-							$('.movie').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
-						}
+// 						if(image[0]){
+// 							$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>');
+// 							$('#foreignList').append('<div class=nation>'+item2.nation+'</div>');
+// 							$('#foreignList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
+// 									+item2.movieSeq+'&query='+title5+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
+// 							$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>');
+// 							$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+// 						}
                      }
 					});
                   });
@@ -131,8 +97,6 @@ $(document).ready(function() {
 			
 			
 			$('.koreaList').slick({
-				centerMode: true,
-				variableWidth:true,
 		        dots: false,
 		        infinite: false,
 		        arrows: true,
@@ -167,46 +131,7 @@ $(document).ready(function() {
 		          // settings: "unslick"
 		          // instead of a settings object
 		        ]
-		      }); // slick(koreaList)끝
-			
-			$('.foreignList').slick({
-				centerMode: true,
-				variableWidth:true,
-		        dots: false,
-		        infinite: false,
-		        arrows: true,
-		        speed: 300,
-		        slidesToShow: 4,
-		        slidesToScroll: 3,
-		        responsive: [
-		          {
-		            breakpoint: 1024,
-		            settings: {
-		              slidesToShow: 3,
-		              slidesToScroll: 3,
-		              infinite: true,
-		              dots: true
-		            }
-		          },
-		          {
-		            breakpoint: 600,
-		            settings: {
-		              slidesToShow: 2,
-		              slidesToScroll: 2
-		            }
-		          },
-		          {
-		            breakpoint: 480,
-		            settings: {
-		              slidesToShow: 1,
-		              slidesToScroll: 1
-		            }
-		          }
-		          // You can unslick at a given breakpoint now by adding:
-		          // settings: "unslick"
-		          // instead of a settings object
-		        ]
-		      }); // slick(foreignList)끝
+		      });
 			
 			
 		} 
@@ -215,25 +140,8 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 }); // ready()끝;
 </script>
-<style>
-img:hover{transform: scale(1.5);}
-</style>
 
 </head>
 <body>
@@ -245,9 +153,6 @@ img:hover{transform: scale(1.5);}
 <div class="clear"></div>
    <h1>국내영화</h1>
 	<div class="koreaList">
-	</div>
-   <h1>국외영화</h1>
-	<div class="foreignList">
 	</div>
 
 </body>

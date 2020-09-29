@@ -388,13 +388,13 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
              async: false,
              data:{query:director},
              success:function(data){
-          	   
+					           	 
                 $.each(data.Data,function(idx,item){
-                   
+                	if(!item.Result){
+                       	 $('.directorH2').text('결과가 없습니다.');
+                	}
                    var count = item.Count
-                      
                    $.each(item.Result,function(idx,item2){
-                      
                       var title = item2.title
                       var titleNoSpace = title.replace(/ /g, '');
                       var title2 = titleNoSpace.replace(/!HS/g,'')
@@ -403,7 +403,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                       var actors="";
                       
                       var image = item2.posters.split("|")
-                      
                       for(var num = 0; num < item2.actor.length ; num++){
                          actors = actors + item2.actor[num].actorNm + ", ";   
                       }
@@ -420,6 +419,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                          });
                 });
              }
+             
        }); 
          
          

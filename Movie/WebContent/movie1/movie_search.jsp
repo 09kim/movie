@@ -6,7 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
 
@@ -15,8 +19,8 @@ $(document).ready(function(){
 	
 	var latitude, longitude;
 	var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-	var temp,weather;
-	
+	var temp = '0';
+	var weather = 'no';
 	function getLocation(){
 		window.navigator.geolocation.getCurrentPosition(current_position);
 	}
@@ -31,6 +35,7 @@ $(document).ready(function(){
 			success:function(data){
 				$('#temp').val(data.main.temp);
 				$('#weather').val(data.weather[0].main);
+				
 				temp = $('#temp').val();
 				weather = $('#weather').val();
 			}
@@ -41,7 +46,7 @@ $(document).ready(function(){
 	
 	
 	
-	
+		
 		var query = $("#query").val();
 		var nick = $("#nick").val();
 		query = query.replace(/ /g,'');
@@ -74,12 +79,13 @@ $(document).ready(function(){
 							}
 								
 							if(image[0]){
-								$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');
-								$('#koreaList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
+								$('#koreaList').append('<div class="koreaMovie"></div>')
+								$('.koreaMovie').append('<div class=nation>'+item2.nation+'</div>');
+								$('.koreaMovie').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
 										+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
-								$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>');
-								$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
-								$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>');
+								$('.koreaMovie').append('<div class=runtime>'+item2.runtime+'</div>');
+								$('.koreaMovie').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
+								$('.koreaMovie').append('<div class=poster><img style=width:150px;height:300px;padding-right:20px; src='+image[0]+'></div>');
 							}
 // 							else{
 // 								$('#koreaList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
@@ -109,6 +115,44 @@ $(document).ready(function(){
 						
 	                  });
 				});
+				
+				$('#koreaList').slick({
+	            	   dots: false,
+	            	   infinite: false,
+	            	   arrows: true,
+	            	   variableWidth:true,
+	            	   speed: 300,
+	            	   slidesToShow: 4,
+	            	   slidesToScroll: 3,
+	            	   responsive: [
+	            	     {
+	            	       breakpoint: 1024,
+	            	       settings: {
+	            	         slidesToShow: 3,
+	            	         slidesToScroll: 3,
+	            	         infinite: true,
+	            	         dots: true
+	            	       }
+	            	     },
+	            	     {
+	            	       breakpoint: 600,
+	            	       settings: {
+	            	         slidesToShow: 2,
+	            	         slidesToScroll: 2
+	            	       }
+	            	     },
+	            	     {
+	            	       breakpoint: 480,
+	            	       settings: {
+	            	         slidesToShow: 1,
+	            	         slidesToScroll: 1
+	            	       }
+	            	     }
+	            	     // You can unslick at a given breakpoint now by adding:
+	            	     // settings: "unslick"
+	            	     // instead of a settings object
+	            	   ]
+	            	 });
 			}
 	});
 		// 배우 검색 기능을 담당하는 Jquery문

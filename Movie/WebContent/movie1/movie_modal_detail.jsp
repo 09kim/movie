@@ -532,7 +532,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
 <input type="hidden" id="getGrade" value="<%=getGrade %>">
 <input type="hidden" id="returnCmt" value="<%=returnCmt %>">
-<jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
 <section id="main">

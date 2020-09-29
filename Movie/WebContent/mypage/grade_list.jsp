@@ -42,10 +42,10 @@ int listCount = (int) request.getAttribute("listCount");
 				for (int i = 0; i < gradeList.size(); i++) {
 			%>
 			<div id="gradelist">
-				<ul>
+				<ul> <%  String a = String.format("%05d" ,gradeList.get(i).getMovieSeq()); %>
 					<li><a><img src=<%=gradeList.get(i).getPoster() %>></a>
 						<div id="movieInfo">
-							<div><%=gradeList.get(i).getTitle()%></div>
+							<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=gradeList.get(i).getTitle()%>" ><div><%=gradeList.get(i).getTitle()%></div></a>
 							<div><%=gradeList.get(i).getGrade()%></div>
 							<!--
 						 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->

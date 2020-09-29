@@ -19,11 +19,27 @@ public class BoardReviewService {
 		Connection con = getConnection();
 		BoardDAO mo = BoardDAO.getInstance();
 		mo.setConnection(con);
-		ArrayList<ReviewBean> reviewList = mo.getComment(reviewBean);
+		ArrayList<ReviewBean> reviewList = mo.getReview(reviewBean);
 		
 		close(con);
 		return reviewList;
 	}
+
+	public ReviewBean selectReview(int idx, int movieSeq) {
+		System.out.println("BoardReviewService - selectReview");
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		ReviewBean reviewBean = boardDAO.getReviewDetail(idx, movieSeq);
+		
+		close(con);
+		
+		return reviewBean;
+		
+	}
+
 	
 	
 }

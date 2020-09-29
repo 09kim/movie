@@ -33,7 +33,7 @@ def top_match(data, name, index=3, sim_function=sim_distance):
 
 
 # 나중에 자바에서 현재 사용자값을 넘겨줘야할듯
-li = top_match(member, "태윤")
+li = top_match(member, "야호3")
 
 score = []
 names = []
@@ -41,7 +41,7 @@ names = []
 for i in li:
     score.append(i[0])
     names.append(i[1])
-
+print(score)
 
 
 
@@ -83,41 +83,45 @@ def drawGraph(data, name1, name2):
 
 # 피어슨 상관계수 구하기
 def sim_pearson(data, name1, name2):
-    sumX = 0  # X의 합
-    sumY = 0  # Y의 합
-    sumPowX = 0  # X 제곱의 합
-    sumPowY = 0  # Y 제곱의 합
-    sumXY = 0  # X*Y의 합
-    count = 0  # 영화 개수
+    try:
+        sumX = 0  # X의 합
+        sumY = 0  # Y의 합
+        sumPowX = 0  # X 제곱의 합
+        sumPowY = 0  # Y 제곱의 합
+        sumXY = 0  # X*Y의 합
+        count = 0  # 영화 개수
 
-    for i in data[name1]:  # i=key
-        if i in data[name2]:
-            sumX += data[name1][i]
-            sumY += data[name2][i]
-            sumPowX += pow(data[name1][i], 2)
-            sumPowY += pow(data[name2][i], 2)
-            sumXY += data[name1][i] * data[name2][i]
-            count += 1
-    return (sumXY - ((sumX * sumY) / count)) / sqrt(
-        (sumPowX - (pow(sumX, 2) / count)) * (sumPowY - (pow(sumY, 2) / count)))
+        for i in data[name1]:  # i=key
+            if i in data[name2]:
+                sumX += data[name1][i]
+                sumY += data[name2][i]
+                sumPowX += pow(data[name1][i], 2)
+                sumPowY += pow(data[name2][i], 2)
+                sumXY += data[name1][i] * data[name2][i]
+                count += 1
+        return (sumXY - ((sumX * sumY) / count)) / sqrt(
+            (sumPowX - (pow(sumX, 2) / count)) * (sumPowY - (pow(sumY, 2) / count)))
+    except ZeroDivisionError as e:
+        print(e)
+
 
 # print(sim_pearson(member,"태윤","test1"))
 
-# def top_match(data, name, index=3, sim_function=sim_pearson):
-#     li=[]
-#     for i in data: #딕셔너리를 돌고
-#         if name!=i: #자기 자신이 아닐때만
-#             li.append((sim_function(data,name,i),i)) #sim_function()을 통해 상관계수를 구하고 li[]에 추가
-#     li.sort() #오름차순
-#     li.reverse() #내림차순
-#     return li[:index]
+def top_match2(data, name, index=10, sim_function=sim_pearson):
+    li=[]
+    for i in data: #딕셔너리를 돌고
+        if name!=i: #자기 자신이 아닐때만
+            li.append((sim_function(data,name,i),i)) #sim_function()을 통해 상관계수를 구하고 li[]에 추가
+    li.sort() #오름차순
+    li.reverse() #내림차순
+    return li[:index]
 
 
 
 
 
 def getRecommendation(data, person, sim_function=sim_pearson):
-    result = top_match(member, person, len(data))
+    result = top_match2(member, person, len(data))
 
     simSum = 0  # 유사도 합을 위한 변수
     score = 0  # 평점 합을 위한 변수
@@ -140,7 +144,7 @@ def getRecommendation(data, person, sim_function=sim_pearson):
             score = 0  # 영화가 바뀌었으니 초기화한다
 
     for key in score_dic:
-        score_dic[key] = score_dic[key] / sim_dic[key]  # 평점 총합/ 유사도 총합
+        score_dic[key] = int(score_dic[key] / sim_dic[key]) # 평점 총합/ 유사도 총합
         li.append((score_dic[key], key))  # list((tuple))의 리턴을 위해서.
     li.sort()  # 오름차순
     li.reverse()  # 내림차순
@@ -149,4 +153,4 @@ def getRecommendation(data, person, sim_function=sim_pearson):
 
 # for i in lst:
 #     print(getRecommendation(member, i))
-# print(getRecommendation(member,"태윤"))
+print(getRecommendation(member,"야호2"))

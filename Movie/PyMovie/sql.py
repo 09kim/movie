@@ -20,4 +20,5 @@ def getMember():
         for o in row2:
             member[i['nick']].update({o['title'] + "/" + str(o['movieSeq']): o['grade']})
 
+
     return member, lst

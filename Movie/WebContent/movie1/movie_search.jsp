@@ -29,10 +29,10 @@ $(document).ready(function(){
 			dataType:"json",
 			async:false,
 			success:function(data){
-				temp = data.main.temp;
-				weather = data.weather[0].main;
-				$('#temp').val(temp);
-				$('#weather').val(weather);
+				$('#temp').val(data.main.temp);
+				$('#weather').val(data.weather[0].main);
+				temp = $('#temp').val();
+				weather = $('#weather').val();
 			}
 		});
 	}
@@ -42,16 +42,13 @@ $(document).ready(function(){
 	
 	
 	
-		
 		var query = $("#query").val();
 		var nick = $("#nick").val();
-		console.log(nick);
 		query = query.replace(/ /g,'');
 		$.ajax('MovieSearchPro.mo',{
 			method:"post",
 			dataType :"json",
-			data:{query:query
-				},
+			data:{query:query},
 			success:function(data){
 				// 처음 결과 4개의 배열구조
 				$.each(data.Data,function(idx,item){
@@ -70,7 +67,6 @@ $(document).ready(function(){
 						
 						var image = item2.posters.split("|") // 포스터 데이터는 | 로 구분되어있어서 스플리 처리함 ( 여러개 있음 )
 						var nation = item2.nation
-						
 						if(nation == "대한민국"){ // 국내 국외 영화구분을 위한 제어문
 							
 							for(var num = 0; num < item2.actor.length ; num++){
@@ -80,7 +76,7 @@ $(document).ready(function(){
 							if(image[0]){
 								$('#koreaList').append('<div class=nation>'+item2.nation+'</div>');
 								$('#koreaList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
+										+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
 								$('#koreaList').append('<div class=runtime>'+item2.runtime+'</div>');
 								$('#koreaList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 								$('#koreaList').append('<div class=poster><img src='+image[0]+'></div>');
@@ -99,7 +95,7 @@ $(document).ready(function(){
 								$('#foreignList').append('<div class=poster><img src='+image[0]+'></div>');
 								$('#foreignList').append('<div class=nation>'+item2.nation+'</div>');
 								$('#foreignList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&query='+title5+'&image='+image[0]+'>'+title3+'</div>');
+										+item2.movieSeq+'&query='+title5+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
 								$('#foreignList').append('<div class=runtime>'+item2.runtime+'</div>');
 								$('#foreignList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 							}
@@ -117,11 +113,10 @@ $(document).ready(function(){
 	});
 		// 배우 검색 기능을 담당하는 Jquery문
 		$.ajax('MovieSearchActorPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
 			data:{query:query},
 			success:function(data){
-				
 				$.each(data.Data,function(idx,item){
 					
 					var count = item.Count
@@ -135,7 +130,6 @@ $(document).ready(function(){
 						var title5 = title3.trim();
 						var title6 =  encodeURIComponent(title5);
 						var actors="";
-						
 						var image = item2.posters.split("|")
 						
 						for(var num = 0; num < item2.actor.length ; num++){
@@ -145,7 +139,7 @@ $(document).ready(function(){
 						if(image[0]){
 							$('#actorList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#actorList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId'+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
+									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
 							$('#actorList').append('<div class=runtime>'+item2.runtime+'</div>');
 							$('#actorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 							$('#actorList').append('<div class=poster><img src='+image[0]+'></div>');
@@ -159,10 +153,9 @@ $(document).ready(function(){
 	});
 		// 감독검색을 담당하는 Jquery문
 		$.ajax('MovieSearchDirectorPro.mo',{
-			method:"get",
+			method:"post",
 			dataType :"json",
 			data:{query:query},
-			async:false,
 			success:function(data){
 				
 				$.each(data.Data,function(idx,item){
@@ -189,7 +182,7 @@ $(document).ready(function(){
 							$('#directorList').append('<div class=poster><img src='+image[0]+'></div>');
 							$('#directorList').append('<div class=nation>'+item2.nation+'</div>');
 							$('#directorList').append('<div class=title><a href=MovieDetailBySearch.mo?movieId'+item2.movieId+'&movieSeq='
-									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'>'+title3+'</div>');
+									+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'>'+title3+'</div>');
 							$('#directorList').append('<div class=runtime>'+item2.runtime+'</div>');
 							$('#directorList').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>');
 						}
@@ -210,7 +203,6 @@ $(document).ready(function(){
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>
-
 	<input type="hidden" id="query" name=query value="<%=query%>">
 	<input type="hidden" id="temp">
 	<input type="hidden" id="weather">

@@ -12,8 +12,21 @@ public class MovieBean {
 	private String nation;
 	private String openDt;
 	private String moviePoster;
-	
+	private int temp;
+	private String weather;
 
+	public int getTemp() {
+		return temp;
+	}
+	public void setTemp(int temp) {
+		this.temp = temp;
+	}
+	public String getWeather() {
+		return weather;
+	}
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
 	public String getMoviePoster() {
 		return moviePoster;
 	}

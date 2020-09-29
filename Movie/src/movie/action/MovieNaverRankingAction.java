@@ -1,4 +1,4 @@
-package mypage.action;
+package movie.action;
 
 import java.io.PrintWriter;
 
@@ -12,13 +12,10 @@ import action.Action;
 import api.RestAPI_test;
 import vo.ActionForward;
 
-public class MemberMypageTitleAction implements Action {
+public class MovieNaverRankingAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String nick = request.getParameter("nick");
 		RestAPI_test rest = new RestAPI_test();
-		String grade = rest.getExpectedGrade(nick);
-		String user = rest.getRecommendUser(nick);
 		String naver = rest.getNaver();
 		JsonParser jsonParser = new JsonParser();
 		JsonArray jsonObject = (JsonArray) jsonParser.parse(naver);

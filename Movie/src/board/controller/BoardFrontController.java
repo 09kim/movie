@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.*;
 import board.action.*;
 import member.action.*;
+import movie.action.*;
 import mypage.action.*;
 import vo.*;
 
@@ -28,26 +29,8 @@ public class BoardFrontController extends HttpServlet {
 		 ActionForward forward = null;
 		
 		
-		 if(command.equals("/BoardReviewWriteForm.bo")) {
-			 forward = new ActionForward();
-			 forward.setPath("/board/board_reviewWrite.jsp");
-			 
-		 } else if(command.equals("/BoardReviewWritePro.bo")) {
-			 action = new BoardReviewWriteProAction();
-			 try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		 } else if(command.equals("/BoardReviewList.bo")) {
+		 if(command.equals("/BoardReviewList.bo")) {
 			 action = new BoardReviewListAction();
-			 try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		 } else if(command.equals("/BoardReviewDetail.bo")) {
-			 action = new BoardReviewDetailAction();
 			 try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -60,8 +43,36 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		 } else if(command.equals("/BoardReviewDetail.bo")) {
+			 action = new BoardReviewDetailAction();
+			 try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 } else if(command.equals("/BoardReplyPro.bo")) {
+			 action = new BoardReplyProAction();
+			 try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 } else if(command.equals("/BoardReplyUpdate.bo")) {
+			 action = new BoardReplyUpdateAction();
+			 try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 } else if(command.equals("/BoardReplyDelete.bo")) {
+			 action = new BoardReplyDeleteAction();
+			 try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		 }
-		
+		 
 		
 		
 		

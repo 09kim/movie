@@ -170,6 +170,15 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		} 
+		
+		else if (command.equals("/MovieDetailModal.mo")) {
+			action = new MovieGetGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		} 
 		else if (command.equals("/MovieReviewUpdate.mo")) {
 			action = new MovieReviewUpdateAction();
 			try {

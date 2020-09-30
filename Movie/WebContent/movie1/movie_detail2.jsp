@@ -350,31 +350,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
              }  
                      director = item2.director[0].directorNm;
                      director = director.replace(/ /g,'');
-//                      $('#detail').append('<div class=title>'+title5+'</div>')
-                     $('#detail').append('<div class=poster><img style=width:250px;height:350px; src='+image[0]+'></div>');
-                     $('#detail').append('<div class=content></div>');
-                     $('.content').append('<dl class=info>');
-                     $('.content').append('<dt>상영국가</dt>');
-                     $('.content').append('<dd>'+item2.nation+'</dd>');
-                     $('.content').append('<dt>개봉일</dt>');
-                     $('.content').append('<dd>'+item2.repRlsDate+'</dd>');
-                     $('.content').append('<dt>상영시간</dt>');
-                     $('.content').append('<dd>'+item2.runtime+'</dd>');
-                     $('.content').append('<dt>시청 가능 연령</dt>');
-                     $('.content').append('<dd>'+item2.rating[0].ratingGrade+'</dd>');
-                     $('.content').append('<dt>감독</dt>');
-                     $('.content').append('<dd><a href=MovieSearchDirector.mo?director='+director+'>'+item2.director[0].directorNm+'</a></dd>');
-                     $('.content').append('<dt>배우</dt>');
-                     $('.content').append('<dd>'+actors+'</dd>');
-                     $('.content').append('<dt>배급사</dt>');
-                     $('.content').append('<dd>'+item2.company+'</dd>');
-                     $('.content').append('<dd>'+item2.company+'</dd>');
-                    
-                     
-                     
-                     
-                     
-                     
+                     $('#detail').append('<div class=title>'+title5+'</div>')
                      $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
                      $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
                      $('#detail').append('<div class=nation>'+item2.nation+'</div>')

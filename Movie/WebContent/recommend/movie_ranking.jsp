@@ -12,7 +12,7 @@
 <%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 <!-- <script src="js/bootstrap.min.js"></script> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
+<%-- <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css"> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
@@ -21,6 +21,38 @@
 
 
 $(document).ready(function() {
+	
+	// 태윤's 장소 확인 및 날씨 정보 기능 ranking에도 추가함 - 낙원
+	 var latitude, longitude;
+	   var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
+	   var temp,weather;
+	   
+	   function getLocation(){
+	      window.navigator.geolocation.getCurrentPosition(current_position);
+	   }
+	   
+	   function current_position(position){
+	      latitude = position.coords.latitude;
+	      longitude = position.coords.longitude;
+	      $.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
+	            +"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
+	         dataType:"json",
+	         async:false,
+	         success:function(data){
+	            $('#temp').val(data.main.temp);
+	            $('#weather').val(data.weather[0].main);
+	            temp = $('#temp').val();
+	            weather = $('#weather').val();
+	         }
+	      });
+	   }
+	      
+	   window.addEventListener("load",getLocation);
+	
+	
+	
+	
+	
 	
 	
        var result;
@@ -37,7 +69,8 @@ $(document).ready(function() {
                    $.each(data.Data, function(idx, item) {
                 	  $.each(item.Result,function(idx2,item2){
                 		  var image = item2.posters.split("|");
-                		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
+//                 		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq;
+                		  result = image[0] +"|"+item2.nation + "|"+item2.movieSeq +"|"+item2.movieId +"|"+item2.rating[0].ratingGrade; // 밑에 영화포스터 링크(a 태그)안에 movieId,ratingGrade 포함해야해서 추가함 - 낙원
                 	  });
                    });
                    
@@ -79,21 +112,43 @@ $(document).ready(function() {
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
                        
+                       // movie_search 양식을 맞춰서 만든 것 - 낙원 : 0930
+//                     result = getNation(openDt,titleNoSpace);
+//                     result = result.split("|");                       
                        
+//                        $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
+//                   			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather+'><img class=poster_img style=width:250px;height:350px; src='+result[0]+'></a></div>'+
+// //                   			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+//                   			 '<div class=nation>'+result[1]+'</div>'+
+//                   			 '<div class=rating>'+result[4]+'</div>'+
+//                   			 '<div class=title>'+title+'</div></div>');
+                       
+                       
+                       
+                       // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
                        $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
-                    		   "<img class=poster_img>"+
-                    		   "<div><a class=movieName></a></div>"+
-                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div></div>");
+                    		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+//                     		   "<div><a class=movieName></a></div>"+
+                    		   "<div class =movieName></div>"+
+                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div><div class=rating></div></div>"); // rating 추가 - 낙원 : 0930
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
+                       
+                       temp = $('#temp').val();
+      	               weather = $('#weather').val();
                        if(result[0]){
+                       		$('.poster_img').eq(idx2).css("width","250px").css("height","350px");
                        		$('.poster_img').eq(idx2).attr("src",result[0]);
                        }else{
+                    	   $('.poster_img').eq(idx2).css("width","250px").css("height","350px");
                     	 	$('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
                        }
              		   $('.nation').eq(idx2).text(result[1]);
-                       $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
-                       $('.movieName').eq(idx2).text(item2.movieNm);
+             		   $('.rating').eq(idx2).text(result[4]);
+//                        $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
+//                        $('.movieName').eq(idx2).attr('href','MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather);
+                       $('.poster').eq(idx2).attr('href','MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather);
+                       $('.movieName').eq(idx2).html(item2.movieNm);
                        
                       
                        
@@ -104,11 +159,12 @@ $(document).ready(function() {
                 });
                $('.boxOffice').slick({
             	   dots: false,
-            	   infinite: false,
-            	   arrows: true,
-            	   speed: 300,
-            	   slidesToShow: 4,
-            	   slidesToScroll: 3,
+                   infinite: false,
+                   arrows: true,
+                   variableWidth:true,
+                   speed: 300,
+                   slidesToShow: 4,
+                   slidesToScroll: 3,
             	   responsive: [
             	     {
             	       breakpoint: 1024,
@@ -148,9 +204,19 @@ $(document).ready(function() {
    
    
 </script>
+<style>
+.rating{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
+.poster{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
+.nation{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
+.movieName{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
+.movie {width: 250px;height:400px;margin-right: 20px;padding:0;}
+</style>
 </head>
 <body>
 <input type="hidden" value="<%=nick%>">
+<!-- temp weather 받을수있는 hidden객체 추가 - 낙원 -->
+<input type="hidden" id="temp">
+<input type="hidden" id="weather">
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>

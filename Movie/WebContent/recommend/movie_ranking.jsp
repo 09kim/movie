@@ -45,18 +45,25 @@
        var d = new Date();
        var yy = d.getFullYear();
        var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
-       var dd = d.getDate()  ; // 이틀 전 날짜(주간 구하기용) 
-          if(mm < 10){
+       var dd = d.getDate()  ;
+       if(d.getDay()!=1){
+    	   dd = dd-d.getDay();
+       }
+//           alert(dd); // 일요일 구하는 메서드
+		if(dd<=0){
+			var lastDay = new Date(yy,mm-1,0).getDate();
+			dd = lastDay - Math.abs(dd);
+			mm = mm-1;
+		}
+		
+		 if(mm < 10){
              mm = "0" + mm; 
           }
           if(dd < 10){
              dd = "0" + dd;
           }
-       if(d.getDay()!=1){
-    	   dd = dd-d.getDay();
-       }
-//           alert(dd); 일요일 구하는 메서드
-       var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환 
+		
+       var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환
        $.ajax({
             url: "BoxOffice.mo",
                     // &itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정(최대 10)

@@ -1,5 +1,7 @@
 package mypage.vo;
 
+import java.util.Arrays;
+
 public class GenreBean implements MarkGenreBean{
 //	코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처
 	private int 코메디;
@@ -114,6 +116,19 @@ public class GenreBean implements MarkGenreBean{
 	}
 	public void set공포(int 공포) {
 		this.공포 = 공포;
+	}
+	
+	public int[] getDESC() {
+		int[] desc = {getSF(),get가족(),get공포(),get느와르(),get드라마(),get로맨스(),get미스터리(),get범죄(),get스릴러(),get애니메이션(),
+				get액션(),get어드벤처(),get인물(),get전쟁(),get코메디(),get판타지()};
+		Arrays.sort(desc);
+		int[] result = new int[3];
+		for(int i =0; i<result.length;i++) {
+			result[i] = desc[i];
+		}
+		
+		
+		return result;
 	}
 	
 	

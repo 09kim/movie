@@ -29,6 +29,7 @@
 		$.ajax('MypageGener.mp', {
 			method : "post",
 			dataType : "json",
+			async: false,
 			data : {
 				nick : nick
 			},
@@ -67,6 +68,7 @@
 		$.ajax('MypageNation.mp',{
 			method : "post",
 			dataType : "json",
+			async: false,
 			data : {
 				nick : nick
 			},
@@ -84,6 +86,7 @@
 		$.ajax('MypageDirector.mp',{
 			method : "post",
 			dataType : "json",
+			async: false,
 			data : {
 				nick : nick
 			},
@@ -93,8 +96,6 @@
  						var img = getSrc(item2.director);
  						$('.director').append(img);
  						$('.director').append(item2.director+"<br>");
- 						
-						
 					});
 				});
 				

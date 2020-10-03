@@ -2,6 +2,7 @@ package mypage.action;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -112,10 +113,15 @@ public class MypageGenerAction implements Action {
 				}
 			}
 		}
+		
+		
 
 		ArrayList<MarkGenreBean> list2 = new ArrayList<MarkGenreBean>();
 		list2.add(gener);
 		list2.add(count);
+		
+		
+		
 		Gson gs = new Gson();
 		String json = gs.toJson(list2);
 		JsonParser jp = new JsonParser();

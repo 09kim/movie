@@ -1,5 +1,6 @@
 package board.action;
 
+import java.text.*;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -9,18 +10,21 @@ import board.svc.*;
 import board.vo.*;
 import vo.*;
 
-public class BoardReviewDetailAction implements Action {
+public class BoardReplyUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardReviewDetailAction");
+		System.out.println("BoardReplyUpdateAction");
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
-		
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
+		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String reply = request.getParameter("reply");
+		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
+		Date date = new Date(System.currentTimeMillis());
+		String currDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+		currDate = request.getParameter("date");
 		
 		
 		ReplyBean replyBean = new ReplyBean();
@@ -28,26 +32,20 @@ public class BoardReviewDetailAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
+		replyBean.setRe_ref(re_ref);
+		replyBean.setData(date);
 		
 		
-		// 선택한 리뷰 내용 들고오기
-		BoardReviewService boardReviewService = new BoardReviewService();
-		ReviewBean reviewBean = boardReviewService.selectReview(idx, movieSeq);
-		request.setAttribute("reviewBean", reviewBean);
-		
-		
-		// 댓글 리스트 불러오기
 		BoardReplyService boardReplyService = new BoardReplyService();
-		ArrayList<ReplyBean> replyList = boardReplyService.replyList(replyBean);
-		request.setAttribute("replyList", replyList);
+		boolean isSuccess = boardReplyService.updateReply(replyBean);
+			
 		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("BoardReviewView.bo");
 		
-		ActionForward forword = new ActionForward();
-		forword.setRedirect(false);
-		forword.setPath("/board/board_reviewDetail.jsp");
+	    return forward;
 		
-		
-		return forword;
 	}
 
 }

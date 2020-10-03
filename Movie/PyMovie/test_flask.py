@@ -13,6 +13,7 @@ li = []
 def recommendUser(nick):
     member, lst = sql.getMember()
     li = recommend.top_match(member, nick)
+    print(li)
     return jsonify(li)
 
 
@@ -20,6 +21,7 @@ def recommendUser(nick):
 def expectedGrade(nick):
     member, lst = sql.getMember()
     li = recommend.getRecommendation(member, nick)
+    print(li)
     return jsonify(li)
 
 @app.route('/getNaverRanking/')

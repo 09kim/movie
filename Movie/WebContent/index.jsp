@@ -3,13 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String nick = (String)session.getAttribute("nick"); %>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	var latitude, longitude;
 	var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-	var temp,weather;
+	var temp = '0';
+	var weather = 'no';
 	
 	function getLocation(){
 		window.navigator.geolocation.getCurrentPosition(current_position);
@@ -42,7 +44,6 @@ $(document).ready(function(){
 <%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 <!-- <script src="js/bootstrap.min.js"></script> -->
 
-<%String nick = (String)session.getAttribute("nick"); %>
 <meta charset="UTF-8">
 <title></title>
 </head>
@@ -51,8 +52,10 @@ $(document).ready(function(){
 	<input type="hidden" id="weather">
 	<jsp:include page="/inc/top.jsp" />
 	<div class="clear"></div>
-	<section id="main"></section>
-	<a href="Python.me?nick=<%=nick%>">파이썬테스트</a>
 	<jsp:include page="/recommend/movie_ranking.jsp"/>
+	<%if(nick!=null) {
+	%><jsp:include page="/recommend/expected_grade_chart.jsp"/><%
+	}%>
+	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
 </body>
 </html>

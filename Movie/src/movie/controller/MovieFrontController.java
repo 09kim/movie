@@ -14,14 +14,18 @@ import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
 import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
-import movie.action.MovieCmtDeleteAction;
-import movie.action.MovieCmtUpdateAction;
+import movie.action.MovieReviewDeleteAction;
+import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieDetailBySearch;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
+import movie.action.MovieExpectedGrade;
 import movie.action.MovieGetGradeAction;
+import movie.action.MovieGetGradeModalAction;
+import movie.action.MovieGetPosterForExpectationAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
+import movie.action.MovieNaverRankingAction;
 import movie.action.MovieDetailProAction;
 import movie.action.MovieReviewAction;
 import movie.action.MovieSetGradeAction;
@@ -167,15 +171,24 @@ public class MovieFrontController extends HttpServlet {
 
 			} 
 		} 
-		else if (command.equals("/MovieCmtUpdate.mo")) {
-			action = new MovieCmtUpdateAction();
+		
+		else if (command.equals("/MovieDetailModal.mo")) {
+			action = new MovieGetGradeModalAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		} 
+		else if (command.equals("/MovieReviewUpdate.mo")) {
+			action = new MovieReviewUpdateAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
 
 			}  
-		} else if (command.equals("/MovieCmtDelete.mo")) {
-			action = new MovieCmtDeleteAction();
+		} else if (command.equals("/MovieReviewDelete.mo")) {
+			action = new MovieReviewDeleteAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {
@@ -189,7 +202,29 @@ public class MovieFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if (command.equals("/MovieNaver.mo")) {
+			action = new MovieNaverRankingAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MovieExpected.mo")) {
+			action = new MovieExpectedGrade();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetPoster.mo")) {
+			action = new MovieGetPosterForExpectationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 
 
 		if (forward != null) {

@@ -13,13 +13,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <meta charset="UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
 
@@ -535,7 +532,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
 <input type="hidden" id="getGrade" value="<%=getGrade %>">
 <input type="hidden" id="returnCmt" value="<%=returnCmt %>">
-<jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 
 <section id="main">

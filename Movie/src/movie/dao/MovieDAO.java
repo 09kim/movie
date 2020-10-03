@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import board.vo.*;
 import movie.exception.MovieChartExeption;
 import movie.vo.MovieBean;
 import movie.vo.ReviewBean;
@@ -100,7 +101,7 @@ public class MovieDAO {
 		return grade;
 	}
 
-	public String selectComment(MovieBean movieBean) {
+	public String selectReview(MovieBean movieBean) {
 		String comment = "";
 		String sql = "SELECT content from review where nick = ? and movieSeq = ?";
 		try {
@@ -121,10 +122,10 @@ public class MovieDAO {
 		return comment;
 	}
 
-	public int insertComment(ReviewBean reviewBean) {
+	public int insertReview(ReviewBean reviewBean) {
 
 		int insertCount = 0;
-
+		System.out.println(reviewBean.getContent()+"여기는 DAO ~");
 		try {
 
 			String sql = "SELECT * from grade where nick =? and movieSeq =?";
@@ -132,7 +133,7 @@ public class MovieDAO {
 			pstmt.setString(1, reviewBean.getNick());
 			pstmt.setInt(2, reviewBean.getMovieSeq());
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				reviewBean.setGrade(rs.getInt("grade"));
 				reviewBean.setGenre(rs.getString("genre"));
 				reviewBean.setTitle(rs.getString("title"));
@@ -160,7 +161,7 @@ public class MovieDAO {
 		return insertCount;
 	}
 
-	public int deleteComment(ReviewBean reviewBean) {
+	public int deleteReview(ReviewBean reviewBean) {
 
 		int deleteCount = 0;
 
@@ -182,7 +183,7 @@ public class MovieDAO {
 		return deleteCount;
 	}
 
-	public int updateComment(ReviewBean reviewBean) {
+	public int updateReview(ReviewBean reviewBean) {
 		int insertCount = 0;
 
 		try {
@@ -305,6 +306,25 @@ public class MovieDAO {
 			close(rs);
 		}
 		return insertResult;
+	}
+
+	public String getPoster(String movieSeq) {
+		String sql = "SELECT poster from grade where movieSeq=?";
+		String poster = "";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movieSeq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				poster = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return poster;
 	}
 
 }

@@ -22,7 +22,7 @@ import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
 import member.action.MemberNickAction;
 import member.action.MemberUpdatePasswordAction;
-import mypage.action.MemberMypageTitleAction;
+import movie.action.MovieNaverRankingAction;
 import vo.ActionForward;
 
 
@@ -119,17 +119,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MypageTitle.me")) {
-			action = new MemberMypageTitleAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/Python.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/member_mypage.jsp");
-		} else if(command.equals("/ForgetPassword.me")) {
+		}else if(command.equals("/ForgetPassword.me")) {
 			forward = new ActionForward();
 			forward.setPath("/member/forget_email.jsp");
 			

@@ -23,7 +23,7 @@ public class MovieBoxOfficeNationAction implements Action {
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(getBox);
 
-
+		System.out.println("BoxOfficeNationAction");
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(jsonObject);

@@ -13,10 +13,16 @@
 <!-- <script src="js/bootstrap.min.js"></script> -->
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script type="text/javascript">
 
-   $(document).ready(function() {
+
+$(document).ready(function() {
+	
+	
        var result;
        function getNation(openDt,title){
     	   $.ajax("BoxOfficeNation.mo",{
@@ -74,32 +80,75 @@
             },
             success: function(data) {
                $.each(data, function(idx, item) {
-            	   $.each(item.weeklyBoxOfficeList, function(idx,item2){
+            	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
-                       $('.boxOffice').append("<div class=ranking></div>"+
+                       var num =0;
+                       
+                       
+                       $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
                     		   "<img class=poster_img>"+
                     		   "<div><a class=movieName></a></div>"+
-                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div>");
+                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div></div>");
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        if(result[0]){
-                       		$('.poster_img').eq(idx).attr("src",result[0]);
+                       		$('.poster_img').eq(idx2).attr("src",result[0]);
                        }else{
-                    	 	$('.poster_img').eq(idx).attr("src","../../../Movie/img/noImage.gif");
+                    	 	$('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
                        }
-             		   $('.nation').eq(idx).text(result[1]);
-                       $('.movieName').eq(idx).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
-                       $('.movieName').eq(idx).text(item2.movieNm);
+             		   $('.nation').eq(idx2).text(result[1]);
+                       $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
+                       $('.movieName').eq(idx2).text(item2.movieNm);
+                       
+                      
+                       
+                       
             	   });
-            	   
+            	  
                    
                 });
+               $('.boxOffice').slick({
+            	   dots: false,
+            	   infinite: false,
+            	   arrows: true,
+            	   speed: 300,
+            	   slidesToShow: 4,
+            	   slidesToScroll: 3,
+            	   responsive: [
+            	     {
+            	       breakpoint: 1024,
+            	       settings: {
+            	         slidesToShow: 3,
+            	         slidesToScroll: 3,
+            	         infinite: true,
+            	         dots: true
+            	       }
+            	     },
+            	     {
+            	       breakpoint: 600,
+            	       settings: {
+            	         slidesToShow: 2,
+            	         slidesToScroll: 2
+            	       }
+            	     },
+            	     {
+            	       breakpoint: 480,
+            	       settings: {
+            	         slidesToShow: 1,
+            	         slidesToScroll: 1
+            	       }
+            	     }
+            	     // You can unslick at a given breakpoint now by adding:
+            	     // settings: "unslick"
+            	     // instead of a settings object
+            	   ]
+            	 });
+               
             }
        });
        
-      
        
        
    });
@@ -110,8 +159,9 @@
 <body>
 <input type="hidden" value="<%=nick%>">
 <%-- <jsp:include page="/inc/top.jsp" /> --%>
-<div class="clear"></div>
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>
+
+
 </body>
 </html>

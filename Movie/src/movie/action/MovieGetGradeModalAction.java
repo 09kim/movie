@@ -11,7 +11,7 @@ import movie.svc.setGradeService;
 import movie.vo.MovieBean;
 import vo.ActionForward;
 
-public class MovieGetGradeAction implements Action {
+public class MovieGetGradeModalAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -47,7 +47,7 @@ public class MovieGetGradeAction implements Action {
 	      String review = movieReviewService.getReview(movieBean);
 	      request.setAttribute("returnCmt", review);
 	      forward.setRedirect(false);
-	      forward.setPath("/movie1/movie_detail.jsp");
+	      forward.setPath("/movie1/movie_modal_detail.jsp");
 	      
 	      return forward;
 

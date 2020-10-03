@@ -3,7 +3,9 @@
 
 /* ------------------ 바디 부분 ------------------ */
 body {
-/*   background-color: #2E2E2E; */
+	/* css 배경색 적용 문제 때문에 !important로 강제 적용 하게 끔 변경 - 낙원:1003*/
+/*   background-color: #2E2E2E !important; */
+/*   background-color: #000000 !important; */
   margin: 0;
 }
 

@@ -18,14 +18,15 @@ public class MovieDetailBySearch implements Action {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("nick");
-		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
+		String movieSeq = request.getParameter("movieSeq");
+		int movieSeqInt = Integer.parseInt(movieSeq);
 		String movieTitle = request.getParameter("query");
 		String moviePoster = request.getParameter("image");
 		int temp = Integer.parseInt(request.getParameter("temp"));
 		String weather = request.getParameter("weather");
 		MovieBean mb = new MovieBean();
 		mb.setNick(nick);
-		mb.setMovieSeq(movieSeq);
+		mb.setMovieSeq(movieSeqInt);
 		mb.setMovieTitle(movieTitle);
 		mb.setMoviePoster(moviePoster);
 		mb.setTemp(temp);

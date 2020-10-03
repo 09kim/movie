@@ -179,14 +179,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                               $.each(item.Result,function(idx,item2){
                                 
                                  var num = 0;
-                                 var image = item2.posters.split("|")
-                                 var title = item2.title
+                                 var image = item2.posters.split("|");
+                                 var title = item2.title;
                                  var titleNoSpace = title.replace(/ /g, '');
-                                 var title2 = titleNoSpace.replace(/!HS/g,'')
-                                 var title3 = title2.replace(/!HE/g,'')
+                                 var title2 = titleNoSpace.replace(/!HS/g,'');
+                                 var title3 = title2.replace(/!HE/g,'');
                                  var title5 = title3.trim();
-                                 
-                                 
                                  
                                  // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                                  for(var o=1;o<11;o++){
@@ -375,6 +373,28 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                            
                         }
                         $('.detailH2').text("영화 "+title5+"의 상세 정보"); 
+                        
+                        var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "예고편&part=id&type=video";
+                        
+                        $.ajax({
+                        	 type : "GET",
+                        	 dataType : "JSON",
+                        	 url : url,
+                        	 contentType : "application/json",
+                        	 success : function(jsonData) {
+                        	 
+                        		 var link = jsonData.items[0].id.videoId;
+                        		 $('#trailer').append("<iframe src='https://www.youtube.com/embed/"+link + "' width='700' height='500'>" )
+                        		 },
+                        	 error : function(xhr, status, error) {
+                        	 console.log("유튜브 요청 에러: "+error);
+                        	 }
+                        	 });
+                        
+                       
+						                        
+                        
                         
                         });
                });
@@ -614,6 +634,8 @@ $(document).ready(function(){
 		});	
 });
 </script>
+   	
+   	<div id="trailer"></div>
    	
 </body>
 </html>

@@ -12,15 +12,15 @@ public class kmdbApi {
 	public String getMovie(String title) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?detail=Y&title="+title+"&listCount=30"
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?title="+title+"&listCount=100"
 						+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
-		urlBuilder.append(
-				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8"));
-		urlBuilder.append(
-				"&" + URLEncoder.encode("use", "UTF-8") + "=" + URLEncoder.encode("극장용", "UTF-8")); 
+//		urlBuilder.append(
+//				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8"));
+//		urlBuilder.append(
+//				"&" + URLEncoder.encode("use", "UTF-8") + "=" + URLEncoder.encode("극장용", "UTF-8")); 
 //		urlBuilder
-//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
+//				.append("&" + URLEncoder.encode("sort", "UTF-8") + "=" + URLEncoder.encode("prodYear,0", "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -47,15 +47,15 @@ public class kmdbApi {
 	}
 
 	public String getMovieDetail(String movieSeq, String query) throws IOException {
-
+		System.out.println("getMovieDetail");
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
-		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + movieSeq); /* Service Key */
+		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + movieSeq);
 		urlBuilder.append(
-				"&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); /* 상영년도 */
+				"&" + URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(query, "UTF-8")); 
 //		urlBuilder
-//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8")); /* 상영 월 */
+//				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -82,7 +82,7 @@ public class kmdbApi {
 	}
 	public String getMovieDetailByKeyword(String keyword) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("keyword", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8")); 
 //		urlBuilder.append(
 //				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
@@ -117,7 +117,7 @@ public class kmdbApi {
 
 	public String getMovieDetailByDirector(String director) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("director", "UTF-8") + "=" + URLEncoder.encode(director, "UTF-8")); 
 		urlBuilder.append(
 				"&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("극영화", "UTF-8")); 
@@ -152,7 +152,7 @@ public class kmdbApi {
 	
 	public String getMovieDetailByActor(String actor) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		
 		urlBuilder.append("&" + URLEncoder.encode("actor", "UTF-8") + "=" + URLEncoder.encode(actor, "UTF-8")); 
 		urlBuilder.append(
@@ -188,7 +188,7 @@ public class kmdbApi {
 	
 	public String getActorByMovie(String movieSeq) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode("movieSeq", "UTF-8") + "=" + URLEncoder.encode(movieSeq, "UTF-8")); 
 
 //		urlBuilder.append(
@@ -220,13 +220,13 @@ public class kmdbApi {
 		return sb.toString();
 	}
 
-	public String getMovieByGenre(String genre2,String genre,int startCount) throws IOException{
+	public String getMovieByGenre(String genre2,String genre,int startCount, int createDts) throws IOException{
 		System.out.println(startCount);
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=30&startCount="+startCount+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&startCount="+startCount+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode(genre2, "UTF-8") + "=" + URLEncoder.encode(genre, "UTF-8")); 
-//		urlBuilder.append(
-//				"&" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(keyword, "UTF-8"));
+		urlBuilder.append(
+				"&" + URLEncoder.encode("createDts", "UTF-8") + "=" + URLEncoder.encode(createDts+"", "UTF-8")); 
 //		urlBuilder
 //				.append("&" + URLEncoder.encode("val002", "UTF-8") + "=" + URLEncoder.encode("01", "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
@@ -258,7 +258,7 @@ public class kmdbApi {
 	public String getBoxoffice(String openDt, String movieNm) throws IOException {
 		System.out.println("getBoxOffice");
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=30&ServiceKey=605841J368J95E2I93M1");
+				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?collection=kmdb_new&listCount=100&ServiceKey=605841J368J95E2I93M1");
 		/* URL */
 		urlBuilder.append("&" + URLEncoder.encode("releaseDts", "UTF-8") + "=" + URLEncoder.encode(openDt, "UTF-8")); /* Service Key */
 		urlBuilder.append(
@@ -285,9 +285,10 @@ public class kmdbApi {
 		
 		rd.close();
 		conn.disconnect();
-		System.out.println("여기오류?"+ sb.toString());
 
 		return sb.toString();
 	}
+
+	
 
 }

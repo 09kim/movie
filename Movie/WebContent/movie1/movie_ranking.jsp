@@ -12,7 +12,7 @@
 
    $(document).ready(function() {
        var result;
-       function getNation(openDt,title){
+       function getNation(openDt,title){ 
     	   $.ajax("BoxOfficeNation.mo",{
                method: "get",
                dataType: "json",

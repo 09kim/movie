@@ -66,7 +66,6 @@ public class MovieReviewService {
 	
 	public String getReview(MovieBean movieBean){
 		
-		
 		Connection con = getConnection();
 		MovieDAO mo = MovieDAO.getInstance();
 		mo.setConnection(con);

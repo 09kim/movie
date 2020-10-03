@@ -16,7 +16,9 @@ public class MovieDirectorProAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		String director = request.getParameter("query");
+		
 		kmdbApi movie = new kmdbApi();
 		String json = null;
 		

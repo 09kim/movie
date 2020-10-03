@@ -16,10 +16,26 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
-<script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
+
+
+<script type="text/javascript">
+// $(document).keydown(function (e) { // 새로고침 금지
+    
+//     if (e.which === 116) {
+//         if (typeof event == "object") {
+//             event.keyCode = 0;
+//         }
+//         return false;
+//     } else if (e.which === 82 && e.ctrlKey) {
+//         return false;
+//     }
+// }); 
    $(document).ready(function(){
       // 영화의 디테일한 내용을 담당하는 Jquery 문
 //       $('#btn').click(function(){
@@ -29,12 +45,10 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          var keyword = $("#keyword").val();
          var nick = $('#nick').val()
          var refreshUrl = document.location.href;
-         
-         
-         
         
 		 $.ajax('MypageSelectWish.mp',{
 			data:{movieSeq:movieSeq},
+			async: false,
 			success:function(rdata){
 				if(rdata=="Y"){
 					$('.btn-like').addClass("done")
@@ -58,9 +72,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         	
          }
          
-
          
-         $('#review').click(function(){
+         $('#comment').click(function(){
          	cmtBtn();
          });
          
@@ -69,6 +82,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             url:"MovieDetail.mo",
             method:"post",
             dataType :"json",
+            async: false,
             data:{
                movieSeq:movieSeq,
                query:query,
@@ -97,6 +111,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      
             			 $.ajax('MypageChangeWish.mp',{
             					data:{movieSeq:movieSeq,title:title5,poster:image[0]},
+            					async: false,
             					success:function(rdata){
             						if(!$('.btn-like').hasClass("done")){
             							$('.btn-like').addClass("done")
@@ -133,6 +148,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         function starClick(param,grade,image){
                                   $.ajax("setGrade.mo",{
                                      method:"post",
+                                     async: false,
                                      data:{
                                           data:param,
                                           grade:grade,
@@ -150,6 +166,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      $.ajax("MovieDetail.mo",{
                         method:"get",
                         dataType :"json",
+                        async: false,
                         data:{movieSeq:movieSeq,
                         query:query,
                         keyword:keyword},
@@ -179,8 +196,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                                  }
                                  
                                  var getGrade = $('#getGrade').val()
-
-
                                  switch(getGrade){
                                  
                                  case "0.5" :
@@ -331,7 +346,8 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             $('.l10').click(function(){
             	selectBtn();  })
              }  
-                     
+                     director = item2.director[0].directorNm;
+                     director = director.replace(/ /g,'');
                      $('#detail').append('<div class=title>'+title5+'</div>')
                      $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
                      $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
@@ -339,9 +355,9 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                      $('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
                      $('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
                      $('#detail').append('<div class=runtime>'+item2.genre+'</div>')
-                     $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+item2.director[0].directorNm+'>'+item2.director[0].directorNm+'</a></div>')
-                     $('#detail').append("<input type='hidden' id ='directorName' value="+ item2.director[0].directorNm+ ">")
-                     $('#detail').append("<input type='hidden' id ='typeName' value="+ item2.type+ ">")
+                     $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+director+'>'+item2.director[0].directorNm+'</a></div>')
+                     $('#detail').append("<input type='hidden' class ='directorName' value="+ director+ ">")
+                     $('#detail').append("<input type='hidden' class ='typeName' value="+ item2.type+ ">")
                      $('#detail').append('<div class=actors>'+actors+'</div>')
                      $('#detail').append('<div class=company>'+item2.company+'</div>')
                      $('#detail').append('<div class=plot>'+item2.plot+'</div>')
@@ -356,7 +372,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                            }
                            
                         }
-                        
+                        $('.detailH2').text("영화 "+title5+"의 상세 정보"); 
                         
                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
                         var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "예고편&part=id&type=video";
@@ -385,7 +401,49 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
             }
             
          });
-        
+         
+         $.ajax('MovieDirector.mo',{
+             method:"post",
+             dataType :"json",
+             async: false,
+             data:{query:director},
+             success:function(data){
+					           	 
+                $.each(data.Data,function(idx,item){
+                	if(!item.Result){
+                       	 $('.directorH2').text('결과가 없습니다.');
+                	}
+                   var count = item.Count
+                   $.each(item.Result,function(idx,item2){
+                      var title = item2.title
+                      var titleNoSpace = title.replace(/ /g, '');
+                      var title2 = titleNoSpace.replace(/!HS/g,'')
+                      var title3 = title2.replace(/!HE/g,'')
+                      var title5 = title3.trim();
+                      var actors="";
+                      
+                      var image = item2.posters.split("|")
+                      for(var num = 0; num < item2.actor.length ; num++){
+                         actors = actors + item2.actor[num].actorNm + ", ";   
+                      }
+                      if(image[0]){
+                            $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+                            $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+                                  +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+                            $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+                            $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+                            $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                            $('.directorH2').text(director+"의 다른 영화들");
+                      }
+                         
+                         });
+                });
+             }
+             
+       }); 
+         
+         
+         
          var returnCmt = $('#returnCmt').val();
          function cmtBtn() {
         	 
@@ -400,14 +458,14 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	$.ajax({
         			 		url:"MovieReview.mo",  
         			 	 	method:"get",
-        			 	 	data:{
-        			 	 		nick:nick,  
-        			 	 		review:review,
+        			 	 	async: false,
+        			 	 	data:{review:review,
+        			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
         			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
-        			 	 		  	$('#reviewResult').append(data);
+        			 	 		  	$('#review').append(data);
         			 	 		    location.reload();
         			 	 		  }
         			 	 		
@@ -434,6 +492,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
     			 	$.ajax({
     			 		url:"MovieReviewUpdate.mo",  
     			 	 	method:"get",
+    			 	 	async: false,
     			 	 	data:{review:review,  
     			 	 		  nick:nick,
     			 	 		  movieSeq:movieSeq,
@@ -465,6 +524,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	$.ajax({
         			 		url:"MovieReviewDelete.mo",  
         			 	 	method:"get",
+        			 	 	async: false,
         			 	 	data:{review:review,  
         			 	 		  nick:nick,
         			 	 		  movieSeq:movieSeq,
@@ -476,14 +536,14 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
         			 	 		
         			 	});
         			 	
-        			 	$(this).dialog('close');
+        				 	$(this).dialog('close');
         			 
         			 },
         			 
-        			 "취소":function() {$(this).dialog('close'); },
-        		 }
+        				 "취소":function() {$(this).dialog('close'); },
+        			 }
         	 
-        	 }); 
+        		 }); 
              
              });
          
@@ -533,14 +593,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
          
          
          
-         
    });
 </script>
 </head>
 <body>
 <input type="hidden" id="movieSeq" value="<%=movieSeq%>">
 <input type="hidden" id="query" value="<%=query%>">
-<input type="hidden" id="director" name=director value="<%=director%>">
 <input type="hidden" id ="nick" class="nick" value=<%=nick %>>
 <input type="hidden" id="getGrade" value="<%=getGrade %>">
 <input type="hidden" id="returnCmt" value="<%=returnCmt %>">
@@ -548,10 +606,24 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <div class="clear"></div>
 
 <section id="main">
-
-<section>
-   <a href="#" id="directorMovies">이 감독의 다른 영화</a>
-   <br>
+<div id="wish">
+   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
+</div>
+<div id="dialog-message" title="선택하세요." style="display:none">
+   	평가하시려면 로그인이 필요해요. <br>
+   	회원가입 또는 로그인하고 별점을 기록해보세요.
+   	</div>
+   	
+   	<div id="dialog-comment" title="코멘트" style="display:none">
+   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
+   		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
+   	</div>
+   	
+   	
+   	<div id="delete-message" title="코멘트" style="display:none">
+   		정말로 삭제 하시겠습니까?
+   	</div>
+	<div>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
   <span class='star-input'>
                     <span class='input'>
@@ -571,7 +643,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 <div id="isGrade">
         	<%= getGrade %> 점을 입력하셨습니다 
         	<% if(returnCmt.equals("")){ %>
-        	<input id="review" name="review" type="button" value ="리뷰 남기러 가기">
+        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
         	<%}else{ %>
         	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
   			    	 
@@ -580,38 +652,35 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                 </div>
                 	  <%} %>
                 	  
-		<div id="reviewResult"></div>
+		<div id="review"></div>
 <%} %> 
-
-   <div id="subInfo"></div>
-   <div id="wish">
-   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
-   	</div>
-   <section id="list">
-   </section>
+	</div>
+	
+<div class="main">
     <div class=thisMovie>
-   <section id="detail">
-   </section>
-   <section id="posters">
-   </section>
-   <section style=float:left; id="keyword">
-   </section>
+    <h2 class="detailH2"></h2>
+   <div id="detail">
    </div>
-   </section>
-   <div id="dialog-message" title="선택하세요." style="display:none">
-   	평가하시려면 로그인이 필요해요. <br>
-   	회원가입 또는 로그인하고 별점을 기록해보세요.
-   	</div>
+   <div id="posters">
+   </div>
+   <div style=float:left; id="keyword">
+   </div>
+   </div>
+   <div id="subInfo"><h2 class="directorH2"></h2></div>
+   </div>
    	
-   	<div id="dialog-comment" title="코멘트" style="display:none">
-   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
-   		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
-   	</div>
    	</section>
-   	
-   	<div id="delete-message" title="코멘트" style="display:none">
-   		정말로 삭제 하시겠습니까?
-   	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.main').slick({
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  slidesToShow: 1,
+		  adaptiveHeight: true
+		});	
+});
+</script>
    	
    	<div id="trailer"></div>
    	

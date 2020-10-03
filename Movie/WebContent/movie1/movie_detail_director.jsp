@@ -41,14 +41,15 @@
 								for(var num = 0; num < item2.actor.length ; num++){
 									actors = actors + item2.actor[num].actorNm + ", ";	
 								}
-									
-								$('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
-								$('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-										+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-								$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
-								$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
-								$('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
-			                  });dd
+								if(image[0]){
+									$('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+									$('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+											+item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+									$('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+									$('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+									$('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+								}
+			                  });
 						});
 					}
 			});

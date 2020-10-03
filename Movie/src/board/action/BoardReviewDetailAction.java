@@ -1,5 +1,7 @@
 package board.action;
 
+import java.util.*;
+
 import javax.servlet.http.*;
 
 import action.*;
@@ -13,23 +15,39 @@ public class BoardReviewDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardReviewDetailAction");
 		
-		ActionForward forward = null;
-		
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		String page = request.getParameter("page");
+		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		
-		BoardReviewDetailService boardReviewDetailService = new BoardReviewDetailService();
-		ReviewBean reviewBean = boardReviewDetailService.getReviewDetail(idx);
-			
-		// request 객체에 저장
+		HttpSession session = request.getSession();
+		String nick = (String)session.getAttribute("nick");
+		String reply = request.getParameter("reply");
+		
+		
+		ReplyBean replyBean = new ReplyBean();
+		replyBean.setIdx(idx);
+		replyBean.setNick(nick);
+		replyBean.setMovieSeq(movieSeq);
+		replyBean.setReply(reply);
+		
+		
+		// 선택한 리뷰 내용 들고오기
+		BoardReviewService boardReviewService = new BoardReviewService();
+		ReviewBean reviewBean = boardReviewService.selectReview(idx, movieSeq);
 		request.setAttribute("reviewBean", reviewBean);
-		request.setAttribute("page", page);
-		
-		forward = new ActionForward();
-		forward.setPath("/board/board_reviewView.jsp");
 		
 		
-		return forward;
+		// 댓글 리스트 불러오기
+		BoardReplyService boardReplyService = new BoardReplyService();
+		ArrayList<ReplyBean> replyList = boardReplyService.replyList(replyBean);
+		request.setAttribute("replyList", replyList);
+		
+		
+		ActionForward forword = new ActionForward();
+		forword.setRedirect(false);
+		forword.setPath("/board/board_reviewDetail.jsp");
+		
+		
+		return forword;
 	}
 
 }

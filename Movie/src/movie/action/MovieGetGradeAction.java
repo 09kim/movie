@@ -22,7 +22,7 @@ public class MovieGetGradeAction implements Action {
 		// the output stream
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
-		String movieSeq = request.getParameter("movieSeq");
+		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		System.out.println(nick + movieSeq);
 		MovieBean movieBean = new MovieBean();
 		movieBean.setNick(nick);

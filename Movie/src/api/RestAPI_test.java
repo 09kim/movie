@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 public class RestAPI_test {
 	public String getRecommendUser(String nick) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://127.0.0.1:5000/expectedGrade/");
+				"http://127.0.0.1:5000/recommendUser/");
 				urlBuilder.append(URLEncoder.encode(nick, "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -34,7 +34,7 @@ public class RestAPI_test {
 	
 	public String getExpectedGrade(String nick) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://127.0.0.1:5000/recommendUser/");
+				"http://127.0.0.1:5000/expectedGrade/");
 		urlBuilder.append(URLEncoder.encode(nick, "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();

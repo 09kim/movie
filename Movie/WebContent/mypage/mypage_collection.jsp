@@ -3,6 +3,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
+   String nick = (String)session.getAttribute("nick"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +29,10 @@
 </script>
 <meta charset="UTF-8">
 <title></title>
-<% String title = (String)session.getAttribute("title"); %>
-<% String nick = (String)session.getAttribute("nick"); %>
-<% String poster = (String)session.getAttribute("poster"); %>
-<% Integer movieSeq = (Integer)session.getAttribute("movieSeq"); %>
+<%-- <% String title = (String)session.getAttribute("title"); %> --%>
+<%-- <% String nick = (String)session.getAttribute("nick"); %> --%>
+<%-- <% String poster = (String)session.getAttribute("poster"); %> --%>
+<%-- <% Integer movieSeq = (Integer)session.getAttribute("movieSeq"); %> --%>
 <%-- <% ArrayList<CollectionBean> list = (ArrayList<CollectionBean>)(session.getAttribute("list")); %> --%>
 
 </head>
@@ -58,7 +61,7 @@
 				<textarea name ="content"></textarea><br>
 				<input type="button" value="작품추가" id="addMov">
 				<div id="movies">
-				  <% if(title != null && nick != null && poster != null && !(movieSeq.equals(null))) {%>
+<%-- 				  <% if(title != null && nick != null && poster != null && !(movieSeq.equals(null))) {%> --%>
 <%-- 				  <%for(int i = 0; i < list.size(); i++) {%> --%>
 <%-- 				  	<%= list.get(i).getTitle() %> --%>
 <%-- 				   <%= nick %> --%>
@@ -66,13 +69,27 @@
 <%-- 				    <%= poster %> --%>
 <%-- 				    <%= movieSeq %>  --%>
 <%-- 				    <% } %> --%>
-				    <%} %>
+<%-- 				    <%} %> --%>
 				    
 
 				</div>
 				<input type="submit" value="생성">
 	
 			</form>
+			
+			<div>
+<%-- 				<%=nick %> 님의 컬렉션 목록 <br> --%>
+<%-- 				<% for(int i = 0; i < collection.size(); i++) {%> --%>
+<%-- 					<%=collection.get(i).getCollection_name() %> --%>
+<%-- 					<%for(int o = 0; o < collection.get(i).getTitle().length(); o++){%> --%>
+<%-- 						<%=collection.get(o).getTitle().split(",")%> --%>
+<%-- 						<%=collection.get(o).getMovieSeq().split(",")%> --%>
+<%-- 						<%=collection.get(o).getPoster().split(",")%> --%>
+<%-- 					<%} %><br> --%>
+					
+					
+<%-- 			<%}%> --%>
+			</div>
 		</div>
 	</div>
 	

@@ -20,7 +20,7 @@ public class MypageCollectionMovieAddAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MypageCollectionMovieAdd 작동");
 		String nick = request.getParameter("nick");
-		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
+		String movieSeq = request.getParameter("movieSeq");
 		String title = request.getParameter("title");
 		String poster = request.getParameter("poster");
 		CollectionBean collectionBean = new CollectionBean();
@@ -29,22 +29,22 @@ public class MypageCollectionMovieAddAction implements Action{
 		collectionBean.setMovieSeq(movieSeq);
 		collectionBean.setTitle(title);
 		collectionBean.setPoster(poster);
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 //		ArrayList<CollectionBean> list = new ArrayList<CollectionBean>();
 //		list.add(collectionBean);
 //		session.setAttribute("list", list);
-		session.setAttribute("nick", nick);
-		session.setAttribute("movieSeq", movieSeq);
-		session.setAttribute("title", title);
-		session.setAttribute("poster", poster);
+//		session.setAttribute("nick", nick);
+//		session.setAttribute("movieSeq", movieSeq);
+//		session.setAttribute("title", title);
+//		session.setAttribute("poster", poster);
 		
 		
-		MypageCollectionMovieAddService service = new MypageCollectionMovieAddService();
-		
-		boolean isInsert = service.addCollectionMovie(collectionBean);
-		
-		if(isInsert) {
-		}
+//		MypageCollectionMovieAddService service = new MypageCollectionMovieAddService();
+//		
+//		boolean isInsert = service.addCollectionMovie(collectionBean);
+//		
+//		if(isInsert) {
+//		}
 		
 		return null;
 	}

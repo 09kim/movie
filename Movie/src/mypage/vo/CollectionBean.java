@@ -4,10 +4,10 @@ public class CollectionBean {
 	
 	private int idx;
 	private String nick;
-	private int movieSeq;
 	private String title;
 	private String collection_name;
 	private String poster;
+	private String movieSeq;
 	
 	
 	public int getIdx() {
@@ -22,10 +22,10 @@ public class CollectionBean {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	public int getMovieSeq() {
+	public String getMovieSeq() {
 		return movieSeq;
 	}
-	public void setMovieSeq(int movieSeq) {
+	public void setMovieSeq(String movieSeq) {
 		this.movieSeq = movieSeq;
 	}
 	public String getTitle() {

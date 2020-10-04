@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -291,67 +292,19 @@ $(document).ready(function(){
 }); //ready();
 </script>
 <style>
-body{
-    display: table-cell;
-    vertical-align: middle;
-    background-color: #e0f2f1 !important;
-}
 
-html {
-    display: table;
-    margin: auto;
-}
+#login-page{width:800px;margin:auto;}
 
-html, body {
-    height: 100%;
-}
-
-.medium-small {
-    font-size: 0.9rem;
-    margin: 0;
-    padding: 0;
-}
-
-.login-form {
-/*     width: 280px; */
-    width: 500px;
-    height: auto;
-}
-
-.login-form-text {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-}
-
-.login-text {
-    margin-top: -6px;
-    margin-left: -6px !important;
-}
-
-.margin {
-    margin: 0 !important;
-}
 
 .pointer-events {
-    pointer-events: auto !important;
+	pointer-events: auto !important;
 }
 
 .input-field >.material-icons  {
     padding-top:10px;
 }
+header{overflow: hidden;display: inline-block;}
 
-.input-field div.error{
-    position: relative;
-    top: -1rem;
-    left: 3rem;
-    font-size: 0.8rem;
-    color:#FF4081;
-    -webkit-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
-    transform: translateY(0%);
-}
 </style>
 </head>
 <body>
@@ -359,10 +312,9 @@ html, body {
 <div class="clear"></div>
 <!-- 헤더 -->
 
-<!-- <form class="join_fr" action="MemberJoinPro.me" method="get"> -->
 <section id="main">
 <div id="login-page" class="row">
-  <div class="col s12 z-depth-4 card-panel">
+  <div class="col s12 z-depth-4 card-panel" style="padding:3em;">
     <form class="join_fr" action="MemberJoinPro.me" method="get">
 <!--     <form class="login-form" action="MemberJoinPro.me" method="get"> -->
       <div class="row">
@@ -458,7 +410,7 @@ html, body {
       </div>
 
 
-<!--     </form> -->
+    </form>
   </div>
 </div>
 

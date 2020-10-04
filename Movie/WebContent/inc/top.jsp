@@ -18,6 +18,7 @@ String nick=(String)session.getAttribute("nick");
 <!--   </button> -->
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--   <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link text-white" href="Main.me">Home<span class="sr-only">(current)</span></a>
@@ -45,9 +46,11 @@ String nick=(String)session.getAttribute("nick");
     </ul>
 <!--     <form class="form-inline my-2 my-lg-0"> -->
     <form class="form-inline my-2 my-lg-0 mr-5" action="MovieSearch.mo">
-      <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+<!--       <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"> -->
+      <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
 <!--       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-      <button class="btn btn-primary my-2 my-sm-0 bg-green" type="submit">Search</button>
+<!--       <button class="btn btn-primary my-2 my-sm-0 bg-green" type="submit">Search</button> -->
+      <button class="btn btn-primary bg-green" type="submit">Search</button>
     </form>
 <!--      <ul class="navbar-nav mr-auto"> -->
      <ul class="navbar-nav">

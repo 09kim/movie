@@ -7,12 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.google.gson.JsonObject;
 
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
 import mypage.vo.CollectionBean;
+import mypage.action.Mypage;
 import mypage.vo.MypageBean;
 import mypage.vo.MypageGenreBean;
 
@@ -39,8 +41,6 @@ public class MypageDAO {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
-
-	
 
 	// 내 정보 조회 - 세은
 	public MemberBean selectMypageinfo(String nick) {
@@ -326,7 +326,7 @@ public class MypageDAO {
 		return list;
 	}
 
-	public JsonObject selectNation(String nick)  {
+	public JsonObject selectNation(String nick) {
 		String sql = "SELECT nation, COUNT(*), SUM(grade) FROM grade where nick = ? GROUP BY nation HAVING COUNT(*) > 1 order by count(*) desc limit 0,10";
 		JsonObject jo1 = new JsonObject();
 		JsonObject jo2 = new JsonObject();
@@ -369,7 +369,7 @@ public class MypageDAO {
 			while (rs.next()) {
 				JsonObject jo3 = new JsonObject();
 				jo3.addProperty("director", rs.getString(1));
-				jo2.add("No."+i++, jo3);
+				jo2.add("No." + i++, jo3);
 			}
 			jo1.add(nick, jo2);
 		} catch (SQLException e) {
@@ -392,7 +392,7 @@ public class MypageDAO {
 			String sql = "insert into collection values(idx,?,'test',?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, collectionBean.getNick());
-			pstmt.setInt(2, collectionBean.getMovieSeq());
+			pstmt.setString(2, collectionBean.getMovieSeq());
 			pstmt.setString(3, collectionBean.getTitle());
 			pstmt.setString(4, collectionBean.getPoster());
 			
@@ -400,7 +400,6 @@ public class MypageDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -410,6 +409,151 @@ public class MypageDAO {
 		  
 		
 		return isSuccess;
+	}
+	
+	public int addCollection(CollectionBean collectionBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		  try {
+			String sql = "insert into collection values(idx,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getNick());
+			pstmt.setString(2, collectionBean.getCollection_name());
+			pstmt.setString(3, collectionBean.getMovieSeq());
+			pstmt.setString(4, collectionBean.getTitle());
+			pstmt.setString(5, collectionBean.getPoster());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
+	}
+	
+	public ArrayList<CollectionBean> selectCollection(String nick) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<CollectionBean> list = new ArrayList<CollectionBean>();
+		  try {
+			String sql = "select * from collection where nick = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CollectionBean cb = new CollectionBean();
+				cb.setCollection_name(rs.getString("collection_name"));
+				cb.setMovieSeq(rs.getString("movieSeq"));
+				cb.setTitle(rs.getString("title"));
+				cb.setPoster(rs.getString("poster"));
+				list.add(cb);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int setGenre(String nick, ArrayList<String> list, Mypage type) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "SELECT * from mypage where nick =?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				switch (type) {
+				case genre:
+					sql = "UPDATE mypage set genre=? where nick =? ";
+					break;
+				case director:
+					sql = "UPDATE mypage set director=? where nick =? ";
+					break;
+				case nation:
+					sql = "UPDATE mypage set nation=? where nick =? ";
+					break;
+				}
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, list.toString());
+				pstmt.setString(2, nick);
+				result = pstmt.executeUpdate();
+			} else {
+
+				switch (type) {
+				case genre:
+					sql = "INSERT INTO mypage values(null,?,?,null,null) ";
+					break;
+				case director:
+					sql = "INSERT INTO mypage values(null,?,null,null,?) ";
+					break;
+				case nation:
+					sql = "INSERT INTO mypage values(null,?,null,?,null) ";
+					break;
+				}
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setString(2, list.toString());
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public ArrayList<String> getInformation(String nick, Mypage type) {
+		String sqlType = "";
+		
+		switch (type) {
+		case nation:
+			sqlType="nation";
+			break;
+		case director:
+			sqlType="director";
+			break;
+		}
+
+		String sql = "SELECT " + sqlType + ", COUNT(*) FROM grade where nick = ? GROUP BY " + sqlType
+				+ " HAVING COUNT(*) > 1 order by count(*) desc limit 0,3";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 }

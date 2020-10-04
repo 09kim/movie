@@ -1,5 +1,6 @@
 package mypage.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.mysql.jdbc.StringUtils;
 
 import action.Action;
+import mypage.svc.MypageAddCollectionService;
 import mypage.svc.MypageGradeService;
 import mypage.vo.CollectionBean;
 import vo.ActionForward;
@@ -44,9 +46,23 @@ public class MypageCollectionCreateAction implements Action {
 		}
 		
 		System.out.println(joinTitle + joinPoster + joinMovieSeq);
-		
-		
 		CollectionBean collectionBean = new CollectionBean();
+		collectionBean.setCollection_name(subject);
+		collectionBean.setNick(nick);
+		collectionBean.setPoster(joinPoster);
+		collectionBean.setTitle(joinTitle);
+		collectionBean.setMovieSeq(joinMovieSeq);
+		MypageAddCollectionService mypageAddCollectionService = new MypageAddCollectionService();
+		boolean isSuccess = mypageAddCollectionService.addCollection(collectionBean);
+		
+		if(isSuccess) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('등록되었습니다')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
 		
 //		collectionBean.setCollection_name(subject);
 //		collectionBean.setNick(nick);

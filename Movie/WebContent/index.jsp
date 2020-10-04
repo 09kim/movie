@@ -4,7 +4,12 @@
 <html>
 <head>
 <%String nick = (String)session.getAttribute("nick"); %>
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -54,7 +59,10 @@ $(document).ready(function(){
 	<div class="clear"></div>
 	<jsp:include page="/recommend/movie_ranking.jsp"/>
 	<%if(nick!=null) {
-	%><jsp:include page="/recommend/expected_grade_chart.jsp"/><%
+		%>
+			<jsp:include page="/recommend/expected_grade_chart.jsp"/>
+			<jsp:include page="/recommend/movie_recommend_byGenre.jsp"/>
+		<%
 	}%>
 	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
 </body>

@@ -99,8 +99,7 @@
 <title></title>
 </head>
 <body>
-	<input type="hidden" id="nick" value=<%=request.getParameter("nick") %>>
-	    <h1><%=nick %> 회원님이 좋아할만한 영화들</h1>
+	    <h1><%=nick %> 님이 높은 점수를 줄것 같은 영화들!</h1>
 <div class="expectedGrade"></div>
 </body>
 </html>

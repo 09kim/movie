@@ -6,11 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import board.vo.*;
 import movie.exception.MovieChartExeption;
 import movie.vo.MovieBean;
 import movie.vo.ReviewBean;
+import mypage.action.Mypage;
 
 public class MovieDAO {
 	private MovieDAO() {
@@ -325,6 +328,66 @@ public class MovieDAO {
 			close(pstmt);
 		}
 		return poster;
+	}
+
+	public ArrayList<MovieBean> getMovie(String nick, Mypage type) {
+		String sql = "";
+		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
+		switch (type) {
+		case genre:
+			sql = "SELECT genre FROM mypage where nick =?";
+			break;
+		case director:
+			sql = "SELECT director FROM mypage where nick =?";
+			break;
+		case nation:
+			sql = "SELECT nation FROM mypage where nick =?";
+			break;
+		}
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String result = rs.getString(1).substring(1, rs.getString(1).length()-1).replaceAll("\\s", "").replaceAll(",", "|");
+				
+				switch (type) {
+				case genre:
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and genre REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					break;
+				case director:
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and director REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					break;
+				case nation:
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and nation REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					break;
+				}
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, nick);
+				pstmt.setString(2, nick);
+				pstmt.setString(3, result);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					MovieBean mb = new MovieBean();
+					mb.setMovieGenre(rs.getString("genre"));
+					mb.setMovieSeq(rs.getInt("movieseq"));
+					mb.setMovieTitle(rs.getString("title"));
+					mb.setDirector(rs.getString("director"));
+					mb.setNation(rs.getString("nation"));
+					mb.setMoviePoster(rs.getString("poster"));
+					list.add(mb);
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

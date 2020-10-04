@@ -286,10 +286,9 @@ public class BoardDAO {
 		int insertCount = 0;
 		
 		try {
-			String sql = "update reply set report=? where re_ref=?";
+			String sql = "update reply set report=report+1 where re_ref=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, replyBean.getReport() + 1);
-			pstmt.setInt(2, replyBean.getRe_ref());
+			pstmt.setInt(1, replyBean.getRe_ref());
 			insertCount = pstmt.executeUpdate();
 			
 			

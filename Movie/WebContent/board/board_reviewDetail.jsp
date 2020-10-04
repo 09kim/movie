@@ -195,6 +195,8 @@ $(document).ready(function() {
 
            // 댓글 신고버튼
            $('#reportReply_<%=rb.getRe_ref() %>').click(function() {
+        	   
+//         	   var report = $('#report').val();
                
                $('#report-message').dialog({
                    modal: true,

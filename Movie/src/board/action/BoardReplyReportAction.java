@@ -16,19 +16,20 @@ public class BoardReplyReportAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardReplyReportAction");
 		
-		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-		int report = Integer.parseInt(request.getParameter("report"));
+		ActionForward forward = null;
 		
+		HttpSession session = request.getSession();
+		String nick = (String)session.getAttribute("nick");
+		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		
 		ReplyBean replyBean = new ReplyBean();
+		replyBean.setNick(nick);
 		replyBean.setRe_ref(re_ref);
-		replyBean.setReport(report);
 		
 		BoardReplyService boardReplyService = new BoardReplyService();
 		boolean isSuccess = boardReplyService.reportReply(replyBean);
 			
-		
-		ActionForward forward = new ActionForward();
+		forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("BoardReviewView.bo");
 		

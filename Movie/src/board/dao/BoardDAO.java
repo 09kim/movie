@@ -104,7 +104,6 @@ public class BoardDAO {
 	public ArrayList<ReviewBean> getReview(ReviewBean reviewBean){
 
 		ArrayList<ReviewBean> list = null;
-		System.out.println("boardDAO");
 		try {
 			String sql = "select * from review where movieSeq = ? ORDER BY idx DESC";
 			pstmt = con.prepareStatement(sql);

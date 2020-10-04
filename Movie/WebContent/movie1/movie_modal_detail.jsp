@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <%String nick = (String)session.getAttribute("nick"); 
 String getGrade = (String)request.getAttribute("getGrade"); 
 String movieSeq = (String)request.getParameter("movieSeq");
 String query = request.getParameter("query");
-String returnCmt = (String)request.getAttribute("returnCmt");
-String poster = (String)request.getParameter("image");
-String director=request.getParameter("director");%>
-<title>[갓챠] - 영화 <%=query %>의 상세정보</title>
+String returnCmt = (String)request.getAttribute("returnCmt");%>
+<%String director=request.getParameter("director"); 
+ %>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<title></title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+
 
 <script type="text/javascript">
 // $(document).keydown(function (e) { // 새로고침 금지
@@ -37,37 +34,6 @@ String director=request.getParameter("director");%>
 //     }
 // }); 
    $(document).ready(function(){
-	   
-	   var latitude, longitude;
-	   var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-	   var temp = '0';
-	   var weather = 'no';
-	   
-	   function getLocation(){
-	      window.navigator.geolocation.getCurrentPosition(current_position);
-	   }
-	   
-	   function current_position(position){
-	      latitude = position.coords.latitude;
-	      longitude = position.coords.longitude;
-	      $.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
-	            +"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
-	         dataType:"json",
-	         async:false,
-	         success:function(data){
-	            $('#temp').val(data.main.temp);
-	            $('#weather').val(data.weather[0].main);
-	            temp = $('#temp').val();
-	            weather = $('#weather').val();
-	         }
-	      });
-	   }
-	      
-	   window.addEventListener("load",getLocation);
-	   
-	   
-	   
-	   
       // 영화의 디테일한 내용을 담당하는 Jquery 문
 //       $('#btn').click(function(){
          var name = $("#na").val();
@@ -174,7 +140,7 @@ String director=request.getParameter("director");%>
                      }
                   
                      
-                     var link = document.location.href; 
+                     
                       
                         function starClick(param,grade,image){
                                   $.ajax("setGrade.mo",{
@@ -210,12 +176,14 @@ String director=request.getParameter("director");%>
                               $.each(item.Result,function(idx,item2){
                                 
                                  var num = 0;
-                                 var image = item2.posters.split("|");
-                                 var title = item2.title;
+                                 var image = item2.posters.split("|")
+                                 var title = item2.title
                                  var titleNoSpace = title.replace(/ /g, '');
-                                 var title2 = titleNoSpace.replace(/!HS/g,'');
-                                 var title3 = title2.replace(/!HE/g,'');
+                                 var title2 = titleNoSpace.replace(/!HS/g,'')
+                                 var title3 = title2.replace(/!HE/g,'')
                                  var title5 = title3.trim();
+                                 
+                                 
                                  
                                  // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                                  for(var o=1;o<11;o++){
@@ -379,36 +347,22 @@ String director=request.getParameter("director");%>
              }  
                      director = item2.director[0].directorNm;
                      director = director.replace(/ /g,'');
-                     
-                     var age = item2.rating[0].ratingGrade.split("||")[0]
-                     $('.caption_top').append(query); // 상단 제목줄 큰 제목 - 낙원 : 1002
-                     $('.caption_bottom').append('<span class="repRlsDate">'+item2.repRlsDate+'</span>&nbsp'); // 상단 제목줄 밑 개요 표시줄 개봉일 표시 - 낙원 : 1002
-                     $('.caption_bottom').append('<span class="age">'+age+'</span>'); // 상단 제목줄 밑 개요 표시줄 개봉일 표시 - 낙원 : 1002
-                     $('.poster').append('<img style=width:250px;height:350px; src='+image[0]+' onerror=this.src="../../../Movie/img/noImage.gif">'); // 상단 제목줄 밑 개요 표시줄 시청가능연령 표시 - 낙원 : 1002
-                     $('.info').append('<dt>개요</dt>'); // 개요
-                     $('.info').append('<dd id=summaryInfo><span class=age>'+age+'</span><span style="padding-left:5px;" id="playTime">'+item2.runtime+'분</span>'); // 개요
-                     $('.info').append('<dt>상영국가</dt>'); // 상영국가
-                     $('.info').append('<dd><span class=nation>'+item2.nation+'</span></dd>'); // 상영국가
-                     $('.info').append('<dt>감독</dt>'); // 감독
-                     $('.info').append('<dd><span class=director><a href=MovieSearchDirector.mo?director='+director+'>'+item2.director[0].directorNm+'</a></span></dd>'); // 감독
-                     $('.info').append('<dt>배급사</dt>'); // 배급사
-                     $('.info').append('<dd><span class=company>'+item2.company+'</span></dd>'); // 배급사
-                     $('.info').append('<dt>줄거리</dt>'); // 줄거리
-                     $('.info').append('<dd><span class=plot>'+item2.plot+'</span></dd>'); // 줄거리
-                     
-					 var staffList = actors.split("<br>")
-					 
-					 for(var i in staffList){
-		                 if(!staffList[i].includes("감독")&&!staffList[i].includes("각본")){ // 배역(배우목록)에서 감독이나 각본등은 제외 - 낙원 : 1002
-						 $('.staff').append('<dd>'+staffList[i]+'</dd>') // 배역 표시
-		                 }
-					 }
-                     
-                     
-                    	 for(var i in stills){
-                          $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
-                          }
-                     
+                     $('#detail').append('<div class=title>'+title5+'</div>')
+                     $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
+                     $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
+                     $('#detail').append('<div class=nation>'+item2.nation+'</div>')
+                     $('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
+                     $('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
+                     $('#detail').append('<div class=runtime>'+item2.genre+'</div>')
+                     $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+director+'>'+item2.director[0].directorNm+'</a></div>')
+                     $('#detail').append("<input type='hidden' class ='directorName' value="+ director+ ">")
+                     $('#detail').append("<input type='hidden' class ='typeName' value="+ item2.type+ ">")
+                     $('#detail').append('<div class=actors>'+actors+'</div>')
+                     $('#detail').append('<div class=company>'+item2.company+'</div>')
+                     $('#detail').append('<div class=plot>'+item2.plot+'</div>')
+                     for(var i in stills){
+                     $('#posters').append('<div style=float:left; class=image><img src='+stills[i]+'></div>')
+                     }
                         if(keyword[0]!=""||keyword[keyword.length]!=""){
                            
                         for(var i in keyword){
@@ -418,32 +372,6 @@ String director=request.getParameter("director");%>
                            
                         }
                         $('.detailH2').text("영화 "+title5+"의 상세 정보"); 
-                        
-                        // 트레일러 영상 추가
-                        // 낙원 키
-                        var key = "AIzaSyAFCuBm8gWBOlb7U7BsVmPYB9QTfdCxUf0";
-                        // 영운 키
-//                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
-                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" +title3+ "예고편&part=id&type=video";
-                        
-                        $.ajax({
-                            type : "GET",
-                            dataType : "JSON",
-                            url : url,
-                            contentType : "application/json",
-                            success : function(jsonData) {
-                            
-                               var link = jsonData.items[0].id.videoId;
-                               // 유튜브 영상 자동재생 + 음소거 모드 추가 - 낙원 :1003
-                               $('#trailer').append('<iframe width=700 height=500 src=https://www.youtube.com/embed/'+link+'?autoplay=1&mute=1 frameborder=0 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>');
-//                                $('#trailer').append("<iframe src='https://www.youtube.com/embed/"+link + "' width='700' height='500'>" )
-                               },
-                            error : function(xhr, status, error) {
-                            console.log("유튜브 요청 에러: "+error);
-                            }
-                            });
-                        
-                        
                         
                         });
                });
@@ -469,29 +397,24 @@ String director=request.getParameter("director");%>
                       var title2 = titleNoSpace.replace(/!HS/g,'')
                       var title3 = title2.replace(/!HE/g,'')
                       var title5 = title3.trim();
-                      var title6 =  encodeURIComponent(title5);
                       var actors="";
-                      
-                      
                       
                       var image = item2.posters.split("|")
                       for(var num = 0; num < item2.actor.length ; num++){
                          actors = actors + item2.actor[num].actorNm + ", ";   
                       }
-                      
                       if(image[0]){
-                    	  $('.directorsMovie').append("<div class=directorsMovieList>"+
-                     			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
-                     			 '<div class=nation>'+item2.nation+'</div>'+
-                     			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                     			 '<div class=title>'+title5+'</div></div>');
-                            $('.directorP').text(director+"감독의 다른 영화들");	
+                            $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+                            $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+                                  +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+                            $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+                            $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+                            $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                            $('.directorH2').text(director+"의 다른 영화들");
                       }
                          
-                     });
+                         });
                 });
-                
-                
              }
              
        }); 
@@ -600,257 +523,22 @@ String director=request.getParameter("director");%>
         		 }); 
              
              });
-         
-         
-         
-         // 현재 스크롤바의 좌표 받기 - 낙원 : 1003
-         $(window).scroll(function () {
-     		height = $(document).scrollTop();
-     	});   
-         
-         // 아래로 이동 버튼 클릭시 - 낙원:1003
-         $('.down').click(function() {
-        	   var height = $(document).scrollTop();
-        	   height = Math.floor(height);
-//         	   alert("현재 높이 : " + height)
-        	   var list = ["#main","#jb-content","#jb-footer","#jb-footer2"];
-        	   var position = [];
-        	   var offset = 0;
-        	   var test ="";
-        	   var height1 = "";
-        	   for(var i = 0 ; i<list.length; i++){
-        			test = $(list[i]);
-        			height1 = test.offset().top;
-        			height1 = Math.floor(height1);
-//         			alert("리스트별 높이"+height1)
-        		    position.push(height1);
-        	   }
-        	   
-        	   for(var i = 0; i<position.length;i++){
-        		   if(height<position[i]){
-//         			  alert("이동할 포지션 " + position[i]) 
-        			   var offset = $(list[i]).offset();
-        			    $('html, body').animate({scrollTop : offset.top}, 400);
-        			    return false;
-        		   }
-        	   }
-        	});
-         
-         // 위로 이동 버튼 클릭시 - 낙원 : 1003
-         $('.up').click(function() {
-        	   var height = $(document).scrollTop();
-        	   height = Math.floor(height);
-//         	   alert("현재 높이 : " + height)
-        	   var list = ["#main","#jb-content","#jb-footer","#jb-footer2"];
-        	   var position = [];
-        	   var offset = 0;
-        	   var test ="";
-        	   var height1 = "";
-        	   for(var i = 0 ; i<list.length; i++){
-        			test = $(list[i]);
-        			height1 = test.offset().top;
-        			height1 = Math.floor(height1);
-        		    position.push(height1);
-        	   }
-        	   
-        	   for(var i = (list.length-1); i>=0;i--){
-        		   if(height>position[i]){
-//         			  alert("이동할 포지션 " + position[i]) 
-        			   var offset = $(list[i]).offset();
-        			    $('html, body').animate({scrollTop : offset.top}, 400);
-        			    return false;
-        		   }
-        	   }
-        	});
-         
-         
    });
-    
 </script>
-<style type="text/css">
-
-#jb-container {
-width: 1200px;
-height: 100%;
-margin: 0 auto;
-padding: 20px;
-border: 1px solid #bcbcbc;
-background-color: #2E2E2E;
-}
-
-
-#jb-header {
-margin-bottom: 20px;
-border: 1px solid #bcbcbc;
-height:100px;
-vertical-align: middle;
-width: 100%;
-margin: 10px auto;
-display: flex;
-color:#FFFFFF;
-}
-
-
-.title-right {
-flex:1;
-width:30%;
-float: right;
-}
-
-.title-left {
-flex:1;
-width:30%;
-padding: 10px;
-float: left;
-}
-.title-right>.btn-like {
-font-weight: bold;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-margin: 0 20px;
-flex:1;
-height:100%;
-width:100px;
-float: right;
-border:none;
-background-color: inherit;
-font-size: 1.5em;
-text-align: center;
-vertical-align: middle;
-outline: 0;
-}
-.title-right>.btn-like:hover {
-border:none;
-outline: 0;
-}
-
-#jb-sidebar-left {
-width: 400px;
-height: 100%;
-text-align: center;
-padding: 20px;
-margin-right: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-content {
-height: 100%;
-width: 450px;
-padding: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-sidebar-right {
-height: 100%;
-width: auto;
-padding: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-footer {
-clear: both;
-height: 100%;
-padding: 20px;
-border: 1px solid #bcbcbc;
-margin-bottom: 20px;
-color:#FFFFFF;
-}
-#jb-footer2 {
-clear: both;
-height: 100%;
-padding: 20px;
-border: 1px solid #bcbcbc;
-color:#FFFFFF;
-}
-dt {float:left;margin-right:1em;}
-.caption {vertical-align: middle;}
-.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.directorsMovieList {text-align: center;width: 250px;height:400px;margin-right: 20px;}
-.stillCut{margin-right: 20px;}
-
-
-.jbMenu {
-		clear:both;
-		display:flex;
-		justify-content:center;
-		position: sticky; 
-		top: 0; 
-		height:100%;
-		margin:0 auto;
-        text-align: center;
-        background-color: #000000;
-        padding: 10px 0px;
-        z-index:100;
-        width: 1200px;}
-
-.top_banner{
-display:flex;
-flex:1;
-width:100%;
-height:100%;
-}
-.top_banner img{
-height:300px;
-}
-.btnGroup{display: block;}
-
-.down,.up{color:#FFFFFF;background-color: inherit;border:none;outline: 0;font-size: 1.5em;}
-
-</style>
-
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
+<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
+<input type="hidden" id="query" value="<%=query%>">
+<input type="hidden" id ="nick" class="nick" value=<%=nick %>>
+<input type="hidden" id="getGrade" value="<%=getGrade %>">
+<input type="hidden" id="returnCmt" value="<%=returnCmt %>">
 <div class="clear"></div>
-    
-<!-- main[S] -->
+
 <section id="main">
-
-<!-- jbMenu[S] -->
-<div class="jbMenu">
-<div class="clear"></div>
-
-<div id="Box">
-	<div id="head">
-	<div id="trailer"></div>
-	</div>
-	<div id="body">
-	<button class="up">▲</button>
-	<button class="down">▼</button>
-	</div>
-	</div>
+<div id="wish">
+   	<button class="btn-like" value="<%=movieSeq%>">❤️</button>
 </div>
-<!-- jbMenu[E] -->
-    
-    
-    
-<!--     jb-container[S] -->
-<div id="jb-container">
-
-<input type="hidden" id="hashIndex" value="0">
-
-<!--     헤더 [S] -->
-      <div id="jb-header">
-        <div class="title-left">
-        <h3 class="caption_top"></h3>
-			<div class="caption_bottom"></div>
-		</div>
-        <div class="title-right">
-				<button class="btn-like" value="<%=movieSeq%>">❤️<br>좋아요</button>
-		</div>
-    </div>
-<!--       헤더 [E] -->
-      
-<!--       사이드 레프트 [S] -->
-      <div id="jb-sidebar-left">
-				<div class="poster"></div>
-				
-				<div id="dialog-message" title="선택하세요." style="display:none">
+<div id="dialog-message" title="선택하세요." style="display:none">
    	평가하시려면 로그인이 필요해요. <br>
    	회원가입 또는 로그인하고 별점을 기록해보세요.
    	</div>
@@ -890,142 +578,38 @@ height:300px;
   			    	 
      			     <input type="button" id ="updateCmt" value="수정">
        	             <input type="button" id ="deleteCmt" value="삭제">
-                	  <%} %>
                 </div>
+                	  <%} %>
                 	  
 		<div id="review"></div>
 <%} %> 
-	</div>				
-				
-				
-      </div>
-<!--       사이드 레프트[E] -->
-      
-<!--       사이드 센터[S] -->
-      <div id="jb-content">
-		<dl class="info"></dl>
-      </div>
-<!--       사이드 센터[E] -->
-
-<!-- 사이드 라이트[S] -->
-      <div id="jb-sidebar-right">
-      	<p><b>배역</b></p>
-        <dl class="staff">
-		</dl>
-      </div>
-<!--       사이드 라이트[E] -->
-
-
-<!-- 푸터(스틸컷)[S] -->
-      <div id="jb-footer">
-      <p>스틸컷</p>
-        <div class="posters"></div>
-      </div>
-<!-- 푸터(스틸컷)[E] -->
-      
-<!-- 푸터(이 감독의 다른 영화)[S] -->      
-      <div id="jb-footer2">
-      <p class="directorP"></p>
-        <div class="directorsMovie"></div>
-      </div>
-<!-- 푸터(이 감독의 다른 영화)[E] -->       
-    
-    
-<input type="hidden" id="movieSeq" value="<%=movieSeq%>">
-<input type="hidden" id="query" value="<%=query%>">
-<input type="hidden" id ="nick" class="nick" value=<%=nick %>>
-<input type="hidden" id="getGrade" value="<%=getGrade %>">
-<input type="hidden" id="returnCmt" value="<%=returnCmt %>">
-    
-    
-    </div>
-<!-- #jb-container[E] -->
-</section>
-<!-- main[E] -->
+	</div>
+	
+<div class="main">
+    <div class=thisMovie>
+    <h2 class="detailH2"></h2>
+   <div id="detail">
+   </div>
+   <div id="posters">
+   </div>
+   <div style=float:left; id="keyword">
+   </div>
+   </div>
+   <div id="subInfo"><h2 class="directorH2"></h2></div>
+   </div>
+   	
+   	</section>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	$('.posters').slick({
-        dots: false,
-        infinite: false,
-        arrows: true,
-        variableWidth:true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 3,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
-        ]
-      }); // slick(.posters)끝
-      
-      
-      $('.directorsMovie').slick({
-    	  dots: false,
-//           infinite: false,
-          infinite: true,
-          arrows: true,
-          variableWidth:true,
-          speed: 300,
-          autoplay:true,
-          autoplaySpeed:3000,
-          slidesToShow: 4,
-          slidesToScroll: 3,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-          ]
-        }); // slick(.directorsMovieList)끝
-      
+	$('.main').slick({
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  slidesToShow: 1,
+		  adaptiveHeight: true
+		});	
 });
 </script>
+   	
 </body>
 </html>

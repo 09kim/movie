@@ -21,6 +21,7 @@ import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieExpectedGrade;
 import movie.action.MovieGetGradeAction;
+import movie.action.MovieGetGradeModalAction;
 import movie.action.MovieGetPosterForExpectationAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
@@ -164,6 +165,15 @@ public class MovieFrontController extends HttpServlet {
 		}
 		else if (command.equals("/MovieDetailPro.mo")) {
 			action = new MovieGetGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+
+			} 
+		} 
+		
+		else if (command.equals("/MovieDetailModal.mo")) {
+			action = new MovieGetGradeModalAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

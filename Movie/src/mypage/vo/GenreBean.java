@@ -1,5 +1,17 @@
 package mypage.vo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class GenreBean implements MarkGenreBean{
 //	코메디/느와르/범죄/드라마/로맨스/스릴러/전쟁/가족/판타지/액션/SF/애니메이션/인물/공포/미스터리/어드벤처
 	private int 코메디;
@@ -18,6 +30,53 @@ public class GenreBean implements MarkGenreBean{
 	private int 공포;
 	private int 어드벤처;
 	private int 미스터리;
+	
+	public ArrayList<String> getDESC() {
+		int count = 0;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("코메디", get코메디());
+		map.put("느와르", get느와르());
+		map.put("범죄", get범죄());
+		map.put("드라마", get드라마());
+		map.put("스릴러", get스릴러());
+		map.put("전쟁", get전쟁());
+		map.put("가족", get가족());
+		map.put("판타지", get판타지());
+		map.put("액션", get액션());
+		map.put("SF", getSF());
+		map.put("애니메이션", get애니메이션());
+		map.put("인물", get인물());
+		map.put("공포", get공포());
+		map.put("어드벤처", get어드벤처());
+		map.put("미스터리", get미스터리());
+		
+		List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+		
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+
+			@Override
+			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
+				int comparision = (o1.getValue() - o2.getValue()) * -1; 
+				
+				return comparision == 0 ? o1.getValue().compareTo(o2.getValue()) : comparision;
+			}
+			
+			
+		});
+		
+		ArrayList<String> resultList = new ArrayList<String>();
+		for(Iterator<Map.Entry<String, Integer>> iter = list.iterator(); iter.hasNext();) {
+			if(count == 3) {
+				return resultList;
+			}
+			Map.Entry<String, Integer> entry = iter.next();
+			resultList.add(entry.getKey());
+			count++;
+		}
+		
+		return resultList;
+	}
+	
 	
 	public int get미스터리() {
 		return 미스터리;
@@ -94,8 +153,8 @@ public class GenreBean implements MarkGenreBean{
 	public int getSF() {
 		return SF;
 	}
-	public void setSF(int sF) {
-		SF = sF;
+	public void setSF(int SF) {
+		this.SF = SF;
 	}
 	public int get애니메이션() {
 		return 애니메이션;
@@ -115,6 +174,8 @@ public class GenreBean implements MarkGenreBean{
 	public void set공포(int 공포) {
 		this.공포 = 공포;
 	}
+	
+	
 	
 	
 }

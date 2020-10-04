@@ -353,13 +353,13 @@ public class MovieDAO {
 				System.out.println(result);
 				switch (type) {
 				case genre:
-					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and genre REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and genre REGEXP ? group by title order by rand() limit 0,10";
 					break;
 				case director:
-					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and director REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and director REGEXP ? group by title order by rand() DESC limit 0,10";
 					break;
 				case nation:
-					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and nation REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";
+					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and nation REGEXP ? group by title order by rand() DESC limit 0,10";
 					break;
 				}
 				pstmt = con.prepareStatement(sql);

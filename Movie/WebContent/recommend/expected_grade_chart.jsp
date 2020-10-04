@@ -41,7 +41,7 @@
 					grade = grade/2
 					 $('.expectedGrade').append("<div class=expectedGradeMovie>"+
                   		   "<a class=expectedGradePoster><img class=expectedGradePoster_img></a>"+
-                  		   "<div><a class=expectedGradeMovieName></a></div><div class=grade></div>"+
+                  		   "<div><div class=expectedGradeMovieName></div></div><div class=grade></div>"+
                   		   "</div>");
 					
                    

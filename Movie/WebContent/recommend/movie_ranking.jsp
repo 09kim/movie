@@ -51,12 +51,14 @@ $(document).ready(function() {
        var d = new Date();
        var yy = d.getFullYear();
        var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
-       var dd = d.getDate()  ;
-       if(d.getDay()!=1){
+       var dd = d.getDate();
+       
+       if(d.getDay()!=0){
     	   dd = dd-d.getDay();
+       }else{
+    	   dd = -7; 
        }
-//           alert(dd); // 일요일 구하는 메서드
-		if(dd<=0){
+		if(dd<=0){ // 마지막 일요일이 지난달일경우 계산하는 계산 식
 			var lastDay = new Date(yy,mm-1,0).getDate();
 			dd = lastDay - Math.abs(dd);
 			mm = mm-1;

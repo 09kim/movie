@@ -32,6 +32,7 @@
 			},
 			async: false,
 			success : function(data) {
+				$('.GradeMovie').prepend(' <h1><%=nick %> 님이 높은 점수를 줄것 같은 영화들!</h1><br>');
 				for(var i = 0; i<data.length;i++){
 					grade = String(data[i]).substring(0,String(data[i]).indexOf(',')); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
 					title = String(data[i]).substring(String(data[i]).indexOf(',')+1,String(data[i]).indexOf('/')); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
@@ -52,13 +53,15 @@
                      $('.movieName').eq(i).text(title);
 				}
 				
+				
 				$('.expectedGrade').slick({
 	            	   dots: false,
-	            	   infinite: false,
-	            	   arrows: true,
-	            	   speed: 300,
-	            	   slidesToShow: 4,
-	            	   slidesToScroll: 3,
+	                   infinite: false,
+	                   arrows: true,
+	                   variableWidth:true,
+	                   speed: 300,
+	                   slidesToShow: 4,
+	                   slidesToScroll: 3,
 	            	   responsive: [
 	            	     {
 	            	       breakpoint: 1024,
@@ -83,9 +86,6 @@
 	            	         slidesToScroll: 1
 	            	       }
 	            	     }
-	            	     // You can unslick at a given breakpoint now by adding:
-	            	     // settings: "unslick"
-	            	     // instead of a settings object
 	            	   ]
 	            	 });
 				
@@ -99,7 +99,8 @@
 <title></title>
 </head>
 <body>
-	    <h1><%=nick %> 님이 높은 점수를 줄것 같은 영화들!</h1>
+<div class="GradeMovie">
 <div class="expectedGrade"></div>
+</div>
 </body>
 </html>

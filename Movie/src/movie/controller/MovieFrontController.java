@@ -30,6 +30,7 @@ import movie.action.MovieReviewDeleteAction;
 import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieSetGradeAction;
 import movie.action.getMovieByGenreAction;
+import movie.action.getMovieByNationAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -226,6 +227,13 @@ public class MovieFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/MovieGetGenre.mo")) {
 			action = new getMovieByGenreAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetNation.mo")) {
+			action = new getMovieByNationAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

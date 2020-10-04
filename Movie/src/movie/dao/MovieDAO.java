@@ -349,8 +349,8 @@ public class MovieDAO {
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				String result = rs.getString(1).substring(1, rs.getString(1).length()-1).replaceAll("\\s", "").replaceAll(",", "|");
-				
+				String result = rs.getString(1).substring(1, rs.getString(1).length()-1).replaceAll(",\\s", "|");
+				System.out.println(result);
 				switch (type) {
 				case genre:
 					sql = "SELECT * from grade where nick NOT like ? and title NOT IN (select title from grade where nick =?) and genre REGEXP ? group by title order by count(grade) DESC,avg(grade) DESC limit 0,10";

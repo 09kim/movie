@@ -5,7 +5,6 @@
 <head>
 <%String nick = (String)session.getAttribute("nick"); %>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
@@ -43,11 +42,6 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- <meta charset="utf-8"> -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
-<!-- <script src="js/bootstrap.min.js"></script> -->
 
 <meta charset="UTF-8">
 <title></title>
@@ -57,11 +51,12 @@ $(document).ready(function(){
 	<input type="hidden" id="weather">
 	<jsp:include page="/inc/top.jsp" />
 	<div class="clear"></div>
-	<jsp:include page="/recommend/movie_ranking.jsp"/>
+<%-- 	<jsp:include page="/recommend/movie_ranking.jsp"/> --%>
 	<%if(nick!=null) {
 		%>
 			<jsp:include page="/recommend/expected_grade_chart.jsp"/>
 			<jsp:include page="/recommend/movie_recommend_byGenre.jsp"/>
+<%-- 			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/> --%>
 		<%
 	}%>
 	<jsp:include page="/recommend/naver_search_ranking.jsp"/>

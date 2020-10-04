@@ -8,15 +8,15 @@
 <title></title>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$.ajax('MovieGetGenre.mo',{
+		$.ajax('MovieGetNation.mo',{
 			method : "post",
 			dataType : "json",
 			async: false,
 			success : function(data){
-				$('.genreMovie').prepend('<h1><%=nick %> 님이 좋아하는 장르의 영화들!</h1>')
+				$('.nationMovie').prepend('<h1><%=nick %> 님이 좋아하는 국가의 영화들!</h1>')
 				$.each(data,function(index,item){
-					$('.MovieGenre').append("<div class=movie>"+
-                 		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+					$('.MovieNation').append("<div class=movie>"+
+                 		   "<div><a class=poster><img class=poster_img></a></div>"+
                  		   "<div class =movieName></div>"+
                  		   "<div class=nation></div></div>");
                   		$('.poster_img').eq(index).css("width","250px").css("height","350px");
@@ -26,7 +26,7 @@
 	                   $('.movieName').eq(index).html(item.movieTitle);
 				});
 				
-				$('.MovieGenre').slick({
+				$('.MovieNation').slick({
 			     	   dots: false,
 			            infinite: false,
 			            arrows: true,
@@ -69,8 +69,8 @@
 </script>
 </head>
 <body>
-	<div class="genreMovie">
-	<div class="MovieGenre"></div>
+	<div class="nationMovie">
+	<div class="MovieNation"></div>
 	</div>
 </body>
 </html>

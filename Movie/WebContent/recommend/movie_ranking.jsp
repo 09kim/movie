@@ -102,24 +102,21 @@ $(document).ready(function() {
             	targetDt:today,
             },
             success: function(data) {
+            	$('.boxOfficeMovie').prepend('<h1>박스오피스</h1>');
                $.each(data, function(idx, item) {
             	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
-                       
                        // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
-                       $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
+                       $('.boxOffice').append("<div class=movie>"+
                     		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-//                     		   "<div><a class=movieName></a></div>"+
                     		   "<div class =movieName></div>"+
-                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div><div class=rating></div></div>"); // rating 추가 - 낙원 : 0930
+                    		   "<div class=nation></div></div>"); // rating 추가 - 낙원 : 0930
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        
-                       temp = $('#temp').val();
-      	               weather = $('#weather').val();
                        if(result[0]){
                        		$('.poster_img').eq(idx2).css("width","250px").css("height","350px");
                        		$('.poster_img').eq(idx2).attr("src",result[0]);
@@ -129,7 +126,7 @@ $(document).ready(function() {
                        }
              		   $('.nation').eq(idx2).text(result[1]);
              		   $('.rating').eq(idx2).text(result[4]);
-                       $('.poster').eq(idx2).attr('href','MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]);
+                       $('.poster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
                        $('.movieName').eq(idx2).html(item2.movieNm);
                        
                       
@@ -171,9 +168,6 @@ $(document).ready(function() {
             	         slidesToScroll: 1
             	       }
             	     }
-            	     // You can unslick at a given breakpoint now by adding:
-            	     // settings: "unslick"
-            	     // instead of a settings object
             	   ]
             	 });
                
@@ -186,19 +180,10 @@ $(document).ready(function() {
    
    
 </script>
-<style>
-.rating{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.poster{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.nation{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.movieName{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.movie {width: 250px;height:400px;margin-right: 20px;padding:0;}
-</style>
 </head>
 <body>
-<input type="hidden" value="<%=nick%>">
-    <h1>박스오피스 순위</h1>
-    <div class="boxOffice"></div>
-
-
+   <div class="boxOfficeMovie">
+   	 <div class="boxOffice"></div>
+   </div>
 </body>
 </html>

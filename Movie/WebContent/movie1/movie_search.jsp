@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
+<%-- <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css"> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
@@ -17,32 +17,32 @@
 
 $(document).ready(function(){
    
-   var latitude, longitude;
-   var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-   var temp = '0';
-   var weather = 'no';
-   
-   function getLocation(){
-      window.navigator.geolocation.getCurrentPosition(current_position);
-   }
-   
-   function current_position(position){
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-      $.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
-            +"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
-         dataType:"json",
-         async:false,
-         success:function(data){
-            $('#temp').val(data.main.temp);
-            $('#weather').val(data.weather[0].main);
-            temp = $('#temp').val();
-            weather = $('#weather').val();
-         }
-      });
-   }
-      
-   window.addEventListener("load",getLocation);
+		var latitude, longitude;
+		var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
+		var temp = '0';
+		var weather = 'no';
+		
+		function getLocation(){
+		   window.navigator.geolocation.getCurrentPosition(current_position);
+		}
+		
+		function current_position(position){
+		   latitude = position.coords.latitude;
+		   longitude = position.coords.longitude;
+		   $.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
+		         +"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
+		      dataType:"json",
+		      async:false,
+		      success:function(data){
+		         $('#temp').val(data.main.temp);
+		         $('#weather').val(data.weather[0].main);
+		         temp = $('#temp').val();
+		         weather = $('#weather').val();
+		      }
+		   });
+		}
+		   
+		window.addEventListener("load",getLocation);
    
    
    
@@ -79,11 +79,15 @@ $(document).ready(function(){
                      }
                         
                      if(image[0]){
-                        $('#koreaList').append("<div class=koreaMovie>"+
-                              '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
-                              '<div class=nation>'+item2.nation+'</div>'+
-                              '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                              '<div class=title>'+title5+'</div></div>');
+//                     	 $('#koreaList').append("<div class=koreaMovie style='width:250px;height:450px'>"+
+                    	 $('#koreaList').append("<div class=koreaMovie>"+
+                    			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+//                     			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+                    			 '<div class=nation>'+item2.nation+'</div>'+
+                    			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
+                    			 '<div class=title>'+title5+'</div></div>');
+                    			 
+                    			 
                      }
 //                      else{
 //                         $('#koreaList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
@@ -96,11 +100,12 @@ $(document).ready(function(){
                      }
                         
                      if(image[0]){
-                        $('#foreignList').append("<div class=foreignMovie>"+
-                              '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
-                              '<div class=nation>'+item2.nation+'</div>'+
-                              '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                              '<div class=title>'+title5+'</div></div>');
+                    	 $('#foreignList').append("<div class=foreignMovie>"+
+                    			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+//                     			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+                    			 '<div class=nation>'+item2.nation+'</div>'+
+                    			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
+                    			 '<div class=title>'+title5+'</div></div>');
                      }
 //                      else{ 포스터 없는거는 거의 대부분 안유명한거라 뺌
 //                         $('#foreignList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
@@ -222,11 +227,12 @@ $(document).ready(function(){
                   }
                      
                   if(image[0]){
-                     $('#actorList').append("<div class=koreaMovie>"+
-                           '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
-                           '<div class=nation>'+item2.nation+'</div>'+
-                           '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                           '<div class=title>'+title5+'</div></div>');
+                	  $('#actorList').append("<div class=koreaMovie>"+
+                 			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+//                  			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+                 			 '<div class=nation>'+item2.nation+'</div>'+
+                 			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
+                 			 '<div class=title>'+title5+'</div></div>');
                   }
 //                   else{
 //                      $('#actorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
@@ -304,11 +310,12 @@ $(document).ready(function(){
                   }
                      
                   if(image[0]){
-                     $('#directorList').append("<div class=koreaMovie>"+
-                           '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
-                           '<div class=nation>'+item2.nation+'</div>'+
-                           '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                           '<div class=title>'+title5+'</div></div>');
+                	  $('#directorList').append("<div class=koreaMovie>"+
+                 			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+//                  			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+                 			 '<div class=nation>'+item2.nation+'</div>'+
+                 			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
+                 			 '<div class=title>'+title5+'</div></div>');
                   }
 //                   else{
 //                      $('#directorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
@@ -359,13 +366,34 @@ $(document).ready(function(){
          }
    });
       
-});
+   
+      
+}); // ready()끝;
+      
 </script>
+<style>
+.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.koreaMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.foreignMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.actorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.directorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+/* .foreignMovie.poster{text-align: center;} */
+/* .foreignMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+/* .actorMovie {text-align: center;width: 250px;height:350px;} */
+/* .actorMovie.poster{text-align: center;} */
+/* .actorMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+/* .directorMovie {text-align: center;width: 250px;height:350px;} */
+/* .directorMovie.poster{text-align: center;} */
+/* .directorMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+
+</style>
 </head>
 <body>
-<section id="main">
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
+<section id="main">
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>
    <input type="hidden" id="query" name=query value="<%=query%>">
@@ -382,5 +410,12 @@ $(document).ready(function(){
 <h1>감독 검색 결과</h1>
    <section id="directorList"></section>
 </section>
+
+
+
+
+
+
+
 </body>
 </html>

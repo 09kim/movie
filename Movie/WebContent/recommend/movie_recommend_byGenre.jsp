@@ -15,15 +15,15 @@
 			success : function(data){
 				$('.genreMovie').prepend('<h1><%=nick %> 님이 좋아하는 장르의 영화들!</h1>')
 				$.each(data,function(index,item){
-					$('.MovieGenre').append("<div class=movie>"+
-                 		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-                 		   "<div class =movieName></div>"+
-                 		   "<div class=nation></div></div>");
-                  		$('.poster_img').eq(index).css("width","250px").css("height","350px");
-                  		$('.poster_img').eq(index).attr("src",item.moviePoster);
-	         		   $('.nation').eq(index).text(item.nation);
-	                   $('.poster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-	                   $('.movieName').eq(index).html(item.movieTitle);
+					$('.MovieGenre').append("<div class=MovieGenreMovie>"+
+                 		   "<div><a class=MovieGenrePoster><img class=MovieGenrePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+                 		   "<div class =MovieGenreMovieName></div>"+
+                 		   "<div class=MovieGenreNation></div></div>");
+                  		$('.MovieGenrePoster_img').eq(index).css("width","250px").css("height","350px");
+                  		$('.MovieGenrePoster_img').eq(index).attr("src",item.moviePoster);
+	         		   $('.MovieGenreNation').eq(index).text(item.nation);
+	                   $('.MovieGenrePoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
+	                   $('.MovieGenreMovieName').eq(index).html(item.movieTitle);
 				});
 				
 				$('.MovieGenre').slick({
@@ -40,8 +40,8 @@
 			     	       settings: {
 			     	         slidesToShow: 3,
 			     	         slidesToScroll: 3,
-			     	         infinite: true,
-			     	         dots: true
+			     	         infinite: false,
+			     	         dots: false
 			     	       }
 			     	     },
 			     	     {

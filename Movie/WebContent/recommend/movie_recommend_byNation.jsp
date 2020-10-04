@@ -15,15 +15,15 @@
 			success : function(data){
 				$('.nationMovie').prepend('<h1><%=nick %> 님이 좋아하는 국가의 영화들!</h1>')
 				$.each(data,function(index,item){
-					$('.MovieNation').append("<div class=movie>"+
-                 		   "<div><a class=poster><img class=poster_img></a></div>"+
-                 		   "<div class =movieName></div>"+
-                 		   "<div class=nation></div></div>");
-                  		$('.poster_img').eq(index).css("width","250px").css("height","350px");
-                  		$('.poster_img').eq(index).attr("src",item.moviePoster);
-	         		   $('.nation').eq(index).text(item.nation);
-	                   $('.poster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-	                   $('.movieName').eq(index).html(item.movieTitle);
+					$('.MovieNation').append("<div class=MovieNationMovie>"+
+                 		   "<div><a class=MovieNationPoster><img class=MovieNationPoster_img></a></div>"+
+                 		   "<div class =MovieNationMovieName></div>"+
+                 		   "<div class=MovieNationNation></div></div>");
+                  	   $('.MovieNationPoster_img').eq(index).css("width","250px").css("height","350px");
+                  	   $('.MovieNationPoster_img').eq(index).attr("src",item.moviePoster);
+	         		   $('.MovieNationNation').eq(index).text(item.nation);
+	                   $('.MovieNationPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
+	                   $('.MovieNationMovieName').eq(index).html(item.movieTitle);
 				});
 				
 				$('.MovieNation').slick({
@@ -40,8 +40,8 @@
 			     	       settings: {
 			     	         slidesToShow: 3,
 			     	         slidesToScroll: 3,
-			     	         infinite: true,
-			     	         dots: true
+			     	         infinite: false,
+			     	         dots: false
 			     	       }
 			     	     },
 			     	     {

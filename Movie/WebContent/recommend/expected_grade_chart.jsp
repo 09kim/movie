@@ -39,18 +39,23 @@
 					movieSeq = String(data[i]).substring(String(data[i]).indexOf('/')+1,String(data[i]).length); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
 					poster = getPoster(movieSeq);
 					grade = grade/2
-					 $('.expectedGrade').append("<div class=movie>"+
-                  		   "<img class=poster_img>"+
-                  		   "<div><a class=movieName></a></div><div class=grade></div>"+
+					 $('.expectedGrade').append("<div class=expectedGradeMovie>"+
+                  		   "<a class=expectedGradePoster><img class=expectedGradePoster_img></a>"+
+                  		   "<div><a class=expectedGradeMovieName></a></div><div class=grade></div>"+
                   		   "</div>");
+					
+                   
+					
                      if(poster){
-                     		$('.poster_img').eq(i).attr("src",poster);
+                    	 $('.expectedGradePoster_img').eq(i).css("width","250px").css("height","350px");
+                     		$('.expectedGradePoster_img').eq(i).attr("src",poster);
                      }else{
-                  	 	$('.poster_img').eq(i).attr("src","../../../Movie/img/noImage.gif");
+                    	 $('.expectedGradePoster_img').eq(index).css("width","250px").css("height","350px");
+                  	 	$('.expectedGradePoster_img').eq(i).attr("src","../../../Movie/img/noImage.gif");
                      }
                      $('.grade').eq(i).append('예상 별점'+grade.toFixed(1));
-                     $('.movieName').eq(i).attr('href','MovieDetailPro.mo?query='+title+'&movieSeq='+movieSeq);
-                     $('.movieName').eq(i).text(title);
+                     $('.expectedGradePoster').eq(i).attr('href','MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+title);
+                     $('.expectedGradeMovieName').eq(i).text(title);
 				}
 				
 				
@@ -68,8 +73,8 @@
 	            	       settings: {
 	            	         slidesToShow: 3,
 	            	         slidesToScroll: 3,
-	            	         infinite: true,
-	            	         dots: true
+	            	         infinite: false,
+	            	         dots: false
 	            	       }
 	            	     },
 	            	     {

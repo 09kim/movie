@@ -110,24 +110,23 @@ $(document).ready(function() {
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
                        // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
-                       $('.boxOffice').append("<div class=movie>"+
-                    		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-                    		   "<div class =movieName></div>"+
-                    		   "<div class=nation></div></div>"); // rating 추가 - 낙원 : 0930
+                       $('.boxOffice').append("<div class=boxOfficeMovie>"+
+                    		   "<div><a class=boxOfficePoster><img class=boxOfficePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+                    		   "<div class =boxOfficeMovieName></div>"+
+                    		   "<div class=boxOfficeNation></div></div>"); // rating 추가 - 낙원 : 0930
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        
                        if(result[0]){
-                       		$('.poster_img').eq(idx2).css("width","250px").css("height","350px");
-                       		$('.poster_img').eq(idx2).attr("src",result[0]);
+                       		$('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+                       		$('.boxOfficePoster_img').eq(idx2).attr("src",result[0]);
                        }else{
-                    	   $('.poster_img').eq(idx2).css("width","250px").css("height","350px");
-                    	 	$('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
+                    	   $('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+                    	 	$('.boxOfficePoster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
                        }
-             		   $('.nation').eq(idx2).text(result[1]);
-             		   $('.rating').eq(idx2).text(result[4]);
-                       $('.poster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
-                       $('.movieName').eq(idx2).html(item2.movieNm);
+             		   $('.boxOfficeNation').eq(idx2).text(result[1]);
+                       $('.boxOfficePoster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
+                       $('.boxOfficeMovieName').eq(idx2).html(item2.movieNm);
                        
                       
                        
@@ -150,8 +149,8 @@ $(document).ready(function() {
             	       settings: {
             	         slidesToShow: 3,
             	         slidesToScroll: 3,
-            	         infinite: true,
-            	         dots: true
+            	         infinite: false,
+            	         dots: false
             	       }
             	     },
             	     {

@@ -10,6 +10,7 @@ public class ReplyBean {
 	private String reply;
 	private int re_ref;
 	private Date date;
+	private int report;
 	
 	
 	public int getIdx() {
@@ -45,8 +46,14 @@ public class ReplyBean {
 	public Date getDate() {
 		return date;
 	}
-	public void setData(Date date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}	
+	public int getReport() {
+		return report;
+	}
+	public void setReport(int report) {
+		this.report = report;
 	}
 	
 

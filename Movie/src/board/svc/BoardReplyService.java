@@ -96,4 +96,27 @@ public class BoardReplyService {
 		return isSuccess;
 	}
 
+	public boolean reportReply(ReplyBean replyBean) {
+		System.out.println("BoardReplyService - reportReply()");
+		
+		boolean isSuccess = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int insertCount = boardDAO.reportReply(replyBean);
+		
+		if(insertCount > 0) {
+			commit(con);
+			isSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSuccess;
+	}
+
 }

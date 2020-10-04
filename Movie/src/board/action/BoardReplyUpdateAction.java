@@ -33,7 +33,7 @@ public class BoardReplyUpdateAction implements Action {
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
 		replyBean.setRe_ref(re_ref);
-		replyBean.setData(date);
+		replyBean.setDate(date);
 		
 		
 		BoardReplyService boardReplyService = new BoardReplyService();

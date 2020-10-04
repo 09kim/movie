@@ -37,7 +37,7 @@ public class BoardReplyProAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
-		replyBean.setData(date);
+		replyBean.setDate(date);
 		
 		
 		if(reply.equals("")) {

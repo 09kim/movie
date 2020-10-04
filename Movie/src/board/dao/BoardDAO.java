@@ -181,7 +181,7 @@ public class BoardDAO {
 				num = rs.getInt(1) + 1;
 			}
 			
-			sql = "INSERT INTO reply VALUES(idx,?,?,?,?,now())";
+			sql = "INSERT INTO reply VALUES(idx,?,?,?,?,now(),0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, replyBean.getNick());
 			pstmt.setInt(2, replyBean.getMovieSeq());
@@ -218,7 +218,7 @@ public class BoardDAO {
 				reply.setNick(rs.getString("nick"));
 				reply.setReply(rs.getString("reply"));
 				reply.setRe_ref(rs.getInt("re_ref"));
-				reply.setData(rs.getDate("date"));
+				reply.setDate(rs.getDate("date"));
 				
 				replyList.add(reply);
 			}
@@ -273,6 +273,29 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("BoardDAO - deleteReply() 에러: " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+				
+		return insertCount;
+	}
+
+	public int reportReply(ReplyBean replyBean) {
+		System.out.println("BoardDAO - reportReply()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "update reply set report=? where re_ref=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, replyBean.getReport() + 1);
+			pstmt.setInt(2, replyBean.getRe_ref());
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - reportReply() 에러: " + e.getMessage());
 		} finally {
 			close(pstmt);
 		}

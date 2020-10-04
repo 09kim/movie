@@ -84,11 +84,12 @@ $(document).ready(function() {
         <textarea rows="5" cols="30" id="replyContent"></textarea>
         <input type="button" value="댓글쓰기" id="replyBtn" >
     </div>
-<hr>
+<br>
 <div id="replyShow"></div>
 
 
 <h3><%=reviewBean.getTitle() %> 리뷰의 댓글</h3>
+<br>
 
 <%if(replyList != null){ %>
 
@@ -96,9 +97,9 @@ $(document).ready(function() {
 	    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
 	    
 	    <%if(nick.equals(rb.getNick())) { %>
-			<input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
+			&nbsp; <input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
 		    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
-	    <%} %>
+	    
         </div>
         <hr>  
         
@@ -182,9 +183,58 @@ $(document).ready(function() {
 	        });
 	        
 	    });
-
 	    
+
 	    </script>
+	    
+	    <%} else {%>
+            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getRe_ref() %>" value="댓글신고">
+            <hr>
+           
+           <script type="text/javascript">
+
+           // 댓글 신고버튼
+           $('#reportReply_<%=rb.getRe_ref() %>').click(function() {
+               
+               $('#report-message').dialog({
+                   modal: true,
+                   buttons: {
+                       "댓글 신고": function() {
+                           
+                           var nick = $('#nick').val()
+                           var movieSeq = $("#movieSeq").val();
+                           var idx = $('#idx').val();
+                           var reply = $('#replyContent').val();
+                           
+                           $.ajax({
+                               url: "BoardReplyReport.bo?re_ref=<%=rb.getRe_ref() %>",
+                               method: "get",
+                               data: {
+                                   idx:idx,
+                                   movieSeq:movieSeq,
+                                   nick:nick,
+                                   reply:reply
+                               },
+                               success: function(data) {
+                                   location.reload();
+                               }
+                           });
+                           
+                           $(this).dialog('close');
+                       },
+                       
+                       "취소": function() {
+                           $(this).dialog('close');
+                       }
+                   }
+                   
+               });
+               
+           });
+           
+           </script>
+	    
+	    <%} %>
 	    
     <%} %>
     
@@ -195,8 +245,12 @@ $(document).ready(function() {
      댓글을 수정해주세요.
 </div>
 
-<div id="delete-message" title="댓글" style="display:none">
+<div id="delete-message" title="댓글 삭제" style="display:none">
     삭제 하시겠습니까?
+</div>
+
+<div id="report-message" title="댓글 신고" style="display:none">
+    이 댓글을 신고 하시겠습니까?
 </div>
 
 </body>

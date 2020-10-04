@@ -23,7 +23,6 @@ public class MovieNaverRankingAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.println(jsonObject);
 		out.flush();
-		
 				
 		return null;
 	}

@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
+import mypage.vo.CollectionBean;
 import mypage.vo.MypageBean;
 import mypage.vo.MypageGenreBean;
 
@@ -378,6 +379,37 @@ public class MypageDAO {
 			close(pstmt);
 		}
 		return jo1;
+	}
+	
+	
+//	Collection
+	
+	public int addCollectionMovie(CollectionBean collectionBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		  try {
+			String sql = "insert into collection values(idx,?,'test',?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getNick());
+			pstmt.setInt(2, collectionBean.getMovieSeq());
+			pstmt.setString(3, collectionBean.getTitle());
+			pstmt.setString(4, collectionBean.getPoster());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
 	}
 
 }

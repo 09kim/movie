@@ -375,7 +375,7 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                         $('.detailH2').text("영화 "+title5+"의 상세 정보"); 
                         
                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
-                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" + title3+ "예고편&part=id&type=video";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=영화" + title3+ "예고편&part=id&type=video";
                         
                         $.ajax({
                         	 type : "GET",

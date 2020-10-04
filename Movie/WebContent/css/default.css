@@ -1,20 +1,66 @@
 @charset "UTF-8";
-.clear{clear: both;} /*영역구분*/
+
+.clear {
+	clear: both;
+} /*영역구분*/
 
 /* ------------------ 바디 부분 ------------------ */
 body {
 	/* css 배경색 적용 문제 때문에 !important로 강제 적용 하게 끔 변경 - 낙원:1003*/
-/*   background-color: #2E2E2E !important; */
-/*   background-color: #000000 !important; */
-  margin: 0;
+	/*   background-color: #2E2E2E !important; */
+	/*   background-color: #000000 !important; */
+	margin: 0;
 }
-
 
 #main {
 	width: 1280px;
-	margin-top:86px;
+	margin-top: 86px;
 	margin: 86px auto 0 auto;
 }
 
+.rating {
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
 
+.poster {
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
 
+.nation {
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+
+.movieName {
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+.grade{
+	
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+
+.movie {
+	width: 250px;
+	height: 400px;
+	margin-right: 20px;
+	padding: 0;
+}

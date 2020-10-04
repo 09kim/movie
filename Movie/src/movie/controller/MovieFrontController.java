@@ -14,9 +14,8 @@ import movie.action.MovieActorProAction;
 import movie.action.MovieActorRoleAction;
 import movie.action.MovieBoxOfficeAction;
 import movie.action.MovieBoxOfficeNationAction;
-import movie.action.MovieReviewDeleteAction;
-import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieDetailBySearch;
+import movie.action.MovieDetailProAction;
 import movie.action.MovieDirectorAction;
 import movie.action.MovieDirectorProAction;
 import movie.action.MovieExpectedGrade;
@@ -26,9 +25,12 @@ import movie.action.MovieGetPosterForExpectationAction;
 import movie.action.MovieGradeAction;
 import movie.action.MovieKeywordProAction;
 import movie.action.MovieNaverRankingAction;
-import movie.action.MovieDetailProAction;
 import movie.action.MovieReviewAction;
+import movie.action.MovieReviewDeleteAction;
+import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieSetGradeAction;
+import movie.action.getMovieByGenreAction;
+import movie.action.getMovieByNationAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -218,6 +220,20 @@ public class MovieFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/MovieGetPoster.mo")) {
 			action = new MovieGetPosterForExpectationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetGenre.mo")) {
+			action = new getMovieByGenreAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetNation.mo")) {
+			action = new getMovieByNationAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

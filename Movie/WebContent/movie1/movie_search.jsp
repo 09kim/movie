@@ -391,9 +391,9 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
-<section id="main">
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
+<section id="main">
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>
    <input type="hidden" id="query" name=query value="<%=query%>">

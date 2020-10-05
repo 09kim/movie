@@ -119,7 +119,9 @@ public class MypageGenerAction implements Action {
 		
 		MypageServiceForMain mypageServiceForMain = new MypageServiceForMain();
 		
-		mypageServiceForMain.setMypage(nick,resultList,Mypage.genre); // 내림차순한 key 값을 list로 담음 (밸류는 필요없음)
+		if(list!=null && nick!=null) {
+			mypageServiceForMain.setMypage(nick,resultList,Mypage.genre); // 내림차순한 key 값을 list로 담음 (밸류는 필요없음)
+		}
 		ArrayList<MarkGenreBean> list2 = new ArrayList<MarkGenreBean>();
 		list2.add(genre);
 		list2.add(count);

@@ -15,7 +15,8 @@ public class MypageServiceForMain {
 		Connection con = getConnection();
 		MypageDAO md = MypageDAO.getInstance();
 		md.setConnection(con);
-		int result = md.setGenre(nick,list,type);
+		int result = md.setMypage(nick,list,type);
+		
 		
 		if(result > 0) {
 			commit(con);

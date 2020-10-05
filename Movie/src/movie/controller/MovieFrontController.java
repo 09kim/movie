@@ -29,6 +29,7 @@ import movie.action.MovieReviewAction;
 import movie.action.MovieReviewDeleteAction;
 import movie.action.MovieReviewUpdateAction;
 import movie.action.MovieSetGradeAction;
+import movie.action.getMovieByChartAction;
 import movie.action.getMovieByGenreAction;
 import movie.action.getMovieByNationAction;
 import vo.ActionForward;
@@ -234,6 +235,13 @@ public class MovieFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/MovieGetNation.mo")) {
 			action = new getMovieByNationAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetChart.mo")) {
+			action = new getMovieByChartAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

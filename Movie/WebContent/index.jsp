@@ -51,14 +51,17 @@ $(document).ready(function(){
 	<input type="hidden" id="weather">
 	<jsp:include page="/inc/top.jsp" />
 	<div class="clear"></div>
+	<section id="main">
 	<jsp:include page="/recommend/movie_ranking.jsp"/>
+	<jsp:include page="/recommend/movie_recommend_byChart.jsp"/>
 	<%if(nick!=null) {
 		%>
-			<jsp:include page="/recommend/expected_grade_chart.jsp"/>
+			<jsp:include page="/recommend/expected_grade_chart_byPython.jsp"/>
 			<jsp:include page="/recommend/movie_recommend_byGenre.jsp"/>
 			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
 		<%
 	}%>
 <%-- 	<jsp:include page="/recommend/naver_search_ranking.jsp"/> --%>
+	</section>
 </body>
 </html>

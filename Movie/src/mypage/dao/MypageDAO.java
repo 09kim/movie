@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.google.gson.JsonObject;
 
@@ -285,6 +284,10 @@ public class MypageDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
+			if(!rs.next()) {
+				return null;
+			}
+			
 			while (rs.next()) {
 				MypageGenreBean mgb = new MypageGenreBean();
 				mgb.setGrade(rs.getInt("grade"));
@@ -380,7 +383,7 @@ public class MypageDAO {
 		return jo1;
 	}
 
-	public int setGenre(String nick, ArrayList<String> list, Mypage type) {
+	public int setMypage(String nick, ArrayList<String> list, Mypage type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
@@ -437,6 +440,8 @@ public class MypageDAO {
 		String sqlType = "";
 		
 		switch (type) {
+		case genre:
+			break;
 		case nation:
 			sqlType="nation";
 			break;
@@ -454,6 +459,9 @@ public class MypageDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
+			if(!rs.next()) {
+				return null;
+			}
 			while (rs.next()) {
 				list.add(rs.getString(1));
 			}

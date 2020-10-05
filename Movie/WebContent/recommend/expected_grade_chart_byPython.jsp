@@ -32,7 +32,9 @@
 			},
 			async: false,
 			success : function(data) {
-				$('.GradeMovie').prepend(' <h1><%=nick %> 님이 높은 점수를 줄것 같은 영화들!</h1><br>');
+				if(data){
+					$('.GradeMovie').prepend(' <h1><%=nick %> 님이 높은 점수를 줄것 같은 영화들!</h1><br>');
+				}
 				for(var i = 0; i<data.length;i++){
 					grade = String(data[i]).substring(0,String(data[i]).indexOf(',')); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
 					title = String(data[i]).substring(String(data[i]).indexOf(',')+1,String(data[i]).indexOf('/')); // 명시적 형변환 해줘야지 data 가 문자열 로 됨

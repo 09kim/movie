@@ -20,8 +20,9 @@ public class MypageDirectorAction implements Action {
 		MypagePreferedThings mpt = new MypagePreferedThings();
 		MypageServiceForMain myPageServiceForMain = new MypageServiceForMain();
 		ArrayList<String> list  = myPageServiceForMain.getInformation(nick,Mypage.director);
-		System.out.println(list);
-		myPageServiceForMain.setMypage(nick, list, Mypage.director);
+		if(nick!=null && list!=null) {
+			myPageServiceForMain.setMypage(nick, list, Mypage.director);
+		}
 		JsonObject jo = mpt.getMypageDirector(nick);
 		
 		response.setContentType("application/json;charset=UTF-8");

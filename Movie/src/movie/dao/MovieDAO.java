@@ -7,10 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
 
-import board.vo.*;
-import movie.exception.MovieChartExeption;
 import movie.vo.MovieBean;
 import movie.vo.ReviewBean;
 import mypage.action.Mypage;
@@ -213,7 +210,14 @@ public class MovieDAO {
 		int resultCount = 0;
 
 		try {
-			String sql = "SELECT * from chart where title=? and nick=?";
+			String sql = "INSERT INTO chart_before_1day SELECT * FROM chart WHERE date < date_sub(now(),interval 1 DAY)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			sql = "delete from chart where date < date_sub(now(),interval 1 DAY)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+			sql = "SELECT * from chart where title=? and nick=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mb.getMovieTitle());
 			pstmt.setString(2, mb.getNick());
@@ -226,8 +230,7 @@ public class MovieDAO {
 				while (rs.next()) {
 //					if (rs.getString("title").equals(mb.getMovieTitle()) && rs.getInt("COUNT(*)") < 4) {
 					if (rs.getString("title").equals(mb.getMovieTitle())) {
-						sql = "UPDATE chart set count = count +1 where title = ?";
-						System.out.println("이걸 반복하나요?");
+						sql = "UPDATE chart set count = count +1,date = now() where title = ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, mb.getMovieTitle());
 						pstmt.executeUpdate();
@@ -237,6 +240,7 @@ public class MovieDAO {
 				}
 
 			} else {
+				
 				sql = "INSERT INTO chart VALUES(null,?,?,?,?,?,now())";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, mb.getMovieSeq());
@@ -380,6 +384,33 @@ public class MovieDAO {
 				}
 				
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<MovieBean> getMovieByChart() {
+		
+		
+		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
+		String sql = "SELECT movieseq,title,sum(count),poster, count from chart  where date >= date_sub(now(),interval 1 DAY) group by title order by sum(count) desc limit 0,10";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MovieBean mb = new MovieBean();
+				mb.setMovieSeq(rs.getInt("movieseq"));
+				mb.setMovieTitle(rs.getString("title"));
+				mb.setMoviePoster(rs.getString("poster"));
+				list.add(mb);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

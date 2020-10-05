@@ -16,9 +16,17 @@ public class MovieGetService {
 		md.setConnection(con);
 		ArrayList<MovieBean> list = md.getMovie(nick,type);
 		
-		if(list!=null) {
-			close(con);
-		}
+		close(con);
+		return list;
+	}
+
+	public ArrayList<MovieBean> getMovie() {
+		Connection con = getConnection();
+		MovieDAO md = MovieDAO.getInstance();
+		md.setConnection(con);
+		ArrayList<MovieBean> list = md.getMovieByChart();
+		
+		close(con);
 		return list;
 	}
 

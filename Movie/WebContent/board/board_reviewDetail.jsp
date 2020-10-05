@@ -94,149 +94,157 @@ $(document).ready(function() {
 <%if(replyList != null){ %>
 
 	<%for(ReplyBean rb : replyList) { %>
-	    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
-	    
-	    <%if(nick.equals(rb.getNick())) { %>
-			&nbsp; <input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
-		    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
-	    
-        </div>
-        <hr>  
-        
-	    <script type="text/javascript">
-	    
-	    // 댓글 수정
-        $('#updateReply_<%=rb.getRe_ref() %>').click(function() {
-            
-            $('#dialog-message').dialog({
-                modal: true,
-                buttons: {
-                    "수정": function() {
-                        
-                        var nick = $('#nick').val()
-                        var movieSeq = $("#movieSeq").val();
-                        var idx = $('#idx').val();
-                        var reply = $('#replyUpdate').val();
-                        
-                        $.ajax({
-                            url: "BoardReplyUpdate.bo?re_ref=<%=rb.getRe_ref() %>",
-                            method: "get",
-                            data: {
-                                idx:idx,
-                                movieSeq:movieSeq,
-                                nick:nick,
-                                reply:reply
-                            },
-                            success: function(data) {
-                                location.reload();
-                            }
-                        });
-                        
-                        $(this).dialog('close');
-                    },
-                    
-                    "취소": function() {
-                        $(this).dialog('close');
-                    }
-                }
-                
-            });
-            
-        });
-	    
-	    
-	    // 댓글 삭제
-	    $('#deleteReply_<%=rb.getRe_ref() %>').click(function() {
+	
+	   <!-- 신고자 10명 넘으면 글 안보임 -->
+	   <%if(rb.getReport() < 10) { %>
+	   
+	   
+		    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
+		    
+		    <%if(nick.equals(rb.getNick())) { %>
+				&nbsp; <input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
+			    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
+		    
+	        </div>
+	        <hr>  
 	        
-	        $('#delete-message').dialog({
-	            modal: true,
-	            buttons: {
-	                "삭제": function() {
+		    <script type="text/javascript">
+		    
+		    // 댓글 수정
+	        $('#updateReply_<%=rb.getRe_ref() %>').click(function() {
+	            
+	            $('#dialog-message').dialog({
+	                modal: true,
+	                buttons: {
+	                    "수정": function() {
+	                        
+	                        var nick = $('#nick').val()
+	                        var movieSeq = $("#movieSeq").val();
+	                        var idx = $('#idx').val();
+	                        var reply = $('#replyUpdate').val();
+	                        
+	                        $.ajax({
+	                            url: "BoardReplyUpdate.bo?re_ref=<%=rb.getRe_ref() %>",
+	                            method: "get",
+	                            data: {
+	                                idx:idx,
+	                                movieSeq:movieSeq,
+	                                nick:nick,
+	                                reply:reply
+	                            },
+	                            success: function(data) {
+	                                location.reload();
+	                            }
+	                        });
+	                        
+	                        $(this).dialog('close');
+	                    },
 	                    
-	                	var nick = $('#nick').val()
-	                    var movieSeq = $("#movieSeq").val();
-	                    var idx = $('#idx').val();
-	                    var reply = $('#replyContent').val();
-	                    
-	                    $.ajax({
-	                        url: "BoardReplyDelete.bo?re_ref=<%=rb.getRe_ref() %>",
-	                        method: "get",
-	                        data: {
-	                            idx:idx,
-	                            movieSeq:movieSeq,
-	                            nick:nick,
-	                            reply:reply
-	                        },
-	                        success: function(data) {
-	                            location.reload();
-	                        }
-	                    });
-	                    
-	                    $(this).dialog('close');
-	                },
-	                
-	                "취소": function() {
-	                    $(this).dialog('close');
+	                    "취소": function() {
+	                        $(this).dialog('close');
+	                    }
 	                }
-	            }
+	                
+	            });
 	            
 	        });
-	        
-	    });
-	    
-
-	    </script>
-	    
-	    <%} else {%>
-            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getRe_ref() %>" value="댓글신고">
-            <hr>
-           
-           <script type="text/javascript">
-
-           // 댓글 신고버튼
-           $('#reportReply_<%=rb.getRe_ref() %>').click(function() {
-        	   
-//         	   var report = $('#report').val();
-               
-               $('#report-message').dialog({
-                   modal: true,
-                   buttons: {
-                       "댓글 신고": function() {
-                           
-                           var nick = $('#nick').val()
-                           var movieSeq = $("#movieSeq").val();
-                           var idx = $('#idx').val();
-                           var reply = $('#replyContent').val();
-                           
-                           $.ajax({
-                               url: "BoardReplyReport.bo?re_ref=<%=rb.getRe_ref() %>",
-                               method: "get",
-                               data: {
-                                   idx:idx,
-                                   movieSeq:movieSeq,
-                                   nick:nick,
-                                   reply:reply
-                               },
-                               success: function(data) {
-                                   location.reload();
-                               }
-                           });
-                           
-                           $(this).dialog('close');
-                       },
-                       
-                       "취소": function() {
-                           $(this).dialog('close');
-                       }
-                   }
-                   
-               });
-               
-           });
-           
-           </script>
-	    
-	    <%} %>
+		    
+		    
+		    // 댓글 삭제
+		    $('#deleteReply_<%=rb.getRe_ref() %>').click(function() {
+		        
+		        $('#delete-message').dialog({
+		            modal: true,
+		            buttons: {
+		                "삭제": function() {
+		                    
+		                	var nick = $('#nick').val()
+		                    var movieSeq = $("#movieSeq").val();
+		                    var idx = $('#idx').val();
+		                    var reply = $('#replyContent').val();
+		                    
+		                    $.ajax({
+		                        url: "BoardReplyDelete.bo?re_ref=<%=rb.getRe_ref() %>",
+		                        method: "get",
+		                        data: {
+		                            idx:idx,
+		                            movieSeq:movieSeq,
+		                            nick:nick,
+		                            reply:reply
+		                        },
+		                        success: function(data) {
+		                            location.reload();
+		                        }
+		                    });
+		                    
+		                    $(this).dialog('close');
+		                },
+		                
+		                "취소": function() {
+		                    $(this).dialog('close');
+		                }
+		            }
+		            
+		        });
+		        
+		    });
+		    
+	
+		    </script>
+		    
+		    <%} else {%>
+	            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getRe_ref() %>" value="댓글신고">
+	            <hr>
+	           
+	           <script type="text/javascript">
+	
+	           // 댓글 신고버튼
+	           $('#reportReply_<%=rb.getRe_ref() %>').click(function() {
+	        	   
+	//         	   var report = $('#report').val();
+	               
+	               $('#report-message').dialog({
+	                   modal: true,
+	                   buttons: {
+	                       "댓글 신고": function() {
+	                           
+	                           var nick = $('#nick').val()
+	                           var movieSeq = $("#movieSeq").val();
+	                           var idx = $('#idx').val();
+	                           var reply = $('#replyContent').val();
+	                           
+	                           $.ajax({
+	                               url: "BoardReplyReport.bo?re_ref=<%=rb.getRe_ref() %>",
+	                               method: "get",
+	                               data: {
+	                                   idx:idx,
+	                                   movieSeq:movieSeq,
+	                                   nick:nick,
+	                                   reply:reply
+	                               },
+	                               success: function(data) {
+	                                   location.reload();
+	                                   
+	                               }
+	                           });
+	                           
+	                           $(this).dialog('close');
+	                       },
+	                       
+	                       "취소": function() {
+	                           $(this).dialog('close');
+	                       }
+	                   }
+	                   
+	               });
+	               
+	           });
+	           
+	           </script>
+		    
+		    <%} %>
+		    
+		<%} %>    
 	    
     <%} %>
     

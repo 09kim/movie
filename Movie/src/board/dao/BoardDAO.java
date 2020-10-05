@@ -219,6 +219,7 @@ public class BoardDAO {
 				reply.setReply(rs.getString("reply"));
 				reply.setRe_ref(rs.getInt("re_ref"));
 				reply.setDate(rs.getDate("date"));
+				reply.setReport(rs.getInt("report"));
 				
 				replyList.add(reply);
 			}

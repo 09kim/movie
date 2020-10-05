@@ -114,7 +114,7 @@ $(document).ready(function(){
      	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
      	  			      				title5+
      	  			      				"</li>" +
-     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq'>" +
+     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
      	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
      	  			      		   );  

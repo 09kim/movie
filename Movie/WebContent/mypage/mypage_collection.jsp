@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.OnClose"%>
 <%@page import="mypage.vo.CollectionBean"%>
 <%@page import="mypage.vo.MypageBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,6 +15,9 @@
 <link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+// function deleteCollection(id){
+	
+// }
 	$(document).ready(function() {
 		$('#addMov').click(function(){
 			window.open("CollectionSearch.mo",
@@ -23,18 +27,43 @@
 			
 // 		$('#movies').append("<li>" + $('#hiddenTitle').val() +"</li>");
 // 		alert($('#hiddenTitle').val());
+		$('#submit').click(function(){
+			if($('#subject').val() == ''){
+				alert("제목을 입력하세요")
+				return false;
+			}
+			if($('#content').val() == ''){
+				alert("내용을 입력하세요")
+				return false;
+			}
+			if($('#movieSeq').length < 1){
+				alert("영화를 선택하세요");
+				return false;
+			} 
+		})
+		
+		
+	
+				
+		
+		$('.delBtn').click(function(){
+			var idx = $(this).attr('id')
+			$.ajax('CollectionDelete.mp',{
+				
+				data:{idx:idx},
+				success:function(rdata){
+		      		  
+
+					}
+				});
+		});
+			
 		
 		
 	});
 </script>
 <meta charset="UTF-8">
 <title></title>
-<%-- <% String title = (String)session.getAttribute("title"); %> --%>
-<%-- <% String nick = (String)session.getAttribute("nick"); %> --%>
-<%-- <% String poster = (String)session.getAttribute("poster"); %> --%>
-<%-- <% Integer movieSeq = (Integer)session.getAttribute("movieSeq"); %> --%>
-<%-- <% ArrayList<CollectionBean> list = (ArrayList<CollectionBean>)(session.getAttribute("list")); %> --%>
-
 </head>
 <body> 
 <!-- 헤더 -->
@@ -50,6 +79,7 @@
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
 			<li><a href="BoardReviewList.bo">리뷰</a></li>
+			<li><a href="MypageCollection.mp">컬렉션</a></li>  
 		</ul> 
 	</div> 
 	
@@ -57,39 +87,32 @@
 		<h2>컬렉션 페이지</h2>
 		<div>
 			<form action="/Movie/MypageCollectionCreate.mp" method="post">
-				<input type="text" name="subject"><br>
-				<textarea name ="content"></textarea><br>
+				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
+				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
 				<input type="button" value="작품추가" id="addMov">
 				<div id="movies">
-<%-- 				  <% if(title != null && nick != null && poster != null && !(movieSeq.equals(null))) {%> --%>
-<%-- 				  <%for(int i = 0; i < list.size(); i++) {%> --%>
-<%-- 				  	<%= list.get(i).getTitle() %> --%>
-<%-- 				   <%= nick %> --%>
-<%-- 				    <%= title %> --%>
-<%-- 				    <%= poster %> --%>
-<%-- 				    <%= movieSeq %>  --%>
-<%-- 				    <% } %> --%>
-<%-- 				    <%} %> --%>
 				    
 
 				</div>
-				<input type="submit" value="생성">
+				<input type="submit" value="생성" id="submit">
 	
 			</form>
-			
-			<div>
-<%-- 				<%=nick %> 님의 컬렉션 목록 <br> --%>
-<%-- 				<% for(int i = 0; i < collection.size(); i++) {%> --%>
-<%-- 					<%=collection.get(i).getCollection_name() %> --%>
-<%-- 					<%for(int o = 0; o < collection.get(i).getTitle().length(); o++){%> --%>
-<%-- 						<%=collection.get(o).getTitle().split(",")%> --%>
-<%-- 						<%=collection.get(o).getMovieSeq().split(",")%> --%>
-<%-- 						<%=collection.get(o).getPoster().split(",")%> --%>
-<%-- 					<%} %><br> --%>
+			<br>
+			<section>
+				<%=nick %> 님의 컬렉션 목록 <br>
+				<% for(int i = 0; i < collection.size(); i++) {%>
+					<h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" onclick="deleteCollection(this.id)" value="삭제"><br>
+					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4><br>
+					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
+						<img src="<%=collection.get(i).getPoster().split(",")[o]%>"><br>
+						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
+						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a><br>
+<%-- 						<%=collection.get(i).getMovieSeq().split(",")[o]%><br> --%>
+					<%} %><br>
 					
 					
-<%-- 			<%}%> --%>
-			</div>
+			<%}%>
+			</section>
 		</div>
 	</div>
 	

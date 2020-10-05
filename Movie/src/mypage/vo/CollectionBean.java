@@ -8,8 +8,15 @@ public class CollectionBean {
 	private String collection_name;
 	private String poster;
 	private String movieSeq;
+	private String content;
 	
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getIdx() {
 		return idx;
 	}

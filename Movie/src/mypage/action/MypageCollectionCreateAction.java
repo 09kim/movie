@@ -48,10 +48,12 @@ public class MypageCollectionCreateAction implements Action {
 		System.out.println(joinTitle + joinPoster + joinMovieSeq);
 		CollectionBean collectionBean = new CollectionBean();
 		collectionBean.setCollection_name(subject);
+		collectionBean.setContent(content);
 		collectionBean.setNick(nick);
 		collectionBean.setPoster(joinPoster);
 		collectionBean.setTitle(joinTitle);
 		collectionBean.setMovieSeq(joinMovieSeq);
+		
 		MypageAddCollectionService mypageAddCollectionService = new MypageAddCollectionService();
 		boolean isSuccess = mypageAddCollectionService.addCollection(collectionBean);
 		

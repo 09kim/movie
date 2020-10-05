@@ -425,7 +425,7 @@ String director=request.getParameter("director");%>
                         var key = "AIzaSyAFCuBm8gWBOlb7U7BsVmPYB9QTfdCxUf0";
                         // 영운 키
 //                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
-                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" +title3+ "예고편&part=id&type=video";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=영화" +title3+ "예고편&part=id&type=video";
                         
                         $.ajax({
                             type : "GET",
@@ -601,6 +601,50 @@ String director=request.getParameter("director");%>
         		 }); 
              
              });
+         
+         $('#directorMovies').click(function(){
+            
+            var director = $("#directorName").val();
+            director = director.replace(/ /g,'');
+            $.ajax('MovieDirector.mo',{
+               method:"get",
+               dataType :"json",
+               data:{query:director},
+               success:function(data){
+                  
+                  
+                  
+                  $.each(data.Data,function(idx,item){
+                     
+                     var count = item.Count
+                        
+                     $.each(item.Result,function(idx,item2){
+                        
+                        var title = item2.title
+                        var titleNoSpace = title.replace(/ /g, '');
+                        var title2 = titleNoSpace.replace(/!HS/g,'')
+                        var title3 = title2.replace(/!HE/g,'')
+                        var title5 = title3.trim();
+                        var actors="";
+                        
+                        var image = item2.posters.split("|")
+                        
+                        for(var num = 0; num < item2.actor.length ; num++){
+                           actors = actors + item2.actor[num].actorNm + ", ";   
+                        }
+                           
+                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                           });
+                  });
+               }
+         });
+            $('.thisMovie').hide();
+         });
          
          
          

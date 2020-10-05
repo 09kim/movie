@@ -27,6 +27,7 @@ public class MypageDirectorAction implements Action {
 		
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		System.out.println(jo);
 		out.print(jo);
 		out.flush();
 		return null;

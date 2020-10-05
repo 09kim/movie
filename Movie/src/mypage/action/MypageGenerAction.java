@@ -113,7 +113,6 @@ public class MypageGenerAction implements Action {
 			}
 		}
 		
-		
 				
 		ArrayList<String> resultList = genre.getDESC();
 		

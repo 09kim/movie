@@ -46,7 +46,7 @@ $(document).ready(function(){
 <meta charset="UTF-8">
 <title></title>
 </head>
-<body>
+<body> 
 	<input type="hidden" id="temp">
 	<input type="hidden" id="weather">
 	<jsp:include page="/inc/top.jsp" />

@@ -24,6 +24,16 @@
 					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
 		});
+		
+		$('#showAddCollection').click(function(){
+			if($('#showDisplay').css('display') == "none"){
+				$('#showDisplay').show();
+				$('#showAddCollection').val('컬렉션 추가창 닫기');
+			} else {
+				$('#showDisplay').hide();
+				$('#showAddCollection').val("컬렉션 추가");
+			}
+		})
 			
 // 		$('#movies').append("<li>" + $('#hiddenTitle').val() +"</li>");
 // 		alert($('#hiddenTitle').val());
@@ -86,6 +96,8 @@
 	<div>
 		<h2>컬렉션 페이지</h2>
 		<div>
+			<input type="button" id="showAddCollection" value="컬렉션 추가 하기">
+		  <div id="showDisplay" style= display:none>
 			<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
 				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
@@ -97,6 +109,7 @@
 				<input type="submit" value="생성" id="submit">
 	
 			</form>
+			</div>
 			<br>
 			<section>
 				<%=nick %> 님의 컬렉션 목록 <br>

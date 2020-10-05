@@ -13,7 +13,9 @@
 			dataType : "json",
 			async: false,
 			success : function(data){
-				$('.genreMovie').prepend('<h1><%=nick %> 님이 좋아하는 장르의 영화들!</h1>')
+				if(data[0].movieTitle){
+					$('.genreMovie').prepend('<h1><%=nick %> 님이 좋아하는 장르의 영화들!</h1>')
+				}
 				$.each(data,function(index,item){
 					$('.MovieGenre').append("<div class=MovieGenreMovie>"+
                  		   "<div><a class=MovieGenrePoster><img class=MovieGenrePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930

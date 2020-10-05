@@ -2,33 +2,32 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
 <%String nick = (String)session.getAttribute("nick"); %>
 <meta charset="UTF-8">
+<head>
 <title></title>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$.ajax('MovieGetNation.mo',{
+		$.ajax('MovieGetChart.mo',{
 			method : "post",
 			dataType : "json",
 			async: false,
 			success : function(data){
 				if(data[0].movieTitle){
-					$('.nationMovie').prepend('<h1><%=nick %> 님이 좋아하는 국가의 영화들!</h1>')
+					$('.chartMovie').prepend('<h1>일간 인기 영화 순위!</h1>')
 				}
 				$.each(data,function(index,item){
-					$('.MovieNation').append("<div class=MovieNationMovie>"+
-                 		   "<div><a class=MovieNationPoster><img class=MovieNationPoster_img></a></div>"+
-                 		   "<div class =MovieNationMovieName></div>"+
-                 		   "<div class=MovieNationNation></div></div>");
-                  	   $('.MovieNationPoster_img').eq(index).css("width","250px").css("height","350px");
-                  	   $('.MovieNationPoster_img').eq(index).attr("src",item.moviePoster);
-	         		   $('.MovieNationNation').eq(index).text(item.nation);
-	                   $('.MovieNationPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-	                   $('.MovieNationMovieName').eq(index).html(item.movieTitle);
+					$('.MovieChart').append("<div class=MovieChartMovie>"+
+                 		   "<div><a class=MovieChartPoster><img class=MovieChartPoster_img></a></div>"+
+                 		   "<div class =MovieChartMovieName></div>"+
+                 		   "</div>");
+                  	   $('.MovieChartPoster_img').eq(index).css("width","250px").css("height","350px");
+                  	   $('.MovieChartPoster_img').eq(index).attr("src",item.moviePoster);
+	                   $('.MovieChartPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
+	                   $('.MovieChartMovieName').eq(index).html(item.movieTitle);
 				});
 				
-				$('.MovieNation').slick({
+				$('.MovieChart').slick({
 			     	   dots: false,
 			            infinite: false,
 			            arrows: true,
@@ -61,18 +60,16 @@
 			     	       }
 			     	     }
 			     	   ]
-			     	 });	
-				
+			     	 });
 			}
-		
-			
 		});
 	});
 </script>
 </head>
 <body>
-	<div class="nationMovie">
-	<div class="MovieNation"></div>
+	<div class="chartMovie">
+		<div class="MovieChart"></div>
 	</div>
 </body>
+
 </html>

@@ -559,4 +559,25 @@ public class MypageDAO {
 		return list;
 	}
 
+	public int deleteCollection(int idx) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "delete from collection where idx = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return isSuccess;
+	}
+
 }

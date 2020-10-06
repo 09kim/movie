@@ -14,6 +14,7 @@ import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
 import mypage.action.MypageCollectionAction;
 import mypage.action.MypageCollectionCreateAction;
+import mypage.action.MypageCollectionDeleteAction;
 import mypage.action.MypageCollectionMovieAddAction;
 import mypage.action.MypageDirectorAction;
 import mypage.action.MypageDirectorSrcAction;
@@ -131,6 +132,13 @@ public class MypageController extends HttpServlet {
 			}
 		} else if (command.equals("/CollectionMovieAdd.mp")) {
 			action = new MypageCollectionMovieAddAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CollectionDelete.mp")) {
+			action = new MypageCollectionDeleteAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

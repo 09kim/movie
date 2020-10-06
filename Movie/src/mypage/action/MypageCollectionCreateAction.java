@@ -62,7 +62,7 @@ public class MypageCollectionCreateAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('등록되었습니다')");
-			out.println("history.back()");
+			out.println("window.location.href = 'MypageCollection.mp'");
 			out.println("</script>");
 		}
 		
@@ -72,8 +72,6 @@ public class MypageCollectionCreateAction implements Action {
 //			title = title[i];
 //		}
 //		collectionBean.setTitle(title[1]);
-		
-		
 		return forward;
 	}
 	

@@ -50,4 +50,22 @@ public class MypageAddCollectionService {
 		
 	}
 	
+	public boolean deleteCollection(int idx){
+		System.out.println("컬렉션 서비스");
+		boolean isSuccess = false;
+		Connection con = getConnection();
+		MypageDAO mypageDAO = MypageDAO.getInstance();
+		mypageDAO.setConnection(con);
+		int isDelete = mypageDAO.deleteCollection(idx);
+		if(isDelete>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+	
 }

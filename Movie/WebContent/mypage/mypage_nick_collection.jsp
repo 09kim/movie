@@ -52,12 +52,8 @@
 			} 
 		})
 		
-		$('.modifyDelBtn').click(function(){
-			var eachList = $(this).attr('id');
-			var collectionNum = $('.collectionNum').attr('id');
-			$('.' + eachList).remove();
-		});
 		
+	
 				
 		
 		$('.delBtn').click(function(){
@@ -72,15 +68,6 @@
 				});
 		});
 			
-// 		$('.modifyBtn').click(function(){
-// 			var idx = $(this).attr('id')
-// 			$.ajax('CollectionModify.mp',{
-				
-// 				data:{idx:idx},
-// 				success:function(rdata){
-// 					}
-// 				});
-// 		});
 		
 		
 	});
@@ -125,18 +112,15 @@
 			<section>
 				<h1><%=nick %> 님의 컬렉션 목록</h1> <br>
 				<% for(int i = 0; i < collection.size(); i++) {%>
-					<div id="<%=i%>" class="collectionNum"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
-					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4><input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
-					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정"><br><br>
+					<h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
+					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4><input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" onclick="deleteCollection(this.id)" value="삭제"><br>
 					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
-						<div class ="eachList<%=o %>" id="eachList">
 						<img src="<%=collection.get(i).getPoster().split(",")[o]%>"><br>
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
 						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a><br>
-<%-- 						<% String[] delList = {collection.get(i).getMovieSeq().split(",")[o],collection.get(i).getTitle().split(",")[o],collection.get(i).getPoster().split(",")[o]}; %> --%>
-						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div></div>
+<%-- 						<%=collection.get(i).getMovieSeq().split(",")[o]%><br> --%>
 					<%} %><br>
-			<%}%> <input type="button" value="수정하기">
+			<%}%>
 			</section>
 		</div>
 	</div>

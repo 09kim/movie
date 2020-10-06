@@ -15,6 +15,11 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#subInfo {
+	float:left;
+}
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -159,199 +164,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                            ) 
                         }   
                      
-                     if(nick != 'null') {
-                     $.ajax("MovieDetail.mo",{
-                        method:"get",
-                        dataType :"json",
-                        async: false,
-                        data:{movieSeq:movieSeq,
-                        query:query,
-                        keyword:keyword},
-                        success:function(data){
-                           var grade = 0;
-                           $.each(data.Data,function(idx,item){
-                              var i =1;
-                              var l =1;
-                             
-                              $.each(item.Result,function(idx,item2){
-                                
-                                 var num = 0;
-                                 var image = item2.posters.split("|")
-                                 var title = item2.title
-                                 var titleNoSpace = title.replace(/ /g, '');
-                                 var title2 = titleNoSpace.replace(/!HS/g,'')
-                                 var title3 = title2.replace(/!HE/g,'')
-                                 var title5 = title3.trim();
-                                 
-                                 
-                                 
-                                 // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                                 for(var o=1;o<11;o++){
-                                 $('.c'+o).eq(idx).attr("id","p"+i++);
-                                 }
-                                 // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
-                                 for(var o=1;o<11;o++){
-                                 $('.l'+o).eq(idx).attr("for","p"+l++);
-                                 }
-                                 
-                                 var getGrade = $('#getGrade').val()
-                                 switch(getGrade){
-                                 
-                                 case "0.5" :
-                                	 $('.l1').focus();
-                                	 $('#isGrade').show();
-                                	 break;                                 
-                                 case "1" :
-                                	 $('.l2').focus();
-                                	 $('#isGrade').show();
-                                	 break;                             
-                              	 case "1.5":
-                             		 $('.l3').focus();
-                             		$('#isGrade').show();
-                             	 	 break;
-                              	 case "2" :
-                              		 $('.l4').focus();
-                              		$('#isGrade').show();
-                              		 break;
-                              	 case "2.5":
-                              		 $('.l5').focus();
-                              		$('#isGrade').show();
-                              		 break;
-                              	 case "3" :
-                              		 $('.l6').focus();
-                              		$('#isGrade').show();
-                              		 break;
-                              	 case "3.5" :
-                              		 $('.l7').focus();
-                              		$('#isGrade').show();
-                              		 break;
-                              	 case "4" :
-                              		 $('.l8').focus();
-                              		 $('#isGrade').show();
-                              		 break;
-                              	 case "4.5":
-                              		 $('.l9').focus();
-                              		 $('#isGrade').show();
-                              		 break;
-                              	 case "5":
-                              		$('.l10').focus();
-                              	$('#isGrade').show();
-                              	break;
-                              	
-                              		 }
-                              
-                             
-                                 
-                                 var nation = item2.nation.split(",");
-                                 $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
-                                 var image= image[0];
-                                 var garde= 0;
-                          		 var movieSeq =""   
-                                    $('.c1').eq(idx).click(function(){
-                                       var grade=1;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                      
-                                    });
-                                    
-                                    $('.c2').eq(idx).click(function(){
-                                       var grade = 2;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                      
-                                    });
-                                    $('.c3').eq(idx).click(function(){
-                                       var grade = 3;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                       
-                                    });
-                                    
-                                    $('.c4').eq(idx).click(function(){
-                                       var grade = 4;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                    });
-                                    
-                                    $('.c5').eq(idx).click(function(){
-                                       var grade = 5;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image); 
-                                    });
-                                    
-                                    $('.c6').eq(idx).click(function(){
-                                        var grade = 6;
-                                        var data = $('.c1').eq(idx).val();
-                                        starClick(data,grade,image);
-                                        
-                                    });
-                                    $('.c7').eq(idx).click(function(){
-                                        var grade=7;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                    });
-                                    $('.c8').eq(idx).click(function(){
-                                        var grade=8;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                    });
-                                    $('.c9').eq(idx).click(function(){
-                                        var grade=9;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                    });
-                                    $('.c10').eq(idx).click(function(){
-                                        var grade=10;
-                                       var data = $('.c1').eq(idx).val();
-                                       starClick(data,grade,image);
-                                       
-                                    });
-                                   
-                           
-                           });//each문 끝남
-                       });
-                    }
-               })
-         } else {  
-            $('.l1').click(function(){
-            	selectBtn();
-            })
-            
-            $('.l2').click(function(){
-               selectBtn();
-            	   })
-            
-            $('.l3').click(function(){
-            	selectBtn();  })
-            
-            $('.l4').click(function(){
-            	selectBtn();   })
-            
-            $('.l5').click(function(){
-            	selectBtn();  })
-            
-            $('.l6').click(function(){
-            	selectBtn();   })
-            
-            $('.l7').click(function(){
-            	selectBtn();   })
-            
-            $('.l8').click(function(){
-            	selectBtn();   })
-            
-            $('.l9').click(function(){
-            	selectBtn();  })  
-            
-            $('.l10').click(function(){
-            	selectBtn();  })
-             }  
                      director = item2.director[0].directorNm;
                      director = director.replace(/ /g,'');
                      $('#detail').append('<div class=title>'+title5+'</div>')
-                     $('#detail').append('<div class=title>'+item2.repRlsDate+'</div>')
                      $('#detail').append('<div class=titleEng>'+item2.titleEng+'</div>')
                      $('#detail').append('<div class=nation>'+item2.nation+'</div>')
-                     $('#detail').append('<div class=runtime>'+item2.runtime+'</div>')
+                     $('#detail').append('<div class=runtime>상영시간 : '+item2.runtime+'분</div>')
                      $('#detail').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>')
                      $('#detail').append('<div class=runtime>'+item2.genre+'</div>')
                      $('#detail').append('<div class=actors><a href=MovieSearchDirector.mo?director='+director+'>'+item2.director[0].directorNm+'</a></div>')
@@ -404,12 +222,12 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
                          actors = actors + item2.actor[num].actorNm + ", ";   
                       }
                       if(image[0]){
+                            $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
                             $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
                             $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
-                                  +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
-                            $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+                                  +item2.movieSeq+'&query='+title5+'>'+title5+'</a></div>')
+                            $('#subInfo').append('<div class=runtime>상영시간 : '+item2.runtime+'분</div>')
                             $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
-                            $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
                             $('.directorH2').text(director+"의 다른 영화들");
                       }
                          
@@ -554,19 +372,6 @@ String returnCmt = (String)request.getAttribute("returnCmt");%>
    	</div>
 	<div>
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
-  <span class='star-input'>
-                    <span class='input'>
-                 <input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>
-                 <input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>
-                 <input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>
-                 <input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>
-                 <input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>
-                 <input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>
-                 <input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>
-                 <input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>
-                 <input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>
-                 <input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>
-                 </span></span>
                  
                  <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">

@@ -13,6 +13,8 @@ import action.Action;
 import mypage.action.MypageAction;
 import mypage.action.MypageChangeWishAction;
 import mypage.action.MypageCollectionAction;
+import mypage.action.MypageCollectionCreateAction;
+import mypage.action.MypageCollectionMovieAddAction;
 import mypage.action.MypageDirectorAction;
 import mypage.action.MypageDirectorSrcAction;
 import mypage.action.MypageGenerAction;
@@ -40,7 +42,7 @@ public class MypageController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			} 
 		} else if (command.equals("/MypageForm.mp")) {
 			action = new MypageProAction();
 			try {
@@ -120,7 +122,23 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MypageCollectionCreate.mp")) {
+			action = new MypageCollectionCreateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CollectionMovieAdd.mp")) {
+			action = new MypageCollectionMovieAddAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

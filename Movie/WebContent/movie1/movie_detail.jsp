@@ -15,6 +15,7 @@ String director=request.getParameter("director");%>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/movie_detail.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
@@ -424,7 +425,7 @@ String director=request.getParameter("director");%>
                         var key = "AIzaSyAFCuBm8gWBOlb7U7BsVmPYB9QTfdCxUf0";
                         // 영운 키
 //                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
-                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=" +title3+ "예고편&part=id&type=video";
+                        var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=영화" +title3+ "예고편&part=id&type=video";
                         
                         $.ajax({
                             type : "GET",
@@ -601,6 +602,50 @@ String director=request.getParameter("director");%>
              
              });
          
+         $('#directorMovies').click(function(){
+            
+            var director = $("#directorName").val();
+            director = director.replace(/ /g,'');
+            $.ajax('MovieDirector.mo',{
+               method:"get",
+               dataType :"json",
+               data:{query:director},
+               success:function(data){
+                  
+                  
+                  
+                  $.each(data.Data,function(idx,item){
+                     
+                     var count = item.Count
+                        
+                     $.each(item.Result,function(idx,item2){
+                        
+                        var title = item2.title
+                        var titleNoSpace = title.replace(/ /g, '');
+                        var title2 = titleNoSpace.replace(/!HS/g,'')
+                        var title3 = title2.replace(/!HE/g,'')
+                        var title5 = title3.trim();
+                        var actors="";
+                        
+                        var image = item2.posters.split("|")
+                        
+                        for(var num = 0; num < item2.actor.length ; num++){
+                           actors = actors + item2.actor[num].actorNm + ", ";   
+                        }
+                           
+                        $('#subInfo').append('<div class=nation>'+item2.nation+'</div>')
+                        $('#subInfo').append('<div class=title><a href=MovieDetailPro.mo?movieId'+item2.movieId+'&movieSeq='
+                              +item2.movieSeq+'&query='+title5+'>'+title3+'</div>')
+                        $('#subInfo').append('<div class=runtime>'+item2.runtime+'</div>')
+                        $('#subInfo').append('<div class=rating>'+item2.rating[0].ratingGrade+'</div>') 
+                        $('#subInfo').append('<div class=poster><img src='+image[0]+'></div>')
+                           });
+                  });
+               }
+         });
+            $('.thisMovie').hide();
+         });
+         
          
          
          // 현재 스크롤바의 좌표 받기 - 낙원 : 1003
@@ -667,141 +712,6 @@ String director=request.getParameter("director");%>
    });
     
 </script>
-<style type="text/css">
-
-#jb-container {
-width: 1200px;
-height: 100%;
-margin: 0 auto;
-padding: 20px;
-border: 1px solid #bcbcbc;
-background-color: #2E2E2E;
-}
-
-
-#jb-header {
-margin-bottom: 20px;
-border: 1px solid #bcbcbc;
-height:100px;
-vertical-align: middle;
-width: 100%;
-margin: 10px auto;
-display: flex;
-color:#FFFFFF;
-}
-
-
-.title-right {
-flex:1;
-width:30%;
-float: right;
-}
-
-.title-left {
-flex:1;
-width:30%;
-padding: 10px;
-float: left;
-}
-.title-right>.btn-like {
-font-weight: bold;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-margin: 0 20px;
-flex:1;
-height:100%;
-width:100px;
-float: right;
-border:none;
-background-color: inherit;
-font-size: 1.5em;
-text-align: center;
-vertical-align: middle;
-outline: 0;
-}
-.title-right>.btn-like:hover {
-border:none;
-outline: 0;
-}
-
-#jb-sidebar-left {
-width: 400px;
-height: 100%;
-text-align: center;
-padding: 20px;
-margin-right: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-content {
-height: 100%;
-width: 450px;
-padding: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-sidebar-right {
-height: 100%;
-width: auto;
-padding: 20px;
-margin-bottom: 20px;
-float: left;
-color:#FFFFFF;
-}
-#jb-footer {
-clear: both;
-height: 100%;
-padding: 20px;
-border: 1px solid #bcbcbc;
-margin-bottom: 20px;
-color:#FFFFFF;
-}
-#jb-footer2 {
-clear: both;
-height: 100%;
-padding: 20px;
-border: 1px solid #bcbcbc;
-color:#FFFFFF;
-}
-dt {float:left;margin-right:1em;}
-.caption {vertical-align: middle;}
-.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
-.directorsMovieList {text-align: center;width: 250px;height:400px;margin-right: 20px;}
-.stillCut{margin-right: 20px;}
-
-
-.jbMenu {
-		clear:both;
-		display:flex;
-		justify-content:center;
-		position: sticky; 
-		top: 0; 
-		height:100%;
-		margin:0 auto;
-        text-align: center;
-        background-color: #000000;
-        padding: 10px 0px;
-        z-index:100;
-        width: 1200px;}
-
-.top_banner{
-display:flex;
-flex:1;
-width:100%;
-height:100%;
-}
-.top_banner img{
-height:300px;
-}
-.btnGroup{display: block;}
-
-.down,.up{color:#FFFFFF;background-color: inherit;border:none;outline: 0;font-size: 1.5em;}
-
-</style>
 
 </head>
 <body>

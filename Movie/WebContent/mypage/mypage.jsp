@@ -29,7 +29,6 @@
 		$.ajax('MypageGener.mp', {
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -68,7 +67,6 @@
 		$.ajax('MypageNation.mp',{
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -86,7 +84,6 @@
 		$.ajax('MypageDirector.mp',{
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -96,6 +93,8 @@
  						var img = getSrc(item2.director);
  						$('.director').append(img);
  						$('.director').append(item2.director+"<br>");
+ 						
+						
 					});
 				});
 				
@@ -126,7 +125,7 @@
 			<li><a href="MypageGrade.mp">평가한 영화</a></li>
 			<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
 			<li><a href="BoardReviewList.bo">리뷰</a></li>
-			<li><a href="MypageCollection.mp">컬렉션</a></li>
+			<li><a href="MypageCollection.mp">컬렉션</a></li>  
             
 		</ul> 
 	</div> 

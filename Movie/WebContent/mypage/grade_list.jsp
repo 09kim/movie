@@ -31,6 +31,7 @@ int listCount = (int) request.getAttribute("listCount");
 				<li><a href="MypageGrade.mp">평가한 영화</a></li>
 				<li><a href="MypageWish.mp">좋아요 누른 영화</a></li>
 				<li><a href="BoardReviewList.bo">리뷰</a></li>
+				<li><a href="MypageCollection.mp">컬렉션</a></li>  
 			</ul>
 		</div>
 		<!-- 왼쪽메뉴 -->

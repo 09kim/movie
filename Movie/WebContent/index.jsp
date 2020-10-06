@@ -54,6 +54,7 @@ $(document).ready(function(){
 	<section id="main">
 	<jsp:include page="/recommend/movie_ranking.jsp"/>
 	<jsp:include page="/recommend/movie_recommend_byChart.jsp"/>
+<%-- 	<jsp:include page="/recommend/movie_recommend_byTemperature.jsp"/> --%>
 	<%if(nick!=null) {
 		%>
 			<jsp:include page="/recommend/expected_grade_chart_byPython.jsp"/>
@@ -61,7 +62,7 @@ $(document).ready(function(){
 			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
 		<%
 	}%>
-<%-- 	<jsp:include page="/recommend/naver_search_ranking.jsp"/> --%>
+	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
 	</section>
 </body>
 </html>

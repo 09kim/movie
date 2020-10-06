@@ -18,12 +18,24 @@
 // function deleteCollection(id){
 	
 // }
+		
 	$(document).ready(function() {
+		
 		$('#addMov').click(function(){
+			
 			window.open("CollectionSearch.mo",
 					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
+		});	
+		
+		$('.modifyAddMov').click(function(){
+			var a = $(this).attr('id');
+			window.open("CollectionModifySearch.mo",
+					"open the window",
+					"toolbar=no, width=1000, height=850, top=150, left=150");
 		});
+		
+		
 		
 		$('#showAddCollection').click(function(){
 			if($('#showDisplay').css('display') == "none"){
@@ -53,9 +65,9 @@
 		})
 		
 		$('.modifyDelBtn').click(function(){
-			var eachList = $(this).attr('id');
-			var collectionNum = $('.collectionNum').attr('id');
-			$('.' + eachList).remove();
+			var eachList = $(this).attr('id');	
+			var collectionNum = $(this).closest('#collectionNum').attr('class')
+			$('.' + collectionNum).find('.'+eachList).remove();
 		});
 		
 				
@@ -72,8 +84,7 @@
 				});
 		});
 			
-// 		$('.modifyBtn').click(function(){
-// 			var idx = $(this).attr('id')
+// 		$('.modifyComplete').click(function(){
 // 			$.ajax('CollectionModify.mp',{
 				
 // 				data:{idx:idx},
@@ -111,7 +122,7 @@
 		<div>
 			<input type="button" id="showAddCollection" value="컬렉션 추가 하기">
 		  <div id="showDisplay" style= display:none>
-			<form action="/Movie/MypageCollectionCreate.mp" method="post">
+				<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
 				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
 				<input type="button" value="작품추가" id="addMov">
@@ -124,19 +135,33 @@
 			<br>
 			<section>
 				<h1><%=nick %> 님의 컬렉션 목록</h1> <br>
+				<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<% for(int i = 0; i < collection.size(); i++) {%>
-					<div id="<%=i%>" class="collectionNum"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
-					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4><input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
-					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정"><br><br>
+					<div id="collectionNum" class="collectionNum<%=i%>"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
+					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
+					<input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
+					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정">
+					<input type="button" value="작품추가" id ="add<%=i %>"  class="modifyAddMov"><br><br>
 					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 						<div class ="eachList<%=o %>" id="eachList">
-						<img src="<%=collection.get(i).getPoster().split(",")[o]%>"><br>
+						<div id="modifyMovies"></div>
+						<img src="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<br>
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
-						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a><br>
-<%-- 						<% String[] delList = {collection.get(i).getMovieSeq().split(",")[o],collection.get(i).getTitle().split(",")[o],collection.get(i).getPoster().split(",")[o]}; %> --%>
-						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div></div>
-					<%} %><br>
-			<%}%> <input type="button" value="수정하기">
+						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a>
+						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div>
+						
+						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
+						<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
+						<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
+						
+						
+					<%} %></div>
+					<input type="submit" value="수정하기">
+			<%}%> 
+				</form>
+				
 			</section>
 		</div>
 	</div>

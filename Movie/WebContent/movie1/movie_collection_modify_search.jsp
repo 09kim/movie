@@ -93,13 +93,12 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#movies", opener.document).append(
-     	  			      			    "<li>"+ 
-     	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
+     	  			      		   $("#modifyMovies", opener.document).prepend(
+     	  			      			    
+     	  			      				'<img src='+image[0]+'>'+
      	  			      				title5+
-     	  			      				"</li>" +
      	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
      	  			      		   );  
 
@@ -134,7 +133,7 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#movies", opener.document).append(
+     	  			      		   $("#modifyMovies", opener.document).append(
      	  			      			    "<li>"+ 
      	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
      	  			      				title5+
@@ -286,7 +285,7 @@ $(document).ready(function(){
   	   					success:function(rdata){
 //   	   							$("#movies", parent.opener.document).val();
 //   	  			 				opener.location.reload();
-  	  			      		   $("#movies", opener.document).append(
+  	  			      		   $("#modifyMovies", opener.document).append(
   	  			      			    "<li>"+ 
   	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
   	  			      				title5+
@@ -435,7 +434,7 @@ $(document).ready(function(){
 </head>
 <body>
 <section id="main">
-<jsp:include page="/inc/collectionTop.jsp" />
+<jsp:include page="/inc/collectionModifyTop.jsp" />
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>

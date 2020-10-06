@@ -15,7 +15,7 @@
 // 기본검색기능을 담당하는 뷰페이지
 
 
-$(document).ready(function(){
+$(document).ready(function(){	
    var latitude, longitude;
    var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
    var temp = '0';

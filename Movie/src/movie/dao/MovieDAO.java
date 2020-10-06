@@ -421,4 +421,29 @@ public class MovieDAO {
 		return list;
 	}
 
+	public ArrayList<MovieBean> getMovieByTemp(int temp) {
+		ArrayList<MovieBean> list = new ArrayList<MovieBean>();
+		String sql = "SELECT A.movieseq,A.title,A.poster,sum(A.count) from chart A JOIN chart_weather B ON A.idx = B.chart_idx and B.temperature between 19 and 21 group by A.title order by sum(A.count) desc limit 0,10;";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, temp-2);
+			pstmt.setInt(2, temp+2);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MovieBean mb = new MovieBean();
+				mb.setMovieSeq(rs.getInt("movieseq"));
+				mb.setMovieTitle(rs.getString("title"));
+				mb.setMoviePoster(rs.getString("poster"));
+				list.add(mb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

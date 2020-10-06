@@ -32,6 +32,7 @@ import movie.action.MovieSetGradeAction;
 import movie.action.getMovieByChartAction;
 import movie.action.getMovieByGenreAction;
 import movie.action.getMovieByNationAction;
+import movie.action.getMovieByTempAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo")
@@ -247,6 +248,13 @@ public class MovieFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/MovieGetChart.mo")) {
 			action = new getMovieByChartAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/MovieGetTemp.mo")) {
+			action = new getMovieByTempAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

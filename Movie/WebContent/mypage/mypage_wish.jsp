@@ -12,7 +12,17 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+
+
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.btn-like').each(function() {
@@ -47,6 +57,8 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 	 				alert("취소 하셨습니다.");
 	 			}
 		});
+		
+
 
 	});
 </script>
@@ -71,27 +83,99 @@ ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("w
 		</ul> 
 	</div> 
 	
-	<div id="myinfo">
-		<section id="listForm">
+<!-- 	<div id="myinfo"> -->
+<!-- 		<section id="listForm"> -->
+<%-- 		<h2><%=nick %>님의 보고싶어요 리스트</h2> --%>
+<!-- 		<table> -->
+<!-- 				<tr> -->
+<%-- 		<% for(MypageBean wishInfo : wishMovie) {%> --%>
+<%-- 		<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %> --%>
+<!-- 					<td id="wishMovie" align="center"> -->
+<%-- 					<%if(wishInfo.getPoster()!=null){ %> --%>
+<%-- 					<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %> --%>
+<%-- 					<%} else { %> --%>
+<%-- 					<a href="MovieDetailPro.mo?movieSeq=<%=a %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %> --%>
+<%-- 					<%} %> --%>
+<%-- 					<%if(wishInfo.getWish().equals("Y")){ %> --%>
+<%-- 					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button></td> --%>
+<%-- 					<% }%> --%>
+<%-- 			<%}%> --%>
+<!-- 			</tr> -->
+<!-- 		</table> -->
+<!-- 		</section> -->
+<!-- 	</div> -->
+<div id="myinfo">
 		<h2><%=nick %>님의 보고싶어요 리스트</h2>
-		<table>
-				<tr>
+		<section id="listForm">
 		<% for(MypageBean wishInfo : wishMovie) {%>
+		<div class="wishList">
 		<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
-					<td id="wishMovie" align="center">
 					<%if(wishInfo.getPoster()!=null){ %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>"></a><br><%=wishInfo.getTitle() %>
-					<%} else { %>
-					<a href="MovieDetailPro.mo?movieSeq=<%=a %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a><br><%=wishInfo.getTitle() %>
-					<%} %>
+					<div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a></div><div class="title"><%=wishInfo.getTitle() %></div>
+<%-- 					<%} else { %> --%>
+<%-- 					<div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=a %>&query=<%=wishInfo.getTitle()%>"><img src="../../../Movie/img/noImage.gif"></a></div><div class="title"><%=wishInfo.getTitle() %></div> --%>
+<%-- 					<%} %> --%>
 					<%if(wishInfo.getWish().equals("Y")){ %>
-					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button></td>
+					<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button>
 					<% }%>
+				<% }%>
+		</div>
 			<%}%>
-			</tr>
-		</table>
 		</section>
 	</div>
+	
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		 $('#listForm').slick({
+		   	  dots: false,
+//		          infinite: false,
+		         infinite: true,
+		         arrows: true,
+		         variableWidth:true,
+		         speed: 300,
+		         autoplay:true,
+		         autoplaySpeed:3000,
+		         slidesToShow: 4,
+		         slidesToScroll: 3,
+		         responsive: [
+		           {
+		             breakpoint: 1024,
+		             settings: {
+		               slidesToShow: 3,
+		               slidesToScroll: 3,
+		               infinite: true,
+		               dots: true
+		             }
+		           },
+		           {
+		             breakpoint: 600,
+		             settings: {
+		               slidesToShow: 2,
+		               slidesToScroll: 2
+		             }
+		           },
+		           {
+		             breakpoint: 480,
+		             settings: {
+		               slidesToShow: 1,
+		               slidesToScroll: 1
+		             }
+		           }
+		           // You can unslick at a given breakpoint now by adding:
+		           // settings: "unslick"
+		           // instead of a settings object
+		         ]
+		       }); // slick(.directorsMovieList)끝
+
+	});
+	</script>
+	
+	
+	
+	
+	
+	
 </section>
 
 	

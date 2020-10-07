@@ -366,6 +366,9 @@
 					<a href="MypageForm.mp">프로필수정</a>
 			</div>	
 		</section>
+		
+		<div id="colorlib-counter" class="colorlib-counters" data-stellar-background-ratio="0.5">
+			</div>
 
 
 			

@@ -441,7 +441,7 @@ fieldset{margin-left:50px;}
 							<li><a href="MypageGrade.mp" data-nav-section="services">선호 장르&국가&감독</a></li>
 							<li><a href="MypageWish.mp" data-nav-section="skills">보고싶어요한 영화</a></li>
 							<li><a href="BoardReviewList.bo" data-nav-section="education">내가 평가한 영화</a></li>
-							<li><a href="BoardReviewList.bo" data-nav-section="education">컬렉션</a></li>
+<!-- 							<li><a href="BoardReviewList.bo" data-nav-section="education">컬렉션</a></li> -->
 <!-- 							<li><a href="MypageCollection.mp" data-nav-section="experience">Experience</a></li> -->
 <!-- 							<li><a href="#" data-nav-section="work">Work</a></li> -->
 <!-- 							<li><a href="#" data-nav-section="blog">Blog</a></li> -->

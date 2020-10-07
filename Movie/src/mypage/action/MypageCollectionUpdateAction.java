@@ -16,26 +16,27 @@ import mypage.svc.MypageGradeService;
 import mypage.vo.CollectionBean;
 import vo.ActionForward;
 
-public class MypageCollectionCreateAction implements Action {
+public class MypageCollectionUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("CollectionCreateAction 작동..제발");
+		System.out.println("CollectionUpdateAction 작동..제발");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
 		String[] title = request.getParameterValues("title");
 		String[] movieSeq = request.getParameterValues("movieSeq");
 		String[] poster = request.getParameterValues("poster");
-		String subject = request.getParameter("subject");
-		String content = request.getParameter("content");
-		System.out.println("콜렉션크리에이트 작동해라");
+		int idx = Integer.parseInt(request.getParameter("idx"));
+//		String subject = request.getParameter("subject");
+//		String content = request.getParameter("content");
+		System.out.println("콜렉션업데이트 작동해라");
 		System.out.println(title[0]);
-		System.out.println(content);
 		String joinTitle = String.join(",", title);
 		String joinPoster = String.join(",", poster);
 		String joinMovieSeq = String.join("," , movieSeq);
 		
+		System.out.println("뀨ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
 		
 		int[] intArr = null;
 		if( movieSeq != null ){
@@ -44,18 +45,16 @@ public class MypageCollectionCreateAction implements Action {
 			intArr[i] = Integer.parseInt( movieSeq[i] );
 			}
 		}
-		
 		System.out.println(joinTitle + joinPoster + joinMovieSeq);
 		CollectionBean collectionBean = new CollectionBean();
-		collectionBean.setCollection_name(subject);
-		collectionBean.setContent(content);
 		collectionBean.setNick(nick);
 		collectionBean.setPoster(joinPoster);
 		collectionBean.setTitle(joinTitle);
 		collectionBean.setMovieSeq(joinMovieSeq);
+		collectionBean.setIdx(idx);
 		
 		MypageAddCollectionService mypageAddCollectionService = new MypageAddCollectionService();
-		boolean isSuccess = mypageAddCollectionService.addCollection(collectionBean);
+		boolean isSuccess = mypageAddCollectionService.updateCollection(collectionBean);
 		
 		if(isSuccess) {
 			response.setContentType("text/html;charset=UTF-8");

@@ -22,7 +22,6 @@ public class getMovieByTempAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session =request.getSession();
 		String checkTemp = (String)session.getAttribute("temp");
-		System.out.println(checkTemp+"--------------------------------------");
 		int temp = Integer.parseInt((String)request.getParameter("temp"));
 		MovieGetService movieGetService = new MovieGetService();
 		ArrayList<MovieBean> list = movieGetService.getMovie(temp);

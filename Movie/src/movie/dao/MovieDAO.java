@@ -436,6 +436,25 @@ public class MovieDAO {
 				mb.setMoviePoster(rs.getString("poster"));
 				list.add(mb);
 			}
+			System.out.println("리스트 사이즈 " + list.size());
+			if(list.size() < 10) {
+				int limit = 10-list.size();
+				System.out.println("limit 몇개? "+limit);
+				sql = "SELECT A.movieseq,A.title,A.poster,sum(A.count) from chart_before_1day A JOIN chart_weather B ON A.idx = B.chart_idx and B.temperature between ? and ? group by A.title order by sum(A.count) desc limit 0,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, temp-2);
+				pstmt.setInt(2, temp+2);
+				pstmt.setInt(3, limit);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					MovieBean mb = new MovieBean();
+					mb.setMovieSeq(rs.getInt("movieseq"));
+					mb.setMovieTitle(rs.getString("title"));
+					mb.setMoviePoster(rs.getString("poster"));
+					list.add(mb);
+				}
+				System.out.println("최종결과" + list.size());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

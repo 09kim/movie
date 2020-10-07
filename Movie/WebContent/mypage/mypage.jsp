@@ -95,7 +95,6 @@
 		$.ajax('MypageGener.mp', {
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -137,7 +136,6 @@
 		$.ajax('MypageNation.mp',{
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -164,7 +162,6 @@
 		$.ajax('MypageDirector.mp',{
 			method : "post",
 			dataType : "json",
-			async: false,
 			data : {
 				nick : nick
 			},
@@ -173,10 +170,6 @@
 					$.each(item,function(idx2,item2){
  						var img = getSrc(item2.director);
  						$('.director').append('<div class=favoriteDirector>'+img+'<br>'+item2.director+'</div>');
-//  						$('.director').append(img);
-//  						$('.director').append(item2.director+"<br>");
-//  						$('.favoriteDirector').append(img);
-//  						$('.favoriteDirector').append(item2.director);
 					});
 				});
 				

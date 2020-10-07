@@ -12,7 +12,7 @@
 
    $(document).ready(function() {
        var result;
-       function getNation(openDt,title){
+       function getNation(openDt,title){ 
     	   $.ajax("BoxOfficeNation.mo",{
                method: "get",
                dataType: "json",
@@ -40,15 +40,6 @@
        var yy = d.getFullYear();
        var mm = d.getMonth() + 1; // 리턴값: (0~11) +1 => 1월~12월
        var dd = d.getDate() -4 ; // 이틀 전 날짜(주간 구하기용) 
-       if(d.getDay()!=1){
-    	   dd = dd-d.getDay();
-       }
-		if(dd<=0){
-			var lastDay = new Date(yy,mm-1,0).getDate();
-			dd = lastDay - Math.abs(dd);
-			mm = mm-1;
-		}
-
           if(mm < 10){
              mm = "0" + mm; 
           }

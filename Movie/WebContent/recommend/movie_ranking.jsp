@@ -5,21 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <%String nick = (String)session.getAttribute("nick"); %>
-<title>Insert title here</title>
-<!-- <meta charset="utf-8"> -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<%-- <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<%-- <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css"> --%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<title></title>
 <script type="text/javascript">
-
-
 $(document).ready(function() {
 	
 	// 태윤's 장소 확인 및 날씨 정보 기능 ranking에도 추가함 - 낙원
@@ -115,50 +102,31 @@ $(document).ready(function() {
             	targetDt:today,
             },
             success: function(data) {
+            	$('.boxOfficeMovie').prepend('<h1>박스오피스</h1>');
                $.each(data, function(idx, item) {
             	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
             		   var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
-                       
-                       // movie_search 양식을 맞춰서 만든 것 - 낙원 : 0930
-//                     result = getNation(openDt,titleNoSpace);
-//                     result = result.split("|");                       
-                       
-//                        $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
-//                   			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather+'><img class=poster_img style=width:250px;height:350px; src='+result[0]+'></a></div>'+
-// //                   			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
-//                   			 '<div class=nation>'+result[1]+'</div>'+
-//                   			 '<div class=rating>'+result[4]+'</div>'+
-//                   			 '<div class=title>'+title+'</div></div>');
-                       
-                       
-                       
                        // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
-                       $('.boxOffice').append("<div class=movie><div class=ranking></div>"+
-                    		   "<div><a class=poster><img class=poster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-//                     		   "<div><a class=movieName></a></div>"+
-                    		   "<div class =movieName></div>"+
-                    		   "<div class=openDate></div><div class=audiAcc></div><div class=nation></div><div class=rating></div></div>"); // rating 추가 - 낙원 : 0930
+                       $('.boxOffice').append("<div class=boxOfficeMovie>"+
+                    		   "<div><a class=boxOfficePoster><img class=boxOfficePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+                    		   "<div class =boxOfficeMovieName></div>"+
+                    		   "<div class=boxOfficeNation></div></div>"); // rating 추가 - 낙원 : 0930
                        result = getNation(openDt,titleNoSpace);
                        result = result.split("|");
                        
-                       temp = $('#temp').val();
-      	               weather = $('#weather').val();
                        if(result[0]){
-                       		$('.poster_img').eq(idx2).css("width","250px").css("height","350px");
-                       		$('.poster_img').eq(idx2).attr("src",result[0]);
+                       		$('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+                       		$('.boxOfficePoster_img').eq(idx2).attr("src",result[0]);
                        }else{
-                    	   $('.poster_img').eq(idx2).css("width","250px").css("height","350px");
-                    	 	$('.poster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
+                    	   $('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+                    	 	$('.boxOfficePoster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
                        }
-             		   $('.nation').eq(idx2).text(result[1]);
-             		   $('.rating').eq(idx2).text(result[4]);
-//                        $('.movieName').eq(idx2).attr('href','MovieDetailPro.mo?query='+titleNoSpace+'&movieSeq='+result[2]);
-//                        $('.movieName').eq(idx2).attr('href','MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather);
-                       $('.poster').eq(idx2).attr('href','MovieDetailBySearch.mo?movieId='+result[3]+'&movieSeq='+result[2]+'&query='+titleNoSpace+'&image='+result[0]+'&temp='+temp+'&weather='+weather);
-                       $('.movieName').eq(idx2).html(item2.movieNm);
+             		   $('.boxOfficeNation').eq(idx2).text(result[1]);
+                       $('.boxOfficePoster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
+                       $('.boxOfficeMovieName').eq(idx2).html(item2.movieNm);
                        
                       
                        
@@ -181,8 +149,8 @@ $(document).ready(function() {
             	       settings: {
             	         slidesToShow: 3,
             	         slidesToScroll: 3,
-            	         infinite: true,
-            	         dots: true
+            	         infinite: false,
+            	         dots: false
             	       }
             	     },
             	     {
@@ -199,9 +167,6 @@ $(document).ready(function() {
             	         slidesToScroll: 1
             	       }
             	     }
-            	     // You can unslick at a given breakpoint now by adding:
-            	     // settings: "unslick"
-            	     // instead of a settings object
             	   ]
             	 });
                
@@ -214,23 +179,10 @@ $(document).ready(function() {
    
    
 </script>
-<style>
-.rating{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.poster{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.nation{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.movieName{width:250px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;text-align: center;}
-.movie {width: 250px;height:400px;margin-right: 20px;padding:0;}
-</style>
 </head>
 <body>
-<input type="hidden" value="<%=nick%>">
-<!-- temp weather 받을수있는 hidden객체 추가 - 낙원 -->
-<input type="hidden" id="temp">
-<input type="hidden" id="weather">
-<%-- <jsp:include page="/inc/top.jsp" /> --%>
-    <h1>박스오피스 순위</h1>
-    <div class="boxOffice"></div>
-
-
+   <div class="boxOfficeMovie">
+   	 <div class="boxOffice"></div>
+   </div>
 </body>
 </html>

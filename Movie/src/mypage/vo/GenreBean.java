@@ -176,6 +176,4 @@ public class GenreBean implements MarkGenreBean{
 	}
 	
 	
-	
-	
 }

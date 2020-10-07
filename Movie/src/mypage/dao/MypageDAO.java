@@ -7,12 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.google.gson.JsonObject;
 
 import member.vo.MemberBean;
 import movie.vo.MovieBean;
+import mypage.vo.CollectionBean;
 import mypage.action.Mypage;
 import mypage.vo.MypageBean;
 import mypage.vo.MypageGenreBean;
@@ -285,6 +285,10 @@ public class MypageDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
+			if(!rs.next()) {
+				return null;
+			}
+			
 			while (rs.next()) {
 				MypageGenreBean mgb = new MypageGenreBean();
 				mgb.setGrade(rs.getInt("grade"));
@@ -379,8 +383,99 @@ public class MypageDAO {
 		}
 		return jo1;
 	}
+	
+	
+//	Collection
+	
+	public int addCollectionMovie(CollectionBean collectionBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		  try {
+			String sql = "insert into collection values(idx,?,'test',?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getNick());
+			pstmt.setString(2, collectionBean.getMovieSeq());
+			pstmt.setString(3, collectionBean.getTitle());
+			pstmt.setString(4, collectionBean.getPoster());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
+	}
+	
+	public int addCollection(CollectionBean collectionBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		  try {
+			String sql = "insert into collection values(idx,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getNick());
+			pstmt.setString(2, collectionBean.getCollection_name());
+			pstmt.setString(3, collectionBean.getMovieSeq());
+			pstmt.setString(4, collectionBean.getTitle());
+			pstmt.setString(5, collectionBean.getPoster());
+			pstmt.setString(6, collectionBean.getContent());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
+	}
+	
+	public ArrayList<CollectionBean> selectCollection(String nick) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<CollectionBean> list = new ArrayList<CollectionBean>();
+		  try {
+			String sql = "select * from collection where nick = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CollectionBean cb = new CollectionBean();
+				cb.setCollection_name(rs.getString("collection_name"));
+				cb.setMovieSeq(rs.getString("movieSeq"));
+				cb.setTitle(rs.getString("title"));
+				cb.setPoster(rs.getString("poster"));
+				cb.setContent(rs.getString("content"));
+				cb.setIdx(rs.getInt("idx"));
+				list.add(cb);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
-	public int setGenre(String nick, ArrayList<String> list, Mypage type) {
+	public int setMypage(String nick, ArrayList<String> list, Mypage type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
@@ -437,6 +532,8 @@ public class MypageDAO {
 		String sqlType = "";
 		
 		switch (type) {
+		case genre:
+			break;
 		case nation:
 			sqlType="nation";
 			break;
@@ -454,6 +551,9 @@ public class MypageDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
+			if(!rs.next()) {
+				return null;
+			}
 			while (rs.next()) {
 				list.add(rs.getString(1));
 			}

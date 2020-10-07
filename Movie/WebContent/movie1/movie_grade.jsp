@@ -9,6 +9,27 @@
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+.movieList {
+}
+.thisMovie{
+	float:left;
+	padding:20px;
+	margin-left: 30px;
+}
+
+.poster_img {
+	width:213px;
+	height:303px;
+}
+
+.title {
+	width:230px;
+	height:100px;
+}
+
+</style>
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -65,8 +86,10 @@ $(document).ready(function(){
                                 +'</div>'
                                  +'<div class=title>'
                                 +'<a class="link"></a>'
+                                + "<br>"
                                 + "<span class='star-input'>"
                                 +   "<span class='input'>"
+                                
                              
                                 +'<input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>'
                                 +'<input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>'
@@ -99,7 +122,7 @@ $(document).ready(function(){
                               		  open: function () {
                               		 $(this).load(url);
                               		  },
-                              		height: 1000,
+                              		height: 2000,
 
                                     width: 1500,
 

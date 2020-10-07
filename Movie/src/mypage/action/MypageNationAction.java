@@ -20,8 +20,9 @@ public class MypageNationAction implements Action {
 		MypagePreferedThings mpt = new MypagePreferedThings();
 		MypageServiceForMain myPageServiceForMain = new MypageServiceForMain();
 		ArrayList<String> list  = myPageServiceForMain.getInformation(nick,Mypage.nation);
-		System.out.println(list);
-		myPageServiceForMain.setMypage(nick, list, Mypage.nation);
+		if(nick!=null && list!=null) {
+			myPageServiceForMain.setMypage(nick, list, Mypage.nation);
+		}
 		JsonObject nation = mpt.getMypageNation(nick);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();

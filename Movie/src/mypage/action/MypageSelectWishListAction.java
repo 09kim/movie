@@ -24,6 +24,7 @@ import mypage.svc.MypageSelectWishService;
 import mypage.vo.MypageBean;
 import vo.ActionForward;
 
+@Deprecated
 public class MypageSelectWishListAction implements Action {
 
 	@Override

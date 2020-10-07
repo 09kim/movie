@@ -59,22 +59,27 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MypageGrade.mp")) {
-			action = new MypageGradeAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/MypageWish.mp")) { // 액션이름을 바꾸는게 좋아보임! 헷갈려요!
-			action = new MypageSelectWishListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		} else if (command.equals("/MypageSelectWish.mp")) {
+		}
+		// 평가한 페이지 관련 서블릿 미사용으로 인한 주석 처리 - 낙원: 1007
+//		else if (command.equals("/MypageGrade.mp")) {
+//			action = new MypageGradeAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		// 좋아요한 페이지 관련 서블릿 미사용으로 인한 주석 처리 - 낙원: 1007
+//		else if (command.equals("/MypageWish.mp")) { // 액션이름을 바꾸는게 좋아보임! 헷갈려요!
+//			action = new MypageSelectWishListAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+		else if (command.equals("/MypageSelectWish.mp")) {
 			action = new MypageSelectWishAction();
 			try {
 				forward = action.execute(request, response);

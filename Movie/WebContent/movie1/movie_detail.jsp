@@ -726,9 +726,9 @@ String director=request.getParameter("director");%>
 <div class="clear"></div>
 
 <div id="Box">
-	<div id="head">
-	<div id="trailer"></div>
-	</div>
+<!-- 	<div id="head"> -->
+<!-- 	<div id="trailer"></div> -->
+<!-- 	</div> -->
 	<div id="body">
 	<button class="up">▲</button>
 	<button class="down">▼</button>
@@ -737,10 +737,32 @@ String director=request.getParameter("director");%>
 </div>
 <!-- jbMenu[E] -->
     
+
+    
     
     
 <!--     jb-container[S] -->
 <div id="jb-container">
+
+<!-- jbMenu[S] -->
+<div class="jbMenu1">
+<div class="clear"></div>
+
+<div id="Box">
+	<div id="head">
+	<div id="trailer"></div>
+	</div>
+<!-- 	<div id="body"> -->
+<!-- 	<button class="up">▲</button> -->
+<!-- 	<button class="down">▼</button> -->
+<!-- 	</div> -->
+	</div>
+</div>
+<!-- jbMenu[E] -->
+
+
+
+
 
 <input type="hidden" id="hashIndex" value="0">
 

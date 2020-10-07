@@ -8,7 +8,7 @@
 	position: fixed;
 	right: 50%;
 	top: 180px;
-	margin-right: -1020px;
+	margin-right: -960px;
 	text-align: left;
 	width: 300px;
 }

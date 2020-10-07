@@ -20,6 +20,9 @@ public class getMovieByTempAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session =request.getSession();
+		String checkTemp = (String)session.getAttribute("temp");
+		System.out.println(checkTemp+"--------------------------------------");
 		int temp = Integer.parseInt((String)request.getParameter("temp"));
 		MovieGetService movieGetService = new MovieGetService();
 		ArrayList<MovieBean> list = movieGetService.getMovie(temp);
@@ -29,7 +32,6 @@ public class getMovieByTempAction implements Action {
 		JsonArray jo = (JsonArray) jp.parse(json);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		System.out.println(jo);
 		out.println(jo);
 		out.flush();
 		

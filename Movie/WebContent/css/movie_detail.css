@@ -149,7 +149,7 @@ dt {
 	clear: both;
 	display: flex;
 	justify-content: center;
-	position: sticky;
+/* 	position: relative; */
 	top: 0;
 	height: 100%;
 	margin: 0 auto;

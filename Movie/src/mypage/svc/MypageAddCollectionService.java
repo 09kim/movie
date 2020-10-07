@@ -33,6 +33,24 @@ public class MypageAddCollectionService {
 		return isSuccess;
 	}
 	
+	public boolean updateCollection(CollectionBean collectionBean){
+		System.out.println("컬렉션 서비스");
+		boolean isSuccess = false;
+		Connection con = getConnection();
+		MypageDAO mypageDAO = MypageDAO.getInstance();
+		mypageDAO.setConnection(con);
+		int isUpdate = mypageDAO.updateCollection(collectionBean);
+		if(isUpdate>0) {
+			isSuccess = true;
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+		return isSuccess;
+	}
+	
 	public ArrayList<CollectionBean> selectCollection(String nick){
 		
 		System.out.println("MypageWishService - getWishMovie");

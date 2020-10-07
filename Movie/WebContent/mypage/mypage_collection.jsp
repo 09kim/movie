@@ -13,11 +13,19 @@
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/mypageboard.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 // function deleteCollection(id){
 	
 // }
+		function a() {
+			window.open("CollectionModifySearch.mo",
+ 					"open the window",
+					"toolbar=no, width=1000, height=850, top=150, left=150");
+		}
 		
 	$(document).ready(function() {
 		
@@ -28,11 +36,15 @@
 					"toolbar=no, width=1000, height=850, top=150, left=150");
 		});	
 		
+		
 		$('.modifyAddMov').click(function(){
-			var a = $(this).attr('id');
-			window.open("CollectionModifySearch.mo",
-					"open the window",
+			var index = $('.modifyAddMov').index();
+			var addId = $(this).attr('id');
+			
+		    window.open("CollectionModifySearch.mo?addId=" + addId,
+ 					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
+			
 		});
 		
 		
@@ -84,14 +96,6 @@
 				});
 		});
 			
-// 		$('.modifyComplete').click(function(){
-// 			$.ajax('CollectionModify.mp',{
-				
-// 				data:{idx:idx},
-// 				success:function(rdata){
-// 					}
-// 				});
-// 		});
 		
 		
 	});
@@ -135,13 +139,15 @@
 			<br>
 			<section>
 				<h1><%=nick %> 님의 컬렉션 목록</h1> <br>
-				<form action="/Movie/MypageCollectionCreate.mp" method="post">
+				
 				<% for(int i = 0; i < collection.size(); i++) {%>
+				<form action="/Movie/MypageCollectionUpdate.mp" method="post">
 					<div id="collectionNum" class="collectionNum<%=i%>"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
 					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
 					<input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
 					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정">
 					<input type="button" value="작품추가" id ="add<%=i %>"  class="modifyAddMov"><br><br>
+					<div class="collectionView">
 					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 						<div class ="eachList<%=o %>" id="eachList">
 						<div id="modifyMovies"></div>
@@ -149,6 +155,7 @@
 						<br>
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
 						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a>
+						
 						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div>
 						
 						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
@@ -158,9 +165,10 @@
 						
 						
 					<%} %></div>
-					<input type="submit" value="수정하기">
+					</div>
+					<input type="submit" value="수정하기"></form>
 			<%}%> 
-				</form>
+				
 				
 			</section>
 		</div>
@@ -169,7 +177,43 @@
 	
 	
 </section>
+<script type="text/javascript">
 
+$('.collectionView').slick({
+	   dots: false,
+     infinite: false,
+     arrows: true,
+     variableWidth:true,
+     speed: 300,
+     slidesToShow: 4,
+     slidesToScroll: 3,
+	   responsive: [
+	     {
+	       breakpoint: 1024,
+	       settings: {
+	         slidesToShow: 3,
+	         slidesToScroll: 3,
+	         infinite: false,
+	         dots: false
+	       }
+	     },
+	     {
+	       breakpoint: 600,
+	       settings: {
+	         slidesToShow: 2,
+	         slidesToScroll: 2
+	       }
+	     },
+	     {
+	       breakpoint: 480,
+	       settings: {
+	         slidesToShow: 1,
+	         slidesToScroll: 1
+	       }
+	     }
+	   ]
+	 });	
+</script>
 	
 </body>
 </html>

@@ -440,6 +440,33 @@ public class MypageDAO {
 		return isSuccess;
 	}
 	
+	public int updateCollection(CollectionBean collectionBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		  try {
+			String sql = "update collection set movieSeq=?,title=?,poster=? where idx = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, collectionBean.getMovieSeq());
+			pstmt.setString(2, collectionBean.getTitle());
+			pstmt.setString(3, collectionBean.getPoster());
+			pstmt.setInt(4, collectionBean.getIdx());
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
+	}
+	
 	public ArrayList<CollectionBean> selectCollection(String nick) {
 		
 		PreparedStatement pstmt = null;

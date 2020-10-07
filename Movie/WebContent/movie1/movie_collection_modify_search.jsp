@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <% String add = request.getParameter("addId"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 // 기본검색기능을 담당하는 뷰페이지
-
-
 $(document).ready(function(){
    var latitude, longitude;
    var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
@@ -93,10 +92,10 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#modifyMovies", opener.document).prepend(
-     	  			      			    
-     	  			      				'<img src='+image[0]+'>'+
-     	  			      				title5+
+     	  			      		   $('#' + '<%=add%>', opener.document).after(
+     	  			      			    "<br>" +
+     	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+     	  			      				title5+ 
      	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
      	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
@@ -126,20 +125,19 @@ $(document).ready(function(){
                      $('#foreignList').on('click', '#'+item2.movieSeq, function() {
 //                     	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
 
-						 var movieSeq = item2.movieSeq;
+                    	 var movieSeq = item2.movieSeq;
 						 var poster = image[0];
                     	 $.ajax('CollectionMovieAdd.mp',{
      	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#modifyMovies", opener.document).append(
-     	  			      			    "<li>"+ 
-     	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-     	  			      				title5+
-     	  			      				"</li>" +
+     	  			      		   $('#' + '<%=add%>', opener.document).after(
+     	  			      			    "<br>" +
+     	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+     	  			      				title5+ 
      	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
      	  			      		   );  
 
@@ -278,20 +276,20 @@ $(document).ready(function(){
                   $('#actorList').on('click', '#'+item2.movieSeq, function() {
 //                  	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
 
-						 var movieSeq = item2.movieSeq;
+                	  var movieSeq = item2.movieSeq;
 						 var poster = image[0];
                  	 $.ajax('CollectionMovieAdd.mp',{
   	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
   	   					success:function(rdata){
 //   	   							$("#movies", parent.opener.document).val();
 //   	  			 				opener.location.reload();
-  	  			      		   $("#modifyMovies", opener.document).append(
-  	  			      			    "<li>"+ 
-  	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-  	  			      				title5+
-  	  			      				"</li>" +
+  	  			      		   $('#' + '<%=add%>', opener.document).after(
+  	  			      			    "<br>" +
+  	  			      			
+  	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+  	  			      				"<a href='MovieDetailPro.mo?movieSeq=" + movieSeq + '&query=' + title6 + ">"+ title5 + "</a>" + 
   	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-  	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+  	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
   	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
   	  			      		   );  
 
@@ -380,6 +378,28 @@ $(document).ready(function(){
                            '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                            '<div class=title>'+title5+'</div></div>');
                   }
+                  $('#directorList').on('click', '#'+item2.movieSeq, function() {
+//               	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
+
+             	  var movieSeq = item2.movieSeq;
+						 var poster = image[0];
+              	 $.ajax('CollectionMovieAdd.mp',{
+	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
+	   					success:function(rdata){
+//	   							$("#movies", parent.opener.document).val();
+//	  			 				opener.location.reload();
+	  			      		   $('#' + '<%=add%>', opener.document).after(
+	  			      			    "<br>" +
+	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+	  			      				title5+ 
+	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
+	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+	  			      		   );  
+
+	   						}
+	 					});
+              	});
 //                   else{
 //                      $('#directorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 //                   }
@@ -434,7 +454,9 @@ $(document).ready(function(){
 </head>
 <body>
 <section id="main">
-<jsp:include page="/inc/collectionModifyTop.jsp" />
+<jsp:include page="/inc/collectionModifyTop.jsp" >
+	<jsp:param value="<%=add %>" name="add"/>
+</jsp:include>
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>

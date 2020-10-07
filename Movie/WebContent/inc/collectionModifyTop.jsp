@@ -3,6 +3,7 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String nick=(String)session.getAttribute("nick");
+String add = request.getParameter("add");
 %>
 <%-- <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script> --%>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -46,6 +47,7 @@ String nick=(String)session.getAttribute("nick");
 <!--     <form class="form-inline my-2 my-lg-0"> -->
     <form class="form-inline my-2 my-lg-0 mr-5" action="CollectionModifySearch.mo">
       <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+      <input type="hidden" value = "<%=add %>" name="addId">
 <!--       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
       <button class="btn btn-primary my-2 my-sm-0 bg-green" type="submit">Search</button>
     </form>

@@ -12,7 +12,7 @@
 
 
 <meta charset="UTF-8">
-<title></title>
+<title>메인</title>
 </head>
 <body> 
 	<input type="hidden" id="temp">

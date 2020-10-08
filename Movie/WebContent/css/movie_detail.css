@@ -12,6 +12,17 @@
 #jb-header {
 	margin-bottom: 20px;
 	border: 1px solid #bcbcbc;
+	height: 100%;
+	vertical-align: middle;
+	width: 100%;
+	margin: 10px auto;
+	display: flex;
+	color: #FFFFFF;
+}
+
+#jb-header1 {
+	margin-bottom: 20px;
+	border: 1px solid #bcbcbc;
 	height: 100px;
 	vertical-align: middle;
 	width: 100%;
@@ -158,6 +169,14 @@ dt {
 	padding: 10px 0px;
 	z-index: 100;
 	width: 1200px;
+}
+.jbMenu1 {
+	height: 100%;
+	margin-left:-20px;
+	text-align: center;
+	background-color: #000000;
+	width: 1198px;
+	overflow: hidden;
 }
 
 .top_banner {

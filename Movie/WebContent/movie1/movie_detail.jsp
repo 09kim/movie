@@ -21,6 +21,10 @@ String director=request.getParameter("director");%>
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+<link href="${pageContext.request.contextPath}/css/toggle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -937,5 +941,38 @@ $(document).ready(function(){
       
 });
 </script>
+
+<script type="text/javascript">
+
+var check = $("input[type='checkbox']");
+
+check.click(function() {
+    $("p").toggle();
+    
+    
+});
+
+
+
+
+</script>    
+    
+          
+
+<label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span>
+</label>
+<p>OFF</p>
+<p style="display:none;">ON</p>
+ 
+<form>
+    <label for="flip-1">Flip toggle switch:</label>
+    <select name="flip-1" id="flip-1" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+</form>
+      
 </body>
 </html>

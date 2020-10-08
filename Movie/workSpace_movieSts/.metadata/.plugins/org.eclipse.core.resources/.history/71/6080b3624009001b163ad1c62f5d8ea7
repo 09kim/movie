@@ -1,0 +1,8 @@
+package com.movie_admin.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MemberDAO {
+
+}

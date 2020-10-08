@@ -1,0 +1,12 @@
+package com.movie_admin.service;
+
+import org.springframework.stereotype.Service;
+
+import com.movie_admin.vo.MemberBean;
+
+@Service
+public interface MemberService {
+
+	MemberBean getMember();
+
+}

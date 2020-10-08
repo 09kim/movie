@@ -1,0 +1,5 @@
+package com.movie_admin.vo;
+
+public class memberBean {
+
+}

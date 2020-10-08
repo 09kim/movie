@@ -1,0 +1,10 @@
+package com.movie_admin.service;
+
+import com.movie_admin.vo.MemberBean;
+
+
+public interface MemberService {
+
+	MemberBean getMember();
+
+}

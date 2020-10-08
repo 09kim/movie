@@ -11,6 +11,7 @@ import mypage.svc.MypageGradeService;
 import mypage.vo.MypageBean;
 import vo.ActionForward;
 
+@Deprecated
 public class MypageGradeAction implements Action {
 
 	@Override

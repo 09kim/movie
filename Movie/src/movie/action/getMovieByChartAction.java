@@ -22,14 +22,13 @@ public class getMovieByChartAction implements Action {
 		
 		MovieGetService movieGetService = new MovieGetService();
 		ArrayList<MovieBean> list = movieGetService.getMovie();
-		
-		
 		Gson gs = new Gson();
 		String json = gs.toJson(list);
 		JsonParser jp = new JsonParser();
 		JsonArray jo = (JsonArray) jp.parse(json);
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		System.out.println(jo);
 		out.println(jo);
 		out.flush();
 		return null;

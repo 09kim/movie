@@ -57,7 +57,7 @@ String nick=(String)session.getAttribute("nick");
      <%
 		if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){ %>
       <li class="nav-item-inline">
-      	<img src="${pageContext.request.contextPath}/img/noProfile.png" class="rounded-circle no-gutters" style="width:20%">
+      	<a class="nav-link-outline text-white" href="Mypage.mp"><img src="${pageContext.request.contextPath}/img/noProfile.png" class="rounded-circle no-gutters" style="width:20%"></a>
         <a class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a>
       </li>
       <li class="nav-item">

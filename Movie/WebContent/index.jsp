@@ -3,48 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%String nick = (String)session.getAttribute("nick"); %>
+<%String nick = (String)session.getAttribute("nick");%>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	var latitude, longitude;
-	var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-	var temp = '0';
-	var weather = 'no';
-	
-	function getLocation(){
-		window.navigator.geolocation.getCurrentPosition(current_position);
-	}
-	
-	function current_position(position){
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
-		$.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
-				+"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
-			dataType:"json",
-			async:false,
-			success:function(data){
-				$('#temp').val(data.main.temp);
-				$('#weather').val(data.weather[0].main);
-				temp = $('#temp').val();
-				weather = $('#weather').val();
-				
-			}
-		});
-	}
-		
-	window.addEventListener("load",getLocation);
-});
-</script>
 
 
 <meta charset="UTF-8">
-<title></title>
+<title>메인</title>
 </head>
 <body> 
 	<input type="hidden" id="temp">
@@ -54,6 +22,7 @@ $(document).ready(function(){
 	<section id="main">
 	<jsp:include page="/recommend/movie_ranking.jsp"/>
 	<jsp:include page="/recommend/movie_recommend_byChart.jsp"/>
+	<jsp:include page="/recommend/movie_recommend_byTemperature.jsp"/>
 	<%if(nick!=null) {
 		%>
 			<jsp:include page="/recommend/expected_grade_chart_byPython.jsp"/>
@@ -61,7 +30,7 @@ $(document).ready(function(){
 			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
 		<%
 	}%>
-<%-- 	<jsp:include page="/recommend/naver_search_ranking.jsp"/> --%>
+	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
 	</section>
 </body>
 </html>

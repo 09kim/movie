@@ -33,7 +33,7 @@
 					sessionStorage.setItem("weather",weather);
 					var temperature = sessionStorage.getItem("temp");
 					$.ajax('MovieGetTemp.mo',{
-						method : "post",
+						method : "get",
 						dataType : "json",
 						async: false,
 						data : {

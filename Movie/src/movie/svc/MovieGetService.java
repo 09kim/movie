@@ -30,4 +30,14 @@ public class MovieGetService {
 		return list;
 	}
 
+	public ArrayList<MovieBean> getMovie(int temp) {
+		Connection con = getConnection();
+		MovieDAO md = MovieDAO.getInstance();
+		md.setConnection(con);
+		ArrayList<MovieBean> list = md.getMovieByTemp(temp);
+		
+		close(con);
+		return list;
+	}
+
 }

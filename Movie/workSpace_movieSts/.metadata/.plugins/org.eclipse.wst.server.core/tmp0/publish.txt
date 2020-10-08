@@ -1,5 +1,0 @@
-#Tomcat publish data
-#Wed Oct 07 14:27:39 KST 2020
-org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ITWILL\\.m2\\repository\\org\\springframework\\spring-web\\4.1.7.RELEASE\\spring-web-4.1.7.RELEASE.jar=C\:\\sts-bundle\\pivotal-tc-server\\instances\\pivotal-tc-server\\wtpwebapps\\SpringProject2\\WEB-INF\\lib\\spring-web-4.1.7.RELEASE.jar
-org.eclipse.jst.jee.server\:Movie_Admin=C\:\\sts-bundle\\pivotal-tc-server\\instances\\pivotal-tc-server\\wtpwebapps\\Movie_Admin
-org.eclipse.jst.jee.server\:SpringProject2=C\:\\sts-bundle\\pivotal-tc-server\\instances\\pivotal-tc-server\\wtpwebapps\\SpringProject2

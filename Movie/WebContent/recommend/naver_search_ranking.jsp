@@ -31,7 +31,7 @@ function auto_reload(){
 					$('.rank').append('<div class='+i+'></div>');
 					data[i] = data[i].replace('상승','<span style=color:red>&uarr;</span>');
 					data[i] = data[i].replace('하락','<span style=color:cyan>&darr;</span>');
-					data[i] = data[i].replace('동일','<span style=color:black>-</span>');
+					data[i] = data[i].replace('동일0','<span style=color:black>-</span>');
 					$('.'+i).append(data[i]);
 					 
 				}

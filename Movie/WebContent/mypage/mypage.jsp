@@ -1,3 +1,4 @@
+<%@page import="mypage.vo.CollectionBean"%>
 <%@page import="mypage.vo.MypageBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.vo.MemberBean"%>
@@ -12,12 +13,13 @@
     ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("wishMovie");
     ArrayList<MypageBean> gradeList = (ArrayList<MypageBean>) request.getAttribute("gradeList");
     int listCount = (int) request.getAttribute("listCount");
+    ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
 	%>
 	
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Jackson Template</title>
+	<title>마이페이지</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -45,7 +47,7 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+<!-- 	<link rel="stylesheet" href="css/bootstrap.css"> -->
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
 	<!-- Flaticons  -->
@@ -62,20 +64,29 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 
 
-<!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-	
+
 <script type="text/javascript">
+
+
+function a() {
+	window.open("CollectionModifySearch.mo",
+				"open the window",
+			"toolbar=no, width=1000, height=850, top=150, left=150");
+}
+
+
+
+
+
+
 	$(document).ready(function() {
 		var sortData = [];
 		var sortData2 = [];
@@ -121,8 +132,7 @@
 									var count = item2.value/2/item.value;
 // 									$('.genre').append(item.key +" : "+item.value+ "개  " +count.toFixed(1)+"점 <br>");
 // 									$('#genreList').append('<tr><th scope="row">'+item.key+'</th><td>'+item.value+'개</td><td>★'+count.toFixed(1)+'점</td></tr>');
-									$('.genreList').append('<tr><th scope="row">'+item.key+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item.value+'" data-speed="3000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
-								
+									$('.genreList').append('<tr><th scope="row">'+item.key+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item.value+'" data-speed="1000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
 								}
 							}
 						});
@@ -205,7 +215,6 @@
 	        }
 	        return str;
 	    }
-
 	var cellPhone = document.getElementById('phoneNum');
 	cellPhone.onkeyup = function(event){
 	    event = event || window.event;
@@ -219,14 +228,12 @@
 	$('.btn-like').each(function() {
 		var wishInfo = $(this).val().split(",");
 		var wish = wishInfo[2];
-
 		if (wish == "Y") {
 			$(this).addClass("done");
 		} else { // 기본이 없는 클래스라 remove가 필요없음
 			$(this).removeClass("done");
 		}
 	});
-
 	$('.btn-like').click(function() {
 			var wishInfo = $(this).val().split(",");
 			var nick = wishInfo[0];
@@ -235,7 +242,6 @@
 			var movieSeq = wishInfo[3];
 			var idx = wishInfo[4];
 			if (confirm(title + "을(를) 보고싶어요 리스트에서 제외 하시겠습니까?")) {
-
    			 $.ajax('MypageChangeWish.mp',{
    					data:{nick:nick,movieSeq:movieSeq,title:title},
    					success:function(rdata){
@@ -253,6 +259,77 @@
 	
 	
 	
+	// 영운 컬렉션 코드 마이페이지에 추가 - 낙원 : 1007 [S]
+	$('#addMov').click(function(){
+			
+			window.open("CollectionSearch.mo",
+					"open the window",
+					"toolbar=no, width=1000, height=850, top=150, left=150");
+		});	
+		
+		
+		$('.modifyAddMov').click(function(){
+			var index = $('.modifyAddMov').index();
+			var addId = $(this).attr('id');
+			
+		    window.open("CollectionModifySearch.mo?addId=" + addId,
+ 					"open the window",
+					"toolbar=no, width=1000, height=850, top=150, left=150");
+			
+		});
+		
+		
+		
+		$('#showAddCollection').click(function(){
+			if($('#showDisplay').css('display') == "none"){
+				$('#showDisplay').show();
+				$('#showAddCollection').val('컬렉션 추가창 닫기');
+			} else {
+				$('#showDisplay').hide();
+				$('#showAddCollection').val("컬렉션 추가");
+			}
+		})
+			
+// 		$('#movies').append("<li>" + $('#hiddenTitle').val() +"</li>");
+// 		alert($('#hiddenTitle').val());
+		$('#submit').click(function(){
+			if($('#subject').val() == ''){
+				alert("제목을 입력하세요")
+				return false;
+			}
+			if($('#content').val() == ''){
+				alert("내용을 입력하세요")
+				return false;
+			}
+			if($('#movieSeq').length < 1){
+				alert("영화를 선택하세요");
+				return false;
+			} 
+		})
+		
+		$('.modifyDelBtn').click(function(){
+			var eachList = $(this).attr('id');	
+			var collectionNum = $(this).closest('#collectionNum').attr('class')
+			$('.' + collectionNum).find('.'+eachList).remove();
+		});
+		
+				
+		
+		$('.delBtn').click(function(){
+			var idx = $(this).attr('id')
+			$.ajax('CollectionDelete.mp',{
+				
+				data:{idx:idx},
+				success:function(rdata){
+					  alert("삭제 되었습니다");
+		      		  location.reload();
+					}
+				});
+		});	
+	
+	// 영운 컬렉션 코드 마이페이지에 추가 - 낙원 : 1007 [E]
+	
+	
 		
 	});
 	
@@ -264,6 +341,9 @@
 	
 <style>
 #header{position: sticky;top: 0;z-index: 100;}
+.btn-like{float:left;background-color: inherit;border:none;outline:none;}
+.btn-like:active{outline:none;}
+/* * { font-family: 'D2Coding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff'); font-weight: normal; font-style: normal; } */
 </style>
 </head>
 <body>
@@ -271,10 +351,16 @@
 		<jsp:include page="/inc/top.jsp" />
 		<div class="clear"></div>
 	</div>
-	<div id="colorlib-page">
+	<div id="colorlib-page" style="margin-bottom:500px;">
 		<div class="container-wrap">
-			<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-			<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+		
+		
+		
+		
+		
+		<!--       사이드 레프트 [S] -->
+      <div id="jb-sidebar-left">
+				<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
 				<div class="text-center">
 					<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div>
 					<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1>
@@ -286,6 +372,7 @@
 							<li><a href="MypageGrade.mp" data-nav-section="services">선호 장르&국가&감독</a></li>
 							<li><a href="MypageWish.mp" data-nav-section="skills">보고싶어요한 영화</a></li>
 							<li><a href="BoardReviewList.bo" data-nav-section="education">내가 평가한 영화</a></li>
+							<li><a href="MypageCollection.mp" data-nav-section="experience">컬렉션</a></li>
 <!-- 							<li><a href="MypageCollection.mp" data-nav-section="experience">Experience</a></li> -->
 <!-- 							<li><a href="#" data-nav-section="work">Work</a></li> -->
 <!-- 							<li><a href="#" data-nav-section="blog">Blog</a></li> -->
@@ -294,6 +381,14 @@
 					</div>
 				</nav>
 			</aside>
+      </div>
+<!--       사이드 레프트[E] -->
+		
+		
+		<!--       사이드 센터[S] -->
+      <div id="jb-content">
+      		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+			
 
 		<div id="colorlib-main">
 			<section class="colorlib-about" data-section="about">
@@ -413,44 +508,66 @@
 
 			<section class="colorlib-skills" data-section="skills">
 			
-				<div id="myinfo" class="myinfo">
-					<h2><%=nick %>님의 보고싶어요 리스트</h2>
-					<div id="listForm">
-						<% for(MypageBean wishInfo : wishMovie) {%>
-						<div class="wishList">
-						<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
-									<%if(wishInfo.getPoster()!=null){ %>
-									<div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a></div><div class="title"><%=wishInfo.getTitle() %></div>
-									<%if(wishInfo.getWish().equals("Y")){ %>
-									<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button>
+				<fieldset>
+				<legend><%=nick %>님의 보고싶어요 리스트</legend>
+					<div id="myinfo" class="myinfo">
+						<div id="listForm">
+							<% for(MypageBean wishInfo : wishMovie) {%>
+							<div class="wishList">
+							<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
+	<%-- 									<%if(wishInfo.getPoster()!=null){ %> --%>
+	<%-- 									<div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>" style="width:250px;height:350px;" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a></div><div class="title"><%=wishInfo.getTitle() %></div> --%>
+										<%if(wishInfo.getPoster()!=null){ %>
+										<div class="poster" style='width:250px;height:350px;background-image: url(<%=wishInfo.getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"></a>
+										<%if(wishInfo.getWish().equals("Y")){ %>
+										<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button>
+										<% }%>
+										</div>
+										<div class="title" style="margin-left:-20px;"><%=wishInfo.getTitle() %></div>
+	<%-- 									<%if(wishInfo.getWish().equals("Y")){ %> --%>
+	<%-- 									<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button> --%>
+	<%-- 									<% }%> --%>
+										</div>
 									<% }%>
-								<% }%>
+								<%}%>
 						</div>
-							<%}%>
 					</div>
-				</div>
-			
+			</fieldset>
 			
 			
 			</section>
 
 			<section class="colorlib-education" data-section="education">
-				<div id="myinfo">
-				내가 평가한 영화 목록 :<span><%=listCount%></span>
+				<fieldset>
+				<legend>내가 평가한 영화 목록 : <%=listCount%>개</legend>
+				<div id="myInfo">
 				<%
 					if (gradeList != null && listCount > 0) {
 					for (int i = 0; i < gradeList.size(); i++) {
+					int starRating = (int)(gradeList.get(i).getGrade()/2.0*20);						
+					double starRating1 = (gradeList.get(i).getGrade()/2.0);						
 				%>
 				<div id="gradelist">
 					<ul> <%  String a = String.format("%05d" ,gradeList.get(i).getMovieSeq()); %>
-						<li><a><img src=<%=gradeList.get(i).getPoster() %>></a>
+						<li><div class=poster><img src=<%=gradeList.get(i).getPoster() %>></div>
 							<div id="movieInfo">
-								<a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=gradeList.get(i).getTitle()%>" ><div><%=gradeList.get(i).getTitle()%></div></a>
-								<div><%=gradeList.get(i).getGrade()%></div>
-								<!--
-							 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
+								<div class="title" style="font-size:2em"><%=gradeList.get(i).getTitle()%></div>
+<%-- 								<div class="grade" style="font-size:2em">★ : <%=gradeList.get(i).getGrade()/2.0%>점</div> --%>
+<%-- 								<div class="grade" style="font-size:2em;background-image: url('img/grade_img.png');">★ : <%=gradeList.get(i).getGrade()/2.0%>점</div> --%>
+<!-- 								<div class="grade" style="font-size:2em"> -->
+									<div class="wrap-star" style="float:left;margin-left:-50px;">								
+										<div class='star-rating' style="float:left;">
+		        						<span style ="width:<%=starRating%>%;"></span>
+		    							</div>
+		    							<div style="float:right;">
+		        						<p style="font-size: 2em;margin-left:-90px;margin-top:14px;"><%=starRating1 %>점</p>
+		        						</div>
+	    							</div>
+<!--     							</div> -->
+							 <!-- 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
 							</div></li>
 					</ul>
+					
 				</div>
 				<%
 					}
@@ -461,12 +578,70 @@
 					}
 				%>
 			</div>
+		</fieldset>
+				
 		</section>
-		
+									
 		
 <!-- 		나머지 메뉴 틀 주석 처리 - 낙원 : 1007 [S] -->
 
-<!-- 			<section class="colorlib-experience" data-section="experience"> -->
+			<section class="colorlib-experience" data-section="experience">
+			<fieldset>
+				<legend><%=nick %> 님의 컬렉션 목록</legend>
+			<div>
+			
+			
+			<div>
+			<input type="button" id="showAddCollection" value="컬렉션 추가 하기">
+		  	<div id="showDisplay" style= display:none>
+				<form action="/Movie/MypageCollectionCreate.mp" method="post">
+				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
+				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
+				<input type="button" value="작품추가" id="addMov">
+				<div id="movies">
+				</div>
+				<input type="submit" value="생성" id="submit">
+	
+			</form>
+			</div>
+			<br>
+			<section>
+				
+				<% for(int i = 0; i < collection.size(); i++) {%>
+				<form action="/Movie/MypageCollectionUpdate.mp" method="post">
+					<div id="collectionNum" class="collectionNum<%=i%>"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
+					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
+					<input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
+					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정">
+					<input type="button" value="작품추가" id ="add<%=i %>"  class="modifyAddMov"><br><br>
+					<div class="collectionView">
+					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
+						<div class ="eachList<%=o %>" id="eachList">
+						<div id="modifyMovies"></div>
+						<img src="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<br>
+						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
+						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a>
+						
+						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div>
+						
+						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
+						<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
+						<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
+						
+						
+					<%} %></div>
+					</div>
+					<input type="submit" value="수정하기"></form>
+			<%}%> 
+				
+				
+			</section>
+		</div>
+	</div>
+		</fieldset>	
+	
 <!-- 				<div class="colorlib-narrow-content"> -->
 <!-- 					<div class="row"> -->
 <!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
@@ -550,7 +725,16 @@
 <!-- 					   </div> -->
 <!-- 				   </div> -->
 <!-- 				</div> -->
-<!-- 			</section> -->
+			</section>
+      </div>
+<!--       사이드 센터[E] -->
+		
+		
+		
+		
+		
+		
+		
 
 <!-- 			<section class="colorlib-work" data-section="work"> -->
 <!-- 				<div class="colorlib-narrow-content"> -->
@@ -784,24 +968,133 @@
 	</div><!-- end:colorlib-page -->
 
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<!-- <script src="js/bootstrap.min.js"></script> -->
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Flexslider -->
+<script src="js/jquery.flexslider-min.js"></script>
+<!-- Owl carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Counters -->
+<script src="js/jquery.countTo.js"></script>
+<!-- MAIN JS -->
+<script src="js/main.js"></script>	
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script type="text/javascript">
+$('#listForm').slick({
+	   dots: false,
+     infinite: false,
+     arrows: true,
+     variableWidth:true,
+     speed: 300,
+     slidesToShow: 4,
+     slidesToScroll: 3,
+	   responsive: [
+	     {
+	       breakpoint: 1024,
+	       settings: {
+	         slidesToShow: 3,
+	         slidesToScroll: 3,
+	         infinite: false,
+	         dots: false
+	       }
+	     },
+	     {
+	       breakpoint: 600,
+	       settings: {
+	         slidesToShow: 2,
+	         slidesToScroll: 2
+	       }
+	     },
+	     {
+	       breakpoint: 480,
+	       settings: {
+	         slidesToShow: 1,
+	         slidesToScroll: 1
+	       }
+	     }
+	   ]
+	 });
+	 
+	$('#myInfo').slick({
+	 	   dots: false,
+	        infinite: false,
+	        arrows: true,
+	        variableWidth:true,
+	        speed: 300,
+	        slidesToShow: 4,
+	        slidesToScroll: 3,
+	 	   responsive: [
+	 	     {
+	 	       breakpoint: 1024,
+	 	       settings: {
+	 	         slidesToShow: 3,
+	 	         slidesToScroll: 3,
+	 	         infinite: false,
+	 	         dots: false
+	 	       }
+	 	     },
+	 	     {
+	 	       breakpoint: 600,
+	 	       settings: {
+	 	         slidesToShow: 2,
+	 	         slidesToScroll: 2
+	 	       }
+	 	     },
+	 	     {
+	 	       breakpoint: 480,
+	 	       settings: {
+	 	         slidesToShow: 1,
+	 	         slidesToScroll: 1
+	 	       }
+	 	     }
+	 	   ]
+	 	 });
 	
 	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
+	$('.collectionView').slick({
+		   dots: false,
+	     infinite: false,
+	     arrows: true,
+	     variableWidth:true,
+	     speed: 300,
+	     slidesToShow: 4,
+	     slidesToScroll: 3,
+		   responsive: [
+		     {
+		       breakpoint: 1024,
+		       settings: {
+		         slidesToShow: 3,
+		         slidesToScroll: 3,
+		         infinite: false,
+		         dots: false
+		       }
+		     },
+		     {
+		       breakpoint: 600,
+		       settings: {
+		         slidesToShow: 2,
+		         slidesToScroll: 2
+		       }
+		     },
+		     {
+		       breakpoint: 480,
+		       settings: {
+		         slidesToShow: 1,
+		         slidesToScroll: 1
+		       }
+		     }
+		   ]
+		 });	
 	
+	
+</script>
+<script src="${pageContext.request.contextPath}/css/default.css"></script>
 <style>
 #myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;}
 textarea {
@@ -814,27 +1107,22 @@ textarea {
   box-sizing: border-box;
   transition: 0.3s;
 }
-
 textarea:focus {
   border-color: dodgerBlue;
   box-shadow: 0 0 8px 0 dodgerBlue;
 }
-
 .inputWithIcon textarea {
   padding-left: 50px; /* 아이콘 과 텍스트 간격 */
 }
-
 .inputWithIcon textarea:focus +i {
   color: dodgerBlue;
 }
-
 .inputWithIcon.inputIconBg i {
   background-color: #aaa;
   color: #fff;
   padding: 9px 4px;
   border-radius: 4px 0 0 4px;
 }
-
 .inputWithIcon.inputIconBg textarea:focus + i {
   color: #fff;
   background-color: dodgerBlue;
@@ -849,21 +1137,17 @@ input[type="text"],input[type="email"],input[type="password"] {
   box-sizing: border-box;
   transition: 0.3s;
 }
-
 input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
   border-color: dodgerBlue;
   box-shadow: 0 0 8px 0 dodgerBlue;
 }
-
 .inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
   padding-left: 50px; /* 아이콘 과 텍스트 간격 */
 }
 .inputWithIcon {
   position: relative;
 }
-
 .inputWithIcon i {
-
 	width:1.5em;/* 아이콘 폭 */
   position: absolute;
   left: 0;
@@ -872,26 +1156,21 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   color: #aaa;
   transition: 0.3s;
 }
-
 .inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
   color: dodgerBlue;
 }
-
 .inputWithIcon.inputIconBg i {
   background-color: #aaa;
   color: #fff;
   padding: 9px 4px;
   border-radius: 4px 0 0 4px;
 }
-
 .inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
   color: #fff;
   background-color: dodgerBlue;
 }
 #infoup{width:500px;margin-top: 20px;}
 li>a{font-size: 1.5em;}
-
-
 table#favoriteGenre {
     border-collapse: collapse;
     text-align: center;
@@ -956,58 +1235,84 @@ table#favoriteNation tbody th {
 /*     vertical-align: top; */
 /*     border-bottom: 1px solid #ccc; */
 /* } */
-
-fieldset{margin-left:50px;}
+fieldset{margin-left:50px;min-width: 1200px;}
 #favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;}
 /* #favoriteNation{margin:0px auto;} */
 /* #nationList{float:left;text-align: center;margin:0px auto;padding-right: 25%} */
 .director{float:left;}
 .favoriteDirector{margin-right:1em;float:left;display: block;text-align: center;}
-</style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		 $('#listForm').slick({
-		   	  dots: false,
-		          infinite: false,
-// 		         infinite: true,
-		         arrows: true,
-		         variableWidth:true,
-		         speed: 300,
-// 		         autoplay:true,
-		         autoplaySpeed:3000,
-		         slidesToShow: 4,
-		         slidesToScroll: 3,
-		         responsive: [
-		           {
-		             breakpoint: 1024,
-		             settings: {
-		               slidesToShow: 3,
-		               slidesToScroll: 3,
-		               infinite: true,
-		               dots: true
-		             }
-		           },
-		           {
-		             breakpoint: 600,
-		             settings: {
-		               slidesToShow: 2,
-		               slidesToScroll: 2
-		             }
-		           },
-		           {
-		             breakpoint: 480,
-		             settings: {
-		               slidesToShow: 1,
-		               slidesToScroll: 1
-		             }
-		           }
-		           // You can unslick at a given breakpoint now by adding:
-		           // settings: "unslick"
-		           // instead of a settings object
-		         ]
-		       }); // slick(.directorsMovieList)끝
+.poster img{
+	width: 250px;
+	height:350px;
+	text-align: center;
+	
+}
+.poster{
+	width: 250px;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+.title{
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+.grade{
+	width: 250px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+ul {list-style: none;}
 
-	});
-</script>
-	</body>
+
+
+.gradeList{height:100%;}
+h2 {font-size:15px;}
+/* .star-rating {width:304px; } */
+.wrap-star{margin-left:-24px;}
+.star-rating {width:304px;transform:scale(0.4); }
+.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat;}
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top;margin:0 auto;}
+
+#jb-container {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+/* 	padding: 20px; */
+/* 	border: 1px solid #bcbcbc; */
+	background-color: #2E2E2E;
+}
+
+
+
+#jb-sidebar-left {
+	width: 300px;
+	height: 100%;
+	text-align: center;
+/* 	padding: 20px; */
+/* 	margin-right: 20px; */
+/* 	margin-bottom: 20px; */
+	float: left;
+/* 	color: #FFFFFF; */
+/* 	border: 1px solid #bcbcbc; */
+}
+
+#jb-content {
+	height: 100%;
+	width: 100%-300px;
+	padding: 20px;
+	margin-bottom: 20px;
+	float: left;
+/* 	color: #FFFFFF; */
+/* 	border: 1px solid #bcbcbc; */
+}
+
+
+
+</style>
+</body>
 </html>

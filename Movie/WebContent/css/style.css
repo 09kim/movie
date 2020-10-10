@@ -70,9 +70,12 @@ figure {
 #colorlib-page {
   width: 100%;
   overflow: hidden;
+  margin-left:-370px;
   position: relative; }
 
 #colorlib-aside {
+  
+  margin-top:-20px;
   padding-top: 3em;
   padding-bottom: 40px;
   float: left;
@@ -220,11 +223,14 @@ figure {
   margin: 0 auto; }
 
 #colorlib-main {
-  width: calc(100% - 300px);
+/*   width: calc(100% - 300px); */
+  width: 100%;
   float: right;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
-  transition: 0.5s; }
+  transition: 0.5s;
+  margin-right:-300px;
+ }
   @media screen and (max-width: 768px) {
     #colorlib-main {
       width: 100%;

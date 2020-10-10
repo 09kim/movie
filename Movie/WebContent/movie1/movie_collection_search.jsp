@@ -79,8 +79,32 @@ $(document).ready(function(){
                               '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
                               '<div class=nation>'+item2.nation+'</div>'+
                               '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                              '<div class=title>'+title5+'</div></div>');
+                              '<div class=title>'+title5+'</div>' +
+                              "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
                      }
+                     $('#koreaList').on('click', '#'+item2.movieSeq, function() {
+//                     	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
+
+						 var movieSeq = item2.movieSeq;
+						 var poster = image[0];
+                    	 $.ajax('CollectionMovieAdd.mp',{
+     	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
+     	   					success:function(rdata){
+//      	   							$("#movies", parent.opener.document).val();
+//      	  			 				opener.location.reload();
+     	  			      		   $("#movies", opener.document).append(
+     	  			      			    "<li>"+ 
+     	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
+     	  			      				title5+
+     	  			      				"</li>" +
+     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+     	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+     	  			      		   );  
+
+     	   						}
+     	 					});
+                    	});
 //                      else{
 //                         $('#koreaList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 //                      }
@@ -248,8 +272,32 @@ $(document).ready(function(){
                            '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
                            '<div class=nation>'+item2.nation+'</div>'+
                            '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                           '<div class=title>'+title5+'</div></div>');
+                           '<div class=title>'+title5+'</div>' +
+                           "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
                   }
+                  $('#actorList').on('click', '#'+item2.movieSeq, function() {
+//                  	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
+
+						 var movieSeq = item2.movieSeq;
+						 var poster = image[0];
+                 	 $.ajax('CollectionMovieAdd.mp',{
+  	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
+  	   					success:function(rdata){
+//   	   							$("#movies", parent.opener.document).val();
+//   	  			 				opener.location.reload();
+  	  			      		   $("#movies", opener.document).append(
+  	  			      			    "<li>"+ 
+  	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
+  	  			      				title5+
+  	  			      				"</li>" +
+  	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+  	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+  	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+  	  			      		   );  
+
+  	   						}
+  	 					});
+                 	});
 //                   else{
 //                      $('#actorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 //                   }
@@ -330,8 +378,32 @@ $(document).ready(function(){
                            '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'></a></div>'+
                            '<div class=nation>'+item2.nation+'</div>'+
                            '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
-                           '<div class=title>'+title5+'</div></div>');
-                  }
+                           '<div class=title>'+title5+'</div>' +
+                           "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
+                  } 
+                  $('#directorList').on('click', '#'+item2.movieSeq, function() {
+//               	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
+
+						 var movieSeq = item2.movieSeq;
+						 var poster = image[0];
+              	 $.ajax('CollectionMovieAdd.mp',{
+	   					data:{nick:nick,movieSeq:movieSeq,title:title5,poster:poster},
+	   					success:function(rdata){
+//	   							$("#movies", parent.opener.document).val();
+//	  			 				opener.location.reload();
+	  			      		   $("#movies", opener.document).append(
+	  			      			    "<li>"+ 
+	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
+	  			      				title5+
+	  			      				"</li>" +
+	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+	  			      		   );  
+
+	   						}
+	 					});
+              	});
 //                   else{
 //                      $('#directorList').append('<div class=poster><img src=../../../Movie/img/noImage.gif></div>');
 //                   }

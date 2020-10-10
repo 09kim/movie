@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import member.vo.MemberBean;
+import mypage.svc.MypageAddCollectionService;
 import mypage.svc.MypageGradeService;
 import mypage.svc.MypageSelectWishListService;
 import mypage.svc.MypageService;
+import mypage.vo.CollectionBean;
 import mypage.vo.MypageBean;
 import vo.ActionForward;
 
@@ -67,7 +69,11 @@ public class MypageAction implements Action {
 		request.setAttribute("gradeList", gradeList);
 		// 평점 페이지 객체 받는 코드 - 낙원 : 1006[E]		
 		
-		
+		// 컬렉션 객체 받는 코드 - 낙원 : 1007[S]
+		MypageAddCollectionService service1 = new MypageAddCollectionService();
+		ArrayList<CollectionBean> collection = service1.selectCollection(nick);
+		request.setAttribute("collection", collection);
+		// 컬렉션 객체 받는 코드 - 낙원 : 1007[E]
 		
 		
 		

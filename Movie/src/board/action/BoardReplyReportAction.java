@@ -1,5 +1,6 @@
 package board.action;
 
+import java.io.*;
 import java.text.*;
 import java.util.*;
 
@@ -22,16 +23,35 @@ public class BoardReplyReportAction implements Action {
 		String nick = (String)session.getAttribute("nick");
 		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		
+		
 		ReplyBean replyBean = new ReplyBean();
 		replyBean.setNick(nick);
 		replyBean.setRe_ref(re_ref);
 		
+		
 		BoardReplyService boardReplyService = new BoardReplyService();
-		boolean isSuccess = boardReplyService.reportReply(replyBean);
+		boolean isInsert = boardReplyService.insertReport(replyBean);
+		
+		if(!isInsert) {
+//			response.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script type='text/javascript'>");
+//			out.println("alert('이미 신고하셨습니다');");
+//			out.println("history.back()");
+//			out.println("</script>");
+			String out = "out";
+			HttpSession session2 = request.getSession();
+			session2.setAttribute("out", out);
 			
-		forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("BoardReviewView.bo");
+		} else {
+			
+			BoardReplyService boardReplyService2 = new BoardReplyService();
+			boolean isSuccess = boardReplyService.reportReply(replyBean);
+			
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("BoardReviewView.bo");
+		}
 		
 	    return forward;
 	}

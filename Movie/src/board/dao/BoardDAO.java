@@ -84,6 +84,7 @@ public class BoardDAO {
 				reviewBean.setType_name(rs.getString(7));
 				reviewBean.setContent(rs.getString(8));
 				reviewBean.setLike_count(rs.getInt(9));
+				reviewBean.setReport(rs.getInt(10));
 
 				reviewList.add(reviewBean);
 			}
@@ -99,13 +100,13 @@ public class BoardDAO {
 		return reviewList;
 	}
 
-
+	// -----------------------------------------------------------------------------------
 	
 	public ArrayList<ReviewBean> getReview(ReviewBean reviewBean){
 
 		ArrayList<ReviewBean> list = null;
 		try {
-			String sql = "select * from review where movieSeq = ? ORDER BY idx DESC";
+			String sql = "select * from review where movieSeq=? ORDER BY idx DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reviewBean.getMovieSeq());
 			rs = pstmt.executeQuery();
@@ -118,6 +119,8 @@ public class BoardDAO {
 				reviewB.setContent(rs.getString("content"));
 				reviewB.setGrade(rs.getInt("grade"));
 				reviewB.setLike_count(rs.getInt("like_count"));
+				reviewB.setReport(rs.getInt("report"));
+				
 				list.add(reviewB);
 
 			}
@@ -208,9 +211,11 @@ public class BoardDAO {
 		ArrayList<ReplyBean> replyList = new ArrayList<ReplyBean>();
 		
 		try {
-			String sql = "select * from reply where movieSeq=? ORDER BY idx DESC, date DESC";
+			String sql = "select * from reply where movieSeq=? and idx=? ORDER BY idx DESC, date DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, replyBean.getMovieSeq());
+			pstmt.setInt(2, replyBean.getIdx());
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -302,5 +307,159 @@ public class BoardDAO {
 				
 		return insertCount;
 	}
+
+	public int selectReport(ReplyBean replyBean) {
+		System.out.println("BoardDAO - selectReport()");
+		
+		int selectCount = 0;
+		
+		try {
+			String sql = "SELECT * FROM report WHERE nick=? AND re_ref=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyBean.getNick());
+			pstmt.setInt(2, replyBean.getRe_ref());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			} else {
+				sql = "INSERT INTO report VALUES(idx,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, replyBean.getNick());
+				pstmt.setInt(2, replyBean.getRe_ref());
+				pstmt.setString(3, replyBean.getReply());
+				pstmt.setInt(4, replyBean.getReport());
+				
+				selectCount = pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - selectReport() 에러: " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return selectCount;
+		
+	}
+
+	public int reviewLike(ReviewBean reviewBean) {
+		System.out.println("BoardDAO - reportReply()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "update review set like_count=like_count+1 where idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewBean.getIdx());
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - likeReview() 에러: " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+				
+		return insertCount;
+	}
+
+	public int selectLike(ReviewBean reviewBean) {
+		System.out.println("BoardDAO - selectReport()");
+		
+		int selectCount = 0;
+		
+		try {
+			String sql = "SELECT * FROM reviewLike WHERE nick=? AND idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getNick());
+			pstmt.setInt(2, reviewBean.getIdx());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			} else {
+				sql = "INSERT INTO reviewLike VALUES(?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reviewBean.getIdx());
+				pstmt.setString(2, reviewBean.getNick());
+				
+				selectCount = pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - selectLike() 에러: " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return selectCount;
+		
+	}
+
+	public int reviewReport(ReviewBean reviewBean) {
+		System.out.println("BoardDAO - reviewReport()");
+		
+		int insertCount = 0;
+		
+		try {
+			String sql = "update review set report=report+1 where idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewBean.getIdx());
+			insertCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - reviewReport() 에러: " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+				
+		return insertCount;
+	}
+
+	public int selectReport(ReviewBean reviewBean) {
+		System.out.println("BoardDAO - selectReport()");
+		
+		int selectCount = 0;
+		
+		try {
+			String sql = "SELECT * FROM reviewReport WHERE nick=? AND idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getNick());
+			pstmt.setInt(2, reviewBean.getIdx());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+			} else {
+				sql = "INSERT INTO reviewReport VALUES(?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reviewBean.getIdx());
+				pstmt.setString(2, reviewBean.getNick());
+				
+				selectCount = pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("BoardDAO - selectReport() 에러: " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return selectCount;
+	}
+
 
 }

@@ -46,12 +46,17 @@ $(document).ready(function() {
 				reply:reply
 			},
 			success: function(data) {
+				location.reload();
+				var out = "<%=session.getAttribute("out") %>";
+                if(out == "out") {
+                    alert("댓글을 등록하세요");
+                    location.reload();
+                }
 				
 				$('#replyShow').append(data);
-// 				alert("댓글 작성 완료");
-				
 //              location.href="BoardReviewDetail.bo?movieSeq=" + $('#movieSeq').val() + "&idx=" + $('#idx').val();
 				location.reload();
+				
 			}
 			
 		});
@@ -225,6 +230,12 @@ $(document).ready(function() {
 	                               success: function(data) {
 	                                   location.reload();
 	                                   
+	                                   var out = "<%=session.getAttribute("out") %>";
+	                                   
+	                                   if(out == "out") {
+	                                	   alert("신고 하셨습니다");
+	                                	   location.reload();
+	                                   }
 	                               }
 	                           });
 	                           
@@ -249,6 +260,7 @@ $(document).ready(function() {
     <%} %>
     
 <%} %>
+
 
 <div id="dialog-message" title="댓글 수정" style="display:none">
     <textarea id="replyUpdate" name="replyUpdate" cols="30" rows="5"></textarea>

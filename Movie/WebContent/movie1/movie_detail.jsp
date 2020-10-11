@@ -502,12 +502,12 @@ String director=request.getParameter("director");%>
        }); 
          
          
+         // 리뷰 
          
          var returnCmt = $('#returnCmt').val();
          function cmtBtn() {
         	 
         	 var typeName = $('#typeName').val();
-        	 
         	 
         	 $('#dialog-comment').dialog({
         		 modal: true,
@@ -524,8 +524,19 @@ String director=request.getParameter("director");%>
         			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
-        			 	 		  	$('#review').append(data);
-        			 	 		    location.reload();
+        			 	 			
+        			 	 			// 스포일러 체크  
+        			 	 			if($('#spoilerCheck').is(":checked") == true) {
+        			                    $('#review').text("스포일러가 포함된 리뷰입니다."); 
+        			                    $('#review').append(data);
+        			                    location.reload();
+        			                    
+        			                 } else {
+	        			 	 		  	$('#review').append(data);
+	        			 	 		    location.reload();
+        			                     
+        			                 }
+        			 	 			  
         			 	 		  }
         			 	 		
         			 	});
@@ -713,6 +724,8 @@ String director=request.getParameter("director");%>
         	});
          
          
+         
+         
    });
     
 </script>
@@ -791,13 +804,14 @@ String director=request.getParameter("director");%>
    	회원가입 또는 로그인하고 별점을 기록해보세요.
    	</div>
    	
-   	<div id="dialog-comment" title="코멘트" style="display:none">
+   	<div id="dialog-comment" title="리뷰" style="display:none">
+   	    <input type="checkbox" id="spoilerCheck" value="스포일러"> 스포일러
    		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	
    	
-   	<div id="delete-message" title="코멘트" style="display:none">
+   	<div id="delete-message" title="리뷰" style="display:none">
    		정말로 삭제 하시겠습니까?
    	</div>
 	<div>
@@ -818,18 +832,19 @@ String director=request.getParameter("director");%>
                  
                  <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다 
+        	<%= getGrade %> 점을 입력하셨습니다 <br>
         	<% if(returnCmt.equals("")){ %>
-        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
+	        	<input id="comment" name="comment" type="button" value ="리뷰 남기러 가기">
         	<%}else{ %>
-        	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
+        	<div id="review">
+        	<br><%=nick %>님의 코멘트 : <%=returnCmt %> </div>
   			    	 
      			     <input type="button" id ="updateCmt" value="수정">
        	             <input type="button" id ="deleteCmt" value="삭제">
                 	  <%} %>
                 </div>
                 	  
-		<div id="review"></div>
+		
 <%} %> 
 	</div>				
 				
@@ -964,37 +979,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-
-var check = $("input[type='checkbox']");
-
-check.click(function() {
-    $("p").toggle();
-    
-    
-});
-
-
-
-
-</script>    
-    
-          
-
-<label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-</label>
-<p>OFF</p>
-<p style="display:none;">ON</p>
- 
-<form>
-    <label for="flip-1">Flip toggle switch:</label>
-    <select name="flip-1" id="flip-1" data-role="slider">
-        <option value="off">Off</option>
-        <option value="on">On</option>
-    </select>
-</form>
       
 </body>
 </html>

@@ -139,7 +139,7 @@ public class MovieDAO {
 				reviewBean.setTitle(rs.getString("title"));
 			}
 
-			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0)";
+			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getNick());
 			pstmt.setInt(2, reviewBean.getGrade());
@@ -148,6 +148,7 @@ public class MovieDAO {
 			pstmt.setString(5, reviewBean.getTitle());
 			pstmt.setString(6, reviewBean.getType());
 			pstmt.setString(7, reviewBean.getContent());
+			
 
 			insertCount = pstmt.executeUpdate();
 

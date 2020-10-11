@@ -41,12 +41,9 @@ public class BoardReplyProAction implements Action {
 		
 		
 		if(reply.equals("")) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('댓글을 등록하세요')");
-			out.print("history.back()");
-			out.print("</script>");
+			String out = "out";
+			HttpSession session2 = request.getSession();
+			session2.setAttribute("out", out);
 			
 		} else {
 			

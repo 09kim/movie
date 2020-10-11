@@ -119,4 +119,27 @@ public class BoardReplyService {
 		return isSuccess;
 	}
 
+	public boolean insertReport(ReplyBean replyBean) {
+		System.out.println("BoardReplyService - selectReport()");
+		
+		boolean isSelect = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int selectCount = boardDAO.selectReport(replyBean);
+		
+		if(selectCount > 0) {
+			commit(con);
+			isSelect = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSelect;
+	}
+
 }

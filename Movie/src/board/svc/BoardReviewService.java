@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import board.dao.BoardDAO;
-import board.vo.ReviewBean;
+import board.vo.*;
 
 public class BoardReviewService {
 	
@@ -38,6 +38,98 @@ public class BoardReviewService {
 		
 		return reviewBean;
 		
+	}
+
+	public boolean reviewLike(ReviewBean reviewBean) {
+		System.out.println("BoardReviewService - reviewLike()");
+		
+		boolean isSuccess = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int insertCount = boardDAO.reviewLike(reviewBean);
+		
+		if(insertCount > 0) {
+			commit(con);
+			isSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean insertLike(ReviewBean reviewBean) {
+		System.out.println("BoardReviewService - insertLike()");
+		
+		boolean isSelect = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int selectCount = boardDAO.selectLike(reviewBean);
+		
+		if(selectCount > 0) {
+			commit(con);
+			isSelect = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSelect;
+	}
+
+	public boolean reviewReport(ReviewBean reviewBean) {
+		System.out.println("BoardReviewService - reviewReport()");
+		
+		boolean isSuccess = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int insertCount = boardDAO.reviewReport(reviewBean);
+		
+		if(insertCount > 0) {
+			commit(con);
+			isSuccess = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSuccess;
+	}
+
+	public boolean insertReport(ReviewBean reviewBean) {
+		System.out.println("BoardReviewService - insertReport()");
+
+		boolean isSelect = false;
+		
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		int selectCount = boardDAO.selectReport(reviewBean);
+		
+		if(selectCount > 0) {
+			commit(con);
+			isSelect = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return isSelect;
 	}
 
 	

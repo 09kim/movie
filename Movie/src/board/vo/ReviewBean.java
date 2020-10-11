@@ -11,13 +11,7 @@ public class ReviewBean {
    private String type_name;
    private String content;
    private int like_count;
-//   private String reply; // 댓글 추가
-//   private int reply_count; // 댓글수 
-//   private int re_ref; // 부모글 참조
-//   private int re_lev; // 레벨
-//   private int re_seq; // 순서
-   
-//   private int runtime; // 디비에 안들어가있음
+   private int report;
    
 
 	public int getIdx() {
@@ -91,55 +85,13 @@ public class ReviewBean {
 	public void setLike_count(int like_count) {
 		this.like_count = like_count;
 	}
-	
-//	public String getReply() {
-//		return reply;
-//	}
-//	
-//	public void setReply(String reply) {
-//		this.reply = reply;
-//	}
-//	
-//	public int getReply_count() {
-//		return reply_count;
-//	}
-//	
-//	public void setReply_count(int reply_count) {
-//		this.reply_count = reply_count;
-//	}
-//	
-//	public int getRe_ref() {
-//		return re_ref;
-//	}
-//	
-//	public void setRe_ref(int re_ref) {
-//		this.re_ref = re_ref;
-//	}
-//	
-//	public int getRe_lev() {
-//		return re_lev;
-//	}
-//	
-//	public void setRe_lev(int re_lev) {
-//		this.re_lev = re_lev;
-//	}
-//	
-//	public int getRe_seq() {
-//		return re_seq;
-//	}
-//	
-//	public void setRe_seq(int re_seq) {
-//		this.re_seq = re_seq;
-//	}
-	
-//	public int getRuntime() {
-//		return runtime;
-//	}
-//	
-//	public void setRuntime(int runtime) {
-//		this.runtime = runtime;
-//	}
-   
-	
+
+	public int getReport() {
+		return report;
+	}
+
+	public void setReport(int report) {
+		this.report = report;
+	}
 	
 }

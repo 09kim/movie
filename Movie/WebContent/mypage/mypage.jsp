@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
 <%
     MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
@@ -15,26 +14,15 @@
     int listCount = (int) request.getAttribute("listCount");
     ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
 	%>
-	
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>마이페이지</title>
+	<title>Jackson Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 
-  <!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
@@ -64,13 +52,13 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 
 
 <script type="text/javascript">
@@ -179,7 +167,13 @@ function a() {
 				$.each(data,function(idx,item){
 					$.each(item,function(idx2,item2){
  						var img = getSrc(item2.director);
- 						$('.director').append('<div class=favoriteDirector>'+img+'<br>'+item2.director+'</div>');
+ 						var imgSrc = img.split("\"")[1]
+ 						
+//  						$('.director').append('<div class=favoriteDirector>'+img+'<br>'+item2.director+'</div>');
+//  						$('.director').append('<div class=favoriteDirector><div class="poster" style="background-image: url('+imgSrc+') onerror=this.src=../../../Movie/img/noImage.gif></div><div class="directorName">'+item2.director+'</div></div>');
+ 						$('.director').append('<div class=favoriteDirector>'+
+ 								'<div class=poster style="background-image: url('+imgSrc+')" onerror=this.src=../../../Movie/img/noImage.gif></div>'+
+ 								'<div class="directorName">'+item2.director+'</div></div>');
 					});
 				});
 				
@@ -335,64 +329,62 @@ function a() {
 	
 	
 </script>
-	
-	
-	
-	
-<style>
-#header{position: sticky;top: 0;z-index: 100;}
-.btn-like{float:left;background-color: inherit;border:none;outline:none;}
-.btn-like:active{outline:none;}
-/* * { font-family: 'D2Coding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff'); font-weight: normal; font-style: normal; } */
-</style>
-</head>
-<body>
-	<div id="header">
-		<jsp:include page="/inc/top.jsp" />
-		<div class="clear"></div>
+
+
+
+
+	</head>
+	<body>
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+	<jsp:include page="/inc/top.jsp"/>
+	<div class="clear"></div>
 	</div>
-	<div id="colorlib-page" style="margin-bottom:500px;">
-		<div class="container-wrap">
-		
-		
-		
-		
-		
-		<!--       사이드 레프트 [S] -->
+	
+	
+	<!--       사이드 레프트 [S] -->
       <div id="jb-sidebar-left">
 				<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-				<div class="text-center">
-					<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div>
-					<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1>
+			<div class="text-center">
+				<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div>
+				<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1>
+			</div>
+			<nav id="colorlib-main-menu" role="navigation" class="navbar">
+				<div id="navbar" class="collapse">
+					<ul>
+<!-- 						<li class="active"><a href="#" data-nav-section="home">개인정보수정</a></li> -->
+						<li class="active"><a href="#" data-nav-section="about">개인정보수정</a></li>
+<!-- 						<li><a href="#" data-nav-section="about">About</a></li> -->
+						<li><a href="MypageGrade.mp" data-nav-section="services">선호 장르&국가&감독</a></li>
+						<li><a href="MypageWish.mp" data-nav-section="skills">보고싶어요한 영화</a></li>
+						<li><a href="BoardReviewList.bo" data-nav-section="education">내가 평가한 영화</a></li>
+						<li><a href="MypageCollection.mp" data-nav-section="experience">컬렉션</a></li>
+<!-- 						<li><a href="#" data-nav-section="work">Work</a></li> -->
+<!-- 						<li><a href="#" data-nav-section="blog">Blog</a></li> -->
+<!-- 						<li><a href="#" data-nav-section="contact">Contact</a></li> -->
+					</ul>
 				</div>
-				<nav id="colorlib-main-menu" role="navigation" class="navbar">
-					<div id="navbar" class="collapse">
-						<ul>
-							<li class="active"><a href="Mypage.mp" data-nav-section="about">개인 정보 수정</a></li>
-							<li><a href="MypageGrade.mp" data-nav-section="services">선호 장르&국가&감독</a></li>
-							<li><a href="MypageWish.mp" data-nav-section="skills">보고싶어요한 영화</a></li>
-							<li><a href="BoardReviewList.bo" data-nav-section="education">내가 평가한 영화</a></li>
-							<li><a href="MypageCollection.mp" data-nav-section="experience">컬렉션</a></li>
-<!-- 							<li><a href="MypageCollection.mp" data-nav-section="experience">Experience</a></li> -->
-<!-- 							<li><a href="#" data-nav-section="work">Work</a></li> -->
-<!-- 							<li><a href="#" data-nav-section="blog">Blog</a></li> -->
-<!-- 							<li><a href="#" data-nav-section="contact">Contact</a></li> -->
-						</ul>
-					</div>
-				</nav>
-			</aside>
+			</nav>
+
+
+		</aside>
       </div>
 <!--       사이드 레프트[E] -->
-		
-		
-		<!--       사이드 센터[S] -->
+      
+<!--       사이드 센터[S] -->
       <div id="jb-content">
-      		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-			
+      		<div id="colorlib-page">
+		<div class="container-wrap">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
 
-		<div id="colorlib-main">
+<!-- 		<div id="colorlib-main"> -->
+<!-- 			<section id="colorlib-hero" class="js-fullheight" data-section="home"> -->
+			
+<!-- 			</section> -->
+<!-- 			</div> -->
+
 			<section class="colorlib-about" data-section="about">
-		<div id="myinfo">
+					<fieldset>
+			<legend>회원 정보 수정</legend>
 			<fieldset>
 			<legend>닉네임</legend>
 			<div class="inputWithIcon inputIconBg">
@@ -406,7 +398,7 @@ function a() {
 			<div class="inputWithIcon inputIconBg">
 			  <input type="email" id="email" placeholder="Email" value="<%=memberBean.getEmail()%>" readonly/>
 			  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-			  <button id="emailBtn" type="button">이메일 변경</button>
+			  <button class="btn-style" id="emailBtn" type="button">이메일 변경</button>
 			</div>
 			</fieldset>
 			
@@ -416,7 +408,7 @@ function a() {
 			<div class="inputWithIcon inputIconBg">
 			  <input type="email" id="certificationNum_email" name="certificationNum_email" placeholder="Email Certification Number"/>
 			  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-			  <button id="certification_email_Btn" type="button">인증코드 입력</button>
+			  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
 			</div>
 			</fieldset>
 			
@@ -437,7 +429,7 @@ function a() {
 			<div class="inputWithIcon inputIconBg">
 			  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" value="<%=memberBean.getPhone()%>" readonly/>
 			  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
-			  <button id="phoneNumBtn" type="button">핸드폰 번호 변경</button>
+			  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 번호 변경</button>
 			</div>
 			</fieldset>
 			
@@ -446,7 +438,7 @@ function a() {
 			<div class="inputWithIcon inputIconBg">
 			  <input type="text" id="certificationNum" name="certificationNum" placeholder="Certification Number" />
 			  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
-			  <button id="phoneNumBtn" type="button">인증번호 입력</button>
+			  <button class="btn-style" id="phoneNumBtn" type="button">인증번호 입력</button>
 			</div>
 			</fieldset>
 			
@@ -455,21 +447,32 @@ function a() {
 			<div class="inputWithIcon inputIconBg">
 			<!--   <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
 			  <textarea rows="20" cols="20" id="infoup" placeholder="Introduce"></textarea>
-			  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true" style="margin-top:12px"></i>
+			  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i>
 			</div>
 			</fieldset>		
-					<a href="MypageForm.mp">프로필수정</a>
-			</div>	
+				<div class="btn-style"><a style="color:#AAAAAA" href="MypageForm.mp">프로필수정</a></div>
+			</fieldset>
+			
+			
+			
+			
+			
+			
+			
+			
 		</section>
-		
-		<div id="colorlib-counter" class="colorlib-counters" data-stellar-background-ratio="0.5">
-			</div>
 
 
 			
 			<section class="colorlib-services" data-section="services">
-				<fieldset id="genre_nation">
-					<legend>선호 하는 장르 및 국가</legend>
+				<div id="colorlib-counter" class="colorlib-counters" style="background-image: url(images/cover_bg_1.jpg);" data-stellar-background-ratio="0.5"></div>
+			
+			
+		<div class="table_form" style="display: flex;width:inherit;">
+			<div class="table_left" style="flex:0.3">
+			
+			<fieldset id="genre_nation">
+					<legend>선호 하는 장르</legend>
 					<table id="favoriteGenre">
 					    <thead>
 					    <tr>
@@ -481,33 +484,45 @@ function a() {
 					    <tbody class="genreList">
 					    </tbody>
 					</table>
-					<table id="favoriteNation">
-					    <thead>
-					    <tr>
-					        <th scope="cols">국가명</th>
-					        <th scope="cols">선호작품수</th>
-					        <th scope="cols">평점</th>
-					    </tr>
-					    </thead>
-					    <tbody class="nationList">
-					    </tbody>
-					</table>
+					
 				</fieldset>
+				</div>
 
-				<fieldset>
+
+			<div class="table_right" style="flex:0.3;">
+				<fieldset id="genre_nation">
+					<legend>선호 하는 국가</legend>
+					<table id="favoriteNation">
+						    <thead>
+						    <tr>
+						        <th scope="cols">국가명</th>
+						        <th scope="cols">선호작품수</th>
+						        <th scope="cols">평점</th>
+						    </tr>
+						    </thead>
+						    <tbody class="nationList">
+						    </tbody>
+						</table>
+				</fieldset>
+			</div>
+			
+		</div>
+			<div class="table_bottom" style="display: flex;">
+			<fieldset>
 				<legend>선호 하는 감독</legend>
 				<div class="director"></div> 
-				</fieldset>
+			</fieldset>
+			</div>
+			
+			
+			
+			
+			
 			</section>
 			
-<!-- 			<div id="colorlib-counter" class="colorlib-counters" data-stellar-background-ratio="0.5"> -->
-
-
-<!-- 			</div> -->
-
+			
 
 			<section class="colorlib-skills" data-section="skills">
-			
 				<fieldset>
 				<legend><%=nick %>님의 보고싶어요 리스트</legend>
 					<div id="myinfo" class="myinfo">
@@ -515,25 +530,19 @@ function a() {
 							<% for(MypageBean wishInfo : wishMovie) {%>
 							<div class="wishList">
 							<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
-	<%-- 									<%if(wishInfo.getPoster()!=null){ %> --%>
-	<%-- 									<div class="poster"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"><img src="<%=wishInfo.getPoster()%>" style="width:250px;height:350px;" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a></div><div class="title"><%=wishInfo.getTitle() %></div> --%>
 										<%if(wishInfo.getPoster()!=null){ %>
-										<div class="poster" style='width:250px;height:350px;background-image: url(<%=wishInfo.getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"></a>
+										<div class="poster" style='background-image: url(<%=wishInfo.getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"></a>
 										<%if(wishInfo.getWish().equals("Y")){ %>
 										<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button>
 										<% }%>
 										</div>
-										<div class="title" style="margin-left:-20px;"><%=wishInfo.getTitle() %></div>
-	<%-- 									<%if(wishInfo.getWish().equals("Y")){ %> --%>
-	<%-- 									<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button> --%>
-	<%-- 									<% }%> --%>
+										<div class="title"><%=wishInfo.getTitle() %></div>
 										</div>
 									<% }%>
 								<%}%>
 						</div>
 					</div>
 			</fieldset>
-			
 			
 			</section>
 
@@ -547,28 +556,21 @@ function a() {
 					int starRating = (int)(gradeList.get(i).getGrade()/2.0*20);						
 					double starRating1 = (gradeList.get(i).getGrade()/2.0);						
 				%>
-				<div id="gradelist">
-					<ul> <%  String a = String.format("%05d" ,gradeList.get(i).getMovieSeq()); %>
-						<li><div class=poster><img src=<%=gradeList.get(i).getPoster() %>></div>
-							<div id="movieInfo">
-								<div class="title" style="font-size:2em"><%=gradeList.get(i).getTitle()%></div>
-<%-- 								<div class="grade" style="font-size:2em">★ : <%=gradeList.get(i).getGrade()/2.0%>점</div> --%>
-<%-- 								<div class="grade" style="font-size:2em;background-image: url('img/grade_img.png');">★ : <%=gradeList.get(i).getGrade()/2.0%>점</div> --%>
-<!-- 								<div class="grade" style="font-size:2em"> -->
-									<div class="wrap-star" style="float:left;margin-left:-50px;">								
+				<div id="gradeList">
+					<%  String a = String.format("%05d" ,gradeList.get(i).getMovieSeq()); %>
+
+										<div class="poster" style='background-image: url(<%=gradeList.get(i).getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></div>
+										<div class="title"><%=gradeList.get(i).getTitle() %></div>
+										<div class="wrap-star" style="float:left;margin-left:-50px;">								
 										<div class='star-rating' style="float:left;">
 		        						<span style ="width:<%=starRating%>%;"></span>
 		    							</div>
 		    							<div style="float:right;">
-		        						<p style="font-size: 2em;margin-left:-90px;margin-top:14px;"><%=starRating1 %>점</p>
+		        						<p style="margin-left:-90px;margin-top:16px;"><%=starRating1 %>점</p>
 		        						</div>
-	    							</div>
-<!--     							</div> -->
-							 <!-- 2.0으로 나누기 끝자리 0이면 정수로만보여주기 나머지가 0이면 인트 등등방법  -->
-							</div></li>
-					</ul>
-					
-				</div>
+	    								</div>
+				
+			</div>
 				<%
 					}
 				} else {
@@ -579,20 +581,111 @@ function a() {
 				%>
 			</div>
 		</fieldset>
-				
-		</section>
-									
-		
-<!-- 		나머지 메뉴 틀 주석 처리 - 낙원 : 1007 [S] -->
+			
+<!-- 				<div class="colorlib-narrow-content"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
+<!-- 							<span class="heading-meta">Education</span> -->
+<!-- 							<h2 class="colorlib-heading animate-box">Education</h2> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft"> -->
+<!-- 							<div class="fancy-collapse-panel"> -->
+<!-- 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> -->
+<!-- 									<div class="panel panel-default"> -->
+<!-- 									    <div class="panel-heading" role="tab" id="headingOne"> -->
+<!-- 									        <h4 class="panel-title"> -->
+<!-- 									            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Master Degree Graphic Design -->
+<!-- 									            </a> -->
+<!-- 									        </h4> -->
+<!-- 									    </div> -->
+<!-- 									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"> -->
+<!-- 									         <div class="panel-body"> -->
+<!-- 									            <div class="row"> -->
+<!-- 										      		<div class="col-md-6"> -->
+<!-- 										      			<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p> -->
+<!-- 										      		</div> -->
+<!-- 										      		<div class="col-md-6"> -->
+<!-- 										      			<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
+<!-- 										      		</div> -->
+<!-- 										      	</div> -->
+<!-- 									         </div> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
+<!-- 									<div class="panel panel-default"> -->
+<!-- 									    <div class="panel-heading" role="tab" id="headingTwo"> -->
+<!-- 									        <h4 class="panel-title"> -->
+<!-- 									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Bachelor Degree of Computer Science -->
+<!-- 									            </a> -->
+<!-- 									        </h4> -->
+<!-- 									    </div> -->
+<!-- 									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"> -->
+<!-- 									        <div class="panel-body"> -->
+<!-- 									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
+<!-- 													<ul> -->
+<!-- 														<li>Separated they live in Bookmarksgrove right</li> -->
+<!-- 														<li>Separated they live in Bookmarksgrove right</li> -->
+<!-- 													</ul> -->
+<!-- 									        </div> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
+<!-- 									<div class="panel panel-default"> -->
+<!-- 									    <div class="panel-heading" role="tab" id="headingThree"> -->
+<!-- 									        <h4 class="panel-title"> -->
+<!-- 									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Diploma in Information Technology -->
+<!-- 									            </a> -->
+<!-- 									        </h4> -->
+<!-- 									    </div> -->
+<!-- 									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"> -->
+<!-- 									        <div class="panel-body"> -->
+<!-- 									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	 -->
+<!-- 									        </div> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
+
+<!-- 									<div class="panel panel-default"> -->
+<!-- 									    <div class="panel-heading" role="tab" id="headingFour"> -->
+<!-- 									        <h4 class="panel-title"> -->
+<!-- 									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Diploma in Information Technology -->
+<!-- 									            </a> -->
+<!-- 									        </h4> -->
+<!-- 									    </div> -->
+<!-- 									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour"> -->
+<!-- 									        <div class="panel-body"> -->
+<!-- 									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	 -->
+<!-- 									        </div> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
+
+<!-- 									<div class="panel panel-default"> -->
+<!-- 									    <div class="panel-heading" role="tab" id="headingFive"> -->
+<!-- 									        <h4 class="panel-title"> -->
+<!-- 									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">High School Secondary Education -->
+<!-- 									            </a> -->
+<!-- 									        </h4> -->
+<!-- 									    </div> -->
+<!-- 									    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive"> -->
+<!-- 									        <div class="panel-body"> -->
+<!-- 									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	 -->
+<!-- 									        </div> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+			</section>
 
 			<section class="colorlib-experience" data-section="experience">
-			<fieldset>
+				<fieldset>
 				<legend><%=nick %> 님의 컬렉션 목록</legend>
 			<div>
 			
 			
 			<div>
-			<input type="button" id="showAddCollection" value="컬렉션 추가 하기">
+			<input type="button" id="showAddCollection" value="컬렉션 추가 하기"><br><br>
 		  	<div id="showDisplay" style= display:none>
 				<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
@@ -641,7 +734,7 @@ function a() {
 		</div>
 	</div>
 		</fieldset>	
-	
+			
 <!-- 				<div class="colorlib-narrow-content"> -->
 <!-- 					<div class="row"> -->
 <!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
@@ -726,15 +819,6 @@ function a() {
 <!-- 				   </div> -->
 <!-- 				</div> -->
 			</section>
-      </div>
-<!--       사이드 센터[E] -->
-		
-		
-		
-		
-		
-		
-		
 
 <!-- 			<section class="colorlib-work" data-section="work"> -->
 <!-- 				<div class="colorlib-narrow-content"> -->
@@ -961,30 +1045,72 @@ function a() {
 <!-- 					</div> -->
 <!-- 				</div> -->
 <!-- 			</section> -->
-<!-- 나머지 메뉴 틀 주석 처리 - 낙원 : 1007 [E] -->
 
 		</div><!-- end:colorlib-main -->
-	</div><!--  end:container-wrap-->
+	</div><!-- end:container-wrap -->
 	</div><!-- end:colorlib-page -->
+      
+      
+      
+      
+      
+      </div>
+<!--       사이드 센터[E] -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<!-- jQuery -->
-<script src="js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<!-- Waypoints -->
-<script src="js/jquery.waypoints.min.js"></script>
-<!-- Flexslider -->
-<script src="js/jquery.flexslider-min.js"></script>
-<!-- Owl carousel -->
-<script src="js/owl.carousel.min.js"></script>
-<!-- Counters -->
-<script src="js/jquery.countTo.js"></script>
-<!-- MAIN JS -->
-<script src="js/main.js"></script>	
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+<!-- 	<script src="js/bootstrap.min.js"></script> -->
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Counters -->
+	<script src="js/jquery.countTo.js"></script>
+	
+	
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $('#listForm').slick({
 	   dots: false,
@@ -1092,11 +1218,72 @@ $('#listForm').slick({
 		   ]
 		 });	
 	
+	$('.director').slick({
+		   dots: false,
+	     infinite: false,
+	     arrows: true,
+	     variableWidth:true,
+	     speed: 300,
+	     slidesToShow: 4,
+	     slidesToScroll: 3,
+		   responsive: [
+		     {
+		       breakpoint: 1024,
+		       settings: {
+		         slidesToShow: 3,
+		         slidesToScroll: 3,
+		         infinite: false,
+		         dots: false
+		       }
+		     },
+		     {
+		       breakpoint: 600,
+		       settings: {
+		         slidesToShow: 2,
+		         slidesToScroll: 2
+		       }
+		     },
+		     {
+		       breakpoint: 480,
+		       settings: {
+		         slidesToShow: 1,
+		         slidesToScroll: 1
+		       }
+		     }
+		   ]
+		 });	
+	
+	
 	
 </script>
-<script src="${pageContext.request.contextPath}/css/default.css"></script>
-<style>
-#myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;}
+
+
+<style type="text/css">
+#jb-sidebar-left {
+	width: 400px;
+	height: 100%;
+	text-align: center;
+/* 	padding: 20px; */
+	margin-right: 20px;
+	border:1px solid black;
+/* 	float: left; */
+/* 	color: #FFFFFF; */
+	overflow: visible;
+}
+
+#jb-content {
+	height: 100%;
+	width: 100%-400px;
+	margin-right:auto;
+	margin-left:350px;
+	padding: 20px;
+	margin-bottom: 500px;
+	border:1px solid black;
+/* 	float: left; */
+/* 	color: #FFFFFF; */
+}
+
+
 textarea {
   width: 500px;
   border: 2px solid #aaa;
@@ -1136,6 +1323,7 @@ input[type="text"],input[type="email"],input[type="password"] {
 /*   padding: 8px; */
   box-sizing: border-box;
   transition: 0.3s;
+  padding-bottom:4px;
 }
 input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
   border-color: dodgerBlue;
@@ -1169,8 +1357,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   color: #fff;
   background-color: dodgerBlue;
 }
-#infoup{width:500px;margin-top: 20px;}
-li>a{font-size: 1.5em;}
+
 table#favoriteGenre {
     border-collapse: collapse;
     text-align: center;
@@ -1235,84 +1422,52 @@ table#favoriteNation tbody th {
 /*     vertical-align: top; */
 /*     border-bottom: 1px solid #ccc; */
 /* } */
-fieldset{margin-left:50px;min-width: 1200px;}
-#favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;}
-/* #favoriteNation{margin:0px auto;} */
-/* #nationList{float:left;text-align: center;margin:0px auto;padding-right: 25%} */
-.director{float:left;}
-.favoriteDirector{margin-right:1em;float:left;display: block;text-align: center;}
-.poster img{
-	width: 250px;
-	height:350px;
-	text-align: center;
-	
-}
-.poster{
-	width: 250px;
-	text-align: center;
-	background-repeat: no-repeat;
-}
-.title{
-	width: 250px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	text-align: center;
-}
-.grade{
-	width: 250px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	text-align: center;
-}
-ul {list-style: none;}
+/* fieldset{margin-left:50px;min-width: 1200px;} */
+/* #favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;} */
 
-
-
-.gradeList{height:100%;}
-h2 {font-size:15px;}
-/* .star-rating {width:304px; } */
+/* 별점 */
 .wrap-star{margin-left:-24px;}
 .star-rating {width:304px;transform:scale(0.4); }
 .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat;}
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;margin:0 auto;}
 
-#jb-container {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-/* 	padding: 20px; */
-/* 	border: 1px solid #bcbcbc; */
-	background-color: #2E2E2E;
+.btn-style {
+    width:auto;
+    height:31px;
+    
+	background-color: inherit;
+    border: solid 2px dodgerBlue;
+    color:#AAAAAA;
+	padding: auto 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+/*     font-size: 15px; */
+/*     margin: 4px; */
+    cursor: pointer;
+    border-radius:2px;
+}
+.btn-style:hover {
+  background-color: dodgerBlue;
+  border-color: dodgerBlue;
+/*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
 
-
-
-#jb-sidebar-left {
-	width: 300px;
-	height: 100%;
+.btn-like{float:left;background-color: inherit;border:none;outline:none;font-size: 1.5em;}
+.btn-like:active{outline:none;}
+.poster{width:250px;height:350px;background-size: 100%;}
+.title,.directorName{
+	width:250px;
 	text-align: center;
-/* 	padding: 20px; */
-/* 	margin-right: 20px; */
-/* 	margin-bottom: 20px; */
-	float: left;
-/* 	color: #FFFFFF; */
-/* 	border: 1px solid #bcbcbc; */
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-
-#jb-content {
-	height: 100%;
-	width: 100%-300px;
-	padding: 20px;
-	margin-bottom: 20px;
-	float: left;
-/* 	color: #FFFFFF; */
-/* 	border: 1px solid #bcbcbc; */
-}
-
-
-
+li{list-style: none;}
+.favoriteDirector{float:left;}
+h1,h2,h3,h4,h5,h6 {font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}
 </style>
+
+
+
 </body>
 </html>

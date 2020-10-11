@@ -70,12 +70,10 @@ figure {
 #colorlib-page {
   width: 100%;
   overflow: hidden;
-  margin-left:-370px;
   position: relative; }
 
 #colorlib-aside {
-  
-  margin-top:-20px;
+  height:100%;
   padding-top: 3em;
   padding-bottom: 40px;
   float: left;
@@ -219,18 +217,16 @@ figure {
             color: #2c98f0; }
 
 .container-wrap {
-  max-width: 1170px;
-  margin: 0 auto; }
+  max-width: 100%;
+  margin: 0 auto;
+   }
 
 #colorlib-main {
-/*   width: calc(100% - 300px); */
-  width: 100%;
+  width: calc(100% - 300px);
   float: right;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
-  transition: 0.5s;
-  margin-right:-300px;
- }
+  transition: 0.5s; }
   @media screen and (max-width: 768px) {
     #colorlib-main {
       width: 100%;
@@ -386,8 +382,9 @@ body.offcanvas {
 .colorlib-about,
 .colorlib-services,
 .colorlib-contact {
-  padding-top: 4em;
-  padding-bottom: 9em;
+	margin:1em;
+/*   padding-top: 4em; */
+/*   padding-bottom: 9em; */
   clear: both;
   width: 100%;
   display: block; }
@@ -1034,7 +1031,8 @@ body.offcanvas {
 #colorlib-counter {
   position: relative;
   clear: both;
-  margin-bottom: 5em; }
+/*   margin-bottom: 5em; */
+   }
 
 .colorlib-counters {
   padding: 3em 0;

@@ -32,6 +32,7 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-align: center;
+	background-repeat: no-repeat;
 }
 
 .nation {
@@ -64,3 +65,7 @@ body {
 	margin-right: 20px;
 	padding: 0;
 }
+
+
+
+ul {list-style: none;}

@@ -10,15 +10,15 @@ import java.sql.Connection;
 import member.dao.MemberDAO;
 import member.exception.MemberInsertException;
 import member.vo.MemberBean;
-public class MemberUpdatePasswordService {
+public class MemberUpdateService {
 
-	public boolean updatePassword(String email, String pass) {
+	public boolean updatePassword(MemberBean memberBean) {
 		boolean isUpdate =false;
 		
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.setConnection(con);
-		int updateCount = dao.updatePassword(email,pass);
+		int updateCount = dao.updateMember(memberBean);
 		System.out.println("sve : " + updateCount);
 		if(updateCount>0) {
 			isUpdate = true;

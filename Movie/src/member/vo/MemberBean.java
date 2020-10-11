@@ -8,8 +8,17 @@ public class MemberBean {
 	private String pass;
 	private String email;
 	private String phone;
+	private String introduce; // 자기소개 추가 - 낙원 : 1011
 	private Date date;
 
+	// 자기소개 getter/setter 추가 - 낙원 : 1011
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 
 	public Date getDate() {
 		return date;

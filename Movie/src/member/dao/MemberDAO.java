@@ -271,5 +271,44 @@ public class MemberDAO {
 		
 		return completeCount;
 	}
+	
+	
+	
+	
+	// 회원정보수정 updateMember()메서드 추가 - 낙원 : 1011[S]
+	public int updateMember(MemberBean memberBean) {
+		int completeCount=0;
+		
+		try {
+			String sql = "SELECT * FROM member where nick=?";
+			String nick = memberBean.getNick();
+			String pass = memberBean.getPass();
+			String phone = memberBean.getPhone();
+			String email = memberBean.getEmail();
+			String introduce = memberBean.getIntroduce();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sql = "UPDATE member SET email=?,pass=?,phone=? where nick=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, email);
+				pstmt.setString(2, pass);
+				pstmt.setString(3, phone);
+				pstmt.setString(4, nick);
+				completeCount= pstmt.executeUpdate();
+			} else {
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return completeCount;
+	}
+	// 회원정보수정 updateMember()메서드 추가 - 낙원 : 1011[E]
 
 }

@@ -78,7 +78,7 @@
 <div class="clear"></div>
 <div id="jb-container">
 <!-- <section id="main"> -->
-			<form action="MemberLoginPro.me" method="post" id="join">
+			<form action="MemberLoginPro.me" method="post" id="login">
 			<fieldset>
 			<legend>Login</legend>
 			<fieldset>
@@ -121,7 +121,7 @@
 
 
 <style type="text/css">
-body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");}
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
 body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;}
 #jb-container {
     z-index : 100;
@@ -133,7 +133,7 @@ body{background-image: url("${pageContext.request.contextPath}/img/background/lo
 	border: 1px solid #bcbcbc;
 	
 }
-#join {width:500px;margin:auto;color:#FFFFFF;}
+#login {width:500px;margin:auto;color:#FFFFFF;}
 a{color:#FFFFFF;}
 a:hover{color:orange;}
 
@@ -181,6 +181,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   color: #fff;
   background-color: dodgerBlue;
 }
+
 </style>
 </body>
 </html>

@@ -21,6 +21,7 @@ import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
 import member.action.MemberNickAction;
+import member.action.MemberUpdateAction;
 import member.action.MemberUpdatePasswordAction;
 import movie.action.MovieNaverRankingAction;
 import vo.ActionForward;
@@ -143,6 +144,14 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}  else if(command.equals("/MemberUpdatePasswordPro.me")) {
 			action = new MemberUpdatePasswordAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/MemberUpdatePro.me")) { // 마이페이지 회원정보수정 추가 - 낙원 : 1012
+			action = new MemberUpdateAction();
 			
 			try {
 				forward = action.execute(request, response);

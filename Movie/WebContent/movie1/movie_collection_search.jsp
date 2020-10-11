@@ -92,15 +92,63 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#movies", opener.document).append(
-     	  			      			    "<li>"+ 
-     	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-     	  			      				title5+
-     	  			      				"</li>" +
-     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
-     	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-     	  			      		   );  
+									
+									var dupCheck="";
+
+									// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[S]
+									if($("#movies", opener.document).find('.title').length==0){
+										dupCheck="Y";
+// 										alert("판별결과 널 : " + dupCheck)
+										 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1011
+										 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+					     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+				 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+				 	  			      				'<div class=title>'+title5+
+				 	  			      				"</div>" +
+				 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+				 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+				 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+			
+											 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+										return false;
+									}else{ // #movies가 존재하는 경우
+										// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1011
+										$("#movies", opener.document).find('.title').each(function(idx) {
+											dupCheck="";
+											var title = $("#movies", opener.document).find('.title').eq(idx).text();
+											// 중복되는 것이 없는 경우 Y
+											if(title!=title5){
+												dupCheck="Y";
+// 													alert("판별결과 : " + dupCheck)
+											} else {
+												// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1011
+												dupCheck="N";
+// 													alert("판별결과 : " + dupCheck)
+													return false;
+											}
+											
+										});
+										
+										
+										// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1011
+										if(dupCheck=="Y"){
+											 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+					     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+				 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+				 	  			      				'<div class=title>'+title5+
+				 	  			      				"</div>" +
+				 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+				 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+				 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+			
+											 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+										} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1011
+											alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+										}
+										
+									}
+									// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[E]
+
 
      	   						}
      	 					});
@@ -133,15 +181,61 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $("#movies", opener.document).append(
-     	  			      			    "<li>"+ 
-     	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-     	  			      				title5+
-     	  			      				"</li>" +
-     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
-     	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-     	  			      		   );  
+     	   					var dupCheck="";
+
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[S]
+							if($("#movies", opener.document).find('.title').length==0){
+								dupCheck="Y";
+//									alert("판별결과 널 : " + dupCheck)
+								 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1011
+								 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+			     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+		 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+		 	  			      				'<div class=title>'+title5+
+		 	  			      				"</div>" +
+		 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+		 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+		 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+	
+									 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+								return false;
+							}else{ // #movies가 존재하는 경우
+								// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1011
+								$("#movies", opener.document).find('.title').each(function(idx) {
+									dupCheck="";
+									var title = $("#movies", opener.document).find('.title').eq(idx).text();
+									// 중복되는 것이 없는 경우 Y
+									if(title!=title5){
+										dupCheck="Y";
+// 											alert("판별결과 : " + dupCheck)
+									} else {
+										// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1011
+										dupCheck="N";
+// 											alert("판별결과 : " + dupCheck)
+											return false;
+									}
+									
+								});
+								
+								
+								// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1011
+								if(dupCheck=="Y"){
+									 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+			     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+		 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+		 	  			      				'<div class=title>'+title5+
+		 	  			      				"</div>" +
+		 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+		 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+		 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+	
+									 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+								} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1011
+									alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+								}
+								
+							}
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[E]
 
      	   						}
      	 					});
@@ -234,12 +328,7 @@ $(document).ready(function(){
                          // instead of a settings object
                        ]
                      }); // slick(foreignList)끝
-                   
-                   
-                   
-                   
-                   
-                   
+                     
          }
    });
       // 배우 검색 기능을 담당하는 Jquery문
@@ -285,15 +374,62 @@ $(document).ready(function(){
   	   					success:function(rdata){
 //   	   							$("#movies", parent.opener.document).val();
 //   	  			 				opener.location.reload();
-  	  			      		   $("#movies", opener.document).append(
-  	  			      			    "<li>"+ 
-  	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-  	  			      				title5+
-  	  			      				"</li>" +
-  	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-  	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
-  	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-  	  			      		   );  
+  	   					var dupCheck="";
+
+						// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[S]
+						if($("#movies", opener.document).find('.title').length==0){
+							dupCheck="Y";
+//								alert("판별결과 널 : " + dupCheck)
+							 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1011
+							 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+		     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+	 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+	 	  			      				'<div class=title>'+title5+
+	 	  			      				"</div>" +
+	 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+	 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+	 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+
+								 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+							return false;
+						}else{ // #movies가 존재하는 경우
+							// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1011
+							$("#movies", opener.document).find('.title').each(function(idx) {
+								dupCheck="";
+								var title = $("#movies", opener.document).find('.title').eq(idx).text();
+								// 중복되는 것이 없는 경우 Y
+								if(title!=title5){
+									dupCheck="Y";
+// 										alert("판별결과 : " + dupCheck)
+								} else {
+									// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1011
+									dupCheck="N";
+// 										alert("판별결과 : " + dupCheck)
+										return false;
+								}
+								
+							});
+							
+							
+							// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1011
+							if(dupCheck=="Y"){
+								 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+		     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+	 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+	 	  			      				'<div class=title>'+title5+
+	 	  			      				"</div>" +
+	 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+	 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+	 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+
+								 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+							} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1011
+								alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+							}
+							
+						}
+						// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[E]
+	     	   				
 
   	   						}
   	 					});
@@ -391,16 +527,63 @@ $(document).ready(function(){
 	   					success:function(rdata){
 //	   							$("#movies", parent.opener.document).val();
 //	  			 				opener.location.reload();
-	  			      		   $("#movies", opener.document).append(
-	  			      			    "<li>"+ 
-	  			      				'<img style=width:250px;height:350px;padding-right:20px; src='+image[0]+'>'+
-	  			      				title5+
-	  			      				"</li>" +
-	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
-	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-	  			      		   );  
 
+
+	   						var dupCheck="";
+
+								// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[S]
+								if($("#movies", opener.document).find('.title').length==0){
+									dupCheck="Y";
+	//									alert("판별결과 널 : " + dupCheck)
+									 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1011
+									 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+				     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+			 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+			 	  			      				'<div class=title>'+title5+
+			 	  			      				"</div>" +
+			 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+			 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+			 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+		
+										 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+									return false;
+								}else{ // #movies가 존재하는 경우
+									// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1011
+									$("#movies", opener.document).find('.title').each(function(idx) {
+										dupCheck="";
+										var title = $("#movies", opener.document).find('.title').eq(idx).text();
+										// 중복되는 것이 없는 경우 Y
+										if(title!=title5){
+											dupCheck="Y";
+	// 											alert("판별결과 : " + dupCheck)
+										} else {
+											// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1011
+											dupCheck="N";
+	// 											alert("판별결과 : " + dupCheck)
+												return false;
+										}
+										
+									});
+									
+									
+									// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1011
+									if(dupCheck=="Y"){
+										 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[S]
+				     	   	            $("#movies", opener.document).slick('slickAdd',"<div class=collectionList>"+ 
+			 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+			 	  			      				'<div class=title>'+title5+
+			 	  			      				"</div>" +
+			 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+			 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" +
+			 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'></div>")
+		
+										 // 포스터랑 타이틀 나오는 부분 디자인 수정때문에 코드 변경 & 슬라이드 추가구문 추가  - 낙원 : 1011[E]
+									} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1011
+										alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+									}
+									
+								}
+								// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1011[E]
 	   						}
 	 					});
               	});
@@ -448,7 +631,8 @@ $(document).ready(function(){
                   // instead of a settings object
                 ]
               }); // slick(directorList)끝
-            
+              
+              
             
          }
    });
@@ -476,6 +660,8 @@ $(document).ready(function(){
    <section id="actorList"></section>
 <h1>감독 검색 결과</h1>
    <section id="directorList"></section>
+<h1>테스트 결과</h1>
+   <section id="testList"></section>
 </section>
 </body>
 </html>

@@ -423,15 +423,18 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   color: #fff;
   background-color: dodgerBlue;
 }
-
-
+.btn-style:disabled {
+	background-color: #AAAAAA;
+    border: solid 2px #AAAAAA;
+    color:#FFFFFF;
+}
 .btn-style {
     width:auto;
     height:31px;
     
-	background-color: inherit;
+	background-color: dodgerBlue;
     border: solid 2px dodgerBlue;
-    color:#AAAAAA;
+    color:#FFFFFF;
 	padding: auto 0;
     text-align: center;
     text-decoration: none;
@@ -443,13 +446,10 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 }
 .btn-style:hover {
   background-color: dodgerBlue;
-  border-color: dodgerBlue;
+  background-color: blue;
+  border: solid 2px blue;
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
-
-.btn-like{float:left;background-color: inherit;border:none;outline:none;font-size: 1.5em;}
-.btn-like:active{outline:none;}
-
 </style>
 </head>
 <body>
@@ -459,7 +459,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 
 <div id="jb-container">
 <!-- <section id="main"> -->
-			<form action="MemberJoinPro.me" method="post" id="join">
+			<form action="MemberJoinPro.me" method="post" id="join" class="join_fr">
 			<fieldset>
 			<legend>회원 가입</legend>
 				<fieldset>
@@ -507,7 +507,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 				<fieldset>
 				<legend>핸드폰 번호</legend>
 				<div class="inputWithIcon inputIconBg">
-				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number">
+				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" maxlength="13">
 				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
 				  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 인증</button>
 				</div>
@@ -537,6 +537,12 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 			</form>
 <!-- </section> -->
 </div>
+
+
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
 
 </body>
 </html>

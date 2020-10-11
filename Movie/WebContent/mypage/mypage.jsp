@@ -59,6 +59,7 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 
 
 <script type="text/javascript">
@@ -145,7 +146,7 @@ function a() {
 // 						$('.nationList').append('<tr><th scope="row">'+idx2+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="3000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
 // 						$('#nationList').append('<span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="5000" data-refresh-interval="50"></span><span class="colorlib-counter-label">'+idx2+'</span><span class="colorlib-counter-label">'+count.toFixed(1)+'</span>');
 // 						$('#favoriteNation').append('<div id=nationList style=float:left;margin:auto;padding:auto;><span style=color:#FFFFFF class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="5000" data-refresh-interval="50"></span><span style=color:#FFFFFF class="colorlib-counter-label">'+idx2+'</span><span style=color:#FFFFFF class="colorlib-counter-label">'+count.toFixed(1)+'</span></div>');
-						$('.nationList').append('<tr><th scope="row">'+idx2+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="3000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
+						$('.nationList').append('<tr><th scope="row">'+idx2+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="1000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
 						// 						<div class="col-md-3 text-center animate-box" id="nationList"></div>
 						// 						<div class="col-md-3 text-center animate-box"> -->
 						<!-- 							<span class="colorlib-counter js-counter" data-from="0" data-to="309" data-speed="5000" data-refresh-interval="50"></span> -->
@@ -323,7 +324,285 @@ function a() {
 		});	
 	
 	// 영운 컬렉션 코드 마이페이지에 추가 - 낙원 : 1007 [E]
+		
+		// 회원 정보 수정 스크립트 추가 - 낙원 : 1011[S]
+		// 회원정보 수정 버튼 동작
+		$('.update_fr').submit(function(){
+			if($('#phoneNumBtn').val()!="1"){
+				$('.confirm').eq(2).val("Y");
+			}
+			if($('#emailBtn').val()!="1"){
+				$('.confirm').eq(3).val("Y");
+			}
+			
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요");
+				$('#pass').focus();
+				return false;
+			}
+			if($('#phoneNum').val()==""){
+				alert("핸드폰 번호를 입력하세요");
+				$('#phoneNum').focus();
+				return false;
+			}
+// 			if($('#certificationNum').val()==""){
+// 				alert("핸드폰 인증코드를 입력하세요");
+// 				$('#certificationNum').focus();
+// 				return false;
+// 			}
+			if($('#email').val()==""){
+				alert("이메일을 입력하세요");
+				$('#email').focus();
+				return false;
+			}
+// 			if($('#certificationNum_email').val()==""){
+// 				alert("이메일 인증코드를 입력하세요");
+// 				$('#certificationNum_email').focus();
+// 				return false;
+// 			}
+			
+			if($('.confirm').eq(1).val()=="Y"==false){
+				alert("패스워드 설정에 문제가 있습니다.");
+				$('#pass').focus();
+				return false;
+			}
+			if($('.confirm').eq(2).val()=="Y"==false){
+				alert("핸드폰 인증에 문제가 있습니다.");
+				$('#certificationNum').focus();
+				return false;
+			}
+			if($('.confirm').eq(3).val()=="Y"==false){
+				alert("이메일 인증에 문제가 있습니다.");
+				$('#certificationNum_email').focus();
+				return false;
+			}
+		});		
+
 	
+	
+		$('#phoneNumBtn').click(function() {
+			$('#phoneNumBtn').val("1"); // 핸드폰 번호 변경 버튼을 한번이라도 누르면 1값으로 밸류값을 변경 추후 버튼 클릭 유무와 인증 판별을 위해서 밸류를 넣어둠 - 낙원 : 1012
+			var btnName=$('#phoneNumBtn').html();
+			var phone = $("#phoneNum").val();
+			if(btnName=="핸드폰 번호 변경"){
+				// 핸드폰 번호 변경 버튼 클릭시 핸드폰 번호값이 바뀌므로 버튼 이름을 핸드폰 번호 인증으로 변경하고 readonly옵션을 false로 변경 - 낙원 : 1012
+				$('#phoneNumBtn').html("핸드폰 번호 인증");
+				$("#phoneNum").attr("readonly",false);
+				$('.confirm').eq(2).val("N");
+				// 핸드폰 번호 변경시 기존에 인증한 내용을 초기화
+				$("#certificationBtn").val("");
+				$("#certificationBtn").html("인증번호 입력");
+				$("#certificationNum").attr("readonly",false);
+				$("#certificationNum").val("");
+				$("#divPhone").html("");
+				$("#certificationBtn").attr("disabled",false);
+				$(".phoneConfirm").hide();
+				
+			} else {
+				$(".phoneConfirm").hide();
+// 				$("#certificationBtn").attr("disabled",true);
+// 				$('#phoneNumBtn').attr("readonly",false);
+
+					$.ajax('Message.me',{
+						data:{phone:phone},
+						success:function(rdata){
+							$('#divPhone').html(rdata);
+							if(rdata.includes("중복된 번호")){
+								alert("중복된 번호입니다.");
+							} else {
+								alert("인증번호를 전송했습니다.")
+								$(".phoneConfirm").show();
+								$('#divPhone').html(rdata);
+								$('#phoneNumBtn').html("핸드폰 번호 변경");
+								$("#phoneNum").attr("readonly",true);
+							}
+						}
+					});
+			
+				}
+	        });
+	
+	
+
+		
+		
+		
+		
+		$('#certificationBtn').click(function() {
+				var cNum = $("#certificationNum").val();
+				var oriCnum = $('#hiddenCnum').val();
+				if(cNum==oriCnum){
+// 				if(cNum==$('#hiddenCnum_email').val()){
+				$("#certificationBtn").val("1");
+					$('#divPhone').html("인증되셨습니다.");
+					$("#phoneNum").attr("readonly",true);
+					$("#certificationNum").attr("readonly",true);
+					$("#certificationBtn").attr("disabled",true);
+					$("#certificationBtn").html("인증 완료");
+					alert("핸드폰 인증 완료!");
+					$('.confirm').eq(2).val("Y");
+				} else {
+					alert("잘못된 인증번호입니다.")
+					$('.confirm').eq(2).val("N");
+					$('#divPhone').html("인증번호가 틀렸습니다.");
+					$('#divPhone').append("<input type='text' id='hiddenCnum' value=" + oriCnum + ">"); // 잘못 입력해서 실패했을시에 인증번호 없어지는부분 수정 - 낙원 : 1012
+				}
+		});
+		
+		
+		
+		
+		
+		$('#certification_email_Btn').click(function() {
+				var cNum = $("#certificationNum_email").val();
+				var oriCnum = $('#hiddenCnum_email').val();
+				if(cNum==$('#hiddenCnum_email').val()){
+				$("#certification_email_Btn").val("1");
+					$('#divEmail').html("인증되셨습니다.");
+					$("#email").attr("readonly",true);
+					$("#certificationNum_email").attr("readonly",true);
+					$("#certification_email_Btn").attr("disabled",true);
+					$("#certification_email_Btn").html("인증 완료");
+					alert("이메일 인증 완료!");
+					$('.confirm').eq(3).val("Y");
+				} else {
+					alert("잘못된 인증코드입니다.")
+					$('.confirm').eq(3).val("N");
+					$('#divEmail').html("인증코드가 틀렸습니다.");
+					$('#divEmail').append("<input type='text' id='hiddenCnum_email' value=" + oriCnum + ">"); // 잘못 입력해서 실패했을시에 인증번호 없어지는부분 수정 - 낙원 : 1012
+				}
+		});
+		
+		
+		// 패스워드 정규식 & 보안강도 표시 (낙원:0919)
+		$('#pass').keyup(function() {
+				var pw = $('#pass').val(); 
+				
+				var lengthReg = /(?=.{8,15})/;
+				var upperReg = /[A-Z]/;
+				var lowerReg = /[a-z]/;
+				var numReg = /[0-9]/;
+				var specialReg = /[!@]/;
+				
+				var length = lengthReg.test(pw);
+				var lower = null;
+				var upper = null;
+				var num = null;
+				var special = null;
+				
+				if(length){
+					lower = lowerReg.test(pw);
+					upper = upperReg.test(pw);
+					num = numReg.test(pw);
+					special = specialReg.test(pw);
+					if(lower&&upper&&num&&special){ // 강함(영어 대문자+소문자+숫자+특수문자)
+			            $('#st_msg').removeClass();
+				        $('#st_msg').addClass('강함');
+				        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 강함");
+				        $('#regPass').html('사용 가능');
+	    				$('.confirm').eq(1).val("Y");
+					} 
+					else if((lower||upper)&&(num||special)){ // 중간(영어 대/소문자 + 숫자(또는 특수문자))
+					    $('#st_msg').removeClass();
+				        $('#st_msg').addClass('중간');
+				        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
+				        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+//	 			        $('.confirm').eq(1).val("N");
+				        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
+					} else { // 한가지 조합으로만 8글자 입력했을 경우
+						$('#st_msg').removeClass();
+						$('#st_msg').addClass('약함');
+						$('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 약함");
+						$('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+						 $('.confirm').eq(1).val("N");
+					}
+					
+				} else {
+		        	$('#st_msg').removeClass();
+		        	$('#st_msg').addClass('짧음');
+			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 짧음");
+			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+			        $('.confirm').eq(1).val("N");
+					if (pw.length==0) {
+							$('#st_msg').hide();
+							$('#regPass').hide();
+			        } else {
+			        	$('#st_msg').show();
+			        	$('#regPass').show();
+			        }
+				}
+		        
+				if(/(\w)\1\1\1/.test(pw)) {
+					$('#regPass').html('같은 문자를 4번 이상 사용할 수 없습니다.');
+					 $('.confirm').eq(1).val("N");
+				}
+				if(pw.search(/\s/) != -1) {
+					$('#regPass').html('비밀번호는 공백 없이 입력해주세요.');
+					$('.confirm').eq(1).val("N");
+				}
+		});
+		
+			/// 이메일 체크
+			$( function(){
+				$( '#email' ).on("blur keyup", function() {
+					$(this).val( $(this).val().replace( /[^0-9a-zA-Z-_\\@.]/g, '' ) );
+				});
+			})
+			
+			
+			
+			$('#emailBtn').click(function() {
+				$('#emailBtn').val("1"); // 이메일 변경 버튼을 한번이라도 누르면 1값으로 밸류값을 변경 추후 버튼 클릭 유무와 인증 판별을 위해서 밸류를 넣어둠 - 낙원 : 1012
+				var btnName=$('#emailBtn').html();
+				if(btnName=="이메일 변경"){
+					// 이메일 변경 버튼 클릭시 이메일값이 바뀌므로 버튼 이름을 이메일 인증으로 변경하고 readonly옵션을 false로 변경 - 낙원 : 1012
+					$('#emailBtn').html("이메일 인증");
+					$("#email").attr("readonly",false);
+					$('.confirm').eq(3).val("N");
+					// 이메일 변경시 기존에 인증한 내용을 초기화
+					$("#certification_email_Btn").val("");
+					$("#certification_email_Btn").html("인증코드 입력");
+					$("#certificationNum_email").attr("readonly",false);
+					$("#certificationNum_email").val("");
+					$("#divEmail").html("");
+					$("#certification_email_Btn").attr("disabled",false);
+					$(".emailConfirm").hide();
+					
+				} else {
+					$(".emailConfirm").hide();
+//	 				$("#certification_email_Btn").attr("disabled",true);
+//	 				$('#emailBtn').attr("readonly",false);
+					// 정규식 판별 변수
+					var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.([a-zA-Z]){2,3}$/i;
+					var checkResult = regExp.test( $("#email").val() );
+		            
+		            // 정규식에 위배되는 경우
+		            if (!checkResult){
+						alert('이메일 양식을 확인해주세요.');
+						$('.confirm').eq(3).val("N");
+					} else { // 정규식에 위배되지 않는 경우
+						$.ajax('Email.me',{
+							data:{email:$('#email').val()},
+							success:function(rdata){
+								if(rdata.includes("중복된 E-Mail입니다.")){
+									alert("중복된 E-Mail입니다.");
+								} else {
+									$(".emailConfirm").show();
+									$('#divEmail').html(rdata);
+									$('#emailBtn').html("이메일 변경");
+									$("#email").attr("readonly",true);
+								}
+							}
+						});
+					}
+				}
+		        });
+				
+			// 이메일 인증 번호 입력란 표시를 최초에 숨김 - 낙원 : 1012
+			$(".emailConfirm").hide();
+			$(".phoneConfirm").hide();
+
+			// 회원 정보 수정 스크립트 추가 - 낙원 : 1011[E]
 	
 		
 	});
@@ -386,6 +665,7 @@ function a() {
 			<section class="colorlib-about" data-section="about">
 			<fieldset>
 			<legend>회원 정보 수정</legend>
+			<form action="MemberUpdatePro.me" method="post" id="join" class="update_fr">
 				<fieldset>
 				<legend>닉네임</legend>
 				<div class="inputWithIcon inputIconBg">
@@ -401,9 +681,10 @@ function a() {
 				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
 				  <button class="btn-style" id="emailBtn" type="button">이메일 변경</button>
 				</div>
+				<div id="divEmail"></div>
 				</fieldset>
 				
-				
+				<div class="emailConfirm">
 				<fieldset>
 				<legend>이메일 인증</legend>
 				<div class="inputWithIcon inputIconBg">
@@ -412,7 +693,7 @@ function a() {
 				  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
 				</div>
 				</fieldset>
-				
+				</div>
 				
 				<fieldset>
 				<legend>패스워드</legend>
@@ -428,12 +709,14 @@ function a() {
 				<fieldset>
 				<legend>핸드폰 번호</legend>
 				<div class="inputWithIcon inputIconBg">
-				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" value="<%=memberBean.getPhone()%>" readonly/>
+				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" value="<%=memberBean.getPhone()%>" maxlength="13" readonly/>
 				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
 				  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 번호 변경</button>
 				</div>
+				<div id="divPhone"></div>
 				</fieldset>
 				
+				<div class="phoneConfirm">
 				<fieldset>
 				<legend>핸드폰 인증</legend>
 				<div class="inputWithIcon inputIconBg">
@@ -442,16 +725,26 @@ function a() {
 				  <button class="btn-style" id="certificationBtn" type="button">인증번호 입력</button>
 				</div>
 				</fieldset>
+				</div>
 				
 				<fieldset>
 				<legend>자기 소개</legend>
 				<div class="inputWithIcon inputIconBg">
 				<!--   <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
-				  <textarea rows="20" cols="20" id="infoup" placeholder="Introduce"></textarea>
+				  <textarea rows="20" cols="20" id="introduce" placeholder="Introduce"></textarea>
 				  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i>
 				</div>
-				</fieldset>		
-				<div class="btn-style"><a style="color:#AAAAAA" href="MypageForm.mp">프로필수정</a></div>
+				</fieldset>	
+				
+				<button type="submit" class="btn-style">회원 정보 수정</button>
+				<button type="reset" class="btn-style">취소</button>
+					
+<!-- 				<div class="btn-style"><a style="color:#FFFFFF" href="MypageForm.mp">프로필수정</a></div> -->
+				</form>
+				<input type="hidden" class="confirm">
+				<input type="hidden" class="confirm">
+				<input type="hidden" class="confirm">
+				<input type="hidden" class="confirm">
 			</fieldset>
 			
 			
@@ -687,7 +980,8 @@ function a() {
 			
 			<div>
 			<input type="button" id="showAddCollection" value="컬렉션 추가 하기"><br><br>
-		  	<div id="showDisplay" style= display:none>
+<!-- 		  	<div id="showDisplay" style= display:none> -->
+		  	<div id="showDisplay">
 				<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
 				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
@@ -1219,6 +1513,7 @@ $('#listForm').slick({
 		   ]
 		 });	
 	
+	
 	$('.director').slick({
 		   dots: false,
 	     infinite: false,
@@ -1252,8 +1547,43 @@ $('#listForm').slick({
 		       }
 		     }
 		   ]
-		 });	
+		 });
 	
+	
+	$('#movies').slick({
+		   dots: false,
+	     infinite: false,
+	     arrows: true,
+	     variableWidth:true,
+	     speed: 300,
+	     slidesToShow: 4,
+	     slidesToScroll: 3,
+		   responsive: [
+		     {
+		       breakpoint: 1024,
+		       settings: {
+		         slidesToShow: 3,
+		         slidesToScroll: 3,
+		         infinite: false,
+		         dots: false
+		       }
+		     },
+		     {
+		       breakpoint: 600,
+		       settings: {
+		         slidesToShow: 2,
+		         slidesToScroll: 2
+		       }
+		     },
+		     {
+		       breakpoint: 480,
+		       settings: {
+		         slidesToShow: 1,
+		         slidesToScroll: 1
+		       }
+		     }
+		   ]
+		 });
 	
 	
 </script>
@@ -1432,13 +1762,18 @@ table#favoriteNation tbody th {
 .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat;}
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;margin:0 auto;}
 
+.btn-style:disabled {
+	background-color: #AAAAAA;
+    border: solid 2px #AAAAAA;
+    color:#FFFFFF;
+}
 .btn-style {
     width:auto;
     height:31px;
     
-	background-color: inherit;
+	background-color: dodgerBlue;
     border: solid 2px dodgerBlue;
-    color:#AAAAAA;
+    color:#FFFFFF;
 	padding: auto 0;
     text-align: center;
     text-decoration: none;
@@ -1450,14 +1785,23 @@ table#favoriteNation tbody th {
 }
 .btn-style:hover {
   background-color: dodgerBlue;
-  border-color: dodgerBlue;
+  background-color: blue;
+  border: solid 2px blue;
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
 
 .btn-like{float:left;background-color: inherit;border:none;outline:none;font-size: 1.5em;}
 .btn-like:active{outline:none;}
 .poster{width:250px;height:350px;background-size: 100%;}
-.title,.directorName{
+.directorName{
+	overflow:hidden;
+	width:250px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.title{
+	overflow:hidden;
 	width:250px;
 	text-align: center;
 	text-overflow: ellipsis;

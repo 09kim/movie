@@ -192,7 +192,7 @@ String director=request.getParameter("director");%>
                                      }
                                   }
                            ) 
-                        }   
+                        }    
                      
                      if(nick != 'null') {
                      $.ajax("MovieDetail.mo",{

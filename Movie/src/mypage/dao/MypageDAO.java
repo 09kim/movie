@@ -570,7 +570,7 @@ public class MypageDAO {
 		}
 
 		String sql = "SELECT " + sqlType + ", COUNT(*) FROM grade where nick = ? GROUP BY " + sqlType
-				+ " HAVING COUNT(*) > 1 order by count(*) desc limit 0,3";
+				+ " HAVING COUNT(*) > 1 order by count(*) desc limit 0,10";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<String> list = new ArrayList<String>();

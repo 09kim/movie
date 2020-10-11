@@ -403,19 +403,19 @@ function a() {
 // 				$("#certificationBtn").attr("disabled",true);
 // 				$('#phoneNumBtn').attr("readonly",false);
 
-					$.ajax('Message.me',{
+					$.ajax('MessageUpdate.me',{
 						data:{phone:phone},
 						success:function(rdata){
 							$('#divPhone').html(rdata);
-							if(rdata.includes("중복된 번호")){
-								alert("중복된 번호입니다.");
-							} else {
+// 							if(rdata.includes("중복된 번호")){
+// 								alert("중복된 번호입니다.");
+// 							} else {
 								alert("인증번호를 전송했습니다.")
 								$(".phoneConfirm").show();
 								$('#divPhone').html(rdata);
 								$('#phoneNumBtn').html("핸드폰 번호 변경");
 								$("#phoneNum").attr("readonly",true);
-							}
+// 							}
 						}
 					});
 			

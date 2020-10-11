@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$.ajax('MovieGetChart.mo',{
-			method : "post",
+			method : "get",
 			dataType : "json",
 			async: false,
 			success : function(data){

@@ -121,7 +121,7 @@
 
 
 <style type="text/css">
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
+body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");}
 body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;}
 #jb-container {
     z-index : 100;

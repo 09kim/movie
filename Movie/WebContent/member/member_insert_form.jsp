@@ -8,17 +8,13 @@
 
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <script type="text/javascript">
 
@@ -225,7 +221,8 @@ $(document).ready(function(){
 			        $('#st_msg').addClass('중간');
 			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
 			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-			        $('.confirm').eq(1).val("N");
+// 			        $('.confirm').eq(1).val("N");
+			        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
 				} else { // 한가지 조합으로만 8글자 입력했을 경우
 					$('#st_msg').removeClass();
 					$('#st_msg').addClass('약함');
@@ -288,22 +285,170 @@ $(document).ready(function(){
         });
 		
 		
+		// 핸드폰번호 자동 하이픈 추가 - 낙원 : 1011[S]
+		function autoHypenPhone(str){
+	        str = str.replace(/[^0-9]/g, '');
+	        var tmp = '';
+	        if( str.length < 4){
+	            return str;
+	        }else if(str.length < 7){
+	            tmp += str.substr(0, 3);
+	            tmp += '-';
+	            tmp += str.substr(3);
+	            return tmp;
+	        }else if(str.length < 11){
+	            tmp += str.substr(0, 3);
+	            tmp += '-';
+	            tmp += str.substr(3, 3);
+	            tmp += '-';
+	            tmp += str.substr(6);
+	            return tmp;
+	        }else{              
+	            tmp += str.substr(0, 3);
+	            tmp += '-';
+	            tmp += str.substr(3, 4);
+	            tmp += '-';
+	            tmp += str.substr(7);
+	            return tmp;
+	        }
+	        return str;
+	    }
+	var cellPhone = document.getElementById('phoneNum');
+	cellPhone.onkeyup = function(event){
+	    event = event || window.event;
+	    var _val = this.value.trim();
+	    this.value = autoHypenPhone(_val) ;
+	}
+	// 핸드폰번호 자동 하이픈 추가 - 낙원 : 1011[E]
+		
+		
 	
 }); //ready();
 </script>
-<style>
 
-#login-page{width:800px;margin:auto;}
+<style type="text/css">
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
+#jb-container {
+    z-index : 100;
+	width:800px;
+	margin:50px auto;
+	padding: 100px;
+	height: 100%;
+/* 	margin: 0 auto; */
+	border: 1px solid #bcbcbc;
+	
+}
+/* #join {width:500px;margin:auto;color:#FFFFFF;} */
+/* a{color:#FFFFFF;} */
+/* a:hover{color:orange;} */
+#join {width:700px;margin:auto;}
 
-
-.pointer-events {
-	pointer-events: auto !important;
+textarea {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+textarea:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.inputWithIcon textarea {
+  margin-top:7px;
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon textarea:focus +i {
+  color: dodgerBlue;
+}
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+.inputWithIcon.inputIconBg textarea:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
 }
 
-.input-field >.material-icons  {
-    padding-top:10px;
+
+
+
+
+input[type="text"],input[type="email"],input[type="password"] {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+  padding-bottom:4px;
 }
-header{overflow: hidden;display: inline-block;}
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon i {
+	width:1.5em;/* 아이콘 폭 */
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
+  color: dodgerBlue;
+}
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+
+.btn-style {
+    width:auto;
+    height:31px;
+    
+	background-color: inherit;
+    border: solid 2px dodgerBlue;
+    color:#AAAAAA;
+	padding: auto 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+/*     font-size: 15px; */
+/*     margin: 4px; */
+    cursor: pointer;
+    border-radius:2px;
+}
+.btn-style:hover {
+  background-color: dodgerBlue;
+  border-color: dodgerBlue;
+/*   box-shadow: 0 0 8px 0 dodgerBlue; */
+}
+
+.btn-like{float:left;background-color: inherit;border:none;outline:none;font-size: 1.5em;}
+.btn-like:active{outline:none;}
 
 </style>
 </head>
@@ -312,114 +457,86 @@ header{overflow: hidden;display: inline-block;}
 <div class="clear"></div>
 <!-- 헤더 -->
 
-<section id="main">
-<div id="login-page" class="row">
-  <div class="col s12 z-depth-4 card-panel" style="padding:3em;">
-    <form class="join_fr" action="MemberJoinPro.me" method="get">
-<!--     <form class="login-form" action="MemberJoinPro.me" method="get"> -->
-      <div class="row">
-        <div class="input-field col s12 center">
-          <h4>Join</h4>
-          <p class="center">Join to our community now !</p>
-        </div>
-      </div>
-
-      <div class="row margin">
-        <div class="input-field col s12">
-          <!-- <i class="mdi-social-person-outline prefix"></i> -->
-          <i class="material-icons prefix">account_circle</i>
-          <input id="nick" name="nick" type="text" placeholder="Nickname"/>
-        </div>
-        <div class="input-field">
-          <button class="btn btn-default my-2 my-sm-0 bg-green" id="dupNick" type="button">닉네임 중복체크</button>
-          <div id="divNick"></div>
-        </div>
-      </div>
-
-      <div class="row margin">
-        <div class="input-field col s12">
-          <!-- <i class="mdi-social-person-outline prefix"></i> -->
-          <i class="material-icons prefix">email</i>
-          <input id="email" name="email" type="text" placeholder="Email" style="cursor: auto;" />
-        </div>
-         <div class="input-field">
-          <button class="btn btn-default my-2 my-sm-0 bg-green" id="emailBtn" type="button">이메일 인증</button>
-          <div id="divEmail"></div>
-        </div>
-      </div>
-
-      <div class="row margin">
-       <div class="input-field col s12">
-        <i class="material-icons prefix">email</i>
-        <input id="certificationNum_email" name="certificationNum_email" type="text" placeholder="Certification Code" style="cursor: auto;" />
-        </div>
-         <div class="input-field">
-          <button class="btn btn-default my-2 my-sm-0 bg-green" id="certification_email_Btn" type="button">인증코드 입력</button>
-        </div>
-      </div>
-
-      <div class="row margin">
-        <div class="input-field col s12">
-          <!-- <i class="mdi-action-lock-outline prefix"></i> -->
-          <i class="material-icons prefix">vpn_key</i>
-          <input id="pass" name="pass" placeholder="Password" type="password" />
-          <div id="regPass"></div>
-		  <div id="st_msg"></div>
-        </div>
-      </div>
-
-<!--       <div class="row margin"> -->
-<!--         <div class="input-field col s12"> -->
-<!--           <i class="mdi-action-lock-outline prefix"></i> -->
-<!--           <i class="material-icons prefix">vpn_key</i> -->
-<!--           <input id="pass_r" name="pass_r" placeholder="Retyping Password" type="password" /> -->
-<!--         </div> -->
-<!--       </div> -->
-      
-      <div class="row margin">
-        <div class="input-field col s12">
-          <!-- <i class="mdi-social-person-outline prefix"></i> -->
-          <i class="material-icons prefix">phone</i>
-          <input id="phoneNum" name="phoneNum" placeholder="Phone Number" type="text" style="cursor: auto;" />
-        </div>
-        <div class="input-field">
-          <button class="btn btn-primary my-2 my-sm-0 bg-green" id="phoneNumBtn" type="button">핸드폰 인증</button>
-          <div id="divPhone"></div>
-        </div>
-      </div>
-
-      <div class="row margin">
-        <div class="input-field col s12">
-          <!-- <i class="mdi-social-person-outline prefix"></i> -->
-          <i class="material-icons prefix">phone</i>
-          <input id="certificationNum" name="certificationNum" type="text" placeholder="Certification Number" style="cursor: auto;" />
-        </div>
-        <div class="input-field">
-          <button class="btn btn-primary my-2 my-sm-0 bg-green" id="certificationBtn" type="button">인증번호 입력</button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <button type="submit" class="btn waves-effect waves-light col s12">REGISTER NOW</button>
-          
-        </div>
-        <div class="input-field col s12">
-          <p class="margin center medium-small sign-up">Already have an account? <a href="./login">Login</a></p>
-        </div>
-      </div>
-
-
-    </form>
-  </div>
+<div id="jb-container">
+<!-- <section id="main"> -->
+			<form action="MemberJoinPro.me" method="post" id="join">
+			<fieldset>
+			<legend>회원 가입</legend>
+				<fieldset>
+				<legend>닉네임</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="nick" name="nick" placeholder="Nick Name">
+				  <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="dupNick" type="button">닉네임 중복체크</button>
+				</div>
+				<div id="divNick"></div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>이메일</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="email" id="email" name="email" placeholder="Email">
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="emailBtn" type="button">이메일 인증</button>
+				</div>
+				<div id="divEmail"></div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>이메일 인증</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="certificationNum_email" name="certificationNum_email" placeholder="Email Certification Number"/>
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
+				</div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>패스워드</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="password" id="pass" name="pass" placeholder="Password"/>
+				  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
+				</div>
+				  <div id="regPass"></div>
+				  <div id="st_msg"></div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>핸드폰 번호</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number">
+				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 인증</button>
+				</div>
+				<div id="divPhone"></div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>핸드폰 인증</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="certificationNum" name="certificationNum" placeholder="Certification Number" />
+				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="certificationBtn" type="button">인증번호 입력</button>
+				</div>
+				</fieldset>
+				
+<!-- 				<fieldset> -->
+<!-- 				<legend>자기 소개</legend> -->
+<!-- 				<div class="inputWithIcon inputIconBg"> -->
+<!-- 				  <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
+<!-- 				  <textarea rows="20" cols="20" id="infoup" placeholder="Introduce"></textarea> -->
+<!-- 				  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i> -->
+<!-- 				</div> -->
+<!-- 				</fieldset>		 -->
+				<button type="submit" class="btn-style">회원 가입</button>
+				<button type="reset" class="btn-style">취소</button>
+			</fieldset>
+			</form>
+<!-- </section> -->
 </div>
 
-
-
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-</section>
 </body>
 </html>

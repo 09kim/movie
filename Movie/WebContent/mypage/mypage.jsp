@@ -181,7 +181,7 @@ function a() {
 		});
 		
 		
-		
+		// 핸드폰번호 자동 하이픈 추가 - 낙원 : 1011[S]
 		function autoHypenPhone(str){
 	        str = str.replace(/[^0-9]/g, '');
 	        var tmp = '';
@@ -215,6 +215,7 @@ function a() {
 	    var _val = this.value.trim();
 	    this.value = autoHypenPhone(_val) ;
 	}
+	// 핸드폰번호 자동 하이픈 추가 - 낙원 : 1011[E]
 	
 	
 	// 좋아요 페이지 버튼 동작 자바스크립트 추가 - 낙원 : 1006[S]
@@ -383,73 +384,73 @@ function a() {
 <!-- 			</div> -->
 
 			<section class="colorlib-about" data-section="about">
-					<fieldset>
+			<fieldset>
 			<legend>회원 정보 수정</legend>
-			<fieldset>
-			<legend>닉네임</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="text" id="nick" placeholder="Nick Name" value="<%=nick%>" readonly/>
-			  <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-			</div>
-			</fieldset>
-			
-			<fieldset>
-			<legend>이메일</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="email" id="email" placeholder="Email" value="<%=memberBean.getEmail()%>" readonly/>
-			  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-			  <button class="btn-style" id="emailBtn" type="button">이메일 변경</button>
-			</div>
-			</fieldset>
-			
-			
-			<fieldset>
-			<legend>이메일 인증</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="email" id="certificationNum_email" name="certificationNum_email" placeholder="Email Certification Number"/>
-			  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
-			  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
-			</div>
-			</fieldset>
-			
-			
-			<fieldset>
-			<legend>패스워드</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="password" id="pass" name="pass" placeholder="Password"/>
-			  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
-			</div>
-			  <div id="regPass"></div>
-			  <div id="st_msg"></div>
-			</fieldset>
-			
-			
-			<fieldset>
-			<legend>핸드폰 번호</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" value="<%=memberBean.getPhone()%>" readonly/>
-			  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
-			  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 번호 변경</button>
-			</div>
-			</fieldset>
-			
-			<fieldset>
-			<legend>핸드폰 인증</legend>
-			<div class="inputWithIcon inputIconBg">
-			  <input type="text" id="certificationNum" name="certificationNum" placeholder="Certification Number" />
-			  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
-			  <button class="btn-style" id="phoneNumBtn" type="button">인증번호 입력</button>
-			</div>
-			</fieldset>
-			
-			<fieldset>
-			<legend>자기 소개</legend>
-			<div class="inputWithIcon inputIconBg">
-			<!--   <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
-			  <textarea rows="20" cols="20" id="infoup" placeholder="Introduce"></textarea>
-			  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i>
-			</div>
-			</fieldset>		
+				<fieldset>
+				<legend>닉네임</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="nick" name="nick" placeholder="Nick Name" value="<%=nick%>" readonly/>
+				  <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+				</div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>이메일</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="email" id="email" name="email" placeholder="Email" value="<%=memberBean.getEmail()%>" readonly/>
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="emailBtn" type="button">이메일 변경</button>
+				</div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>이메일 인증</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="certificationNum_email" name="certificationNum_email" placeholder="Email Certification Number"/>
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
+				</div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>패스워드</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="password" id="pass" name="pass" placeholder="Password"/>
+				  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
+				</div>
+				  <div id="regPass"></div>
+				  <div id="st_msg"></div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>핸드폰 번호</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number" value="<%=memberBean.getPhone()%>" readonly/>
+				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="phoneNumBtn" type="button">핸드폰 번호 변경</button>
+				</div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>핸드폰 인증</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="certificationNum" name="certificationNum" placeholder="Certification Number" />
+				  <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="certificationBtn" type="button">인증번호 입력</button>
+				</div>
+				</fieldset>
+				
+				<fieldset>
+				<legend>자기 소개</legend>
+				<div class="inputWithIcon inputIconBg">
+				<!--   <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
+				  <textarea rows="20" cols="20" id="infoup" placeholder="Introduce"></textarea>
+				  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i>
+				</div>
+				</fieldset>		
 				<div class="btn-style"><a style="color:#AAAAAA" href="MypageForm.mp">프로필수정</a></div>
 			</fieldset>
 			

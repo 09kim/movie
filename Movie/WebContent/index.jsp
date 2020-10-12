@@ -30,6 +30,7 @@
 			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
 		<%
 	}%>
+	<jsp:include page="/recommend/movie_recommend_byCollection.jsp"/>
 	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
 	</section>
 </body>

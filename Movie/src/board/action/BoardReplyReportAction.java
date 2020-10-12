@@ -18,19 +18,19 @@ public class BoardReplyReportAction implements Action {
 		System.out.println("BoardReplyReportAction");
 		
 		ActionForward forward = null;
-		
+
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
-		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		
 		
 		ReplyBean replyBean = new ReplyBean();
 		replyBean.setNick(nick);
-		replyBean.setRe_ref(re_ref);
+		replyBean.setIdx(idx);
 		
 		
 		BoardReplyService boardReplyService = new BoardReplyService();
-		boolean isInsert = boardReplyService.insertReport(replyBean);
+		boolean isInsert = boardReplyService.insertReport(replyBean, idx);
 		
 		if(!isInsert) {
 //			response.setContentType("text/html;charset=UTF-8");

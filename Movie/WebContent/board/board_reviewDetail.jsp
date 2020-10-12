@@ -29,11 +29,10 @@ $(document).ready(function() {
 	var nick = $('#nick').val()
     var movieSeq = $("#movieSeq").val();
     var idx = $('#idx').val();
-
     
     // 댓글 쓰기
     $("#replyBtn").on("click", function() {
-			
+
         var reply = $('#replyContent').val();
 					
 		$.ajax({
@@ -46,17 +45,15 @@ $(document).ready(function() {
 				reply:reply
 			},
 			success: function(data) {
-				location.reload();
-				var out = "<%=session.getAttribute("out") %>";
-                if(out == "out") {
-                    alert("댓글을 등록하세요");
-                    location.reload();
-                }
 				
 				$('#replyShow').append(data);
 //              location.href="BoardReviewDetail.bo?movieSeq=" + $('#movieSeq').val() + "&idx=" + $('#idx').val();
 				location.reload();
 				
+<%-- 				var out = "<%=session.getAttribute("out") %>"; --%>
+//                 if(out == "out") {
+//                     alert("댓글을 등록하세요");
+//                 }
 			}
 			
 		});
@@ -107,8 +104,8 @@ $(document).ready(function() {
 		    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
 		    
 		    <%if(nick.equals(rb.getNick())) { %>
-				&nbsp; <input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
-			    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
+				&nbsp; <input type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
+			    <input type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
 		    
 	        </div>
 	        <hr>  
@@ -116,9 +113,9 @@ $(document).ready(function() {
 		    <script type="text/javascript">
 		    
 		    // 댓글 수정
-	        $('#updateReply_<%=rb.getRe_ref() %>').click(function() {
+	        $('#updateReply_<%=rb.getIdx() %>').click(function() {
 	            
-	            $('#dialog-message').dialog({
+	            $('#update-message').dialog({
 	                modal: true,
 	                buttons: {
 	                    "수정": function() {
@@ -129,7 +126,7 @@ $(document).ready(function() {
 	                        var reply = $('#replyUpdate').val();
 	                        
 	                        $.ajax({
-	                            url: "BoardReplyUpdate.bo?re_ref=<%=rb.getRe_ref() %>",
+	                            url: "BoardReplyUpdate.bo?idx=<%=rb.getIdx() %>",
 	                            method: "get",
 	                            data: {
 	                                idx:idx,
@@ -138,6 +135,8 @@ $(document).ready(function() {
 	                                reply:reply
 	                            },
 	                            success: function(data) {
+	                            	console.log(reply);
+	                            	$('#replyShow').append(reply);
 	                                location.reload();
 	                            }
 	                        });
@@ -156,7 +155,7 @@ $(document).ready(function() {
 		    
 		    
 		    // 댓글 삭제
-		    $('#deleteReply_<%=rb.getRe_ref() %>').click(function() {
+		    $('#deleteReply_<%=rb.getIdx() %>').click(function() {
 		        
 		        $('#delete-message').dialog({
 		            modal: true,
@@ -169,7 +168,7 @@ $(document).ready(function() {
 		                    var reply = $('#replyContent').val();
 		                    
 		                    $.ajax({
-		                        url: "BoardReplyDelete.bo?re_ref=<%=rb.getRe_ref() %>",
+		                        url: "BoardReplyDelete.bo?idx=<%=rb.getIdx() %>",
 		                        method: "get",
 		                        data: {
 		                            idx:idx,
@@ -198,13 +197,13 @@ $(document).ready(function() {
 		    </script>
 		    
 		    <%} else {%>
-	            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getRe_ref() %>" value="댓글신고">
+	            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
 	            <hr>
 	           
 	           <script type="text/javascript">
 	
 	           // 댓글 신고버튼
-	           $('#reportReply_<%=rb.getRe_ref() %>').click(function() {
+	           $('#reportReply_<%=rb.getIdx() %>').click(function() {
 	        	   
 	//         	   var report = $('#report').val();
 	               
@@ -219,7 +218,7 @@ $(document).ready(function() {
 	                           var reply = $('#replyContent').val();
 	                           
 	                           $.ajax({
-	                               url: "BoardReplyReport.bo?re_ref=<%=rb.getRe_ref() %>",
+	                               url: "BoardReplyReport.bo?idx=<%=rb.getIdx() %>",
 	                               method: "get",
 	                               data: {
 	                                   idx:idx,
@@ -261,8 +260,12 @@ $(document).ready(function() {
     
 <%} %>
 
+<div id="dialog-message" title="선택하세요" style="display:none">
+    댓글을 남기시려면 로그인이 필요해요. <br>
+    회원가입 또는 로그인하고 댓글을 남겨보세요.
+</div>
 
-<div id="dialog-message" title="댓글 수정" style="display:none">
+<div id="update-message" title="댓글 수정" style="display:none">
     <textarea id="replyUpdate" name="replyUpdate" cols="30" rows="5"></textarea>
      댓글을 수정해주세요.
 </div>

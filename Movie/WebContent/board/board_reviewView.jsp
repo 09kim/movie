@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-ReviewBean reviewBean = (ReviewBean)request.getAttribute("reviewBean");
+// ReviewBean reviewBean = (ReviewBean)request.getAttribute("reviewBean");
 ReplyBean replyBean = (ReplyBean)request.getAttribute("replyBean");
 ArrayList<ReviewBean> reviewList = (ArrayList<ReviewBean>)request.getAttribute("reviewList");
 String nick = (String)session.getAttribute("nick"); 
@@ -48,9 +48,29 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 	   
 	   $(document).ready(function() {
 		
+		   function selectBtn() { 
+		        
+		        $('#dialog-message').dialog({
+		            modal: true,
+		            buttons: {
+		                "로그인": function() {
+		                    location.href="MemberLoginForm.me"
+		                    },
+		                "회원가입": function() {
+		                    location.href="MemberJoinForm.me"
+		                    },
+		                "취소": function() {
+		                    $(this).dialog('close');
+		                    },
+		            }
+		        
+		        }); 
+		       
+		    }
+		   
 	        // 리뷰 좋아요 버튼
 	        $('#likeBtn_<%=rl.getIdx() %>').click(function() {
-	               
+	        	
 	            $('#like-message').dialog({
 	                modal: true,
 	                buttons: {
@@ -90,7 +110,7 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 	              }
 	             
 	            });
-	            
+		            
 	        });
 	        
 	     // 리뷰 신고하기 버튼
@@ -113,7 +133,7 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
                                       idx:idx,
                                       movieSeq:movieSeq,
                                       nick:nick,
-                                      report:report
+                                      report:report,
                                   },
                                   success: function(data) {
                                       location.reload();
@@ -146,6 +166,7 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
  
 <input type="hidden" id="movieSeq" value="<%=movieSeq %>">
 <input type="hidden" id="nick" value="<%=nick %>">
+
  
 <div id="like-message" title="좋아요" style="display:none">
     이 댓글을 좋아요 하시겠습니까?

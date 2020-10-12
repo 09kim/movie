@@ -12,7 +12,7 @@ import board.vo.*;
 
 public class BoardReplyService {
 	
-	public boolean insertReply(ReplyBean replyBean) {
+	public boolean insertReply(ReplyBean replyBean, int idx) {
 		System.out.println("BoardReplyService - insertReply()");
 		
 		boolean isSuccess = false;
@@ -21,7 +21,7 @@ public class BoardReplyService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		int insertCount = boardDAO.insertReply(replyBean);
+		int insertCount = boardDAO.insertReply(replyBean, idx);
 		
 		if(insertCount > 0) {
 			commit(con);
@@ -73,7 +73,7 @@ public class BoardReplyService {
 		return isSuccess;
 	}
 
-	public boolean deleteReply(int re_ref) {
+	public boolean deleteReply(int idx) {
 		System.out.println("BoardReplyService - deleteReply()");
 		
 		boolean isSuccess = false;
@@ -82,7 +82,7 @@ public class BoardReplyService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		int insertCount = boardDAO.deleteReply(re_ref);
+		int insertCount = boardDAO.deleteReply(idx);
 		
 		if(insertCount > 0) {
 			commit(con);
@@ -119,8 +119,8 @@ public class BoardReplyService {
 		return isSuccess;
 	}
 
-	public boolean insertReport(ReplyBean replyBean) {
-		System.out.println("BoardReplyService - selectReport()");
+	public boolean insertReport(ReplyBean replyBean, int idx) {
+		System.out.println("BoardReplyService - insertReport()");
 		
 		boolean isSelect = false;
 		
@@ -128,7 +128,7 @@ public class BoardReplyService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		int selectCount = boardDAO.selectReport(replyBean);
+		int selectCount = boardDAO.selectReport(replyBean, idx);
 		
 		if(selectCount > 0) {
 			commit(con);

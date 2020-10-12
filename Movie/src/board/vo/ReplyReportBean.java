@@ -2,13 +2,11 @@ package board.vo;
 
 import java.util.*;
 
-public class ReportBean {
+public class ReplyReportBean {
 	
 	private int idx;
 	private String nick;
 	private int re_ref;
-	private String reply;
-	private int report;
 	private Date date;
 	
 	
@@ -29,18 +27,6 @@ public class ReportBean {
 	}
 	public void setRe_ref(int re_ref) {
 		this.re_ref = re_ref;
-	}
-	public String getReply() {
-		return reply;
-	}
-	public void setReply(String reply) {
-		this.reply = reply;
-	}
-	public int getReport() {
-		return report;
-	}
-	public void setReport(int report) {
-		this.report = report;
 	}
 	public Date getDate() {
 		return date;

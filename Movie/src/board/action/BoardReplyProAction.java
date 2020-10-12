@@ -37,7 +37,7 @@ public class BoardReplyProAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
-		replyBean.setDate(date);
+		replyBean.setDate(date); 
 		
 		
 		if(reply.equals("")) {
@@ -48,13 +48,8 @@ public class BoardReplyProAction implements Action {
 		} else {
 			
 			BoardReplyService boardReplyService = new BoardReplyService();
-			boolean isSuccess = boardReplyService.insertReply(replyBean);
+			boolean isSuccess = boardReplyService.insertReply(replyBean, idx);
 			
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('댓글 작성 완료')");
-			out.print("</script>");
 			
 			forward = new ActionForward();
 			forward.setRedirect(false);

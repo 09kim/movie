@@ -55,7 +55,6 @@ public class ReplyBean {
 	public void setReport(int report) {
 		this.report = report;
 	}
-	
 
 }
 

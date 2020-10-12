@@ -2,7 +2,7 @@ package board.vo;
 
 import java.util.*;
 
-public class LikeBean {
+public class ReviewLikeBean {
 	
 	private int idx;
 	private String nick;

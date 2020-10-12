@@ -12,6 +12,7 @@ public class ReviewBean {
    private String content;
    private int like_count;
    private int report;
+   private int spoiler;
    
 
 	public int getIdx() {
@@ -92,6 +93,14 @@ public class ReviewBean {
 
 	public void setReport(int report) {
 		this.report = report;
+	}
+
+	public int getSpoiler() {
+		return spoiler;
+	}
+
+	public void setSpoiler(int spoiler) {
+		this.spoiler = spoiler;
 	}
 	
 }

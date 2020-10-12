@@ -16,10 +16,10 @@ public class BoardReplyDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardReplyDeleteAction");
 		
-		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
 		BoardReplyService boardReplyService = new BoardReplyService();
-		boolean isSuccess = boardReplyService.deleteReply(re_ref);
+		boolean isSuccess = boardReplyService.deleteReply(idx);
 			
 		
 		ActionForward forward = new ActionForward();

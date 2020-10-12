@@ -290,12 +290,13 @@ public class MemberDAO {
 			pstmt.setString(1, nick);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				sql = "UPDATE member SET email=?,pass=?,phone=? where nick=?";
+				sql = "UPDATE member SET email=?,pass=?,phone=?,introduce=? where nick=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, email);
 				pstmt.setString(2, pass);
 				pstmt.setString(3, phone);
-				pstmt.setString(4, nick);
+				pstmt.setString(4, introduce);
+				pstmt.setString(5, nick);
 				completeCount= pstmt.executeUpdate();
 			} else {
 			}

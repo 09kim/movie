@@ -731,7 +731,7 @@ function a() {
 				<legend>자기 소개</legend>
 				<div class="inputWithIcon inputIconBg">
 				<!--   <input type="text" id="introduce" name="introduce" style="background-color: inherit;border:none;" value="Introduce" readonly/> -->
-				  <textarea rows="20" cols="20" id="introduce" placeholder="Introduce"></textarea>
+				  <textarea rows="20" cols="20" id="introduce" name="introduce" placeholder="Introduce"></textarea>
 				  <i class="fas fa-address-card fa-lg fa-fw" aria-hidden="true"></i>
 				</div>
 				</fieldset>	

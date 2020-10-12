@@ -73,6 +73,8 @@ public class MypageCollectionCreateAction implements Action {
 //		}
 //		collectionBean.setTitle(title[1]);
 		
+		forward = new ActionForward();
+		forward.setPath("/mypage/mypage.jsp");
 		
 		return forward;
 	}

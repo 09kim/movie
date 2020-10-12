@@ -102,7 +102,7 @@ def sim_pearson(data, name1, name2):
         return (sumXY - ((sumX * sumY) / count)) / sqrt(
             (sumPowX - (pow(sumX, 2) / count)) * (sumPowY - (pow(sumY, 2) / count)))
     except ZeroDivisionError as e:
-        print(e)
+        return -1;
 
 
 # print(sim_pearson(member,"태윤","test1"))
@@ -122,6 +122,9 @@ def top_match2(data, name, index=10, sim_function=sim_pearson):
 
 def getRecommendation(data, person, sim_function=sim_pearson):
     result = top_match2(member, person, len(data))
+
+
+
 
     simSum = 0  # 유사도 합을 위한 변수
     score = 0  # 평점 합을 위한 변수
@@ -153,4 +156,4 @@ def getRecommendation(data, person, sim_function=sim_pearson):
 
 # for i in lst:
 #     print(getRecommendation(member, i))
-print(getRecommendation(member,"야호2"))
+print(getRecommendation(member,"야호"))

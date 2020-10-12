@@ -17,7 +17,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Jackson Template</title>
+	<title>마이페이지</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -52,8 +52,8 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 
@@ -62,6 +62,168 @@
 <link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 
 
+<style>
+#myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;}
+textarea {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon textarea {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+
+.inputWithIcon textarea:focus +i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg textarea:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+input[type="text"],input[type="email"],input[type="password"] {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+
+	width:1.5em;/* 아이콘 폭 */
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+#infoup{width:500px;margin-top: 20px;}
+li>a{font-size: 1.5em;}
+
+
+table#favoriteGenre {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table#favoriteGenre thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteGenre thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteGenre tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteGenre td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+table#favoriteNation {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table#favoriteNation thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteNation thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteNation tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteNation td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+
+fieldset{margin-left:50px;}
+#favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;}
+/* #favoriteNation{margin:0px auto;} */
+/* #nationList{float:left;text-align: center;margin:0px auto;padding-right: 25%} */
+.director{float:left;}
+.favoriteDirector{margin-right:1em;float:left;display: block;text-align: center;}
+</style>
 <script type="text/javascript">
 
 
@@ -609,9 +771,6 @@ function a() {
 	
 	
 </script>
-
-
-
 
 	</head>
 	<body>

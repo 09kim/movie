@@ -87,7 +87,7 @@ String nick=(String)session.getAttribute("nick");
 	$(document).ready(function() { // 세션 자동 동기화 구문 테스트 - 낙원 : 1011
 		var timeoutHnd = null;
 		var logouTimeInterval = 3 * 60 * 1000; // 3 mins here u can increase session time 
-		function OnTimeoutReached() { $.ajax({ url:'${pageContext.request.contextPath}/inc/top.jsp' }); ResetLogOutTimer(); } function ResetLogOutTimer() { clearTimeout(timeoutHnd); // set new timer 
+		function OnTimeoutReached() { $.ajax({ url:'${pageContext.request.contextPath}/index.jsp' }); ResetLogOutTimer(); } function ResetLogOutTimer() { clearTimeout(timeoutHnd); // set new timer 
 		timeoutHnd = setTimeout('OnTimeoutReached();', logouTimeInterval); } timeoutHnd = setTimeout('OnTimeoutReached();', logouTimeInterval);
 	});
 </script>

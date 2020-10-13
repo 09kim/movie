@@ -69,14 +69,11 @@ public class MypageAction implements Action {
 		request.setAttribute("gradeList", gradeList);
 		// 평점 페이지 객체 받는 코드 - 낙원 : 1006[E]		
 		
-		// 컬렉션 객체 받는 코드 - 낙원 : 1007[S]
+		// 컬렉션 셀렉트 객체 받는 코드 - 낙원 : 1007[S]
 		MypageAddCollectionService service1 = new MypageAddCollectionService();
 		ArrayList<CollectionBean> collection = service1.selectCollection(nick);
 		request.setAttribute("collection", collection);
-		// 컬렉션 객체 받는 코드 - 낙원 : 1007[E]
-		
-		
-		
+		// 컬렉션 셀렉트 객체 받는 코드 - 낙원 : 1007[E]
 		
 		
 		
@@ -90,9 +87,9 @@ public class MypageAction implements Action {
 			out.println("<script>alert('" + resultMsg + "');history.back();</script>"); 
 		} else {
 			request.setAttribute("memberBean", memberBean);
-			forward = new ActionForward();
-			forward.setPath("/mypage/mypage.jsp");
 		}
+		forward = new ActionForward();
+		forward.setPath("/mypage/mypage.jsp");
 		
 		
 		

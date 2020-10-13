@@ -122,14 +122,16 @@ public class MypageController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MypageCollection.mp")) {
-			action = new MypageCollectionAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/MypageCollectionCreate.mp")) {
+		}
+//		else if (command.equals("/MypageCollection.mp")) {
+//			action = new MypageCollectionAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+		else if (command.equals("/MypageCollectionCreate.mp")) {
 			action = new MypageCollectionCreateAction();
 			try {
 				forward = action.execute(request, response);

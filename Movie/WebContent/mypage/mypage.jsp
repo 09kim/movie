@@ -63,7 +63,8 @@
 
 
 <style>
-#myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;}
+/* #myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;} */
+#myinfo,.favorite{padding:20px 20px;margin:0 auto;}
 textarea {
   width: 500px;
   border: 2px solid #aaa;
@@ -149,7 +150,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   background-color: dodgerBlue;
 }
 #infoup{width:500px;margin-top: 20px;}
-li>a{font-size: 1.5em;}
+/* li>a{font-size: 1.5em;} */
 
 
 table#favoriteGenre {
@@ -424,12 +425,73 @@ function a() {
 					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
 		});	
+	
+	
+	
+	
+	
+// 	$('.modifyAddMov').click(function() {
+// 		var index = $(this).index();
+// 		$(this).val(index);
+// 		alert($(this).val());
+// 	});
+//		$('.modifyAddMov').each(function(idx) {
+//			var index = $('.modifyAddMov').eq(idx).index();
+//			$('.modifyAddMov').eq(idx).val(index);
+//			alert($('.modifyAddMov').eq(idx).val());
+//		});
+//		$('.delBtn').each(function() {
+//			var index = $(this).index();
+//			$(this).val(index);
+//			alert($(this).val());
+//		});
+
+
+
+
+
+
+// 		$('.modifyCollection').click(function(){
+			
+			
+// 			$.ajax('MypageCollectionUpdate.mp',{
+// 					data:{nick:nick,movieSeq:movieSeq,title:title,idx:idx},
+// 					success:function(rdata){
+// 			 				if(rdata=="Y"){
+// 			 					location.reload();
+//  							}
+// 						}
+// 					});	
+			
 		
+			
+// 		})
+
+
+		// 최초 화면 로딩 시 작품추가/수정/삭제 버튼 숨기기 - 낙원 : 1013 [S]
+		$('.modifyAdd').hide();			
+       	$('.modifyDel').hide();			
+        $('.collectionModify').hide();		
+     // 최초 화면 로딩 시 작품추가/수정/삭제 버튼 숨기기 - 낙원 : 1013 [E]
+            
+        // 수정 버튼 클릭 시 작품추가/수정/삭제 버튼 표시 - 낙원 : 1013 [S]    
+		$('.modifyBtn').click(function(){
+            $('.modifyAdd').toggle();			
+            $('.modifyDel').toggle();			
+            $('.collectionModify').toggle();			
+		});
+		// 수정 버튼 클릭 시 작품추가/수정/삭제 버튼 표시 - 낙원 : 1013 [E]
 		
 		$('.modifyAddMov').click(function(){
 			var index = $('.modifyAddMov').index();
 			var addId = $(this).attr('id');
+// 			var index = $(this).index();
+// 			$(this).val(index);
+// 			var addId = $(this).attr('id');
 			
+// 		    window.open('CollectionModifySearch.mo',+
+//  					'open the window',+
+// 					'toolbar=no, width=1000, height=850, top=150, left=150');
 		    window.open("CollectionModifySearch.mo?addId=" + addId,
  					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
@@ -463,7 +525,24 @@ function a() {
 				alert("영화를 선택하세요");
 				return false;
 			} 
+			location.reload();
 		})
+		
+		
+		$(document).on('click', '.modifyDel .modifyDeleteBtn', function() {
+						var index = $('.modifyDel .modifyDeleteBtn').index(this);	
+// 				alert(index);
+						$('.eachList').eq(index).remove();
+		});
+		
+		
+		
+		
+
+		
+		
+		
+		
 		
 		$('.modifyDelBtn').click(function(){
 			var eachList = $(this).attr('id');	
@@ -765,6 +844,29 @@ function a() {
 			$(".phoneConfirm").hide();
 
 			// 회원 정보 수정 스크립트 추가 - 낙원 : 1011[E]
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	
 		
 	});
@@ -1130,17 +1232,16 @@ function a() {
 <!-- 					</div> -->
 <!-- 				</div> -->
 			</section>
-
-			<section class="colorlib-experience" data-section="experience">
-				<fieldset>
-				<legend><%=nick %> 님의 컬렉션 목록</legend>
-			<div>
 			
 			
-			<div>
-			<input type="button" id="showAddCollection" value="컬렉션 추가 하기"><br><br>
-<!-- 		  	<div id="showDisplay" style= display:none> -->
-		  	<div id="showDisplay">
+			
+			
+			
+			<section class="colorlib-education" data-section="experience">
+			<h2>컬렉션 페이지</h2>
+		<div>
+			<input type="button" id="showAddCollection" value="컬렉션 추가 하기">
+		  <div id="showDisplay" style= display:none>
 				<form action="/Movie/MypageCollectionCreate.mp" method="post">
 				<h3>컬렉션 이름</h3><input type="text" name="subject" id="subject"><br>
 				<h3>컬렉션 내용</h3><textarea name ="content" id="content"></textarea><br>
@@ -1152,42 +1253,54 @@ function a() {
 			</form>
 			</div>
 			<br>
-			<section>
+			<h1><%=nick %> 님의 컬렉션 목록</h1> <br>
 				
 				<% for(int i = 0; i < collection.size(); i++) {%>
 				<form action="/Movie/MypageCollectionUpdate.mp" method="post">
-					<div id="collectionNum" class="collectionNum<%=i%>"><h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
+					<div id="collectionNum" class="collectionNum<%=i%>">
+					<div class="collections">
+					<h2>컬렉션 명:<%=collection.get(i).getCollection_name() %></h2><br>
 					<h4>컬렉션 내용:<%=collection.get(i).getContent() %></h4>
 					<input type="button" class ="delBtn" id="<%=collection.get(i).getIdx()%>" value="삭제">
 					<input type="button" class ="modifyBtn" id="<%=collection.get(i).getIdx()%>" value="수정">
+					<div class="modifyAdd">
 					<input type="button" value="작품추가" id ="add<%=i %>"  class="modifyAddMov"><br><br>
+					</div>
 					<div class="collectionView">
 					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 						<div class ="eachList<%=o %>" id="eachList">
 						<div id="modifyMovies"></div>
-						<img src="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
+						</a>
+						<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>');"></div>
 						<br>
-						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
-						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a>
-						
-						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div>
+						<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
+
+						<div class="modifyDel">
+						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br>
+						</div>
 						
 						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
 						<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
 						<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 						<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
+						</div>
 						
-						
-					<%} %></div>
+					<%} %>
 					</div>
-					<input type="submit" value="수정하기"></form>
+					<div class="collectionModify">
+					<Button class="modifyCollection" type="submit">수정하기</Button>
+<!-- 					<input type="submit" value="수정하기"> -->
+					</div>
+					</div>
+					</div>
+					</form>
 			<%}%> 
-				
+					</div>
 				
 			</section>
 		</div>
 	</div>
-		</fieldset>	
 			
 <!-- 				<div class="colorlib-narrow-content"> -->
 <!-- 					<div class="row"> -->
@@ -1949,7 +2062,7 @@ table#favoriteNation tbody th {
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
 
-.btn-like{float:left;background-color: inherit;border:none;outline:none;font-size: 1.5em;}
+.btn-like{font-size:1.5em;float:left;background-color: inherit;border:none;outline:none;}
 .btn-like:active{outline:none;}
 .poster{width:250px;height:350px;background-size: 100%;}
 .directorName{
@@ -1969,6 +2082,10 @@ table#favoriteNation tbody th {
 li{list-style: none;}
 .favoriteDirector{float:left;}
 h1,h2,h3,h4,h5,h6 {font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}
+
+.collections{border:2px solid dodgerBlue;margin:30px auto;}
+
+
 </style>
 
 

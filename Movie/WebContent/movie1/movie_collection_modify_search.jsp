@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <% String add = request.getParameter("addId"); %>
+   <% String add = request.getParameter("addId");
+   String seq = add.split("add")[1];%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,14 +93,24 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $('#' + '<%=add%>', opener.document).after(
-     	  			      			    "<br>" +
-     	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-     	  			      				title5+ 
-     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-     	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-     	  			      		   );  
+
+
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+												 	  			      				'<div class=title>'+title5+'</div>'+
+												 	  			      				'<div class=modifyDel>' +
+												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'</div>' +
+												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name=idx></div>');
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
 
      	   						}
      	 					});
@@ -132,14 +143,42 @@ $(document).ready(function(){
      	   					success:function(rdata){
 //      	   							$("#movies", parent.opener.document).val();
 //      	  			 				opener.location.reload();
-     	  			      		   $('#' + '<%=add%>', opener.document).after(
-     	  			      			    "<br>" +
-     	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-     	  			      				title5+ 
-     	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-     	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-     	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-     	  			      		   );  
+
+
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+												 	  			      				'<div class=title>'+title5+'</div>'+
+												 	  			      				'<div class=modifyDel>' +
+												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'</div>' +
+												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name=idx></div>');
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+
+
+
+
+
+
+
+
+
+
+<%--      	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
+//      	  			      			    "<br>" +
+//      	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+//      	  			      				title5+ 
+//      	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+//      	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
+//      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+//      	  			      		   );  
 
      	   						}
      	 					});
@@ -283,15 +322,40 @@ $(document).ready(function(){
   	   					success:function(rdata){
 //   	   							$("#movies", parent.opener.document).val();
 //   	  			 				opener.location.reload();
-  	  			      		   $('#' + '<%=add%>', opener.document).after(
-  	  			      			    "<br>" +
+
+
+
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+												 	  			      				'<div class=title>'+title5+'</div>'+
+												 	  			      				'<div class=modifyDel>' +
+												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'</div>' +
+												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name=idx></div>');
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+
+
+
+
+
+
+<%--   	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
+//   	  			      			    "<br>" +
   	  			      			
-  	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-  	  			      				"<a href='MovieDetailPro.mo?movieSeq=" + movieSeq + '&query=' + title6 + ">"+ title5 + "</a>" + 
-  	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-  	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-  	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-  	  			      		   );  
+//   	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+//   	  			      				"<a href='MovieDetailPro.mo?movieSeq=" + movieSeq + '&query=' + title6 + ">"+ title5 + "</a>" + 
+//   	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+//   	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
+//   	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+//   	  			      		   );  
 
   	   						}
   	 					});
@@ -388,14 +452,47 @@ $(document).ready(function(){
 	   					success:function(rdata){
 //	   							$("#movies", parent.opener.document).val();
 //	  			 				opener.location.reload();
-	  			      		   $('#' + '<%=add%>', opener.document).after(
-	  			      			    "<br>" +
-	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-	  			      				title5+ 
-	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-	  			      		   );  
+
+
+
+
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+												 	  			      				'<div class=title>'+title5+'</div>'+
+												 	  			      				'<div class=modifyDel>' +
+												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'</div>' +
+												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name=idx></div>');
+								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+
+							
+
+
+
+
+
+
+
+
+
+
+
+<%-- 	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
+// 	  			      			    "<br>" +
+// 	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
+// 	  			      				title5+ 
+// 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
+// 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
+// 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
+// 	  			      		   );  
 
 	   						}
 	 					});

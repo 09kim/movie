@@ -19,6 +19,7 @@ public class MypageCollectionMovieAddAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MypageCollectionMovieAdd 작동");
+		ActionForward forward = null;
 		String nick = request.getParameter("nick");
 		String movieSeq = request.getParameter("movieSeq");
 		String title = request.getParameter("title");
@@ -46,6 +47,10 @@ public class MypageCollectionMovieAddAction implements Action{
 //		if(isInsert) {
 //		}
 		
-		return null;
+		forward = new ActionForward();
+		forward.setPath("/mypage/mypage.jsp");
+		
+		
+		return forward;
 	}
 }

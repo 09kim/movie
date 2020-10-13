@@ -390,7 +390,7 @@ public class MypageDAO {
 	public int addCollectionMovie(CollectionBean collectionBean) {
 		int isSuccess = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+//		ResultSet rs = null;
 		  try {
 			String sql = "insert into collection values(idx,?,'test',?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -405,7 +405,7 @@ public class MypageDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rs);
+//			close(rs);
 			close(pstmt);
 		}
 		  
@@ -417,7 +417,7 @@ public class MypageDAO {
 	public int addCollection(CollectionBean collectionBean) {
 		int isSuccess = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+//		ResultSet rs = null;
 		  try {
 			String sql = "insert into collection values(idx,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -434,7 +434,7 @@ public class MypageDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rs);
+//			close(rs);
 			close(pstmt);
 		}
 		  

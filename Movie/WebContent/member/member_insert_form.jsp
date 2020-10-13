@@ -327,17 +327,39 @@ $(document).ready(function(){
 </script>
 
 <style type="text/css">
+
+
+.content {
+  top:0px;
+  position: fixed;
+/*   bottom: 0; */
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  margin-top: 55px;
+/*   margin-bottom:-50px; */
+}
+
+
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/avengers.jpg");background-repeat: no-repeat;background-size: 100%;} */
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/avengers.jpg");background-repeat: no-repeat;background-size: 100% 100%;} */
+
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
 #jb-container {
+	top:0px;
     z-index : 100;
 	width:800px;
-	margin:50px auto;
-	padding: 100px;
-	height: 100%;
+	margin:0 auto;
+/* 	padding: 100px; */
+    padding: 20px 100px 20px 100px;
+	height: 85%;
 /* 	margin: 0 auto; */
 	border: 1px solid #bcbcbc;
-	
+/* 	background: rgba(0, 0, 0, 0.5); */
+    background: rgba(255, 255, 255, 0.5);
 }
 /* #join {width:500px;margin:auto;color:#FFFFFF;} */
 /* a{color:#FFFFFF;} */
@@ -450,15 +472,45 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   border: solid 2px blue;
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
+
+
+
+#my_video {
+/* top: 55px; */
+position: fixed;
+top:0;
+right: 0;
+bottom: 0;
+/*   position:sticky; */
+  min-width: 100%;
+  min-height: 100%;
+}
+header{
+  z-index:100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 </style>
 </head>
 <body>
+<header>
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
 <!-- 헤더 -->
-
+</header>
+<!-- 영상 배경 화면 추가 - 낙원 : 1013[S] -->
+<video muted autoplay loop id="my_video">
+    <source src="videos/Network.mp4" type="video/mp4">
+</video>
+<!-- 	영상 배경 화면 추가 - 낙원 : 1013[E]   -->
+	  
+	  
+<div class="content">
 <div id="jb-container">
 <!-- <section id="main"> -->
+
 			<form action="MemberJoinPro.me" method="post" id="join" class="join_fr">
 			<fieldset>
 			<legend>회원 가입</legend>
@@ -539,10 +591,11 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 </div>
 
 
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
 
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+<input type="hidden" class="confirm">
+</div>
 </body>
 </html>

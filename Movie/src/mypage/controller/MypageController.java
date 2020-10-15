@@ -25,6 +25,7 @@ import mypage.action.MypageNationAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
 import mypage.action.MypageSelectWishListAction;
+import mypage.action.MypageUpdateProfileAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -123,14 +124,14 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-//		else if (command.equals("/MypageCollection.mp")) {
-//			action = new MypageCollectionAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if (command.equals("/MypageCollection.mp")) {
+			action = new MypageCollectionAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if (command.equals("/MypageCollectionCreate.mp")) {
 			action = new MypageCollectionCreateAction();
 			try {
@@ -157,6 +158,20 @@ public class MypageController extends HttpServlet {
 			}
 		} else if (command.equals("/CollectionDelete.mp")) {
 			action = new MypageCollectionDeleteAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CollectionDelete.mp")) {
+			action = new MypageCollectionDeleteAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MypageUpdateProfile.mp")) {
+			action = new MypageUpdateProfileAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

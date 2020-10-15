@@ -29,8 +29,8 @@ public class MypageCollectionDeleteAction implements Action{
 			
 		}
 		
-		forward = new ActionForward();
-		forward.setPath("/mypage/mypage.jsp");
+//		forward = new ActionForward();
+//		forward.setPath("/mypage/mypage.jsp");
 		
 		return forward;
 	}

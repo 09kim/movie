@@ -64,7 +64,7 @@
 
 <style>
 /* #myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;} */
-#myinfo,.favorite{margin:0 auto;}
+#myinfo,.favorite{padding:20px 20px;margin:0 auto;}
 textarea {
   width: 500px;
   border: 2px solid #aaa;
@@ -158,8 +158,7 @@ table#favoriteGenre {
     text-align: center;
     line-height: 1.5;
     border: 1px solid #ccc;
-    margin: 0 10px;
-    font-size: 1em;
+    margin: 20px 10px;
 }
 table#favoriteGenre thead {
     border-right: 1px solid #ccc;
@@ -191,8 +190,7 @@ table#favoriteNation {
     text-align: center;
     line-height: 1.5;
     border: 1px solid #ccc;
-    margin: 0 10px;
-    font-size: 1em;
+    margin: 20px 10px;
 }
 table#favoriteNation thead {
     border-right: 1px solid #ccc;
@@ -453,21 +451,21 @@ function a() {
 
 
 
-		$('.modifyCollection').click(function(){
+// 		$('.modifyCollection').click(function(){
 			
 			
-			$.ajax('MypageCollectionUpdate.mp',{
-					data:{nick:nick,movieSeq:movieSeq,title:title,idx:idx},
-					success:function(rdata){
-			 				if(rdata=="Y"){
-			 					location.reload();
- 							}
-						}
-					});	
+// 			$.ajax('MypageCollectionUpdate.mp',{
+// 					data:{nick:nick,movieSeq:movieSeq,title:title,idx:idx},
+// 					success:function(rdata){
+// 			 				if(rdata=="Y"){
+// 			 					location.reload();
+//  							}
+// 						}
+// 					});	
 			
 		
 			
-		})
+// 		})
 
 
 		// 최초 화면 로딩 시 작품추가/수정/삭제 버튼 숨기기 - 낙원 : 1013 [S]
@@ -539,6 +537,7 @@ function a() {
 		
 		
 		
+		
 
 		
 		
@@ -569,7 +568,56 @@ function a() {
 		
 		// 회원 정보 수정 스크립트 추가 - 낙원 : 1011[S]
 		// 회원정보 수정 버튼 동작
-		 
+		$('.update_fr').submit(function(){
+			if($('#phoneNumBtn').val()!="1"){
+				$('.confirm').eq(2).val("Y");
+			}
+			if($('#emailBtn').val()!="1"){
+				$('.confirm').eq(3).val("Y");
+			}
+			
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요");
+				$('#pass').focus();
+				return false;
+			}
+			if($('#phoneNum').val()==""){
+				alert("핸드폰 번호를 입력하세요");
+				$('#phoneNum').focus();
+				return false;
+			}
+// 			if($('#certificationNum').val()==""){
+// 				alert("핸드폰 인증코드를 입력하세요");
+// 				$('#certificationNum').focus();
+// 				return false;
+// 			}
+			if($('#email').val()==""){
+				alert("이메일을 입력하세요");
+				$('#email').focus();
+				return false;
+			}
+// 			if($('#certificationNum_email').val()==""){
+// 				alert("이메일 인증코드를 입력하세요");
+// 				$('#certificationNum_email').focus();
+// 				return false;
+// 			}
+			
+			if($('.confirm').eq(1).val()=="Y"==false){
+				alert("패스워드 설정에 문제가 있습니다.");
+				$('#pass').focus();
+				return false;
+			}
+			if($('.confirm').eq(2).val()=="Y"==false){
+				alert("핸드폰 인증에 문제가 있습니다.");
+				$('#certificationNum').focus();
+				return false;
+			}
+			if($('.confirm').eq(3).val()=="Y"==false){
+				alert("이메일 인증에 문제가 있습니다.");
+				$('#certificationNum_email').focus();
+				return false;
+			}
+		});		
 
 	
 	
@@ -800,56 +848,6 @@ function a() {
 			
 			
 			
-			// 프로필 사진 수정 스크립트
-			 var fileTarget = $('.filebox .upload-hidden');
-
-			    fileTarget.on('change', function(){
-			        if(window.FileReader){
-			            // 파일명 추출
-			            var filename = $(this)[0].files[0].name;
-			        } 
-
-			        else {
-			            // Old IE 파일명 추출
-			            var filename = $(this).val().split('/').pop().split('\\').pop();
-			        };
-
-			        $(this).siblings('.upload-name').val(filename);
-			    });
-
-			    //preview image 
-			    var imgTarget = $('.preview-image .upload-hidden');
-
-			    imgTarget.on('change', function(){
-			        var parent = $(this).parent();
-			        parent.children('.upload-display').remove();
-
-			        if(window.FileReader){
-			            //image 파일만
-			            if (!$(this)[0].files[0].type.match(/image\//)) return;
-			            
-			            var reader = new FileReader();
-			            reader.onload = function(e){
-			                var src = e.target.result;
-//		 	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
-//		 	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
-			                $('.profileImage').attr("src",src);
-			                $('.filebox').append('<input type=hidden id=profile_src value='+src+'>');
-			                $('.filebox').append('<div class=change_photo><Button type=submit>적용</Button></div>');
-			            }
-			            reader.readAsDataURL($(this)[0].files[0]);
-			        }
-
-			        else {
-			            $(this)[0].select();
-			            $(this)[0].blur();
-			            var imgSrc = document.selection.createRange().text;
-			            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
-
-			            var img = $(this).siblings('.upload-display').find('img');
-			            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
-			        }
-			    });
 			
 			
 			
@@ -858,10 +856,12 @@ function a() {
 			
 			
 			
-			    $('#update_profile').submit(function(){
-					alert("적용하기")
-					return true;
-			    });
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -886,16 +886,7 @@ function a() {
       <div id="jb-sidebar-left">
 				<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
 			<div class="text-center">
-<!-- 				<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div> -->
-			<form action="MypageUpdateProfile.mp" id="update_profile" method="post" enctype="multipart/form-data">
-					<div class="filebox bs3-primary preview-image">
-                          <label for="input_file"><img class="profileImage" src="" onerror="this.src='../../../Movie/img/noProfile.png'"></label> 
-                          <input type="file" id="input_file" name="input_file" class="upload-hidden"> 
-                    </div>
-			</form>
-
-
-
+				<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div>
 				<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1>
 			</div>
 			<nav id="colorlib-main-menu" role="navigation" class="navbar">
@@ -1033,10 +1024,9 @@ function a() {
 			
 			
 		<div class="table_form" style="display: flex;width:inherit;">
-<!-- 			<div class="table_left" style="flex:0.5"> -->
-			<div class="table_left">
+			<div class="table_left" style="flex:0.3">
 			
-			<fieldset id="genre_nation" style="text-align: center;width:100%;">
+			<fieldset id="genre_nation">
 					<legend>선호 하는 장르</legend>
 					<table id="favoriteGenre">
 					    <thead>
@@ -1054,9 +1044,8 @@ function a() {
 				</div>
 
 
-<!-- 			<div class="table_right" style="flex:0.3;"> -->
-			<div class="table_right">
-				<fieldset id="genre_nation" style="text-align: center;width:100%;">
+			<div class="table_right" style="flex:0.3;">
+				<fieldset id="genre_nation">
 					<legend>선호 하는 국가</legend>
 					<table id="favoriteNation">
 						    <thead>
@@ -1284,6 +1273,7 @@ function a() {
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
 						</a>
 						<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>');"></div>
+						<br>
 						<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
 
 						<div class="modifyDel">
@@ -1292,7 +1282,7 @@ function a() {
 						
 						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
 						<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
-						<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
+						<input type="hidden" name="hposter" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 						<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
 						</div>
 						
@@ -1872,14 +1862,13 @@ $('#listForm').slick({
 
 
 <style type="text/css">
-.slick-track{background-color: #000000;border-radius: 10px 10px;}
 #jb-sidebar-left {
 	width: 400px;
 	height: 100%;
 	text-align: center;
 /* 	padding: 20px; */
 	margin-right: 20px;
-/* 	border:1px solid black; */
+	border:1px solid black;
 /* 	float: left; */
 /* 	color: #FFFFFF; */
 	overflow: visible;
@@ -1887,14 +1876,12 @@ $('#listForm').slick({
 
 #jb-content {
 	height: 100%;
-/* 	width: 100%-400px; */
-	width: 75%;
+	width: 100%-400px;
 	margin-right:auto;
 	margin-left:350px;
 	padding: 20px;
 	margin-bottom: 500px;
-/* 	border:3px solid #FFFFFF; */
-/* 	border:1px solid black; */
+	border:1px solid black;
 /* 	float: left; */
 /* 	color: #FFFFFF; */
 }
@@ -1911,7 +1898,6 @@ textarea {
   transition: 0.3s;
 }
 textarea:focus {
-/*   border-color: dodgerBlue; */
   border-color: dodgerBlue;
   box-shadow: 0 0 8px 0 dodgerBlue;
 }
@@ -2078,14 +2064,13 @@ table#favoriteNation tbody th {
 
 .btn-like{font-size:1.5em;float:left;background-color: inherit;border:none;outline:none;}
 .btn-like:active{outline:none;}
-.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;}
+.poster{width:250px;height:350px;background-size: 100%;}
 .directorName{
 	overflow:hidden;
 	width:250px;
 	text-align: center;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: #FFFFFF;
 }
 .title{
 	overflow:hidden;
@@ -2093,113 +2078,12 @@ table#favoriteNation tbody th {
 	text-align: center;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color:#FFFFFF;
 }
-legend{color: #FFFFFF;margin-left:10px;}
 li{list-style: none;}
 .favoriteDirector{float:left;}
-h1,h2,h3,h4,h5,h6 {
-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-color: #FFFFFF;
-}
+h1,h2,h3,h4,h5,h6 {font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}
 
 .collections{border:2px solid dodgerBlue;margin:30px auto;}
-p{color:#FFFFFF;}
-body{background-color: #14141f;}
-td{background-color: #FFFFFF;}
-.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact {
-/* background-color: rgba(83,83,198,0.5); */
- 
-background-color: rgba(240,255,255,0.1);
-}
-/* .colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact { */
-.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-contact {
-    margin: 1em;
-    color: #FFFFFF;
-    clear: both;
-   width: 1350px;
-    display: block;
-    padding: 10px;
-    border-radius: 10px 10px 10px 10px;
-}
-.colorlib-services{
-width:1350px;
-border-radius: 10px 10px 10px 10px;
-}
-.slick-next {
-   right: 3px;
-}
-
-body {margin: 10px;}
-.where {
-  display: block;
-  margin: 25px 15px;
-  font-size: 11px;
-  color: #000;
-  text-decoration: none;
-  font-family: verdana;
-  font-style: italic;
-} 
-
-.filebox input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0;
-    
-}
-
-.filebox label {
-    display: inline-block;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    overflow: hidden;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-	border-radius: 70%;
-}
-.filebox label>img{
-width:100%;
-height:100%;
-  object-fit: cover;}
-
-.filebox .upload-display {
-    margin-bottom: 5px;
-}
-
-@media(min-width: 768px) {
-    .filebox .upload-display {
-        display: inline-block;
-        margin-right: 5px;
-        margin-bottom: 0;
-    }
-}
-
-.filebox .upload-thumb-wrap {
-    display: inline-block;
-    width: 54px;
-    padding: 2px;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.filebox .upload-display img {
-    display: block;
-    max-width: 100%;
-    width: 100% \9;
-    height: auto;
-}
 
 
 </style>

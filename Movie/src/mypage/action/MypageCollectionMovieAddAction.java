@@ -47,8 +47,8 @@ public class MypageCollectionMovieAddAction implements Action{
 //		if(isInsert) {
 //		}
 		
-		forward = new ActionForward();
-		forward.setPath("/mypage/mypage.jsp");
+//		forward = new ActionForward();
+//		forward.setPath("/mypage/mypage.jsp");
 		
 		
 		return forward;

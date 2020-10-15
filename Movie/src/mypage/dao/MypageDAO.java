@@ -16,6 +16,7 @@ import mypage.vo.CollectionBean;
 import mypage.action.Mypage;
 import mypage.vo.MypageBean;
 import mypage.vo.MypageGenreBean;
+import mypage.vo.ProfileBean;
 
 public class MypageDAO {
 
@@ -613,6 +614,39 @@ public class MypageDAO {
 		
 		
 		return isSuccess;
+	}
+
+	public int updateProfile(ProfileBean profileBean) {
+		int updateCount = -1;
+		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+		String nick; // 닉네임
+		String orgFileName; // 원본 파일 이름
+		String uploadFileName; // 서버에 업로드된 파일 이름
+		String savePath; // 업로드되는 경로
+		try {
+			
+			nick=profileBean.getNick();
+			orgFileName=profileBean.getOrgFileName();
+			uploadFileName=profileBean.getUploadFileName();
+			savePath=profileBean.getSavePath();
+			String sql = "UPDATE profile SET orgFileName=?, uploadFileName=?, savePath=? where nick=?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, orgFileName);
+			pstmt.setString(2, uploadFileName);
+			pstmt.setString(3, savePath);
+			pstmt.setString(4, nick);
+
+			updateCount = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+//			close(rs);
+			close(pstmt);
+		}
+		return updateCount;
 	}
 
 }

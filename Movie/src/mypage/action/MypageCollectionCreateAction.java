@@ -63,6 +63,7 @@ public class MypageCollectionCreateAction implements Action {
 			out.println("<script>");
 			out.println("alert('등록되었습니다')");
 //			out.println("window.location.href = 'MypageCollection.mp'");
+			out.println("window.location.href = 'Mypage.mp'");
 			out.println("</script>");
 		}
 		
@@ -73,8 +74,6 @@ public class MypageCollectionCreateAction implements Action {
 //		}
 //		collectionBean.setTitle(title[1]);
 		
-		forward = new ActionForward();
-		forward.setPath("/mypage/mypage.jsp");
 		
 		return forward;
 	}

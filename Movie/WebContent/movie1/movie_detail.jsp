@@ -799,9 +799,9 @@ String director=request.getParameter("director");%>
       <div id="jb-sidebar-left">
 				<div class="poster"></div>
 				
-				<div id="dialog-message" title="선택하세요." style="display:none">
-   	평가하시려면 로그인이 필요해요. <br>
-   	회원가입 또는 로그인하고 별점을 기록해보세요.
+	<div id="dialog-message" title="선택하세요." style="display:none">
+	   	평가하시려면 로그인이 필요해요. <br>
+	   	회원가입 또는 로그인하고 별점을 기록해보세요.
    	</div>
    	
    	<div id="dialog-comment" title="리뷰" style="display:none">

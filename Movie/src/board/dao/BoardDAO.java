@@ -117,6 +117,7 @@ public class BoardDAO {
 				reviewB.setIdx(rs.getInt("idx"));
 				reviewB.setNick(rs.getString("nick"));
 				reviewB.setMovieSeq(rs.getInt("movieSeq"));
+				reviewB.setTitle(rs.getString("title"));
 				reviewB.setContent(rs.getString("content"));
 				reviewB.setGrade(rs.getInt("grade"));
 				reviewB.setLike_count(rs.getInt("like_count"));

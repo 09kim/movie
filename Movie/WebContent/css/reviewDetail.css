@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+* {margin: 0; padding: 0;}
+
+.stick-h2 {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: #ffffff;
+}
+
+.stick-h3 {
+    position: fixed;
+    top: 5;
+    z-index: 9999;
+    margin: 20px;
+}
+
+.stick-hr {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+a {text-decoration: none; }
+a:link, a:visited {color: #ff0000; }
+a:hover, a:active {color: #ffff00; }
+
+.view {
+    background-color: #e2e2e2; 
+    margin: 20px auto; 
+    width: 40%; 
+    border-radius: 10px;
+}
+
+.reviewNick {
+    margin: auto 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.reviewStar {
+    margin: auto 10px;
+}
+.reviewContent {
+    margin: auto 10px;
+    font-weight: bold;
+}
+.reviewReport {
+    margin: auto 10px;
+    color: #808080;
+}
+.replyBtn1 {
+    margin-left: 60%;
+}
+.replyBtn2 {
+    margin-left: 1%;
+}
+.replyBtn3 {
+    margin-left: 60%;
+}

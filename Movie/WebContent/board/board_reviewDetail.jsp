@@ -20,6 +20,7 @@ String nick = (String)session.getAttribute("nick");
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/reviewDetail.css" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -72,26 +73,24 @@ $(document).ready(function() {
 
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-
    
-    <h1>댓글</h1>
-<div>No. - <%=reviewBean.getIdx() %></div>
-<div>영화제목 - <%=reviewBean.getTitle() %></div>
-<div>별점 - <%=reviewBean.getGrade() %></div>
-<div>영화번호 - <%=reviewBean.getMovieSeq() %></div>
-<div>리뷰내용 - <%=reviewBean.getContent() %></div>
-<br>
-
-    <div>
-        <textarea rows="5" cols="30" id="replyContent"></textarea>
-        <input type="button" value="댓글쓰기" id="replyBtn" >
+   <h3 class="stick-h3"> <a href="javascript:history.back()">◀ </a></h3>
+   
+  <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px;">
+	<br>
+	<div class="reviewContent"><%=reviewBean.getTitle() %>  ★ <%=reviewBean.getGrade() / 2.0 %></div>
+	<hr>
+	<div class="reviewNick"><%=reviewBean.getContent() %></div>
+	<br>
+    <div class="reviewStar">
+        <textarea rows="3" cols="50" id="replyContent"></textarea>
+        &nbsp;&nbsp; <input type="button" value="댓글쓰기" id="replyBtn" >
     </div>
-<br>
+	<br>
+  </nav>
 <div id="replyShow"></div>
 
-
-<h3><%=reviewBean.getTitle() %> 리뷰의 댓글</h3>
-<br>
+<h2 class="stick-h2">댓글</h2>
 
 <%if(replyList != null){ %>
 
@@ -100,15 +99,18 @@ $(document).ready(function() {
 	   <!-- 신고자 10명 넘으면 글 안보임 -->
 	   <%if(rb.getReport() < 10) { %>
 	   
-	   
-		    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
-		    
-		    <%if(nick.equals(rb.getNick())) { %>
-				&nbsp; <input type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
-			    <input type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
-		    
+	      <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px; margin-bottom: 0px">
+		    <br>
+		    <div class="reviewContent"><%=rb.getReply() %></div>
+		    <br>
+		    <div class="reviewReport"><%=rb.getNick() %> | <%=rb.getDate() %></div>
+		    <br>
+	       </nav>
+		    <div>
+		      <%if(nick.equals(rb.getNick())) { %>
+				<input class="replyBtn1" type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
+			    <input class="replyBtn2" type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
 	        </div>
-	        <hr>  
 	        
 		    <script type="text/javascript">
 		    
@@ -197,8 +199,9 @@ $(document).ready(function() {
 		    </script>
 		    
 		    <%} else {%>
-	            &emsp;&emsp; <input type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
-	            <hr>
+		        <div>
+	               <input class="replyBtn3" type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
+	            </div>
 	           
 	           <script type="text/javascript">
 	

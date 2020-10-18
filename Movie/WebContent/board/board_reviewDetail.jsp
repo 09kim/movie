@@ -20,6 +20,7 @@ String nick = (String)session.getAttribute("nick");
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/reviewDetail.css" type="text/css" rel="stylesheet">
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -29,11 +30,10 @@ $(document).ready(function() {
 	var nick = $('#nick').val()
     var movieSeq = $("#movieSeq").val();
     var idx = $('#idx').val();
-
     
     // 댓글 쓰기
     $("#replyBtn").on("click", function() {
-			
+
         var reply = $('#replyContent').val();
 					
 		$.ajax({
@@ -48,10 +48,13 @@ $(document).ready(function() {
 			success: function(data) {
 				
 				$('#replyShow').append(data);
-// 				alert("댓글 작성 완료");
-				
 //              location.href="BoardReviewDetail.bo?movieSeq=" + $('#movieSeq').val() + "&idx=" + $('#idx').val();
 				location.reload();
+				
+<%-- 				var out = "<%=session.getAttribute("out") %>"; --%>
+//                 if(out == "out") {
+//                     alert("댓글을 등록하세요");
+//                 }
 			}
 			
 		});
@@ -70,133 +73,212 @@ $(document).ready(function() {
 
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
-
    
-    <h1>댓글</h1>
-<div>No. - <%=reviewBean.getIdx() %></div>
-<div>영화제목 - <%=reviewBean.getTitle() %></div>
-<div>별점 - <%=reviewBean.getGrade() %></div>
-<div>영화번호 - <%=reviewBean.getMovieSeq() %></div>
-<div>리뷰내용 - <%=reviewBean.getContent() %></div>
-<br>
-
-    <div>
-        <textarea rows="5" cols="30" id="replyContent"></textarea>
-        <input type="button" value="댓글쓰기" id="replyBtn" >
+   <h3 class="stick-h3"> <a href="javascript:history.back()">◀ </a></h3>
+   
+  <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px;">
+	<br>
+	<div class="reviewContent"><%=reviewBean.getTitle() %>  ★ <%=reviewBean.getGrade() / 2.0 %></div>
+	<hr>
+	<div class="reviewNick"><%=reviewBean.getContent() %></div>
+	<br>
+    <div class="reviewStar">
+        <textarea rows="3" cols="50" id="replyContent"></textarea>
+        &nbsp;&nbsp; <input type="button" value="댓글쓰기" id="replyBtn" >
     </div>
-<hr>
+	<br>
+  </nav>
 <div id="replyShow"></div>
 
-
-<h3><%=reviewBean.getTitle() %> 리뷰의 댓글</h3>
+<h2 class="stick-h2">댓글</h2>
 
 <%if(replyList != null){ %>
 
 	<%for(ReplyBean rb : replyList) { %>
-	    <div><%=rb.getNick() %>님의 댓글 : <%=rb.getReply() %> (<%=rb.getDate() %>)
-	    
-	    <%if(nick.equals(rb.getNick())) { %>
-			<input type="button" id="updateReply_<%=rb.getRe_ref() %>" value="수정">
-		    <input type="button" id="deleteReply_<%=rb.getRe_ref() %>" value="삭제">
-	    <%} %>
-        </div>
-        <hr>  
-        
-	    <script type="text/javascript">
-	    
-	    // 댓글 수정
-        $('#updateReply_<%=rb.getRe_ref() %>').click(function() {
-            
-            $('#dialog-message').dialog({
-                modal: true,
-                buttons: {
-                    "수정": function() {
-                        
-                        var nick = $('#nick').val()
-                        var movieSeq = $("#movieSeq").val();
-                        var idx = $('#idx').val();
-                        var reply = $('#replyUpdate').val();
-                        
-                        $.ajax({
-                            url: "BoardReplyUpdate.bo?re_ref=<%=rb.getRe_ref() %>",
-                            method: "get",
-                            data: {
-                                idx:idx,
-                                movieSeq:movieSeq,
-                                nick:nick,
-                                reply:reply
-                            },
-                            success: function(data) {
-                                location.reload();
-                            }
-                        });
-                        
-                        $(this).dialog('close');
-                    },
-                    
-                    "취소": function() {
-                        $(this).dialog('close');
-                    }
-                }
-                
-            });
-            
-        });
-	    
-	    
-	    // 댓글 삭제
-	    $('#deleteReply_<%=rb.getRe_ref() %>').click(function() {
+	
+	   <!-- 신고자 10명 넘으면 글 안보임 -->
+	   <%if(rb.getReport() < 10) { %>
+	   
+	      <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px; margin-bottom: 0px">
+		    <br>
+		    <div class="reviewContent"><%=rb.getReply() %></div>
+		    <br>
+		    <div class="reviewReport"><%=rb.getNick() %> | <%=rb.getDate() %></div>
+		    <br>
+	       </nav>
+		    <div>
+		      <%if(nick.equals(rb.getNick())) { %>
+				<input class="replyBtn1" type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
+			    <input class="replyBtn2" type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
+	        </div>
 	        
-	        $('#delete-message').dialog({
-	            modal: true,
-	            buttons: {
-	                "삭제": function() {
+		    <script type="text/javascript">
+		    
+		    // 댓글 수정
+	        $('#updateReply_<%=rb.getIdx() %>').click(function() {
+	            
+	            $('#update-message').dialog({
+	                modal: true,
+	                buttons: {
+	                    "수정": function() {
+	                        
+	                        var nick = $('#nick').val()
+	                        var movieSeq = $("#movieSeq").val();
+	                        var idx = $('#idx').val();
+	                        var reply = $('#replyUpdate').val();
+	                        
+	                        $.ajax({
+	                            url: "BoardReplyUpdate.bo?idx=<%=rb.getIdx() %>",
+	                            method: "get",
+	                            data: {
+	                                idx:idx,
+	                                movieSeq:movieSeq,
+	                                nick:nick,
+	                                reply:reply
+	                            },
+	                            success: function(data) {
+	                            	console.log(reply);
+	                            	$('#replyShow').append(reply);
+	                                location.reload();
+	                            }
+	                        });
+	                        
+	                        $(this).dialog('close');
+	                    },
 	                    
-	                	var nick = $('#nick').val()
-	                    var movieSeq = $("#movieSeq").val();
-	                    var idx = $('#idx').val();
-	                    var reply = $('#replyContent').val();
-	                    
-	                    $.ajax({
-	                        url: "BoardReplyDelete.bo?re_ref=<%=rb.getRe_ref() %>",
-	                        method: "get",
-	                        data: {
-	                            idx:idx,
-	                            movieSeq:movieSeq,
-	                            nick:nick,
-	                            reply:reply
-	                        },
-	                        success: function(data) {
-	                            location.reload();
-	                        }
-	                    });
-	                    
-	                    $(this).dialog('close');
-	                },
-	                
-	                "취소": function() {
-	                    $(this).dialog('close');
+	                    "취소": function() {
+	                        $(this).dialog('close');
+	                    }
 	                }
-	            }
+	                
+	            });
 	            
 	        });
-	        
-	    });
-
-	    
-	    </script>
+		    
+		    
+		    // 댓글 삭제
+		    $('#deleteReply_<%=rb.getIdx() %>').click(function() {
+		        
+		        $('#delete-message').dialog({
+		            modal: true,
+		            buttons: {
+		                "삭제": function() {
+		                    
+		                	var nick = $('#nick').val()
+		                    var movieSeq = $("#movieSeq").val();
+		                    var idx = $('#idx').val();
+		                    var reply = $('#replyContent').val();
+		                    
+		                    $.ajax({
+		                        url: "BoardReplyDelete.bo?idx=<%=rb.getIdx() %>",
+		                        method: "get",
+		                        data: {
+		                            idx:idx,
+		                            movieSeq:movieSeq,
+		                            nick:nick,
+		                            reply:reply
+		                        },
+		                        success: function(data) {
+		                            location.reload();
+		                        }
+		                    });
+		                    
+		                    $(this).dialog('close');
+		                },
+		                
+		                "취소": function() {
+		                    $(this).dialog('close');
+		                }
+		            }
+		            
+		        });
+		        
+		    });
+		    
+	
+		    </script>
+		    
+		    <%} else {%>
+		        <div>
+	               <input class="replyBtn3" type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
+	            </div>
+	           
+	           <script type="text/javascript">
+	
+	           // 댓글 신고버튼
+	           $('#reportReply_<%=rb.getIdx() %>').click(function() {
+	        	   
+	//         	   var report = $('#report').val();
+	               
+	               $('#report-message').dialog({
+	                   modal: true,
+	                   buttons: {
+	                       "댓글 신고": function() {
+	                           
+	                           var nick = $('#nick').val()
+	                           var movieSeq = $("#movieSeq").val();
+	                           var idx = $('#idx').val();
+	                           var reply = $('#replyContent').val();
+	                           
+	                           $.ajax({
+	                               url: "BoardReplyReport.bo?idx=<%=rb.getIdx() %>",
+	                               method: "get",
+	                               data: {
+	                                   idx:idx,
+	                                   movieSeq:movieSeq,
+	                                   nick:nick,
+	                                   reply:reply
+	                               },
+	                               success: function(data) {
+	                                   location.reload();
+	                                   
+	                                   var out = "<%=session.getAttribute("out") %>";
+	                                   
+	                                   if(out == "out") {
+	                                	   alert("신고 하셨습니다");
+	                                	   location.reload();
+	                                   }
+	                               }
+	                           });
+	                           
+	                           $(this).dialog('close');
+	                       },
+	                       
+	                       "취소": function() {
+	                           $(this).dialog('close');
+	                       }
+	                   }
+	                   
+	               });
+	               
+	           });
+	           
+	           </script>
+		    
+		    <%} %>
+		    
+		<%} %>    
 	    
     <%} %>
     
 <%} %>
 
-<div id="dialog-message" title="댓글 수정" style="display:none">
+<div id="dialog-message" title="선택하세요" style="display:none">
+    댓글을 남기시려면 로그인이 필요해요. <br>
+    회원가입 또는 로그인하고 댓글을 남겨보세요.
+</div>
+
+<div id="update-message" title="댓글 수정" style="display:none">
     <textarea id="replyUpdate" name="replyUpdate" cols="30" rows="5"></textarea>
      댓글을 수정해주세요.
 </div>
 
-<div id="delete-message" title="댓글" style="display:none">
+<div id="delete-message" title="댓글 삭제" style="display:none">
     삭제 하시겠습니까?
+</div>
+
+<div id="report-message" title="댓글 신고" style="display:none">
+    이 댓글을 신고 하시겠습니까?
 </div>
 
 </body>

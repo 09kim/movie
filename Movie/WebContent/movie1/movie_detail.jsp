@@ -21,6 +21,10 @@ String director=request.getParameter("director");%>
 <link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+<link href="${pageContext.request.contextPath}/css/toggle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 <script src="../../../Movie/js/jquery-3.5.1.js"></script>
 <script src="../../../Movie/js/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -506,12 +510,12 @@ String director=request.getParameter("director");%>
        }); 
          
          
+         // 리뷰 
          
          var returnCmt = $('#returnCmt').val();
          function cmtBtn() {
         	 
         	 var typeName = $('#typeName').val();
-        	 
         	 
         	 $('#dialog-comment').dialog({
         		 modal: true,
@@ -528,8 +532,19 @@ String director=request.getParameter("director");%>
         			 	 		  typeName:typeName 
         			 	 		  },
         			 	 		  success:function(data) {
-        			 	 		  	$('#review').append(data);
-        			 	 		    location.reload();
+        			 	 			
+        			 	 			// 스포일러 체크  
+        			 	 			if($('#spoilerCheck').is(":checked") == true) {
+        			                    $('#review').text("스포일러가 포함된 리뷰입니다."); 
+        			                    $('#review').append(data);
+        			                    location.reload();
+        			                    
+        			                 } else {
+	        			 	 		  	$('#review').append(data);
+	        			 	 		    location.reload();
+        			                     
+        			                 }
+        			 	 			  
         			 	 		  }
         			 	 		
         			 	});
@@ -717,6 +732,8 @@ String director=request.getParameter("director");%>
         	});
          
          
+         
+         
    });
     
 </script>
@@ -790,18 +807,19 @@ String director=request.getParameter("director");%>
       <div id="jb-sidebar-left">
 				<div class="poster"></div>
 				
-				<div id="dialog-message" title="선택하세요." style="display:none">
-   	평가하시려면 로그인이 필요해요. <br>
-   	회원가입 또는 로그인하고 별점을 기록해보세요.
+	<div id="dialog-message" title="선택하세요." style="display:none">
+	   	평가하시려면 로그인이 필요해요. <br>
+	   	회원가입 또는 로그인하고 별점을 기록해보세요.
    	</div>
    	
-   	<div id="dialog-comment" title="코멘트" style="display:none">
-   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea><br>
+   	<div id="dialog-comment" title="리뷰" style="display:none">
+   	    <input type="checkbox" id="spoilerCheck" value="스포일러"> 스포일러
+   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	
    	
-   	<div id="delete-message" title="코멘트" style="display:none">
+   	<div id="delete-message" title="리뷰" style="display:none">
    		정말로 삭제 하시겠습니까?
    	</div>
 	<div>
@@ -822,18 +840,19 @@ String director=request.getParameter("director");%>
                  
                  <% if(!(getGrade.equals("0"))){ %>
                 <div id="isGrade">
-        	<%= getGrade %> 점을 입력하셨습니다 
+        	<%= getGrade %> 점을 입력하셨습니다 <br>
         	<% if(returnCmt.equals("")){ %>
-        	<input id="comment" name="comment" type="button" value ="코멘트 남기러 가기">
+	        	<input id="comment" name="comment" type="button" value ="리뷰 남기러 가기">
         	<%}else{ %>
-        	<br><%=nick %>님의 코멘트 :  <%=returnCmt %> 
+        	<div id="review">
+        	<br><%=nick %>님의 코멘트 : <%=returnCmt %> </div>
   			    	 
      			     <input type="button" id ="updateCmt" value="수정">
        	             <input type="button" id ="deleteCmt" value="삭제">
                 	  <%} %>
                 </div>
                 	  
-		<div id="review"></div>
+		
 <%} %> 
 	</div>				
 				
@@ -993,5 +1012,7 @@ $(document).ready(function(){
       
 });
 </script>
+
+      
 </body>
 </html>

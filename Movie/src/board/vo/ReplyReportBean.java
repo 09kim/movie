@@ -2,15 +2,12 @@ package board.vo;
 
 import java.util.*;
 
-public class ReplyBean {
+public class ReplyReportBean {
 	
 	private int idx;
 	private String nick;
-	private int movieSeq;
-	private String reply;
 	private int re_ref;
 	private Date date;
-	private int report;
 	
 	
 	public int getIdx() {
@@ -25,18 +22,6 @@ public class ReplyBean {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	public int getMovieSeq() {
-		return movieSeq;
-	}
-	public void setMovieSeq(int movieSeq) {
-		this.movieSeq = movieSeq;
-	}
-	public String getReply() {
-		return reply;
-	}
-	public void setReply(String reply) {
-		this.reply = reply;
-	}
 	public int getRe_ref() {
 		return re_ref;
 	}
@@ -48,13 +33,6 @@ public class ReplyBean {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}	
-	public int getReport() {
-		return report;
 	}
-	public void setReport(int report) {
-		this.report = report;
-	}
-
+	
 }
-

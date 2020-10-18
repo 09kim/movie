@@ -88,6 +88,8 @@ public class MypageModifyProfileAction implements Action {
         	 boolean insertSuccess = mypageProfileService.insertProfile(profileBean);
              
              if(insertSuccess) {
+        		session.setAttribute("uploadFileName", uploadFileName);
+    	        request.setAttribute("uploadFileName", uploadFileName);
      			response.setContentType("text/html;charset=UTF-8");
      			PrintWriter out = response.getWriter();
      			out.println("<script>");

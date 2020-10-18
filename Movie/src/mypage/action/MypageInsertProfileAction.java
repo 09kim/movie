@@ -19,7 +19,7 @@ import mypage.svc.MypageProfileService;
 import mypage.vo.CollectionBean;
 import mypage.vo.ProfileBean;
 import vo.ActionForward;
-
+@Deprecated
 public class MypageInsertProfileAction implements Action {
 
 	@Override

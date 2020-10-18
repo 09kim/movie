@@ -975,7 +975,7 @@ function a() {
 <%--                           <label for="input_file"><img class="profileImage" src="<%=realProfilePath %>" onerror="this.src='../../../Movie/img/noProfile.png'"></label>  --%>
 <%--                           <label for="input_file"><img class="profileImage" src="<%="../../../Movie/upload/"+uploadFileName %>"></label>  --%>
 							<%if(profileBean !=null){ %>
-                          <label for="input_file"><img class="profileImage" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></label> 
+                          <label for="input_file"><img class="profileImage" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noProfile.png'"></label> 
                          <%} %>
                           <input type="file" id="input_file" name="input_file" class="upload-hidden"> 
                     </div>

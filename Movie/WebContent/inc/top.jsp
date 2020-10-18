@@ -66,7 +66,10 @@ String uploadFileName = (String)session.getAttribute("uploadFileName");
 <%--       	<a class="nav-link-outline text-white" href="Mypage.mp"><img class="profileTop" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'" class="rounded-circle no-gutters" style="width:20%"></a> --%>
       	<a style="margin:auto 0;" class="nav-link-outline text-white" href="Mypage.mp"><img style="margin:auto 0;" id="profileTop" class="no-gutters" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a>
 <%--         <a class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a> --%>
-      <%} %>
+      <%}else{ %>
+      	<a style="margin:auto 0;" class="nav-link-outline text-white" href="Mypage.mp"><img style="margin:auto 0;" id="profileTop" class="no-gutters" src="${pageContext.request.contextPath}/img/noProfile.png" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a>
+      <%} %>      
+      
       	<a style="margin:auto 0;" class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a>
       </li>
       <li class="nav-item">

@@ -95,6 +95,13 @@ $(document).ready(function(){
 //      	  			 				opener.location.reload();
 
 
+     	   					var dupCheck="";
+
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[S]
+							if( $(".collectionView", opener.document).eq(<%=seq%>).find('.title').length==0){
+								dupCheck="Y";
+//									alert("판별결과 널 : " + dupCheck)
+								 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1018
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
 								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
@@ -112,6 +119,52 @@ $(document).ready(function(){
 												 	  			      				'<input type="hidden" name="idx"></div>');
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								return false;
+							}else{ // #movies가 존재하는 경우
+								// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1018
+								 $(".collectionView", opener.document).eq(<%=seq%>).find('.title').each(function(idx) {
+									dupCheck="";
+									var title = $(".collectionView", opener.document).eq(<%=seq%>).find('.title').eq(idx).text();
+									// 중복되는 것이 없는 경우 Y
+									if(title!=title5){
+										dupCheck="Y";
+//												alert("판별결과 : " + dupCheck)
+									} else {
+										// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1018
+										dupCheck="N";
+//												alert("판별결과 : " + dupCheck)
+											return false;
+									}
+									
+								});
+								
+								
+								// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1018
+								if(dupCheck=="Y"){
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+									 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+//	 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+													 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+													 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+													 	  			      				'<div class=title>'+title5+'</div>'+
+													 	  			      				'<div class=modifyDel>' +
+//	 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+													 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
+													 	  			      				'</div>' +
+													 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+													 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+													 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+													 	  			      				'<input type="hidden" name="idx"></div>');
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1018
+									alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+								}
+								
+							}
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[E]
+
 
      	   						}
      	 					});
@@ -146,40 +199,76 @@ $(document).ready(function(){
 //      	  			 				opener.location.reload();
 
 
+     	   					var dupCheck="";
+
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[S]
+							if( $(".collectionView", opener.document).eq(<%=seq%>).find('.title').length==0){
+								dupCheck="Y";
+//									alert("판별결과 널 : " + dupCheck)
+								 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1018
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
 								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
-												 	  			      			    '<div id="modifyMovies"></div>'+ 
-												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
-												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+// 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
 												 	  			      				'<div class=title>'+title5+'</div>'+
 												 	  			      				'<div class=modifyDel>' +
-												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+// 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
 												 	  			      				'</div>' +
 												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
-												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
-												 	  			      				'<input type="hidden" name=idx></div>');
+												 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name="idx"></div>');
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								return false;
+							}else{ // #movies가 존재하는 경우
+								// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1018
+								 $(".collectionView", opener.document).eq(<%=seq%>).find('.title').each(function(idx) {
+									dupCheck="";
+									var title = $(".collectionView", opener.document).eq(<%=seq%>).find('.title').eq(idx).text();
+									// 중복되는 것이 없는 경우 Y
+									if(title!=title5){
+										dupCheck="Y";
+//												alert("판별결과 : " + dupCheck)
+									} else {
+										// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1018
+										dupCheck="N";
+//												alert("판별결과 : " + dupCheck)
+											return false;
+									}
+									
+								});
+								
+								
+								// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1018
+								if(dupCheck=="Y"){
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+									 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+//	 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+													 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+													 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+													 	  			      				'<div class=title>'+title5+'</div>'+
+													 	  			      				'<div class=modifyDel>' +
+//	 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+													 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
+													 	  			      				'</div>' +
+													 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+													 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+													 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+													 	  			      				'<input type="hidden" name="idx"></div>');
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1018
+									alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+								}
+								
+							}
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[E]
 
-
-
-
-
-
-
-
-
-
-<%--      	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
-//      	  			      			    "<br>" +
-//      	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-//      	  			      				title5+ 
-//      	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-//      	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-//      	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-//      	  			      		   );  
 
      	   						}
      	 					});
@@ -326,37 +415,76 @@ $(document).ready(function(){
 
 
 
+  	   					var dupCheck="";
+
+						// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[S]
+						if( $(".collectionView", opener.document).eq(<%=seq%>).find('.title').length==0){
+							dupCheck="Y";
+//								alert("판별결과 널 : " + dupCheck)
+							 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1018
+							// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+							// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+							 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+//												 	  			      			    '<div id="modifyMovies"></div>'+ 
+											 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+											 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+											 	  			      				'<div class=title>'+title5+'</div>'+
+											 	  			      				'<div class=modifyDel>' +
+//												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+											 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
+											 	  			      				'</div>' +
+											 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+											 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+											 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+											 	  			      				'<input type="hidden" name="idx"></div>');
+							// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+							// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+							return false;
+						}else{ // #movies가 존재하는 경우
+							// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1018
+							 $(".collectionView", opener.document).eq(<%=seq%>).find('.title').each(function(idx) {
+								dupCheck="";
+								var title = $(".collectionView", opener.document).eq(<%=seq%>).find('.title').eq(idx).text();
+								// 중복되는 것이 없는 경우 Y
+								if(title!=title5){
+									dupCheck="Y";
+//											alert("판별결과 : " + dupCheck)
+								} else {
+									// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1018
+									dupCheck="N";
+//											alert("판별결과 : " + dupCheck)
+										return false;
+								}
+								
+							});
+							
+							
+							// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1018
+							if(dupCheck=="Y"){
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
 								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
-												 	  			      			    '<div id="modifyMovies"></div>'+ 
-												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
-												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+// 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
 												 	  			      				'<div class=title>'+title5+'</div>'+
 												 	  			      				'<div class=modifyDel>' +
-												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+// 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
 												 	  			      				'</div>' +
 												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
-												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
-												 	  			      				'<input type="hidden" name=idx></div>');
+												 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name="idx"></div>');
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+							} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1018
+								alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+							}
+							
+						}
+						// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[E]
 
-
-
-
-
-
-<%--   	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
-//   	  			      			    "<br>" +
-  	  			      			
-//   	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-//   	  			      				"<a href='MovieDetailPro.mo?movieSeq=" + movieSeq + '&query=' + title6 + ">"+ title5 + "</a>" + 
-//   	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-//   	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-//   	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-//   	  			      		   );  
 
   	   						}
   	 					});
@@ -457,43 +585,76 @@ $(document).ready(function(){
 
 
 
+	   						var dupCheck="";
+
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[S]
+							if( $(".collectionView", opener.document).eq(<%=seq%>).find('.title').length==0){
+								dupCheck="Y";
+//									alert("판별결과 널 : " + dupCheck)
+								 // 슬라이드에 객체 추가하는 구문 - 낙원 : 1018
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
 								 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
-												 	  			      			    '<div id="modifyMovies"></div>'+ 
-												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'>'+
-												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div></a>'+ 
+// 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+												 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+												 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
 												 	  			      				'<div class=title>'+title5+'</div>'+
 												 	  			      				'<div class=modifyDel>' +
-												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+// 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+												 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
 												 	  			      				'</div>' +
 												 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
 												 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
-												 	  			      				'<input type="hidden" name=poster" value='+image[0]+'>' +
-												 	  			      				'<input type="hidden" name=idx></div>');
+												 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+												 	  			      				'<input type="hidden" name="idx"></div>');
 								// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
 								// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								return false;
+							}else{ // #movies가 존재하는 경우
+								// each문으로 mypage의 #movies에 있는 title값을 가져와서 비교 - 낙원 : 1018
+								 $(".collectionView", opener.document).eq(<%=seq%>).find('.title').each(function(idx) {
+									dupCheck="";
+									var title = $(".collectionView", opener.document).eq(<%=seq%>).find('.title').eq(idx).text();
+									// 중복되는 것이 없는 경우 Y
+									if(title!=title5){
+										dupCheck="Y";
+//												alert("판별결과 : " + dupCheck)
+									} else {
+										// 하나라도 중복되는경우 값은N으로 변경 후 리턴으로 반복문 종료 - 낙원 : 1018
+										dupCheck="N";
+//												alert("판별결과 : " + dupCheck)
+											return false;
+									}
+									
+								});
+								
+								
+								// 판별결과 Y인 경우 #movies에 슬라이드 추가 - 낙원 : 1018
+								if(dupCheck=="Y"){
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [S]
+									 $(".collectionView", opener.document).eq(<%=seq%>).slick('slickAdd',"<div class=eachList>"+ 
+//	 												 	  			      			    '<div id="modifyMovies"></div>'+ 
+													 	  			      			    '<a href=MovieDetailPro.mo?movieSeq='+movieSeq+'></a>'+
+													 	  			      			    '<div class=poster style="background-image: url('+image[0]+')"></div>'+ 
+													 	  			      				'<div class=title>'+title5+'</div>'+
+													 	  			      				'<div class=modifyDel>' +
+//	 												 	  			      				'<button class="modifyDeleteBtn" type="button">삭제</button>' +
+													 	  			      				'<input type=button class="modifyDeleteBtn" value=삭제>' +
+													 	  			      				'</div>' +
+													 	  			      				'<input type="hidden" name="movieSeq" value='+movieSeq+'>'+
+													 	  			      				'<input type="hidden" name="title" value='+title5+'>' +
+													 	  			      				'<input type="hidden" name="poster" value='+image[0]+'>' +
+													 	  			      				'<input type="hidden" name="idx"></div>');
+									// 수정화면에서 작품 추가 시 생기는 버튼의 클래스를 modifyDelBtn -> modifyDeleteBtn으로 변경함
+									// 뷰단과 추가한 객체가 인덱스가 꼬여서 클래스이름 개별적으로 구분함. - 낙원 [E]
+								} else { // N인경우 중복이므로 중복된 영화라고 알림창 출력 - 낙원 : 1018
+									alert("같은 영화를 중복으로 추가하실 수 없습니다.")
+								}
+								
+							}
+							// #movies객체가 존재 하지 않을경우(null)을 판별. 객체가 없는 상태이므로 객체를 추가하는 구문을 추가함 - 낙원 : 1018[E]
 
-							
-
-
-
-
-
-
-
-
-
-
-
-<%-- 	  			      		   $('#' + '<%=add%>', opener.document).after( --%>
-// 	  			      			    "<br>" +
-// 	  			      				"<img src='" +image[0]+"'>"+ "<br>" +
-// 	  			      				title5+ 
-// 	  			      				"<input type='hidden' value='"+ movieSeq + "'name = 'movieSeq' id='movieSeq'>" +
-// 	  			      				"<input type='hidden' value='"+ poster + "'name = 'poster'>" + "<br>" + 
-// 	  			      				"<input type='hidden' value='"+ title5 + "'name = 'title'>" 
-// 	  			      		   );  
 
 	   						}
 	 					});

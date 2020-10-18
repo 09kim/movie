@@ -1,3 +1,4 @@
+<%@page import="mypage.vo.ProfileBean"%>
 <%@page import="mypage.vo.CollectionBean"%>
 <%@page import="mypage.vo.MypageBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,11 +9,17 @@
 <html>
 <%
     MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
+//     ProfileBean profileBean = (ProfileBean)request.getAttribute("profileBean"); // 프로필 사진 받는 객체 - 낙원 : 1015
+	ProfileBean profileBean=(ProfileBean)session.getAttribute("profileBean");
     String nick = (String)session.getAttribute("nick");
     ArrayList<MypageBean> wishMovie = (ArrayList<MypageBean>)request.getAttribute("wishMovie");
     ArrayList<MypageBean> gradeList = (ArrayList<MypageBean>) request.getAttribute("gradeList");
     int listCount = (int) request.getAttribute("listCount");
     ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
+    
+    String savePath = profileBean.getSavePath();
+		String uploadFileName = profileBean.getUploadFileName();
+	String realProfilePath = savePath + "\\" + uploadFileName;
 	%>
 	<head>
 	<meta charset="utf-8">
@@ -338,7 +345,7 @@ function a() {
 //  						$('.director').append('<div class=favoriteDirector>'+img+'<br>'+item2.director+'</div>');
 //  						$('.director').append('<div class=favoriteDirector><div class="poster" style="background-image: url('+imgSrc+') onerror=this.src=../../../Movie/img/noImage.gif></div><div class="directorName">'+item2.director+'</div></div>');
  						$('.director').append('<div class=favoriteDirector>'+
- 								'<div class=poster style="background-image: url('+imgSrc+')" onerror=this.src=../../../Movie/img/noImage.gif></div>'+
+ 								'<div class=poster style="background-image: url('+imgSrc+'),url(${pageContext.request.contextPath}/img/noImage.gif"></div>'+
  								'<div class="directorName">'+item2.director+'</div></div>');
 					});
 				});
@@ -569,7 +576,56 @@ function a() {
 		
 		// 회원 정보 수정 스크립트 추가 - 낙원 : 1011[S]
 		// 회원정보 수정 버튼 동작
-		 
+		$('.update_fr').submit(function(){
+			if($('#phoneNumBtn').val()!="1"){
+				$('.confirm').eq(2).val("Y");
+			}
+			if($('#emailBtn').val()!="1"){
+				$('.confirm').eq(3).val("Y");
+			}
+			
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요");
+				$('#pass').focus();
+				return false;
+			}
+			if($('#phoneNum').val()==""){
+				alert("핸드폰 번호를 입력하세요");
+				$('#phoneNum').focus();
+				return false;
+			}
+// 			if($('#certificationNum').val()==""){
+// 				alert("핸드폰 인증코드를 입력하세요");
+// 				$('#certificationNum').focus();
+// 				return false;
+// 			}
+			if($('#email').val()==""){
+				alert("이메일을 입력하세요");
+				$('#email').focus();
+				return false;
+			}
+// 			if($('#certificationNum_email').val()==""){
+// 				alert("이메일 인증코드를 입력하세요");
+// 				$('#certificationNum_email').focus();
+// 				return false;
+// 			}
+			
+			if($('.confirm').eq(1).val()=="Y"==false){
+				alert("패스워드 설정에 문제가 있습니다.");
+				$('#pass').focus();
+				return false;
+			}
+			if($('.confirm').eq(2).val()=="Y"==false){
+				alert("핸드폰 인증에 문제가 있습니다.");
+				$('#certificationNum').focus();
+				return false;
+			}
+			if($('.confirm').eq(3).val()=="Y"==false){
+				alert("이메일 인증에 문제가 있습니다.");
+				$('#certificationNum_email').focus();
+				return false;
+			}
+		});	
 
 	
 	
@@ -577,6 +633,11 @@ function a() {
 			$('#phoneNumBtn').val("1"); // 핸드폰 번호 변경 버튼을 한번이라도 누르면 1값으로 밸류값을 변경 추후 버튼 클릭 유무와 인증 판별을 위해서 밸류를 넣어둠 - 낙원 : 1012
 			var btnName=$('#phoneNumBtn').html();
 			var phone = $("#phoneNum").val();
+			if(phone==""){
+				alert("핸드폰 번호를 입력하세요");
+				$('#phoneNum').focus();
+				return false;
+			}
 			if(btnName=="핸드폰 번호 변경"){
 				// 핸드폰 번호 변경 버튼 클릭시 핸드폰 번호값이 바뀌므로 버튼 이름을 핸드폰 번호 인증으로 변경하고 readonly옵션을 false로 변경 - 낙원 : 1012
 				$('#phoneNumBtn').html("핸드폰 번호 인증");
@@ -699,7 +760,7 @@ function a() {
 					    $('#st_msg').removeClass();
 				        $('#st_msg').addClass('중간');
 				        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
-				        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+				        $('#regPass').html('사용 가능');
 //	 			        $('.confirm').eq(1).val("N");
 				        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
 					} else { // 한가지 조합으로만 8글자 입력했을 경우
@@ -790,6 +851,8 @@ function a() {
 					}
 				}
 		        });
+			
+			
 				
 			// 이메일 인증 번호 입력란 표시를 최초에 숨김 - 낙원 : 1012
 			$(".emailConfirm").hide();
@@ -800,7 +863,7 @@ function a() {
 			
 			
 			
-			// 프로필 사진 수정 스크립트
+			// 프로필 사진 수정 스크립트 - 낙원 1015[S]
 			 var fileTarget = $('.filebox .upload-hidden');
 
 			    fileTarget.on('change', function(){
@@ -835,7 +898,11 @@ function a() {
 //		 	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
 			                $('.profileImage').attr("src",src);
 			                $('.filebox').append('<input type=hidden id=profile_src value='+src+'>');
-			                $('.filebox').append('<div class=change_photo><Button type=submit>적용</Button></div>');
+// 			                alert($('.change_photo').length);
+			                if($('.change_photo').length==0){ // 버튼 중복 생성을 막기위해서 객체가 없을때 length==0일때는 버튼생성 - 낙원 : 1015
+			                	 $('.filebox').append('<div class=change_photo><Button type=submit>적용</Button></div>');
+			                }
+			               
 			            }
 			            reader.readAsDataURL($(this)[0].files[0]);
 			        }
@@ -863,8 +930,24 @@ function a() {
 					return true;
 			    });
 			
-			
-			
+			 // 프로필 사진 수정 스크립트 - 낙원 1015[E]
+			    
+			    
+			    // 상단 이동 버튼 기능 추가 - 낙원 : 1016[S]
+			      $( '.moveTop' ).hide(); // 시작시에 hide로 안보이게 함(밑에 함수는 스크롤동작을했을때만 동작하므로)
+				    $( window ).scroll( function() {
+			          if ( $( this ).scrollTop() > 200 ) {
+			            $( '.moveTop' ).fadeIn();
+			          } else {
+			            $( '.moveTop' ).fadeOut();
+			          }
+			        } );
+			        $( '.moveTop' ).click( function() {
+			          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+			          return false;
+			        } );
+			      // 상단 이동 버튼 기능 추가 - 낙원 : 1016[E]
+			    
 			
 			
 	
@@ -889,14 +972,19 @@ function a() {
 <!-- 				<div class="author-img" style="background-image: url(프로필사진주소), url(img/noProfile.png);"></div> -->
 			<form action="MypageUpdateProfile.mp" id="update_profile" method="post" enctype="multipart/form-data">
 					<div class="filebox bs3-primary preview-image">
-                          <label for="input_file"><img class="profileImage" src="" onerror="this.src='../../../Movie/img/noProfile.png'"></label> 
+<%--                           <label for="input_file"><img class="profileImage" src="<%=realProfilePath %>" onerror="this.src='../../../Movie/img/noProfile.png'"></label>  --%>
+<%--                           <label for="input_file"><img class="profileImage" src="<%="../../../Movie/upload/"+uploadFileName %>"></label>  --%>
+							<%if(profileBean !=null){ %>
+                          <label for="input_file"><img class="profileImage" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></label> 
+                         <%} %>
                           <input type="file" id="input_file" name="input_file" class="upload-hidden"> 
                     </div>
 			</form>
 
 
 
-				<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1>
+				<div id="colorlib-logo"><a href="Mypage.mp"><%=nick %></a></div>
+<%-- 				<h1 id="colorlib-logo"><a href="index.html"><%=nick %></a></h1> --%>
 			</div>
 			<nav id="colorlib-main-menu" role="navigation" class="navbar">
 				<div id="navbar" class="collapse">
@@ -935,7 +1023,7 @@ function a() {
 			<section class="colorlib-about" data-section="about">
 			<fieldset>
 			<legend>회원 정보 수정</legend>
-			<form action="MemberUpdatePro.me" method="post" id="join" class="update_fr">
+			<form action="MemberUpdatePro.me" method="post" id="update_fr" class="update_fr">
 				<fieldset>
 				<legend>닉네임</legend>
 				<div class="inputWithIcon inputIconBg">
@@ -1097,7 +1185,7 @@ function a() {
 							<div class="wishList">
 							<%  String a = String.format("%05d" ,wishInfo.getMovieSeq()); %>
 										<%if(wishInfo.getPoster()!=null){ %>
-										<div class="poster" style='background-image: url(<%=wishInfo.getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"></a>
+										<div class="poster" style='background-image: url(<%=wishInfo.getPoster()%>),url(${pageContext.request.contextPath}/img/noImage.gif'><a href="MovieDetailPro.mo?movieSeq=<%=a%>&query=<%=wishInfo.getTitle()%>"></a>
 										<%if(wishInfo.getWish().equals("Y")){ %>
 										<button class="btn-like" value="<%=nick%>,<%=wishInfo.getTitle() %>,<%=wishInfo.getWish() %>,<%=a %>,<%=wishInfo.getIdx()%>">❤️</button>
 										<% }%>
@@ -1125,7 +1213,7 @@ function a() {
 				<div id="gradeList">
 					<%  String a = String.format("%05d" ,gradeList.get(i).getMovieSeq()); %>
 
-										<div class="poster" style='background-image: url(<%=gradeList.get(i).getPoster()%>)' onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></div>
+										<div class="poster" style='background-image: url(<%=gradeList.get(i).getPoster()%>),url(${pageContext.request.contextPath}/img/noImage.gif'></div>
 										<div class="title"><%=gradeList.get(i).getTitle() %></div>
 										<div class="wrap-star" style="float:left;margin-left:-50px;">								
 										<div class='star-rating' style="float:left;">
@@ -1283,7 +1371,7 @@ function a() {
 						<div id="modifyMovies"></div>
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>&query=<%=collection.get(i).getTitle().split(",")[o]%>">
 						</a>
-						<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>');"></div>
+						<div class="poster" style="background-image: url('<%=collection.get(i).getPoster().split(",")[o]%>'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div>
 						<div class="title"><%=collection.get(i).getTitle().split(",")[o]%></div>
 
 						<div class="modifyDel">
@@ -1633,8 +1721,7 @@ function a() {
       
       </div>
 <!--       사이드 센터[E] -->
-	
-	
+<div class="moveTop" style="cursor:pointer;">TOP</div>
 	
 	
 	
@@ -2078,7 +2165,7 @@ table#favoriteNation tbody th {
 
 .btn-like{font-size:1.5em;float:left;background-color: inherit;border:none;outline:none;}
 .btn-like:active{outline:none;}
-.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;}
+.poster{width:250px;height:350px;background-size: 100%;margin-right:10px;margin-top:20px;margin-left:10px; background-repeat:no-repeat;}
 .directorName{
 	overflow:hidden;
 	width:250px;
@@ -2103,7 +2190,8 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
 color: #FFFFFF;
 }
 
-.collections{border:2px solid dodgerBlue;margin:30px auto;}
+/* .collections{border:2px solid dodgerBlue;margin:30px auto;} */
+.collections{border:4px solid #000000;margin:30px auto;border-radius: 10px 10px;}
 p{color:#FFFFFF;}
 body{background-color: #14141f;}
 td{background-color: #FFFFFF;}
@@ -2130,10 +2218,10 @@ border-radius: 10px 10px 10px 10px;
    right: 3px;
 }
 
-body {margin: 10px;}
+/* body {margin: 10px;} */
 .where {
   display: block;
-  margin: 25px 15px;
+/*   margin: 25px 15px; */
   font-size: 11px;
   color: #000;
   text-decoration: none;
@@ -2162,8 +2250,8 @@ body {margin: 10px;}
     background-color: #fdfdfd;
     cursor: pointer;
     overflow: hidden;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
 	border-radius: 70%;
 }
@@ -2200,7 +2288,20 @@ height:100%;
     width: 100% \9;
     height: auto;
 }
-
+#colorlib-aside #colorlib-main-menu ul li a{font-size: 1.5em;}
+.moveTop{
+	position: fixed;
+	bottom: 100px;
+	right: 100px;
+	color: #000000;
+	border-radius: 20%;
+	border: none;
+	background-color: #AAAAAA;
+	font-size: 20px;
+	padding: 0px 10px;
+	z-index:200;
+	
+}
 
 </style>
 

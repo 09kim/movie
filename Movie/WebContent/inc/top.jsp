@@ -1,8 +1,10 @@
+<%@page import="mypage.vo.ProfileBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
 String nick=(String)session.getAttribute("nick");
+String uploadFileName = (String)session.getAttribute("uploadFileName");
 %>
 <%-- <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script> --%>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -12,7 +14,7 @@ String nick=(String)session.getAttribute("nick");
 <header>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-<!--   <a class="navbar-brand" href="#">Navbar</a> -->
+  <a class="navbar-brand" href="Main.me"><img src="${pageContext.request.contextPath}/img/logo.png" style="width:170px;height:40px;"></a>
 <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
 <!--     <span class="navbar-toggler-icon"></span> -->
 <!--   </button> -->
@@ -26,9 +28,12 @@ String nick=(String)session.getAttribute("nick");
 <!--       <li class="nav-item"> -->
 <!--         <a class="nav-link text-white" href="MovieRanking.mo">BoxOffice</a> -->
 <!--       </li> -->
+	<%
+		if(nick != null){%>
       <li class="nav-item">
         <a class="nav-link text-white" href="GradeMovie.mo">Grade</a>
       </li>
+      <%} %>
 <!--       <li class="nav-item dropdown"> -->
 <!--         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 <!--           Dropdown -->
@@ -54,14 +59,18 @@ String nick=(String)session.getAttribute("nick");
     </form>
 <!--      <ul class="navbar-nav mr-auto"> -->
      <ul class="navbar-nav">
+      <li class="nav-item-inline">
      <%
 		if(nick != null && !(request.getServletPath().equals("/member/member_login.jsp"))){ %>
-      <li class="nav-item-inline">
-      	<a class="nav-link-outline text-white" href="Mypage.mp"><img src="${pageContext.request.contextPath}/img/noProfile.png" class="rounded-circle no-gutters" style="width:20%"></a>
-        <a class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a>
+		<%if(uploadFileName !=null){ %>
+<%--       	<a class="nav-link-outline text-white" href="Mypage.mp"><img class="profileTop" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'" class="rounded-circle no-gutters" style="width:20%"></a> --%>
+      	<a style="margin:auto 0;" class="nav-link-outline text-white" href="Mypage.mp"><img style="margin:auto 0;" id="profileTop" class="no-gutters" src="${pageContext.request.contextPath}/upload/<%=uploadFileName%>" onerror="this.src='${pageContext.request.contextPath}/img/noImage.gif'"></a>
+<%--         <a class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a> --%>
+      <%} %>
+      	<a style="margin:auto 0;" class="nav-link-outline text-white" href="Mypage.mp"><%=nick %> 님</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="MemberLogout.me" style="margin-left:-100px">로그아웃</a>
+        <a style="margin-top:3px;" class="nav-link text-white" href="MemberLogout.me">로그아웃</a>
       </li>
       <%
 		} else{ %>
@@ -78,21 +87,22 @@ String nick=(String)session.getAttribute("nick");
   </div>
 </nav>
 
-
-
-
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() { // 세션 자동 동기화 구문 테스트 - 낙원 : 1011
 		var timeoutHnd = null;
 		var logouTimeInterval = 3 * 60 * 1000; // 3 mins here u can increase session time 
-		function OnTimeoutReached() { $.ajax({ url:'${pageContext.request.contextPath}/index.jsp' }); ResetLogOutTimer(); } function ResetLogOutTimer() { clearTimeout(timeoutHnd); // set new timer 
+		function OnTimeoutReached() { $.ajax({ url:'Main.me' }); ResetLogOutTimer(); } function ResetLogOutTimer() { clearTimeout(timeoutHnd); // set new timer 
 		timeoutHnd = setTimeout('OnTimeoutReached();', logouTimeInterval); } timeoutHnd = setTimeout('OnTimeoutReached();', logouTimeInterval);
 	});
 </script>
 
-
+<style type="text/css">
+#profileTop{
+	width:50px;
+	height:50px;
+	border-radius:70%;
+  object-fit: cover;}
+</style>
 
 
 

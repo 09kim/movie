@@ -25,6 +25,8 @@ import member.action.MemberNickAction;
 import member.action.MemberUpdateAction;
 import member.action.MemberUpdatePasswordAction;
 import movie.action.MovieNaverRankingAction;
+import mypage.action.MypageModifyProfileAction;
+import mypage.action.MypageSelectProfileTopAction;
 import vo.ActionForward;
 
 
@@ -166,7 +168,8 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}  
+		
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

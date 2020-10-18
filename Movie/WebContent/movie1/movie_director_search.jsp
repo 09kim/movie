@@ -75,7 +75,8 @@ $(document).ready(function(){
                      
                   if(image[0]){
                 	  $('#directorList').append("<div class=koreaMovie>"+
-                 			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+//                  			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+                 			'<a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><div class=poster style="background-image: url('+image[0]+');" onerror=this.src=${pageContext.request.contextPath}/img/noImage.gif></div></a>'+
                  			 '<div class=nation>'+item2.nation+'</div>'+
                  			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                  			 '<div class=title>'+title5+'</div></div>');
@@ -139,12 +140,31 @@ $(document).ready(function(){
 .foreignMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
 .actorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
 .directorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;}
+.content{border:1px solid black;margin:20px auto;padding:20px 0px;background-color: rgba(240,255,255,0.1);border-radius: 10px 10px 10px 10px;}
+.slick-track{background-color: #000000;border-radius: 10px 10px;}
+.title,.nation,.rating{
+	overflow:hidden;
+	width:250px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color:#FFFFFF;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+color: #FFFFFF;
+}
 </style>
 </head>
 <body>
+<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+	<jsp:include page="/inc/top.jsp"/>
+	<div class="clear"></div>
+</div>
 <section id="main">
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+
+<div class="content">   
 <%String director=request.getParameter("director"); %>
 <%String nick = (String)session.getAttribute("nick"); %>
 <input type="hidden" id="director" name=director value="<%=director%>">
@@ -154,7 +174,10 @@ $(document).ready(function(){
 
 <h1>감독 검색 결과</h1>
    <section id="directorList"></section>
+</div>
 </section>
-
+<style type="text/css">
+body{background-color: #14141f;}
+</style>
 </body>
 </html>

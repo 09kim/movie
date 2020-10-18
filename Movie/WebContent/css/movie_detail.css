@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+body{background-color: #14141f !important;}
 #jb-container {
 	width: 1200px;
 	height: 100%;
@@ -70,7 +70,7 @@
 	width: 400px;
 	height: 100%;
 	text-align: center;
-	padding: 20px;
+	padding: 0px 20px 20px 20px;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	float: left;
@@ -149,18 +149,15 @@ dt {
 	text-align: center;
 	width: 250px;
 	height: 400px;
-	margin-right: 20px;
 }
 
-.stillCut {
-	margin-right: 20px;
-}
+
 
 .jbMenu {
-	clear: both;
+/* 	clear: both; */
 	display: flex;
 	justify-content: center;
-/* 	position: relative; */
+	position: sticky;
 	top: 0;
 	height: 100%;
 	margin: 0 auto;
@@ -200,4 +197,40 @@ dt {
 	border: none;
 	outline: 0;
 	font-size: 1.5em;
+}
+.moveTop{
+	position: fixed;
+	bottom: 100px;
+	right: 100px;
+	color: #000000;
+	border-radius: 20%;
+	border: none;
+	background-color: #AAAAAA;
+	font-size: 20px;
+	padding: 0px 10px;
+	z-index:200;
+	
+}
+.slick-track{background-color: #000000;border-radius: 10px 10px;}
+.poster {
+    width: 250px;
+    height: 350px;
+    background-size: 100%;
+     background-repeat:no-repeat;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.stillCut {
+    width: 250px !important;
+    height: 150px !important;
+	background-size: cover !important;
+    margin:20px 10px !important;
+    background-repeat:no-repeat !important;
+}
+
+.ui-dialog{
+	color:#FFFFFF !important;
+	background-color: #000000 !important0;
+	
 }

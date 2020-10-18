@@ -14,6 +14,11 @@ $(document).ready(function(){
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
 		var phone = $("#phoneNum").val();
+		if(phone==""){
+			alert("핸드폰 번호를 입력하세요");
+			$('#phoneNum').focus();
+			return false;
+		}
 		$.ajax('ForgetEmailPro.me',{
 			data:{phone:phone},
 			success:function(rdata){
@@ -99,6 +104,7 @@ cellPhone.onkeyup = function(event){
 
 
 <style type="text/css">
+body{background-image: url("${pageContext.request.contextPath}/img/background/forget_phone_background.jpg");background-repeat: no-repeat;background-size: 100%;}
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
 #jb-container {
@@ -180,6 +186,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   border: solid 2px blue;
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
+legend{color: #FFFFFF;margin-left:10px;}
 </style>
 
 

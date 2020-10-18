@@ -46,7 +46,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				maxNum = rs.getInt(1) + 1;
 			}
-			sql = "INSERT INTO member VALUES(?,?,?,?,?,null,now())";
+			sql = "INSERT INTO member VALUES(?,?,?,?,?,null,now(),null)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, maxNum);
 			pstmt.setString(2, mb.getEmail());

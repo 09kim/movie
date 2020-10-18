@@ -46,7 +46,7 @@ $(document).ready(function(){
 				    $('#st_msg').removeClass();
 			        $('#st_msg').addClass('중간');
 			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
-			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+			        $('#regPass').html('사용 가능');
 // 			        $('.confirm').eq(1).val("N");
 			        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
 				} else { // 한가지 조합으로만 8글자 입력했을 경우
@@ -229,6 +229,7 @@ $(document).ready(function(){
 <style type="text/css">
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
 /* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
+body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;}
 #jb-container {
     z-index : 100;
 	width:800px;
@@ -308,6 +309,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
   border: solid 2px blue;
 /*   box-shadow: 0 0 8px 0 dodgerBlue; */
 }
+legend{color: #FFFFFF;margin-left:10px;}
 </style>
 
 </body>

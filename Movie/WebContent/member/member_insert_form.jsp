@@ -120,6 +120,11 @@ $(document).ready(function(){
 	// 핸드폰 인증번호
 	$('#phoneNumBtn').click(function() {
 		var phone = $("#phoneNum").val();
+		if(phone==""){
+			alert("핸드폰 번호를 입력하세요");
+			$('#phoneNum').focus();
+			return false;
+		}
 		alert(phone)
 		$.ajax('Message.me',{
 			data:{phone:phone},
@@ -220,7 +225,7 @@ $(document).ready(function(){
 				    $('#st_msg').removeClass();
 			        $('#st_msg').addClass('중간');
 			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
-			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
+			        $('#regPass').html('사용 가능');
 // 			        $('.confirm').eq(1).val("N");
 			        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
 				} else { // 한가지 조합으로만 8글자 입력했을 경우
@@ -355,11 +360,12 @@ $(document).ready(function(){
 	margin:0 auto;
 /* 	padding: 100px; */
     padding: 20px 100px 20px 100px;
-	height: 85%;
+	height: 90%;
 /* 	margin: 0 auto; */
 	border: 1px solid #bcbcbc;
 /* 	background: rgba(0, 0, 0, 0.5); */
     background: rgba(255, 255, 255, 0.5);
+    overflow:scroll
 }
 /* #join {width:500px;margin:auto;color:#FFFFFF;} */
 /* a{color:#FFFFFF;} */
@@ -502,7 +508,8 @@ header{
 </header>
 <!-- 영상 배경 화면 추가 - 낙원 : 1013[S] -->
 <video muted autoplay loop id="my_video">
-    <source src="videos/Network.mp4" type="video/mp4">
+<!--     <source src="videos/Network.mp4" type="video/mp4"> -->
+    <source src="videos/kings.mp4" type="video/mp4">
 </video>
 <!-- 	영상 배경 화면 추가 - 낙원 : 1013[E]   -->
 	  

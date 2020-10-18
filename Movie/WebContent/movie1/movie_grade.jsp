@@ -10,28 +10,19 @@
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/moviecss/movie.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-
-.movieList {
-}
+/* .movieList {margin-top: 100px;} */
 .thisMovie{
 	float:left;
-	padding:20px;
+/* 	padding:20px; */
 	margin-left: 30px;
 }
 
-.poster_img {
-	width:213px;
-	height:303px;
-}
-
-.title {
-	width:230px;
-	height:100px;
-}
-
 </style>
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	var nick = $('#nick').val();
@@ -59,13 +50,67 @@ $(document).ready(function(){
    // 랜덤한 영화를 보여주는 Jqeury 문
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
-      $(".thisMovie").remove();
+//       $(".thisMovie").remove();
+	if($('.slick-track').length>0){
+// 	alert("객체있음")
+//     $('.movieList').unslick();
+    $('.thisMovie').remove();
+//     $('.slick-track').remove();
+	}else{
+// 		alert("객체없음");
+		
+		 $('.movieList').slick({
+      	   dots: false,
+           infinite: false,
+           arrows: true,
+           variableWidth:true,
+           speed: 300,
+           slidesToShow: 4,
+           slidesToScroll: 3,
+      	   responsive: [
+      	     {
+      	       breakpoint: 1024,
+      	       settings: {
+      	         slidesToShow: 3,
+      	         slidesToScroll: 3,
+      	         infinite: false,
+      	         dots: false
+      	       }
+      	     },
+      	     {
+      	       breakpoint: 600,
+      	       settings: {
+      	         slidesToShow: 2,
+      	         slidesToScroll: 2
+      	       }
+      	     },
+      	     {
+      	       breakpoint: 480,
+      	       settings: {
+      	         slidesToShow: 1,
+      	         slidesToScroll: 1
+      	       }
+      	     }
+      	   ]
+      	 });   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+//       $(".thisMovie").children().remove();
             $.ajax("GradeMoviePro.mo",{
                method:"get",
                dataType :"json",
                data:{type:type},
                success:function(data){
             	   var grade = 0;
+            	  
                   $.each(data.Data,function(idx,item){
                      var i =1;
                      var l =1;
@@ -79,16 +124,22 @@ $(document).ready(function(){
                         var title2 = titleNoSpace.replace(/!HS/g,'')
                         var title3 = title2.replace(/!HE/g,'')
                         var title5 = title3.trim();
+                        var title6 =  encodeURIComponent(title5);
                         
-                        $('.movieList').append('<div class=thisMovie>'
-                                +'<div class=poster>'
-                                +'<img class="poster_img">'
-                                +'</div>'
-                                 +'<div class=title>'
-                                +'<a class="link"></a>'
-                                + "<br>"
-                                + "<span class='star-input'>"
-                                +   "<span class='input'>"
+                        
+                        
+                        
+                        if(image[0]){
+                        
+                        $('.caption').html('<h1>'+nick+'님에게 추천하는 '+type+'장르 영화</h1>');
+                        
+                        
+                        // 새로 장르 갱신시에 .thisMovie를 remove해버리면 슬릭슬라이더까지 모두 삭제되는 문제때문에 새로운 객체 생성방식이 아닌 기존에 있는 슬라이더 틀에 슬라이드를 추가하는식으로 구문을 변경 - 낙원 : 1018[S]
+                        $('.movieList').slick('slickAdd',"<div class=thisMovie>"
+                                +'<a class="link"><div class=poster style="background-image: url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
+                                 +'<div class=title>'+title+'</div>'
+                                + "<span class=star-input style=width:200px;margin-left:75px;text-align:center;>"
+                                +   "<span class=input style=width:200px;margin:0 auto;text-align:center;>"
                                 
                              
                                 +'<input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>'
@@ -101,45 +152,83 @@ $(document).ready(function(){
                                 +'<input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>'
                                 +'<input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>'
                                 +'<input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>'
-                                + '</span></span>' );
-
+                                + '</span></span></div>' );
                         
+                             // 새로 장르 갱신시에 .thisMovie를 remove해버리면 슬릭슬라이더까지 모두 삭제되는 문제때문에 새로운 객체 생성방식이 아닌 기존에 있는 슬라이더 틀에 슬라이드를 추가하는식으로 구문을 변경 - 낙원 : 1018[S]
+                        
+                        // 기존 생성구문 주석 처리 - 낙원 :[S]
+//                         $('.movieList').append('<div class=thisMovie>'
+// //                                 +'<div class=poster>'
+// //                                 +'<a class="link" onclick="window.open('+url+',"[갓챠]"'+title+'"의 상세 정보","resizable=no width=2000 height=2500");return false"><div class=poster style="background-image: url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
+//                                 +'<a class="link"><div class=poster style="background-image: url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'
+// //                                 +'<img class="poster_img">'
+// //                                 +'</div>'
+//                                  +'<div class=title>'+title+'</div>'
+// //                                 +'<a class="link"></a>'
+// //                                 + "<br>"
+//                                 + "<span class=star-input style=width:250px;margin-left:75px;text-align:center;>"
+//                                 +   "<span class=input style=width:250px;margin:0 auto;text-align:center;>"
+                                
+                             
+//                                 +'<input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>'
+//                                 +'<input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>'
+//                                 +'<input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>'
+//                                 +'<input type="button" class="c4" ><label style= "width: 40px; z-index: 7;" class="l4">4</label>'
+//                                 +'<input type="button" class="c5" ><label style= "width: 50px; z-index: 6;" class="l5">5</label>'
+//                                 +'<input type="button" class="c6" ><label style= "width: 60px; z-index: 5;" class="l6">6</label>'
+//                                 +'<input type="button" class="c7" ><label style= "width: 70px; z-index: 4;" class="l7">7</label>'
+//                                 +'<input type="button" class="c8" ><label style= "width: 80px; z-index: 3;" class="l8" >8</label>'
+//                                 +'<input type="button" class="c9" ><label style= "width: 90px; z-index: 2;" class="l9">9</label>'
+//                                 +'<input type="button" class="c10"><label style= "width: 100px; z-index: 1;" class="l10">10</label>'
+//                                 + '</span></span></div>' );
+                        // 기존 생성구문 주석 처리 - 낙원 :[E]
+                        
+                        }
                         
 //                         $('.poster_img:eq(idx)').attr("src="+image[idx]);
                            
 							                           
-                        if(image[0]){
-                        	$('.poster_img').eq(idx).attr("src",image[0]);
-                            $('.link').eq(idx).text(title);
+//                         if(image[0]){
+//                         	$('.poster_img').eq(idx).attr("src",image[0]);
+//                             $('.link').eq(idx).text(title);
 //                             $('.link').eq(idx).attr("href",'MovieDetailPro.mo?movieId='+item2.movieId+'&movieSeq='
 //                                   +item2.movieSeq+'&query='+title5);
-                            var url = 'MovieDetailModal.mo?movieId='+item2.movieId+'&movieSeq='
-                            +item2.movieSeq+'&query='+title5
-                            
+
+
+//                             var url = 'MovieDetailModal.mo?movieId='+item2.movieId+'&movieSeq='
+//                             +item2.movieSeq+'&query='+title5
+
+//                             var url = 'MovieDetailModal.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title5+'&image='+image[0];
+//                             var url = 'MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title5+'&image='+image[0];
+                          
+							var url = 'MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6;
+//                             $('.link').eq(idx).attr("href",url);
                             $('.link').click(function(){
-                                $('#dialog-message').dialog({
-                              		 modal: true,
-                              		  open: function () {
-                              		 $(this).load(url);
-                              		  },
-                              		height: 2000,
 
-                                    width: 1500,
+                            window.open(url, "[갓챠]"+title+"의 상세 정보", "width:2500,height:2500,scrollbars:no");
+//                                 $('#dialog-message').dialog({
+//                               		 modal: true,
+//                               		  open: function () {
+//                               		 $(this).load(url);
+//                               		  },
+//                               		height: 2000,
 
-                                    title: '디테일 페이지'
+//                                     width: 1500,
+
+//                                     title: '디테일 페이지'
 
 
 
-                              	 }); 
+//                               	 }); 
                                 });
                             
                             var nation = item2.nation.split(",");
                             $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                            
-                        }else{
-                        	$('.thisMovie').eq(idx).hide();
-//                            $('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
-                        }
+//                         }else{
+//                         	$('.thisMovie').eq(idx).hide();
+// //                            $('.poster_img').eq(idx).attr("src",'../../../Movie/img/noImage.gif');
+//                         }
                         
                         
 
@@ -237,6 +326,8 @@ $(document).ready(function(){
                   
                   });//each문 끝남
               });
+                     
+                     
            }
                
                
@@ -244,15 +335,32 @@ $(document).ready(function(){
         });
    });
    
-  
+   // 상단 이동 버튼 기능 추가 - 낙원 : 1016[S]
+   $( '.moveTop' ).hide(); // 시작시에 hide로 안보이게 함(밑에 함수는 스크롤동작을했을때만 동작하므로)
+	    $( window ).scroll( function() {
+       if ( $( this ).scrollTop() > 200 ) {
+         $( '.moveTop' ).fadeIn();
+       } else {
+         $( '.moveTop' ).fadeOut();
+       }
+     } );
+     $( '.moveTop' ).click( function() {
+       $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+       return false;
+     } );
+   // 상단 이동 버튼 기능 추가 - 낙원 : 1016[E]
   
    
 });
 </script>
 </head>
-<jsp:include page="../inc/top.jsp" />
-<div class="clear"></div><br><br><br>
 <body>
+<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+	<jsp:include page="/inc/top.jsp"/>
+	<div class="clear"></div>
+	
+	
+<section id="main">	
 <input type="hidden" id = "nick" class="nick" value=<%=nick %>>
 <select style="position: fixed; top:100px;" id="categoryMovie">
 <option >정렬기준</option>
@@ -274,10 +382,21 @@ $(document).ready(function(){
 <option id ="mystery" value="미스터리">미스터리</option>
 <option id ="melo" value="멜로">멜로/로맨스</option>
 <option id ="adventure" value="어드벤처">어드벤처</option>
-</select>
+</select><br>
+<div class="content">
+<div class="caption"></div>
 <div class="movieList"></div>
+</div>
 <div id="dialog-message">
 
 </div>
+</section>
+<div class="moveTop" style="cursor:pointer;">TOP</div>
+<style type="text/css">
+body{background-color: #14141f;}
+.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+</style>
 </body>
 </html>

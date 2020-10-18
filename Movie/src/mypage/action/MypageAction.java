@@ -11,10 +11,12 @@ import action.Action;
 import member.vo.MemberBean;
 import mypage.svc.MypageAddCollectionService;
 import mypage.svc.MypageGradeService;
+import mypage.svc.MypageProfileService;
 import mypage.svc.MypageSelectWishListService;
 import mypage.svc.MypageService;
 import mypage.vo.CollectionBean;
 import mypage.vo.MypageBean;
+import mypage.vo.ProfileBean;
 import vo.ActionForward;
 
 public class MypageAction implements Action {
@@ -76,7 +78,20 @@ public class MypageAction implements Action {
 		// 컬렉션 셀렉트 객체 받는 코드 - 낙원 : 1007[E]
 		
 		
-		
+		// 프로필 사진 받는 코드 - 낙원 : 1015[S]
+//		MypageProfileService mypageProfileService = new MypageProfileService();
+//        ProfileBean profileBean = mypageProfileService.getProfile(nick);
+//        System.out.println("셀렉트로 가져온 파일이름 : " + profileBean.getUploadFileName());
+//        System.out.println("셀렉트로 가져온 파일경로 : " + profileBean.getSavePath());
+//        
+//        request.setAttribute("profileBean", profileBean);
+		if(nick!="") {
+			MypageProfileService mypageProfileService = new MypageProfileService();
+	        ProfileBean profileBean = mypageProfileService.getProfile(nick);
+	        String path = profileBean.getUploadFileName();
+	        String fileName = profileBean.getUploadFileName();
+			session.setAttribute("profileBean", profileBean);
+		}
 		
 		
 		

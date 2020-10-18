@@ -11,9 +11,9 @@
 	
 	$(document).ready(function(){
 	   
-	   $('#join').submit(function(){
+	   $('#login').submit(function(){
 	      if($('#email').val()==""){
-	         alert("ID를 입력하세요");
+	         alert("Email을 입력하세요");
 	         $('#email').focus();
 	         return false;
 	      }

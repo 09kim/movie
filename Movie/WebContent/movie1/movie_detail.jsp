@@ -385,7 +385,9 @@ String director=request.getParameter("director");%>
                      $('.caption_top').append(query); // 상단 제목줄 큰 제목 - 낙원 : 1002
                      $('.caption_bottom').append('<span class="repRlsDate">'+item2.repRlsDate+'</span>&nbsp'); // 상단 제목줄 밑 개요 표시줄 개봉일 표시 - 낙원 : 1002
                      $('.caption_bottom').append('<span class="age">'+age+'</span>'); // 상단 제목줄 밑 개요 표시줄 개봉일 표시 - 낙원 : 1002
-                     $('.poster').append('<img style=width:250px;height:350px; src='+image[0]+' onerror=this.src="../../../Movie/img/noImage.gif">'); // 상단 제목줄 밑 개요 표시줄 시청가능연령 표시 - 낙원 : 1002
+//                      $('.poster').append('<img style=width:250px;height:350px; src='+image[0]+' onerror=this.src="../../../Movie/img/noImage.gif">'); // 상단 제목줄 밑 개요 표시줄 시청가능연령 표시 - 낙원 : 1002
+//                      $('.poster').append('<img style=width:250px;height:350px; src="'+image[0]+'" onerror=this.src="${pageContext.request.contextPath}/img/noImage.gif">'); // 상단 제목줄 밑 개요 표시줄 시청가능연령 표시 - 낙원 : 1002
+                     $('.poster').append('<img style=width:250px;height:350px; src="'+image[0]+'" onerror=this.src="${pageContext.request.contextPath}/img/noImage.gif">'); // 상단 제목줄 밑 개요 표시줄 시청가능연령 표시 - 낙원 : 1002
                      $('.info').append('<dt>개요</dt>'); // 개요
                      $('.info').append('<dd id=summaryInfo><span class=age>'+age+'</span><span style="padding-left:5px;" id="playTime">'+item2.runtime+'분</span>'); // 개요
                      $('.info').append('<dt>상영국가</dt>'); // 상영국가
@@ -407,8 +409,13 @@ String director=request.getParameter("director");%>
                      
                      
                     	 for(var i in stills){
-                          $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
-                          }
+							if(stills[i]){                    		 
+                          $('.posters').append('<div class=stillCut style="background-image: url('+stills[i]+');"></div>')
+//                           $('.posters').append('<div class=stillCut><img style="height:150px;" src='+stills[i]+' onerror=this.src=../../../Movie/img/noImage.gif></div>')
+							}else{
+								$('.posters').append('<div class=stillCut style="background-image: url(${pageContext.request.contextPath}/img/noImage.gif;")></div>')
+							}
+						}
                      
                         if(keyword[0]!=""||keyword[keyword.length]!=""){
                            
@@ -482,7 +489,8 @@ String director=request.getParameter("director");%>
                       
                       if(image[0]){
                     	  $('.directorsMovie').append("<div class=directorsMovieList>"+
-                     			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+//                      			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+								 '<a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><div class=poster style="background-image: url('+image[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
                      			 '<div class=nation>'+item2.nation+'</div>'+
                      			 '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                      			 '<div class=title>'+title5+'</div></div>');
@@ -788,7 +796,7 @@ String director=request.getParameter("director");%>
    	</div>
    	
    	<div id="dialog-comment" title="코멘트" style="display:none">
-   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea>
+   		<textarea id="opinion" name="opinion" cols="30" rows="5"></textarea><br>
    		이 작품에 대한 <%=nick %> 님의 평가를 글로 남겨보세요.
    	</div>
    	
@@ -869,11 +877,13 @@ String director=request.getParameter("director");%>
 <input type="hidden" id="getGrade" value="<%=getGrade %>">
 <input type="hidden" id="returnCmt" value="<%=returnCmt %>">
     
-    
+
     </div>
 <!-- #jb-container[E] -->
 </section>
 <!-- main[E] -->
+
+<div class="moveTop" style="cursor:pointer;">TOP</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -957,6 +967,29 @@ $(document).ready(function(){
             // instead of a settings object
           ]
         }); // slick(.directorsMovieList)끝
+        
+        
+        
+     // 상단 이동 버튼 기능 추가 - 낙원 : 1016[S]
+        $( '.moveTop' ).hide(); // 시작시에 hide로 안보이게 함(밑에 함수는 스크롤동작을했을때만 동작하므로)
+  	    $( window ).scroll( function() {
+            if ( $( this ).scrollTop() > 200 ) {
+              $( '.moveTop' ).fadeIn();
+            } else {
+              $( '.moveTop' ).fadeOut();
+            }
+          } );
+          $( '.moveTop' ).click( function() {
+            $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+            return false;
+          } );
+        // 상단 이동 버튼 기능 추가 - 낙원 : 1016[E]
+        
+        
+        
+        
+        
+        
       
 });
 </script>

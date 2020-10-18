@@ -42,6 +42,7 @@ function auto_reload(){
 		
 	});
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title></title>
 </head>

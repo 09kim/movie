@@ -21,11 +21,12 @@ import mypage.action.MypageDirectorAction;
 import mypage.action.MypageDirectorSrcAction;
 import mypage.action.MypageGenerAction;
 import mypage.action.MypageGradeAction;
+import mypage.action.MypageInsertProfileAction;
 import mypage.action.MypageNationAction;
 import mypage.action.MypageProAction;
 import mypage.action.MypageSelectWishAction;
 import mypage.action.MypageSelectWishListAction;
-import mypage.action.MypageUpdateProfileAction;
+import mypage.action.MypageModifyProfileAction;
 import vo.ActionForward;
 
 @WebServlet("*.mp")
@@ -171,7 +172,7 @@ public class MypageController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/MypageUpdateProfile.mp")) {
-			action = new MypageUpdateProfileAction();
+			action = new MypageModifyProfileAction();
 			try {
 				action.execute(request, response);
 			} catch (Exception e) {

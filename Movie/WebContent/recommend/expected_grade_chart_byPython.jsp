@@ -41,23 +41,39 @@
 					movieSeq = String(data[i]).substring(String(data[i]).indexOf('/')+1,String(data[i]).length); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
 					poster = getPoster(movieSeq);
 					grade = grade/2
-					 $('.expectedGrade').append("<div class=expectedGradeMovie>"+
-                  		   "<a class=expectedGradePoster><img class=expectedGradePoster_img></a>"+
-                  		   "<div><div class=expectedGradeMovieName></div></div><div class=grade></div>"+
-                  		   "</div>");
+					
+					// 디자인 수정을 위해서 기존 양식 주석처리 - 낙원 : 1016[S]
+// 					 $('.expectedGrade').append("<div class=expectedGradeMovie>"+
+//                   		   "<a class=expectedGradePoster><img class=expectedGradePoster_img></a>"+
+//                   		   "<div><div class=expectedGradeMovieName></div></div><div class=grade></div>"+
+//                   		   "</div>");
+					// 디자인 수정을 위해서 기존 양식 주석처리 - 낙원 : 1016[E]
+					
+					
+					
+					  $('.expectedGrade').append("<div class=expectedGradeMovie>"+
+//               			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px; src='+image[0]+'></a></div>'+
+              			'<a class=expectedGradePoster><div class=poster style="background-image: url('+poster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
+//               			 '<div class=poster><a href=MovieDetailBySearch.mo?movieId='+item2.movieId+'&movieSeq='+item2.movieSeq+'&query='+title6+'&image='+image[0]+'&temp='+temp+'&weather='+weather+'><img style=width:250px;height:350px;margin-right:20px; src='+image[0]+'></a></div>'+
+              			 '<div class=title>'+title+'</div><div class=grade></div></div>');
+					
+					
 					
                    
-					
-                     if(poster){
-                    	 $('.expectedGradePoster_img').eq(i).css("width","250px").css("height","350px");
-                     		$('.expectedGradePoster_img').eq(i).attr("src",poster);
-                     }else{
-                    	 $('.expectedGradePoster_img').eq(index).css("width","250px").css("height","350px");
-                  	 	$('.expectedGradePoster_img').eq(i).attr("src","../../../Movie/img/noImage.gif");
-                     }
+					// 이미지 로딩 못하면 onerror처리하도록 해서 이부분은 불필요해서 주석 처리 - 낙원 : 1016[S]
+//                      if(poster){
+//                     	 $('.expectedGradePoster_img').eq(i).css("width","250px").css("height","350px");
+//                      		$('.expectedGradePoster_img').eq(i).attr("src",poster);
+//                      }else{
+//                     	 $('.expectedGradePoster_img').eq(index).css("width","250px").css("height","350px");
+//                   	 	$('.expectedGradePoster_img').eq(i).attr("src","../../../Movie/img/noImage.gif");
+//                      }
+                    // 이미지 로딩 못하면 onerror처리하도록 해서 이부분은 불필요해서 주석 처리 - 낙원 : 1016[E]
+                     
+                     
                      $('.grade').eq(i).append('예상 별점'+grade.toFixed(1));
                      $('.expectedGradePoster').eq(i).attr('href','MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+title);
-                     $('.expectedGradeMovieName').eq(i).text(title);
+//                      $('.expectedGradeMovieName').eq(i).text(title); // title css 적용을 위해서 주석처리 - 낙원 : 1016
 				}
 				
 				
@@ -102,6 +118,7 @@
 		
 	});
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title></title>
 </head>

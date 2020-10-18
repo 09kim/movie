@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
+<%-- <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css"> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
@@ -80,7 +80,7 @@ $(document).ready(function(){
                               '<div class=nation>'+item2.nation+'</div>'+
                               '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                               '<div class=title>'+title5+'</div>' +
-                              "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
+                              "<div><input type='button' value='담기' style=margin-left:-50px; id='" + item2.movieSeq + "'</div></div>");
                      } 
                      
                      $('#koreaList').on('click', '#'+item2.movieSeq, function() {
@@ -132,7 +132,7 @@ $(document).ready(function(){
                               '<div class=nation>'+item2.nation+'</div>'+
                               '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                               '<div class=title>'+title5+'</div>' +
-                              "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
+                              "<input type='button' value='담기' style=margin-left:-50px; id='" + item2.movieSeq + "'</div>");
                      } 
                      $('#foreignList').on('click', '#'+item2.movieSeq, function() {
 //                     	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
@@ -311,7 +311,7 @@ $(document).ready(function(){
                            '<div class=nation>'+item2.nation+'</div>'+
                            '<div class=rating>'+item2.rating[0].ratingGrade+'</div>'+
                            '<div class=title>'+title5+'</div>' +
-                           "<input type='button' value='담기' id='" + item2.movieSeq + "'</div>");
+                           "<input type='button' value='담기' style=margin-left:-50px; id='" + item2.movieSeq + "'</div>");
                   }  
                   $('#actorList').on('click', '#'+item2.movieSeq, function() {
 //                  	 $("#movies", opener.document).text("<li>"+item2.movieSeq+"</li>");
@@ -547,6 +547,21 @@ $(document).ready(function(){
          }
    });
       
+         // 상단 이동 버튼 기능 추가 - 낙원 : 1016[S]
+            $( '.moveTop' ).hide(); // 시작시에 hide로 안보이게 함(밑에 함수는 스크롤동작을했을때만 동작하므로)
+      	    $( window ).scroll( function() {
+                if ( $( this ).scrollTop() > 200 ) {
+                  $( '.moveTop' ).fadeIn();
+                } else {
+                  $( '.moveTop' ).fadeOut();
+                }
+              } );
+              $( '.moveTop' ).click( function() {
+                $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+                return false;
+              } );
+            // 상단 이동 버튼 기능 추가 - 낙원 : 1016[E]
+      
 });
 </script>
 </head>
@@ -562,16 +577,59 @@ $(document).ready(function(){
    <input type="hidden" id="nick" name=nick value="<%=nick%>">
    <input type="hidden" id="temp">
    <input type="hidden" id="weather">
+<div class="content">   
 <h1>국내영화</h1>
    <section id="koreaList">
    </section>
+</div>
+<div class="content">   
 <h1>국외영화</h1>
    <section id="foreignList">
    </section>
+</div>
+<div class="content">   
 <h1>영화인 검색 결과</h1>
    <section id="actorList"></section>
+</div>
+<div class="content">   
 <h1>감독 검색 결과</h1>
    <section id="directorList"></section>
+</div>
 </section>
+<div class="moveTop" style="cursor:pointer;">TOP</div>
+
+<style type="text/css">
+.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.koreaMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.foreignMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.actorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+.directorMovie {text-align: center;width: 250px;height:400px;margin-right: 20px;}
+/* .foreignMovie.poster{text-align: center;} */
+/* .foreignMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+/* .actorMovie {text-align: center;width: 250px;height:350px;} */
+/* .actorMovie.poster{text-align: center;} */
+/* .actorMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+/* .directorMovie {text-align: center;width: 250px;height:350px;} */
+/* .directorMovie.poster{text-align: center;} */
+/* .directorMovie>.title{text-align: center;text-overflow: ellipsis;white-space: nowrap;} */
+.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;}
+.content{border:1px solid black;margin:20px auto;padding:20px 0px;background-color: rgba(240,255,255,0.1);border-radius: 10px 10px 10px 10px;}
+.slick-track{background-color: #000000;border-radius: 10px 10px;}
+.title,.nation,.rating{
+	overflow:hidden;
+	width:250px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color:#FFFFFF;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+color: #FFFFFF;
+}
+body{background-color: #14141f;}
+</style>
 </body>
 </html>

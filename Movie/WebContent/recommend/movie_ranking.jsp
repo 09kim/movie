@@ -109,24 +109,41 @@ $(document).ready(function() {
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
-                       // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
-                       $('.boxOffice').append("<div class=boxOfficeMovie>"+
-                    		   "<div><a class=boxOfficePoster><img class=boxOfficePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-                    		   "<div class =boxOfficeMovieName></div>"+
-                    		   "<div class=boxOfficeNation></div></div>"); // rating 추가 - 낙원 : 0930
-                       result = getNation(openDt,titleNoSpace);
-                       result = result.split("|");
                        
-                       if(result[0]){
-                       		$('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
-                       		$('.boxOfficePoster_img').eq(idx2).attr("src",result[0]);
-                       }else{
-                    	   $('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
-                    	 	$('.boxOfficePoster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
-                       }
-             		   $('.boxOfficeNation').eq(idx2).text(result[1]);
+                       // 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[S]
+                       // 기존 movie_ranking 양식에 맞춰서 만든것 - 낙원:0930
+//                        $('.boxOffice').append("<div class=boxOfficeMovie>"+
+//                     		   "<div><a class=boxOfficePoster><img class=boxOfficePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
+//                     		   "<div class =boxOfficeMovieName></div>"+
+//                     		   "<div class=boxOfficeNation></div></div>"); // rating 추가 - 낙원 : 0930
+                    		// 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[E]
+                       result = getNation(openDt,titleNoSpace);
+                       result = result.split("|");	 
+                       
+                       
+								$('.boxOffice').append("<div class=boxOfficeMovie>"+
+                      			'<a class=boxOfficePoster><div class=poster style="background-image:url('+result[0]+'),url(${pageContext.request.contextPath}/img/noImage.gif);"></div></a>'+
+                      			 '<div class=nation>'+result[1]+'</div>'+
+                      			 '<div class=title>'+item2.movieNm+'</div></div>');   
+                    	
+                    	
+                      
+                       
+                       
+                       // 이미지 로딩 실패시 onerror처리 추가로 불필요한 코드 주석 처리 - 낙원 : 1016[S]
+//                        if(result[0]){
+//                        		$('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+//                        		$('.boxOfficePoster_img').eq(idx2).attr("src",result[0]);
+//                        }else{
+//                     	   $('.boxOfficePoster_img').eq(idx2).css("width","250px").css("height","350px");
+//                     	 	$('.boxOfficePoster_img').eq(idx2).attr("src","../../../Movie/img/noImage.gif");
+//                        }
+                    // 이미지 로딩 실패시 onerror처리 추가로 불필요한 코드 주석 처리 - 낙원 : 1016[E]
+                       
+                       
+//              		   $('.boxOfficeNation').eq(idx2).text(result[1]);
                        $('.boxOfficePoster').eq(idx2).attr('href','MovieDetailPro.mo?movieSeq='+result[2]+'&query='+titleNoSpace);
-                       $('.boxOfficeMovieName').eq(idx2).html(item2.movieNm);
+//                        $('.boxOfficeMovieName').eq(idx2).html(item2.movieNm);
                        
                       
                        
@@ -179,6 +196,7 @@ $(document).ready(function() {
    
    
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 </head>
 <body>
    <div class="boxOfficeMovie">

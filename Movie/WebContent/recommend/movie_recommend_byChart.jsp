@@ -17,14 +17,25 @@
 					$('.chartMovie').prepend('<h1>일간 인기 영화 순위!</h1>')
 				}
 				$.each(data,function(index,item){
-					$('.MovieChart').append("<div class=MovieChartMovie>"+
-                 		   "<div><a class=MovieChartPoster><img class=MovieChartPoster_img></a></div>"+
-                 		   "<div class =MovieChartMovieName></div>"+
-                 		   "</div>");
-                  	   $('.MovieChartPoster_img').eq(index).css("width","250px").css("height","350px");
-                  	   $('.MovieChartPoster_img').eq(index).attr("src",item.moviePoster);
+					// 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[S]					
+// 					$('.MovieChart').append("<div class=MovieChartMovie>"+
+//                  		   "<div><a class=MovieChartPoster><img class=MovieChartPoster_img></a></div>"+
+//                  		   "<div class =MovieChartMovieName></div>"+
+//                  		   "</div>");
+					// 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[E]
+				
+				
+					  $('.MovieChart').append("<div class=MovieChartMovie>"+
+	                  			'<a class=MovieChartPoster><div class=poster style="background-image: url('+item.moviePoster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
+// 	                  			 '<div class=nation>'+result[1]+'</div>'+ // 국가 없어서 주석 처리 - 낙원 : 1016
+	                  			 '<div class=title>'+item.movieTitle+'</div></div>');   
+					
+					
+					
+//                   	   $('.MovieChartPoster_img').eq(index).css("width","250px").css("height","350px");
+//                   	   $('.MovieChartPoster_img').eq(index).attr("src",item.moviePoster);
 	                   $('.MovieChartPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-	                   $('.MovieChartMovieName').eq(index).html(item.movieTitle);
+// 	                   $('.MovieChartMovieName').eq(index).html(item.movieTitle);
 				});
 				
 				$('.MovieChart').slick({
@@ -65,6 +76,7 @@
 		});
 	});
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 </head>
 <body>
 	<div class="chartMovie">

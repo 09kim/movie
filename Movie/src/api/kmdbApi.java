@@ -223,7 +223,9 @@ public class kmdbApi {
 	public String getMovieByGenre(String genre2,String genre,int startCount, int createDts) throws IOException{
 		System.out.println(startCount);
 		StringBuilder urlBuilder = new StringBuilder(
+				// 기존 100개 가져오는거에서 15개 가져오도록 listCount변경함 - 낙원 : 1018 
 				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&startCount="+startCount+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
+//				"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?listCount=100&startCount="+startCount+"&collection=kmdb_new&ServiceKey=605841J368J95E2I93M1");
 		urlBuilder.append("&" + URLEncoder.encode(genre2, "UTF-8") + "=" + URLEncoder.encode(genre, "UTF-8")); 
 		urlBuilder.append(
 				"&" + URLEncoder.encode("createDts", "UTF-8") + "=" + URLEncoder.encode(createDts+"", "UTF-8")); 

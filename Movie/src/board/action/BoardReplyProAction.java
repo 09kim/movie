@@ -37,27 +37,19 @@ public class BoardReplyProAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
-		replyBean.setData(date);
+		replyBean.setDate(date); 
 		
 		
 		if(reply.equals("")) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('댓글을 등록하세요')");
-			out.print("history.back()");
-			out.print("</script>");
+			String out = "out";
+			HttpSession session2 = request.getSession();
+			session2.setAttribute("out", out);
 			
 		} else {
 			
 			BoardReplyService boardReplyService = new BoardReplyService();
-			boolean isSuccess = boardReplyService.insertReply(replyBean);
+			boolean isSuccess = boardReplyService.insertReply(replyBean, idx);
 			
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('댓글 작성 완료')");
-			out.print("</script>");
 			
 			forward = new ActionForward();
 			forward.setRedirect(false);

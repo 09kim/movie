@@ -18,9 +18,9 @@ public class MemberUpdatePasswordService {
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.setConnection(con);
-		int insertCount = dao.updatePassword(email,pass);
-		System.out.println("sve : " + insertCount);
-		if(insertCount>0) {
+		int updateCount = dao.updatePassword(email,pass);
+		System.out.println("sve : " + updateCount);
+		if(updateCount>0) {
 			isUpdate = true;
 			commit(con);
 		}else {

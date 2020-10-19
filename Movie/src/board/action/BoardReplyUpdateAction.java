@@ -21,7 +21,6 @@ public class BoardReplyUpdateAction implements Action {
 		String nick = (String)session.getAttribute("nick");
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String reply = request.getParameter("reply");
-		int re_ref = Integer.parseInt(request.getParameter("re_ref"));
 		Date date = new Date(System.currentTimeMillis());
 		String currDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		currDate = request.getParameter("date");
@@ -32,8 +31,7 @@ public class BoardReplyUpdateAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
-		replyBean.setRe_ref(re_ref);
-		replyBean.setData(date);
+		replyBean.setDate(date);
 		
 		
 		BoardReplyService boardReplyService = new BoardReplyService();

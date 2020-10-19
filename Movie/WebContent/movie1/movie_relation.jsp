@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<title>미사용 페이지</title>
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
 
 </body>
 </html>

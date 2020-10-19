@@ -38,6 +38,14 @@ public class MypageCollectionUpdateAction implements Action {
 		
 		System.out.println("뀨ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
 		
+		
+		
+		for(int i = 0; i<poster.length;i++) {
+			System.out.println((i+1)+"번째 포스터값 : " + poster[i]);
+		}
+		
+		
+		
 		int[] intArr = null;
 		if( movieSeq != null ){
 		intArr = new int[ movieSeq.length ];
@@ -61,8 +69,12 @@ public class MypageCollectionUpdateAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('등록되었습니다')");
-			out.println("window.location.href = 'MypageCollection.mp'");
+//			out.println("window.location.href = 'MypageCollection.mp'");
+			out.println("window.location.href = 'Mypage.mp'");
 			out.println("</script>");
+//			forward = new ActionForward();
+//			forward.setPath("Main.me");
+//			forward.setRedirect(true);
 		}
 		
 //		collectionBean.setCollection_name(subject);
@@ -71,6 +83,11 @@ public class MypageCollectionUpdateAction implements Action {
 //			title = title[i];
 //		}
 //		collectionBean.setTitle(title[1]);
+		
+//		forward = new ActionForward();
+//		forward.setPath("/mypage/mypage.jsp");
+//		forward.setPath("Mypage.mp");
+		
 		return forward;
 	}
 	

@@ -40,7 +40,9 @@ public class MypageCollectionAction implements Action {
 //		request.setAttribute("test", test);
 		request.setAttribute("collection", collection);
 		forward = new ActionForward();
-		forward.setPath("/mypage/mypage_collection.jsp");
+//		forward.setPath("/mypage/mypage_collection.jsp");
+		forward.setPath("/mypage/mypage.jsp");
+//		forward.setPath("Mypage.mp");
 		
 		return forward;
 	}

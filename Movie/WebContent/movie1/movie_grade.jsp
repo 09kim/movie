@@ -117,8 +117,6 @@ $(document).ready(function(){
                                  +'<div class=title>'+title+'</div>'
                                 + "<span class=star-input style=width:200px;margin-left:75px;text-align:center;>"
                                 +   "<span class=input style=width:200px;margin:0 auto;text-align:center;>"
-                                
-                             
                                 +'<input type="button" class="c1" ><label style= "width: 10px; z-index: 10;" class="l1">1</label>'
                                 +'<input type="button" class="c2" ><label style= "width: 20px; z-index: 9;" class="l2">2</label>'
                                 +'<input type="button" class="c3" ><label style= "width: 30px; z-index: 8;" class="l3">3</label>'
@@ -132,29 +130,29 @@ $(document).ready(function(){
                                 + '</span></span></div>' );
                         
                              // 새로 장르 갱신시에 .thisMovie를 remove해버리면 슬릭슬라이더까지 모두 삭제되는 문제때문에 새로운 객체 생성방식이 아닌 기존에 있는 슬라이더 틀에 슬라이드를 추가하는식으로 구문을 변경 - 낙원 : 1018[S]
-                        
+	                     	
+	                        
                         
                         }
                         
                           
-							var url = 'MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6;
-                            $('.link').click(function(){
+                        var url = 'MovieDetailPro.mo?movieSeq='+item2.movieSeq+'&query='+title6;
+                        $('.link').click(function(){
 
-                            window.open(url, "[갓챠]"+title+"의 상세 정보", "width:2500,height:2500,scrollbars:no");
-                                });
-                            
-                            var nation = item2.nation.split(",");
-                            $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
+                        window.open(url, "[갓챠]"+title+"의 상세 정보", "width:2500,height:2500,scrollbars:no");
+                            });
+                        
+                        var nation = item2.nation.split(",");
+                        $('.c1').eq(idx).val(item2.director[0].directorNm+"/"+nation[0]+"/"+title5+"/"+item2.movieSeq+"/"+item2.runtime+"/"+item2.genre+"/"+item2.prodYear);
                            
 
-                        
-                        // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
+                     	// 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                         for(var o=1;o<11;o++){
-                        $('.c'+o).eq(idx).attr("id","p"+i++);
+                        	$('.c'+o).eq(idx).attr("id","p"+i++);
                         }
                     	 // 10개의 라벨에 각기 다른 값을 부여하기위한 반복문
                         for(var o=1;o<11;o++){
-                        $('.l'+o).eq(idx).attr("for","p"+l++);
+                       	    $('.l'+o).eq(idx).attr("for","p"+l++);
                         }
                         var image = image[0];
                         var garde= 0;

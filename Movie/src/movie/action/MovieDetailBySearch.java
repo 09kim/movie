@@ -21,7 +21,7 @@ public class MovieDetailBySearch implements Action {
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		String movieTitle = request.getParameter("query");
 		String moviePoster = request.getParameter("image");
-		int temp = Integer.parseInt(request.getParameter("temp"));
+		int temp = (int)Double.parseDouble(request.getParameter("temp"));
 		String weather = request.getParameter("weather");
 		MovieBean mb = new MovieBean();
 		mb.setNick(nick);

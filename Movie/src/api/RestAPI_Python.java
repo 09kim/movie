@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class RestAPI_test {
+public class RestAPI_Python {
 	public String getRecommendUser(String nick) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://127.0.0.1:5000/recommendUser/");

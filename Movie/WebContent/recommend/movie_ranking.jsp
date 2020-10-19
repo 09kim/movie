@@ -9,40 +9,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	// 태윤's 장소 확인 및 날씨 정보 기능 ranking에도 추가함 - 낙원
-	var latitude, longitude;
-	   var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
-	   var temp = '0';
-	   var weather = 'no';
-	   
-	   function getLocation(){
-	      window.navigator.geolocation.getCurrentPosition(current_position);
-	   }
-	   
-	   function current_position(position){
-	      latitude = position.coords.latitude;
-	      longitude = position.coords.longitude;
-	      $.ajax("https://api.openweathermap.org/data/2.5/weather?lat="+latitude
-	            +"&lon="+longitude+"&appid="+API_KEY+"&units=metric&lang=kr",{
-	         dataType:"json",
-	         async:false,
-	         success:function(data){
-	            $('#temp').val(data.main.temp);
-	            $('#weather').val(data.weather[0].main);
-	            temp = $('#temp').val();
-	            weather = $('#weather').val();
-	         }
-	      });
-	   }
-	      
-	   window.addEventListener("load",getLocation);
-	
-	
-	
-	
-	
-	
-	
        var result;
        function getNation(openDt,title){
     	   $.ajax("BoxOfficeNation.mo",{

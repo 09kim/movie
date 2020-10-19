@@ -36,6 +36,9 @@
 		<div class="content">
 			<jsp:include page="/recommend/movie_recommend_byTemperature.jsp"/>
 		</div>
+		<div class="content">
+			<jsp:include page="/recommend/movie_recommend_byCollection.jsp"/>
+		</div>
 		<%if(nick!=null) {
 	 		%> 
 				<div class="content">

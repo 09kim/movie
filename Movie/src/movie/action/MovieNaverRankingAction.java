@@ -9,13 +9,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 import action.Action;
-import api.RestAPI_test;
+import api.RestAPI_Python;
 import vo.ActionForward;
 
 public class MovieNaverRankingAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		RestAPI_test rest = new RestAPI_test();
+		RestAPI_Python rest = new RestAPI_Python();
 		String naver = rest.getNaver();
 		JsonParser jsonParser = new JsonParser();
 		JsonArray jsonObject = (JsonArray) jsonParser.parse(naver);

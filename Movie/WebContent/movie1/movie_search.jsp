@@ -11,7 +11,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-   
 		var latitude, longitude;
 		var API_KEY = '19eab104c69d6fa4c412bfe0078fdd0d';
 		var temp = '0';
@@ -387,9 +386,6 @@ $(document).ready(function(){
 		</div>
 	</section>
 	<div class="moveTop" style="cursor:pointer;">TOP</div>
-	
-	
-	
 	
 	
 	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">

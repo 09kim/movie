@@ -37,22 +37,16 @@ $(document).ready(function() {
 	      
 	   window.addEventListener("load",getLocation);
 	
-	
-	
-	
-	
-	
-	
        var result;
        function getNation(openDt,title){
-    	   $.ajax("BoxOfficeNation.mo",{
+          $.ajax("BoxOfficeNation.mo",{
                method: "get",
                dataType: "json",
                async: false, // ajax 방식일때 리턴값만 비동기로 바꿔주는 부분
                data : {
-            	   openDt:openDt,
-            	   title:title
-            	   	},
+                  openDt:openDt,
+                  title:title
+                     },
                success: function(data) { 
                    $.each(data.Data, function(idx, item) {
                 	  $.each(item.Result,function(idx2,item2){
@@ -63,9 +57,9 @@ $(document).ready(function() {
                    });
                    
                }
-      	  });
-    	   return result;
-    	   
+           });
+          return result;
+          
        }
    
        // 하루 전 날짜 구하기
@@ -91,27 +85,27 @@ $(document).ready(function() {
           if(dd < 10){
              dd = "0" + dd;
           }
-		
        var today = yy + "" + mm + "" + dd; // 박스오피스에서 정해준 날짜 형식(yyyymmdd)으로 변환
+       if(d.getDay()!=0){
+          dd = dd-d.getDay();
+       }
+//           alert(dd); 일요일 구하는 메서드
        $.ajax({
             url: "BoxOffice.mo",
                     // &itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정(최대 10)
             method:"get",       
             dataType: "json",
             data: {
-            	targetDt:today,
+               targetDt:today,
             },
             success: function(data) {
             	$('.boxOfficeMovie').prepend('<h1>박스오피스</h1>');
                $.each(data, function(idx, item) {
-            	   $.each(item.weeklyBoxOfficeList, function(idx2,item2){
-            		   var title = item2.movieNm;
+                  $.each(item.weeklyBoxOfficeList, function(idx2,item2){
+                     var title = item2.movieNm;
                        var titleNoSpace = title.replace(/ /g, '');
                        var openDt = item2.openDt.replace(/-/g,'');
                        var num =0;
-                       
-                       result = getNation(openDt,titleNoSpace);
-                       result = result.split("|");	 
                        
                     		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
 								$('.boxOffice').append("<div class=boxOfficeMovie>"+
@@ -124,7 +118,6 @@ $(document).ready(function() {
                        
             	   });
             	  
-                   
                 });
                $('.boxOffice').slick({
             	   dots: false,
@@ -160,7 +153,6 @@ $(document).ready(function() {
             	     }
             	   ]
             	 });
-               
             }
        });
        
@@ -175,5 +167,8 @@ $(document).ready(function() {
    <div class="boxOfficeMovie">
    	 <div class="boxOffice"></div>
    </div>
+<input type="hidden" value="<%=nick%>">
+<%-- <jsp:include page="/inc/top.jsp" /> --%>
+<div class="clear"></div>
 </body>
 </html>

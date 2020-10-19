@@ -2191,7 +2191,7 @@ color: #FFFFFF;
 }
 
 /* .collections{border:2px solid dodgerBlue;margin:30px auto;} */
-.collections{border:4px solid #000000;margin:30px auto;border-radius: 10px 10px;}
+.collections{border:4px solid #000000;margin:0 auto 30px auto;border-radius: 10px 10px;}
 p{color:#FFFFFF;}
 body{background-color: #14141f;}
 td{background-color: #FFFFFF;}

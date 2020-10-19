@@ -805,7 +805,7 @@ String director=request.getParameter("director");%>
       
 <!--       사이드 레프트 [S] -->
       <div id="jb-sidebar-left">
-				<div class="poster"></div>
+				<div class="poster" style="margin-left:55px;"></div>
 				
 	<div id="dialog-message" title="선택하세요." style="display:none">
 	   	평가하시려면 로그인이 필요해요. <br>
@@ -822,7 +822,7 @@ String director=request.getParameter("director");%>
    	<div id="delete-message" title="리뷰" style="display:none">
    		정말로 삭제 하시겠습니까?
    	</div>
-	<div>
+	<div style="width:250px;margin:0 auto;">
    <a href="BoardReviewView.bo?movieSeq=<%=movieSeq %>">모든 리뷰 보러가기</a>
   <span class='star-input'>
                     <span class='input'>

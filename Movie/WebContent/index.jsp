@@ -4,16 +4,10 @@
 <html>
 <head>
 <%String nick = (String)session.getAttribute("nick");%>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-
-
-
-
 
 
 <meta charset="UTF-8">
@@ -21,49 +15,45 @@
 </head>
 <body> 
 	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
-	<jsp:include page="/inc/top.jsp"/>
-	<div class="clear"></div>
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
 	</div>
 	<div class="side_banner">
-	<img src="${pageContext.request.contextPath}/img/background/side_banner.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
-	<img src="${pageContext.request.contextPath}/img/background/side_banner2.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
-	<img src="${pageContext.request.contextPath}/img/background/side_banner3.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
-	<img src="${pageContext.request.contextPath}/img/background/side_banner4.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
+		<img src="${pageContext.request.contextPath}/img/background/side_banner.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
+		<img src="${pageContext.request.contextPath}/img/background/side_banner2.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
+		<img src="${pageContext.request.contextPath}/img/background/side_banner3.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
+		<img src="${pageContext.request.contextPath}/img/background/side_banner4.jpg" onerror="${pageContext.request.contextPath}/img/noImage.gif" style="width:250px;height:600px;">
 	</div>
 	<input type="hidden" id="temp">
 	<input type="hidden" id="weather">
 	<section id="main">
-	<div class="content">
-	<jsp:include page="/recommend/movie_ranking.jsp"/>
-	</div>
-	<div class="content">
-	<jsp:include page="/recommend/movie_recommend_byChart.jsp"/>
-	</div>
-	<div class="content">
-	<jsp:include page="/recommend/movie_recommend_byTemperature.jsp"/>
-	</div>
-	<%if(nick!=null) {
- 		%> 
-			<div class="content">
-			<jsp:include page="/recommend/expected_grade_chart_byPython.jsp"/>
-			</div>
-			<div class="content">
-			<jsp:include page="/recommend/movie_recommend_byGenre.jsp"/>
-			</div>
-			<div class="content">
-			<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
-			</div>
-		<%
- 	}%>
-	<div class="content">
-	<jsp:include page="/recommend/naver_search_ranking.jsp"/>
-	</div>
+		<div class="content">
+			<jsp:include page="/recommend/movie_ranking.jsp"/>
+		</div>
+		<div class="content">
+			<jsp:include page="/recommend/movie_recommend_byChart.jsp"/>
+		</div>
+		<div class="content">
+			<jsp:include page="/recommend/movie_recommend_byTemperature.jsp"/>
+		</div>
+		<%if(nick!=null) {
+	 		%> 
+				<div class="content">
+					<jsp:include page="/recommend/expected_grade_chart_byPython.jsp"/>
+				</div>
+				<div class="content">
+					<jsp:include page="/recommend/movie_recommend_byGenre.jsp"/>
+				</div>
+				<div class="content">
+					<jsp:include page="/recommend/movie_recommend_byNation.jsp"/>
+				</div>
+			<%
+	 	}%>
+		<div class="content">
+			<jsp:include page="/recommend/naver_search_ranking.jsp"/>
+		</div>
 	</section>
 	<div class="moveTop" style="cursor:pointer;">TOP</div>
-	
-	
-	
-	
 	
 <script type="text/javascript">
 $(document).ready(function(){
@@ -96,6 +86,6 @@ $(document).ready(function(){
 }); // ready()끝;
       
 </script>
-
+	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </body>
 </html>

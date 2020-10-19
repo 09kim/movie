@@ -16,13 +16,9 @@ String nick = (String)session.getAttribute("nick");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/reviewDetail.css" type="text/css" rel="stylesheet">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -67,12 +63,17 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
+
 <input type="hidden" id="idx" value="<%=reviewBean.getIdx() %>">
 <input type="hidden" id="movieSeq" value="<%=reviewBean.getMovieSeq() %>">
 <input type="hidden" id="nick" value="<%=nick %>">
 
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
    
    <h3 class="stick-h3"> <a href="javascript:history.back()">◀ </a></h3>
    
@@ -281,5 +282,11 @@ $(document).ready(function() {
     이 댓글을 신고 하시겠습니까?
 </div>
 
+
+
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/reviewDetail.css" type="text/css" rel="stylesheet">
 </body>
 </html>

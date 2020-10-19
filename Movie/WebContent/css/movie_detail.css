@@ -232,5 +232,5 @@ dt {
 .ui-dialog{
 	color:#FFFFFF !important;
 	background-color: #000000 !important0;
-	
+	z-index: 200 !important;
 }

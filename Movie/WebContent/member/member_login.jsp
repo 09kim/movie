@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -74,8 +73,12 @@
 
 </script>
 </head>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
 <div id="jb-container">
 <!-- <section id="main"> -->
 			<form action="MemberLoginPro.me" method="post" id="login">
@@ -118,71 +121,8 @@
 
 
 
-
-
-<style type="text/css">
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
-body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;}
-#jb-container {
-    z-index : 100;
-	width:800px;
-	margin:150px auto;
-	padding: 100px;
-	height: 100%;
-/* 	margin: 0 auto; */
-	border: 1px solid #bcbcbc;
-	
-}
-#login {width:500px;margin:auto;color:#FFFFFF;}
-a{color:#FFFFFF;}
-a:hover{color:orange;}
-
-
-input[type="text"],input[type="email"],input[type="password"] {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-  padding-bottom:4px;
-}
-input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon {
-  position: relative;
-}
-.inputWithIcon i {
-	width:1.5em;/* 아이콘 폭 */
-  position: absolute;
-  left: 0;
-  top: 8px;
-  padding: 9px 8px;
-  color: #aaa;
-  transition: 0.3s;
-}
-.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
-  color: dodgerBlue;
-}
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-
-</style>
+	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/member_login.css" rel="stylesheet" type="text/css">
 </body>
 </html>
 

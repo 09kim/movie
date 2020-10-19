@@ -18,7 +18,7 @@
     ArrayList<CollectionBean> collection = (ArrayList<CollectionBean>)(request.getAttribute("collection")); 
     
     String savePath = profileBean.getSavePath();
-		String uploadFileName = profileBean.getUploadFileName();
+	String uploadFileName = profileBean.getUploadFileName();
 	String realProfilePath = savePath + "\\" + uploadFileName;
 	%>
 	<head>
@@ -65,175 +65,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
-
-
-<style>
-/* #myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;} */
-#myinfo,.favorite{margin:0 auto;}
-textarea {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-}
-
-textarea:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-
-.inputWithIcon textarea {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-
-.inputWithIcon textarea:focus +i {
-  color: dodgerBlue;
-}
-
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-
-.inputWithIcon.inputIconBg textarea:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-input[type="text"],input[type="email"],input[type="password"] {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-}
-
-input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-
-.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon {
-  position: relative;
-}
-
-.inputWithIcon i {
-
-	width:1.5em;/* 아이콘 폭 */
-  position: absolute;
-  left: 0;
-  top: 8px;
-  padding: 9px 8px;
-  color: #aaa;
-  transition: 0.3s;
-}
-
-.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
-  color: dodgerBlue;
-}
-
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-
-.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-#infoup{width:500px;margin-top: 20px;}
-/* li>a{font-size: 1.5em;} */
-
-
-table#favoriteGenre {
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    margin: 0 10px;
-    font-size: 1em;
-}
-table#favoriteGenre thead {
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #e7708d;
-}
-table#favoriteGenre thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-}
-table#favoriteGenre tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #fcf1f4;
-}
-/* table#favoriteGenre td { */
-/*     width: 150px; */
-/*     padding: 10px; */
-/*     vertical-align: top; */
-/*     border-bottom: 1px solid #ccc; */
-/* } */
-table#favoriteNation {
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    margin: 0 10px;
-    font-size: 1em;
-}
-table#favoriteNation thead {
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #e7708d;
-}
-table#favoriteNation thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-}
-table#favoriteNation tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #fcf1f4;
-}
-/* table#favoriteNation td { */
-/*     width: 150px; */
-/*     padding: 10px; */
-/*     vertical-align: top; */
-/*     border-bottom: 1px solid #ccc; */
-/* } */
-
-fieldset{margin-left:50px;}
-#favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;}
-/* #favoriteNation{margin:0px auto;} */
-/* #nationList{float:left;text-align: center;margin:0px auto;padding-right: 25%} */
-.director{float:left;}
-.favoriteDirector{margin-right:1em;float:left;display: block;text-align: center;}
-</style>
 <script type="text/javascript">
 
 
@@ -1388,7 +1219,6 @@ function a() {
 					</div>
 					<div class="collectionModify">
 					<Button class="modifyCollection" type="submit">수정하기</Button>
-<!-- 					<input type="submit" value="수정하기"> -->
 					</div>
 					</div>
 					</div>
@@ -1400,381 +1230,43 @@ function a() {
 		</div>
 	</div>
 			
-<!-- 				<div class="colorlib-narrow-content"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<span class="heading-meta">Experience</span> -->
-<!-- 							<h2 class="colorlib-heading animate-box">Work Experience</h2> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-12"> -->
-<!-- 				         <div class="timeline-centered"> -->
-<!-- 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-
-<!-- 					               <div class="timeline-icon color-1"> -->
-<!-- 					                  <i class="icon-pen2"></i> -->
-<!-- 					               </div> -->
-
-<!-- 					               <div class="timeline-label"> -->
-<!-- 					                  <h2><a href="#">Full Stack Developer</a> <span>2017-2018</span></h2> -->
-<!-- 					                  <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-
-
-<!-- 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInRight"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-<!-- 					               <div class="timeline-icon color-2"> -->
-<!-- 					                  <i class="icon-pen2"></i> -->
-<!-- 					               </div> -->
-<!-- 					               <div class="timeline-label"> -->
-<!-- 					               	<h2><a href="#">Front End Developer at Google Company</a> <span>2017-2018</span></h2> -->
-<!-- 					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-
-<!-- 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-<!-- 					               <div class="timeline-icon color-3"> -->
-<!-- 					                  <i class="icon-pen2"></i> -->
-<!-- 					               </div> -->
-<!-- 					               <div class="timeline-label"> -->
-<!-- 					               	<h2><a href="#">System Analyst</a> <span>2017-2018</span></h2> -->
-<!-- 					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-
-<!-- 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-<!-- 					               <div class="timeline-icon color-4"> -->
-<!-- 					                  <i class="icon-pen2"></i> -->
-<!-- 					               </div> -->
-<!-- 					               <div class="timeline-label"> -->
-<!-- 					               	<h2><a href="#">Creative Designer</a> <span>2017-2018</span></h2> -->
-<!-- 					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-
-<!-- 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-<!-- 					               <div class="timeline-icon color-5"> -->
-<!-- 					                  <i class="icon-pen2"></i> -->
-<!-- 					               </div> -->
-<!-- 					               <div class="timeline-label"> -->
-<!-- 					               	<h2><a href="#">UI/UX Designer at Envato</a> <span>2017-2018</span></h2> -->
-<!-- 					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-
-<!-- 					         <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom"> -->
-<!-- 					            <div class="timeline-entry-inner"> -->
-<!-- 					               <div class="timeline-icon color-none"> -->
-<!-- 					               </div> -->
-<!-- 					            </div> -->
-<!-- 					         </article> -->
-<!-- 					      </div> -->
-<!-- 					   </div> -->
-<!-- 				   </div> -->
-<!-- 				</div> -->
 			</section>
 
-<!-- 			<section class="colorlib-work" data-section="work"> -->
-<!-- 				<div class="colorlib-narrow-content"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<span class="heading-meta">My Work</span> -->
-<!-- 							<h2 class="colorlib-heading animate-box">Recent Work</h2> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 						<div class="col-md-12"> -->
-<!-- 							<p class="work-menu"><span><a href="#" class="active">Graphic Design</a></span> <span><a href="#">Web Design</a></span> <span><a href="#">Software</a></span> <span><a href="#">Apps</a></span></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-1.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 01</a></h3> -->
-<!-- 										<span>Website</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-2.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 02</a></h3> -->
-<!-- 										<span>Animation</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInTop"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-3.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 03</a></h3> -->
-<!-- 										<span>Illustration</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInBottom"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-4.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 04</a></h3> -->
-<!-- 										<span>Application</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-5.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 05</a></h3> -->
-<!-- 										<span>Graphic, Logo</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight"> -->
-<!-- 							<div class="project" style="background-image: url(images/img-6.jpg);"> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<div class="con"> -->
-<!-- 										<h3><a href="work.html">Work 06</a></h3> -->
-<!-- 										<span>Web Design</span> -->
-<!-- 										<p class="icon"> -->
-<!-- 											<span><a href="#"><i class="icon-share3"></i></a></span> -->
-<!-- 											<span><a href="#"><i class="icon-eye"></i> 100</a></span> -->
-<!-- 											<span><a href="#"><i class="icon-heart"></i> 49</a></span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-12 animate-box"> -->
-<!-- 							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</section> -->
-
-<!-- 			<section class="colorlib-blog" data-section="blog"> -->
-<!-- 				<div class="colorlib-narrow-content"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<span class="heading-meta">Read</span> -->
-<!-- 							<h2 class="colorlib-heading">Recent Blog</h2> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<div class="blog-entry"> -->
-<!-- 								<a href="blog.html" class="blog-img"><img src="images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span> -->
-<!-- 									<h3><a href="blog.html">Renovating National Gallery</a></h3> -->
-<!-- 									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight"> -->
-<!-- 							<div class="blog-entry"> -->
-<!-- 								<a href="blog.html" class="blog-img"><img src="images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span> -->
-<!-- 									<h3><a href="blog.html">Wordpress for a Beginner</a></h3> -->
-<!-- 									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<div class="blog-entry"> -->
-<!-- 								<a href="blog.html" class="blog-img"><img src="images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a> -->
-<!-- 								<div class="desc"> -->
-<!-- 									<span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span> -->
-<!-- 									<h3><a href="blog.html">Make website from scratch</a></h3> -->
-<!-- 									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-12 animate-box"> -->
-<!-- 							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</section> -->
-
-<!-- 			<section class="colorlib-contact" data-section="contact"> -->
-<!-- 				<div class="colorlib-narrow-content"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 							<span class="heading-meta">Get in Touch</span> -->
-<!-- 							<h2 class="colorlib-heading">Contact</h2> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-5"> -->
-<!-- 							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 								<div class="colorlib-icon"> -->
-<!-- 									<i class="icon-globe-outline"></i> -->
-<!-- 								</div> -->
-<!-- 								<div class="colorlib-text"> -->
-<!-- 									<p><a href="#">info@domain.com</a></p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 								<div class="colorlib-icon"> -->
-<!-- 									<i class="icon-map"></i> -->
-<!-- 								</div> -->
-<!-- 								<div class="colorlib-text"> -->
-<!-- 									<p>198 West 21th Street, Suite 721 New York NY 10016</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 								<div class="colorlib-icon"> -->
-<!-- 									<i class="icon-phone"></i> -->
-<!-- 								</div> -->
-<!-- 								<div class="colorlib-text"> -->
-<!-- 									<p><a href="tel://">+123 456 7890</a></p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-7 col-md-push-1"> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight"> -->
-<!-- 									<form action=""> -->
-<!-- 										<div class="form-group"> -->
-<!-- 											<input type="text" class="form-control" placeholder="Name"> -->
-<!-- 										</div> -->
-<!-- 										<div class="form-group"> -->
-<!-- 											<input type="text" class="form-control" placeholder="Email"> -->
-<!-- 										</div> -->
-<!-- 										<div class="form-group"> -->
-<!-- 											<input type="text" class="form-control" placeholder="Subject"> -->
-<!-- 										</div> -->
-<!-- 										<div class="form-group"> -->
-<!-- 											<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea> -->
-<!-- 										</div> -->
-<!-- 										<div class="form-group"> -->
-<!-- 											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message"> -->
-<!-- 										</div> -->
-<!-- 									</form> -->
-<!-- 								</div> -->
-								
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</section> -->
 
 		</div><!-- end:colorlib-main -->
 	</div><!-- end:container-wrap -->
 	</div><!-- end:colorlib-page -->
       
       
-      
-      
-      
       </div>
 <!--       사이드 센터[E] -->
+
+<!-- 상단 이동 버튼 [S] -->
 <div class="moveTop" style="cursor:pointer;">TOP</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+<!-- 상단 이동 버튼 [E] -->	
 	
 	
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
 <!-- 	<script src="js/bootstrap.min.js"></script> -->
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Flexslider -->
+<script src="js/jquery.flexslider-min.js"></script>
+<!-- Owl carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Counters -->
+<script src="js/jquery.countTo.js"></script>
+
+
+<!-- MAIN JS -->
+<script src="js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script type="text/javascript">
 $('#listForm').slick({
 	   dots: false,
@@ -1809,7 +1301,7 @@ $('#listForm').slick({
 	       }
 	     }
 	   ]
-	 });
+	 }); //$('#listForm').slick() 끝
 	 
 	$('#myInfo').slick({
 	 	   dots: false,
@@ -1844,7 +1336,7 @@ $('#listForm').slick({
 	 	       }
 	 	     }
 	 	   ]
-	 	 });
+	 	 }); //$('#myInfo').slick() 끝
 	
 	
 	$('.collectionView').slick({
@@ -1880,7 +1372,7 @@ $('#listForm').slick({
 		       }
 		     }
 		   ]
-		 });	
+		 });	//$('.collectionView').slick() 끝
 	
 	
 	$('.director').slick({
@@ -1916,7 +1408,7 @@ $('#listForm').slick({
 		       }
 		     }
 		   ]
-		 });
+		 }); //$('.director').slick() 끝
 	
 	
 	$('#movies').slick({
@@ -1952,360 +1444,14 @@ $('#listForm').slick({
 		       }
 		     }
 		   ]
-		 });
+		 }); //$('#movies').slick() 끝
 	
 	
 </script>
 
 
-<style type="text/css">
-.slick-track{background-color: #000000;border-radius: 10px 10px;}
-#jb-sidebar-left {
-	width: 400px;
-	height: 100%;
-	text-align: center;
-/* 	padding: 20px; */
-	margin-right: 20px;
-/* 	border:1px solid black; */
-/* 	float: left; */
-/* 	color: #FFFFFF; */
-	overflow: visible;
-}
-
-#jb-content {
-	height: 100%;
-/* 	width: 100%-400px; */
-	width: 75%;
-	margin-right:auto;
-	margin-left:350px;
-	padding: 20px;
-	margin-bottom: 500px;
-/* 	border:3px solid #FFFFFF; */
-/* 	border:1px solid black; */
-/* 	float: left; */
-/* 	color: #FFFFFF; */
-}
-
-
-textarea {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-}
-textarea:focus {
-/*   border-color: dodgerBlue; */
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-.inputWithIcon textarea {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon textarea:focus +i {
-  color: dodgerBlue;
-}
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-.inputWithIcon.inputIconBg textarea:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-input[type="text"],input[type="email"],input[type="password"] {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-  padding-bottom:4px;
-}
-input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon {
-  position: relative;
-}
-.inputWithIcon i {
-	width:1.5em;/* 아이콘 폭 */
-  position: absolute;
-  left: 0;
-  top: 8px;
-  padding: 9px 8px;
-  color: #aaa;
-  transition: 0.3s;
-}
-.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
-  color: dodgerBlue;
-}
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-
-table#favoriteGenre {
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    margin: 20px 10px;
-}
-table#favoriteGenre thead {
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #e7708d;
-}
-table#favoriteGenre thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-}
-table#favoriteGenre tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #fcf1f4;
-}
-/* table#favoriteGenre td { */
-/*     width: 150px; */
-/*     padding: 10px; */
-/*     vertical-align: top; */
-/*     border-bottom: 1px solid #ccc; */
-/* } */
-table#favoriteNation {
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    margin: 20px 10px;
-}
-table#favoriteNation thead {
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    background: #e7708d;
-}
-table#favoriteNation thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-}
-table#favoriteNation tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #fcf1f4;
-}
-/* table#favoriteNation td { */
-/*     width: 150px; */
-/*     padding: 10px; */
-/*     vertical-align: top; */
-/*     border-bottom: 1px solid #ccc; */
-/* } */
-/* fieldset{margin-left:50px;min-width: 1200px;} */
-/* #favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;} */
-
-/* 별점 */
-.wrap-star{margin-left:-24px;}
-.star-rating {width:304px;transform:scale(0.4); }
-.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat;}
-.star-rating span{background-position:left bottom; line-height:0; vertical-align:top;margin:0 auto;}
-
-.btn-style:disabled {
-	background-color: #AAAAAA;
-    border: solid 2px #AAAAAA;
-    color:#FFFFFF;
-}
-.btn-style {
-    width:auto;
-    height:31px;
-    
-	background-color: dodgerBlue;
-    border: solid 2px dodgerBlue;
-    color:#FFFFFF;
-	padding: auto 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-/*     font-size: 15px; */
-/*     margin: 4px; */
-    cursor: pointer;
-    border-radius:2px;
-}
-.btn-style:hover {
-  background-color: dodgerBlue;
-  background-color: blue;
-  border: solid 2px blue;
-/*   box-shadow: 0 0 8px 0 dodgerBlue; */
-}
-
-.btn-like{font-size:1.5em;float:left;background-color: inherit;border:none;outline:none;}
-.btn-like:active{outline:none;}
-.poster{width:250px;height:350px;background-size: 100%;margin-right:10px;margin-top:20px;margin-left:10px; background-repeat:no-repeat;}
-.directorName{
-	overflow:hidden;
-	width:250px;
-	text-align: center;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: #FFFFFF;
-}
-.title{
-	overflow:hidden;
-	width:250px;
-	text-align: center;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	color:#FFFFFF;
-}
-legend{color: #FFFFFF;margin-left:10px;}
-li{list-style: none;}
-.favoriteDirector{float:left;}
-h1,h2,h3,h4,h5,h6 {
-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-color: #FFFFFF;
-}
-
-/* .collections{border:2px solid dodgerBlue;margin:30px auto;} */
-.collections{border:4px solid #000000;margin:0 auto 30px auto;border-radius: 10px 10px;}
-p{color:#FFFFFF;}
-body{background-color: #14141f;}
-td{background-color: #FFFFFF;}
-.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact {
-/* background-color: rgba(83,83,198,0.5); */
- 
-background-color: rgba(240,255,255,0.1);
-}
-/* .colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact { */
-.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-contact {
-    margin: 1em;
-    color: #FFFFFF;
-    clear: both;
-   width: 1350px;
-    display: block;
-    padding: 10px;
-    border-radius: 10px 10px 10px 10px;
-}
-.colorlib-services{
-width:1350px;
-border-radius: 10px 10px 10px 10px;
-}
-.slick-next {
-   right: 3px;
-}
-
-/* body {margin: 10px;} */
-.where {
-  display: block;
-/*   margin: 25px 15px; */
-  font-size: 11px;
-  color: #000;
-  text-decoration: none;
-  font-family: verdana;
-  font-style: italic;
-} 
-
-.filebox input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0;
-    
-}
-
-.filebox label {
-    display: inline-block;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    overflow: hidden;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-	border-radius: 70%;
-}
-.filebox label>img{
-width:100%;
-height:100%;
-  object-fit: cover;}
-
-.filebox .upload-display {
-    margin-bottom: 5px;
-}
-
-@media(min-width: 768px) {
-    .filebox .upload-display {
-        display: inline-block;
-        margin-right: 5px;
-        margin-bottom: 0;
-    }
-}
-
-.filebox .upload-thumb-wrap {
-    display: inline-block;
-    width: 54px;
-    padding: 2px;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.filebox .upload-display img {
-    display: block;
-    max-width: 100%;
-    width: 100% \9;
-    height: auto;
-}
-#colorlib-aside #colorlib-main-menu ul li a{font-size: 1.5em;}
-.moveTop{
-	position: fixed;
-	bottom: 100px;
-	right: 100px;
-	color: #000000;
-	border-radius: 20%;
-	border: none;
-	background-color: #AAAAAA;
-	font-size: 20px;
-	padding: 0px 10px;
-	z-index:200;
-	
-}
-
-</style>
-
-
-
+	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 </body>
 </html>

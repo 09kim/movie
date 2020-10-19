@@ -728,9 +728,15 @@ $(document).ready(function(){
 </head>
 <body>
 <section id="main">
-<jsp:include page="/inc/collectionModifyTop.jsp" >
-	<jsp:param value="<%=add %>" name="add"/>
-</jsp:include>
+
+<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+	<jsp:include page="/inc/collectionModifyTop.jsp" >
+		<jsp:param value="<%=add %>" name="add"/>
+	</jsp:include>
+	<div class="clear"></div>
+</div>
+
+
 <div class="clear"></div>
 <%String query=request.getParameter("query"); %>
 <%String nick = (String)session.getAttribute("nick"); %>

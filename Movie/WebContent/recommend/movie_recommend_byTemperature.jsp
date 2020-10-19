@@ -45,25 +45,16 @@
 								$('.tempMovie').prepend('<h1>오늘같은 날씨에 어울리는 영화들!</h1>')
 							}
 							$.each(data,function(index,item){
-								 // 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[S]
-// 								$('.MovieTemp').append("<div class=MovieTempMovie>"+
-// 			                 		   "<div><a class=MovieTempPoster><img class=MovieTempPoster_img></a></div>"+
-// 			                 		   "<div class =MovieTempMovieName></div>"+
-// 			                 		   "<div class=MovieTempNation></div></div>");
-								 // 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[E]
 								
+								// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
 								 $('.MovieTemp').append("<div class=MovieTempMovie>"+
 				                  			'<a class=MovieTempPoster><div class=poster style="background-image: url('+item.moviePoster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
 // 				                  			 '<div class=nation>'+item.nation+'</div>'+ // 국가 undefined떠서 주석처리 해둠 - 낙원 : 1016
 				                  			 '<div class=title>'+item.movieTitle+'</div></div>');   
 								
-								
-								
-// 			                  	   $('.MovieTempPoster_img').eq(index).css("width","250px").css("height","350px");
-// 			                  	   $('.MovieTempPoster_img').eq(index).attr("src",item.moviePoster);
-// 				         		   $('.MovieTempNation').eq(index).text(item.nation);
 				                   $('.MovieTempPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-// 				                   $('.MovieTempMovieName').eq(index).html(item.movieTitle);
+								// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
+				                   
 							});
 							
 							$('.MovieTemp').slick({

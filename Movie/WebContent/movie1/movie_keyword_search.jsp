@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}//css/default.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	// 영화 디테일 내에서 키워드 클릭시 키워드만 검색 시켜주는 기능
@@ -54,13 +53,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="MovieSearch.mo">
-<input type="text" name="query">
-<input type="submit" value="검색">
-</form>
-<%String keyword=request.getParameter("keyword"); %>
+	<form action="MovieSearch.mo">
+	<input type="text" name="query">
+	<input type="submit" value="검색">
+	</form>
+	<%String keyword=request.getParameter("keyword"); %>
 	<input type="hidden" id="keyword" name=keyword value="<%=keyword%>">
-	<section id="list">
-	</section>
+	<section id="list"></section>
+	
+	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/movie_search.css" rel="stylesheet" type="text/css">
+	<%-- <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css"> --%>	
 </body>
 </html>

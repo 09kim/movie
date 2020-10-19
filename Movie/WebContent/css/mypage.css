@@ -1,0 +1,510 @@
+@charset "UTF-8";
+
+/* #myinfo,.favorite{font-size: 2em;padding:20px 20px;margin:0 auto;} */
+#myinfo,.favorite{margin:0 auto;}
+textarea {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon textarea {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+
+.inputWithIcon textarea:focus +i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg textarea:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+input[type="text"],input[type="email"],input[type="password"] {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+
+	width:1.5em;/* 아이콘 폭 */
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+#infoup{width:500px;margin-top: 20px;}
+/* li>a{font-size: 1.5em;} */
+
+
+table#favoriteGenre {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+    font-size: 1em;
+}
+table#favoriteGenre thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteGenre thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteGenre tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteGenre td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+table#favoriteNation {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+    font-size: 1em;
+}
+table#favoriteNation thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteNation thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteNation tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteNation td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+
+fieldset{margin-left:10px;}
+#favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;}
+/* #favoriteNation{margin:0px auto;} */
+/* #nationList{float:left;text-align: center;margin:0px auto;padding-right: 25%} */
+.director{float:left;}
+.favoriteDirector{margin-right:1em;float:left;display: block;text-align: center;}
+
+.slick-track{background-color: #000000;border-radius: 10px 10px;}
+#jb-sidebar-left {
+	width: 400px;
+	height: 100%;
+	text-align: center;
+/* 	padding: 20px; */
+	margin-right: 20px;
+/* 	border:1px solid black; */
+/* 	float: left; */
+/* 	color: #FFFFFF; */
+	overflow: visible;
+}
+
+#jb-content {
+	height: 100%;
+/* 	width: 100%-400px; */
+	width: 75%;
+	margin-right:auto;
+	margin-left:350px;
+	padding: 20px;
+	margin-bottom: 500px;
+/* 	border:3px solid #FFFFFF; */
+/* 	border:1px solid black; */
+/* 	float: left; */
+/* 	color: #FFFFFF; */
+}
+
+
+textarea {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+textarea:focus {
+/*   border-color: dodgerBlue; */
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.inputWithIcon textarea {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon textarea:focus +i {
+  color: dodgerBlue;
+}
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+.inputWithIcon.inputIconBg textarea:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+input[type="text"],input[type="email"],input[type="password"] {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+  padding-bottom:4px;
+}
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon i {
+	width:1.5em;/* 아이콘 폭 */
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
+  color: dodgerBlue;
+}
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+table#favoriteGenre {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table#favoriteGenre thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteGenre thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteGenre tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteGenre td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+table#favoriteNation {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table#favoriteNation thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #e7708d;
+}
+table#favoriteNation thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+}
+table#favoriteNation tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+/* table#favoriteNation td { */
+/*     width: 150px; */
+/*     padding: 10px; */
+/*     vertical-align: top; */
+/*     border-bottom: 1px solid #ccc; */
+/* } */
+/* fieldset{margin-left:50px;min-width: 1200px;} */
+/* #favoriteGenre,#favoriteNation{font-size: 1.5em;padding:20px 20px;margin:0 auto;float:left;} */
+
+/* 별점 */
+.wrap-star{margin-left:-24px;}
+.star-rating {width:304px;transform:scale(0.4); }
+.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(../../../Movie/img/star.png)no-repeat;}
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top;margin:0 auto;}
+
+.btn-style:disabled {
+	background-color: #AAAAAA;
+    border: solid 2px #AAAAAA;
+    color:#FFFFFF;
+}
+.btn-style {
+    width:auto;
+    height:31px;
+    
+	background-color: dodgerBlue;
+    border: solid 2px dodgerBlue;
+    color:#FFFFFF;
+	padding: auto 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+/*     font-size: 15px; */
+/*     margin: 4px; */
+    cursor: pointer;
+    border-radius:2px;
+}
+.btn-style:hover {
+  background-color: dodgerBlue;
+  background-color: blue;
+  border: solid 2px blue;
+/*   box-shadow: 0 0 8px 0 dodgerBlue; */
+}
+
+.btn-like{font-size:1.5em;float:left;background-color: inherit;border:none;outline:none;}
+.btn-like:active{outline:none;}
+.poster{width:250px;height:350px;background-size: 100%;margin-right:10px;margin-top:20px;margin-left:10px; background-repeat:no-repeat;}
+.directorName{
+	overflow:hidden;
+	width:250px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #FFFFFF;
+}
+.title{
+	overflow:hidden;
+	width:250px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color:#FFFFFF;
+}
+legend{color: #FFFFFF;margin-left:10px;}
+li{list-style: none;}
+.favoriteDirector{float:left;}
+h1,h2,h3,h4,h5,h6 {
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+color: #FFFFFF;
+}
+
+/* .collections{border:2px solid dodgerBlue;margin:30px auto;} */
+.collections{border:4px solid #000000;margin:0 auto 30px auto;border-radius: 10px 10px;}
+p{color:#FFFFFF;}
+body{background-color: #14141f;}
+td{background-color: #FFFFFF;}
+.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact {
+/* background-color: rgba(83,83,198,0.5); */
+ 
+background-color: rgba(240,255,255,0.1);
+}
+/* .colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-services, .colorlib-contact { */
+.colorlib-experience, .colorlib-skills, .colorlib-education, .colorlib-blog, .colorlib-work, .colorlib-about, .colorlib-contact {
+    margin: 1em;
+    color: #FFFFFF;
+    clear: both;
+   width: 1350px;
+    display: block;
+/*     padding: 10px; */
+    border-radius: 10px 10px 10px 10px;
+}
+.colorlib-services{
+width:1350px;
+border-radius: 10px 10px 10px 10px;
+}
+.slick-next {
+   right: 3px;
+}
+
+/* body {margin: 10px;} */
+.where {
+  display: block;
+/*   margin: 25px 15px; */
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+    
+}
+
+.filebox label {
+    display: inline-block;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    overflow: hidden;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+	border-radius: 70%;
+}
+.filebox label>img{
+width:100%;
+height:100%;
+  object-fit: cover;}
+
+.filebox .upload-display {
+    margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+    .filebox .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+
+.filebox .upload-thumb-wrap {
+    display: inline-block;
+    width: 54px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.filebox .upload-display img {
+    display: block;
+    max-width: 100%;
+    width: 100% \9;
+    height: auto;
+}
+#colorlib-aside #colorlib-main-menu ul li a{font-size: 1.5em;}
+#colorlib-aside{top:70px;}
+.moveTop{
+	position: fixed;
+	bottom: 100px;
+	right: 100px;
+	color: #000000;
+	border-radius: 20%;
+	border: none;
+	background-color: #AAAAAA;
+	font-size: 20px;
+	padding: 0px 10px;
+	z-index:200;
+	
+}

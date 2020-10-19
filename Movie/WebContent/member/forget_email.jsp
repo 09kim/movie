@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
@@ -164,9 +163,12 @@ $(document).ready(function(){
 
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
-<!-- 헤더 -->
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
 
 <div id="jb-container">
 <!-- <section id="main"> -->
@@ -311,6 +313,7 @@ input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus 
 }
 legend{color: #FFFFFF;margin-left:10px;}
 </style>
-
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/member_forget.css" rel="stylesheet" type="text/css">
 </body>
 </html>

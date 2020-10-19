@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -334,177 +332,17 @@ $(document).ready(function(){
 <style type="text/css">
 
 
-.content {
-  top:0px;
-  position: fixed;
-/*   bottom: 0; */
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
-  height: 100%;
-  margin-top: 55px;
-/*   margin-bottom:-50px; */
-}
 
-
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/avengers.jpg");background-repeat: no-repeat;background-size: 100%;} */
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/avengers.jpg");background-repeat: no-repeat;background-size: 100% 100%;} */
-
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
-/* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
-#jb-container {
-	top:0px;
-    z-index : 100;
-	width:800px;
-	margin:0 auto;
-/* 	padding: 100px; */
-    padding: 20px 100px 20px 100px;
-	height: 90%;
-/* 	margin: 0 auto; */
-	border: 1px solid #bcbcbc;
-/* 	background: rgba(0, 0, 0, 0.5); */
-    background: rgba(255, 255, 255, 0.5);
-    overflow:scroll
-}
-/* #join {width:500px;margin:auto;color:#FFFFFF;} */
-/* a{color:#FFFFFF;} */
-/* a:hover{color:orange;} */
-#join {width:700px;margin:auto;}
-
-textarea {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-}
-textarea:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-.inputWithIcon textarea {
-  margin-top:7px;
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon textarea:focus +i {
-  color: dodgerBlue;
-}
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-.inputWithIcon.inputIconBg textarea:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-
-
-
-
-
-input[type="text"],input[type="email"],input[type="password"] {
-  width: 500px;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-/*   padding: 8px; */
-  box-sizing: border-box;
-  transition: 0.3s;
-  padding-bottom:4px;
-}
-input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
-}
-.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
-  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
-}
-.inputWithIcon {
-  position: relative;
-}
-.inputWithIcon i {
-	width:1.5em;/* 아이콘 폭 */
-  position: absolute;
-  left: 0;
-  top: 8px;
-  padding: 9px 8px;
-  color: #aaa;
-  transition: 0.3s;
-}
-.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
-  color: dodgerBlue;
-}
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
-  color: #fff;
-  background-color: dodgerBlue;
-}
-.btn-style:disabled {
-	background-color: #AAAAAA;
-    border: solid 2px #AAAAAA;
-    color:#FFFFFF;
-}
-.btn-style {
-    width:auto;
-    height:31px;
-    
-	background-color: dodgerBlue;
-    border: solid 2px dodgerBlue;
-    color:#FFFFFF;
-	padding: auto 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-/*     font-size: 15px; */
-/*     margin: 4px; */
-    cursor: pointer;
-    border-radius:2px;
-}
-.btn-style:hover {
-  background-color: dodgerBlue;
-  background-color: blue;
-  border: solid 2px blue;
-/*   box-shadow: 0 0 8px 0 dodgerBlue; */
-}
-
-
-
-#my_video {
-/* top: 55px; */
-position: fixed;
-top:0;
-right: 0;
-bottom: 0;
-/*   position:sticky; */
-  min-width: 100%;
-  min-height: 100%;
-}
-header{
-  z-index:100;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
 </style>
 </head>
 <body>
 <header>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
-<!-- 헤더 -->
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
 </header>
 <!-- 영상 배경 화면 추가 - 낙원 : 1013[S] -->
 <video muted autoplay loop id="my_video">
@@ -604,5 +442,8 @@ header{
 <input type="hidden" class="confirm">
 <input type="hidden" class="confirm">
 </div>
+
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 </body>
 </html>

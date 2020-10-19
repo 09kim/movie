@@ -17,28 +17,14 @@
 					$('.nationMovie').prepend('<h1><%=nick %> 님이 좋아하는 국가의 영화들!</h1>')
 				}
 				$.each(data,function(index,item){
-					// 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[S]
-					$('.MovieNation').append("<div class=MovieNationMovie>"+
-                 		   "<div><a class=MovieNationPoster><img class=MovieNationPoster_img></a></div>"+
-                 		   "<div class =MovieNationMovieName></div>"+
-                 		   "<div class=MovieNationNation></div></div>");
-					// 디자인 수정 문제로 기존 양식 주석 처리 - 낙원 : 1016[E]
-
+					// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
 					 $('.MovieNation').append("<div class=MovieNationMovie>"+
 	                  			'<a class=MovieNationPoster><div class=poster style="background-image: url('+item.moviePoster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
-	                  			 '<div class=nation>'+item.nation+'</div>'+ // 날씨 undefined떠서 주석처리 해둠 - 낙원 : 1016
+	                  			 '<div class=nation>'+item.nation+'</div>'+
 	                  			 '<div class=title>'+item.movieTitle+'</div></div>');   
 				
-				
-				
-				
-				
-				
-//                   	   $('.MovieNationPoster_img').eq(index).css("width","250px").css("height","350px");
-//                   	   $('.MovieNationPoster_img').eq(index).attr("src",item.moviePoster);
-// 	         		   $('.MovieNationNation').eq(index).text(item.nation);
 	                   $('.MovieNationPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-// 	                   $('.MovieNationMovieName').eq(index).html(item.movieTitle);
+					// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
 				});
 				
 				$('.MovieNation').slick({
@@ -76,8 +62,7 @@
 			     	   ]
 			     	 });	
 				
-			}
-		
+				}
 			
 		});
 	});

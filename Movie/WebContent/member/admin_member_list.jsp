@@ -45,8 +45,12 @@ ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("
 <link href="css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body> 
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
 
 <section id="main">
 	<section id="listForm">

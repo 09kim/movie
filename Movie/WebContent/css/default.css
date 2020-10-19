@@ -75,7 +75,7 @@ ul {list-style: none;}
 
 
 
-.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;}
+.poster{width:250px;height:350px;background-size: 100%;margin-right:20px;margin-top:20px;margin-left:10px;background-repeat: no-repeat;}
 .content{border:1px solid black;margin:20px auto;padding:20px 0px;background-color: rgba(240,255,255,0.1);border-radius: 10px 10px 10px 10px;}
 .slick-track{background-color: #000000;border-radius: 10px 10px;}
 .title,.nation,.rating{
@@ -117,5 +117,5 @@ color: #FFFFFF !important;
 .ui-dialog-titlebar{background-color: #AAAAAA !important;color:#FFFFFF !important;}
 .ui-dialog{background-color: #FFFFFF !important;color:#000000 !important;z-index:201 !important;}
 #dialog-comment,#delete-message{background-color: #FFFFFF !important;color:#000000 !important;}
-#opinion{margin:10%;}
+#opinion,#replyUpdate{margin:10%;}
 h1{margin-left:20px;}

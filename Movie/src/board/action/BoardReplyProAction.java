@@ -30,7 +30,7 @@ public class BoardReplyProAction implements Action {
 		Date date = new Date(System.currentTimeMillis());
 		String currDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		currDate = request.getParameter("date");
-		
+
 		
 		ReplyBean replyBean = new ReplyBean();
 		replyBean.setIdx(idx);

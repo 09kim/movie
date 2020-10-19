@@ -74,7 +74,7 @@ $(document).ready(function() {
 <jsp:include page="/inc/top.jsp" />
 <div class="clear"></div>
    
-   <h3 class="stick-h3"> <a href="javascript:history.back()">◀ </a></h3>
+   <h3 class="stick-h3"> <a href="javascript:history.back()">◀ 리뷰</a></h3>
    
   <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px;">
 	<br>
@@ -94,23 +94,24 @@ $(document).ready(function() {
 
 <%if(replyList != null){ %>
 
+<nav class="veiw" style="background-color: #e2e2e2; margin: 0 auto 20px auto; width: 40%; border-radius: 10px; margin-bottom: 0px">
 	<%for(ReplyBean rb : replyList) { %>
 	
 	   <!-- 신고자 10명 넘으면 글 안보임 -->
 	   <%if(rb.getReport() < 10) { %>
-	   
-	      <nav class="veiw" style="background-color: #e2e2e2; margin: 20px auto; width: 40%; border-radius: 10px; margin-bottom: 0px">
 		    <br>
 		    <div class="reviewContent"><%=rb.getReply() %></div>
 		    <br>
 		    <div class="reviewReport"><%=rb.getNick() %> | <%=rb.getDate() %></div>
 		    <br>
-	       </nav>
-		    <div>
-		      <%if(nick.equals(rb.getNick())) { %>
-				<input class="replyBtn1" type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
-			    <input class="replyBtn2" type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
+	       
+		  <%if(nick.equals(rb.getNick())) { %>
+		    <div class="replyBtn"> 
+				<input type="button" id="updateReply_<%=rb.getIdx() %>" value="수정">
+			    <input type="button" id="deleteReply_<%=rb.getIdx() %>" value="삭제">
 	        </div>
+	        <br>
+	        <hr>
 	        
 		    <script type="text/javascript">
 		    
@@ -199,9 +200,11 @@ $(document).ready(function() {
 		    </script>
 		    
 		    <%} else {%>
-		        <div>
-	               <input class="replyBtn3" type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
+		        <div class="replyBtn" >
+	               <input type="button" id="reportReply_<%=rb.getIdx() %>" value="댓글신고">
 	            </div>
+	            <br>
+	            <hr>
 	           
 	           <script type="text/javascript">
 	
@@ -262,6 +265,7 @@ $(document).ready(function() {
     <%} %>
     
 <%} %>
+</nav>
 
 <div id="dialog-message" title="선택하세요" style="display:none">
     댓글을 남기시려면 로그인이 필요해요. <br>

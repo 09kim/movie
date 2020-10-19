@@ -49,12 +49,8 @@ a:hover, a:active {color: #ffff00; }
     margin: auto 10px;
     color: #808080;
 }
-.replyBtn1 {
-    margin-left: 60%;
-}
-.replyBtn2 {
-    margin-left: 1%;
-}
-.replyBtn3 {
-    margin-left: 60%;
+.replyBtn {
+	display:inline;
+	margin-right:5%;
+    float: right;
 }

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <link href="${pageContext.request.contextPath}/css/memberjoin.css" rel="stylesheet" type="text/css">
 <!-- <script src="../../../Movie/js/jquery-3.5.1.js"></script> -->
@@ -45,8 +45,9 @@ $(document).ready(function(){
 				    $('#st_msg').removeClass();
 			        $('#st_msg').addClass('중간');
 			        $('#st_msg').html("<div id='box1'></div><div id='box2'></div><div id='box3'></div><div id='box4'></div> 중간");
-			        $('#regPass').html('비밀번호는 8~15자이며,\n숫자/대문자/소문자/특수문자(!,@)를 포함해야 합니다.');
-			        $('.confirm').eq(1).val("N");
+			        $('#regPass').html('사용 가능');
+// 			        $('.confirm').eq(1).val("N");
+			        $('.confirm').eq(1).val("Y"); // 패스워드 2단계(실질적으로 3단계)에서 회원가입 가능하도록 코드 수정 - 낙원:1011
 				} else { // 한가지 조합으로만 8글자 입력했을 경우
 					$('#st_msg').removeClass();
 					$('#st_msg').addClass('약함');
@@ -162,34 +163,157 @@ $(document).ready(function(){
 
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
-<!-- 헤더 -->
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
 
-<section id="main">
-<form class="update_fr" action="MemberUpdatePasswordPro.me" method="get">
-
-<div id="divPass">
-<fieldset>
-<legend>Password</legend>
-<input type="password" name="pass" id="pass"> <br>
-<div id="regPass"></div>
-<div id="st_msg"></div>
-</fieldset>
+<div id="jb-container">
+<!-- <section id="main"> -->
+			<form class="update_fr" action="MemberUpdatePasswordPro.me" method="get" id="forgetPass">
+			<h2>이메일로 패스워드 찾기</h2>
+			
+			<div id="divPass">
+				<fieldset>
+				<legend>패스워드 설정</legend>
+					<div class="inputWithIcon inputIconBg">
+					  <input type="password" id="pass" name="pass" placeholder="Password"/>
+					  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
+					</div>
+					<div id="regPass"></div>
+					<div id="st_msg"></div>
+				</fieldset>
+			</div>
+			
+			
+			
+			
+			
+			<fieldset>
+				<legend>이메일</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="email" id="email" name="email" placeholder="Email">
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="emailBtn" type="button">이메일 인증</button>
+				</div>
+				<div id="divEmail"></div>
+				</fieldset>
+				
+				
+				<fieldset>
+				<legend>이메일 인증</legend>
+				<div class="inputWithIcon inputIconBg">
+				  <input type="text" id="certificationNum_email" name="certificationNum_email" placeholder="Email Certification Number"/>
+				  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+				  <button class="btn-style" id="certification_email_Btn" type="button">인증코드 입력</button>
+				</div>
+				</fieldset>
+			
+			
+			
+				<input type="hidden" class="confirm">
+				<input type="hidden" class="confirm">
+				<input type="submit" value="Submit" class="submit">
+				<input type="reset" value="Cancel" class="cancel">
+			
+			
+			
+			</form>
+<!-- </section> -->
 </div>
 
-<fieldset>
-<legend>E-Mail</legend>
-<input type="text" id="email" name="email">  &nbsp;&nbsp; <input type="button" id="emailBtn" value="인증 번호 받기" ><br>
-<input type="text" id="certificationNum_email">  &nbsp;&nbsp;  <input type="button" id="certification_email_Btn" value="인증 번호 입력">
-<div id="divEmail"></div>
-</fieldset>
-<input type="hidden" class="confirm">
-<input type="hidden" class="confirm">
-<input type="submit" value="Submit" class="submit">
-<input type="reset" value="Cancel" class="cancel">
-</form>
-</section>
 
+
+
+
+<style type="text/css">
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/join_background.jpg");} */
+/* body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;} */
+body{background-image: url("${pageContext.request.contextPath}/img/background/login_background.jpg");background-repeat: no-repeat;background-size: 100%;}
+#jb-container {
+    z-index : 100;
+	width:800px;
+	margin:150px auto;
+	padding: 100px;
+	height: 100%;
+/* 	margin: 0 auto; */
+	border: 1px solid #bcbcbc;
+	
+}
+#forgetPass {width:700px;margin:auto;}
+
+
+input[type="text"],input[type="email"],input[type="password"] {
+  width: 500px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+/*   padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+  padding-bottom:4px;
+}
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.inputWithIcon input[type="text"],input[type="email"],input[type="password"] {
+  padding-left: 50px; /* 아이콘 과 텍스트 간격 */
+}
+.inputWithIcon {
+  position: relative;
+}
+.inputWithIcon i {
+	width:1.5em;/* 아이콘 폭 */
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+.inputWithIcon input[type="text"]:focus + i,input[type="email"]:focus + i,,input[type="password"]:focus + i {
+  color: dodgerBlue;
+}
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,input[type="email"]:focus + i,input[type="password"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+.btn-style {
+    width:auto;
+    height:31px;
+    
+	background-color: dodgerBlue;
+    border: solid 2px dodgerBlue;
+    color:#FFFFFF;
+	padding: auto 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+/*     font-size: 15px; */
+/*     margin: 4px; */
+    cursor: pointer;
+    border-radius:2px;
+}
+.btn-style:hover {
+  background-color: dodgerBlue;
+  background-color: blue;
+  border: solid 2px blue;
+/*   box-shadow: 0 0 8px 0 dodgerBlue; */
+}
+legend{color: #FFFFFF;margin-left:10px;}
+</style>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/member_forget.css" rel="stylesheet" type="text/css">
 </body>
 </html>

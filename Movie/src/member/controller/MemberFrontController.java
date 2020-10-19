@@ -20,9 +20,13 @@ import member.action.MemberListAction;
 import member.action.MemberLoginProAction;
 import member.action.MemberLogoutAction;
 import member.action.MemberMessageAction;
+import member.action.MemberMessageUpdateAction;
 import member.action.MemberNickAction;
+import member.action.MemberUpdateAction;
 import member.action.MemberUpdatePasswordAction;
 import movie.action.MovieNaverRankingAction;
+import mypage.action.MypageModifyProfileAction;
+import mypage.action.MypageSelectProfileTopAction;
 import vo.ActionForward;
 
 
@@ -149,7 +153,23 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}  else if(command.equals("/MemberUpdatePro.me")) { // 마이페이지 회원정보수정 추가 - 낙원 : 1012
+			action = new MemberUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MessageUpdate.me")) {
+			action = new MemberMessageUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  
+		
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

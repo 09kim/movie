@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	
 	$(document).ready(function(){
 	   
-	   $('#join').submit(function(){
+	   $('#login').submit(function(){
 	      if($('#email').val()==""){
-	         alert("ID를 입력하세요");
+	         alert("Email을 입력하세요");
 	         $('#email').focus();
 	         return false;
 	      }
@@ -73,29 +73,56 @@
 
 </script>
 </head>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
+<div id="jb-container">
+<!-- <section id="main"> -->
+			<form action="MemberLoginPro.me" method="post" id="login">
+			<fieldset>
+			<legend>Login</legend>
+			<fieldset>
+			<legend>이메일</legend>
+			<div class="inputWithIcon inputIconBg">
+<!-- 			  <input type="email" id="email" name="email" placeholder="Email"/> -->
+			  <input type="text" id="email" name="email" placeholder="Email"/>
+			  <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+			</div>
+			</fieldset>
+			<input type="checkbox" id="emailSaveCheck">이메일 기억하기 <br>
+			
+			
+			<fieldset>
+			<legend>패스워드</legend>
+			<div class="inputWithIcon inputIconBg">
+			  <input type="password" id="pass" name="pass" placeholder="Password"/>
+			  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
+			</div>
+			</fieldset>
+			
+			<div class="btnGroup">
+			<input type="submit" value="로그인"> 
+			<input type="button" value="회원가입" onclick="location.href='MemberJoinForm.me'">
+			<input type="button" value="취소" onclick="history.back()">
+			</div>
+			<div class="forget">
+			<a href="ForgetPassword.me">E-Mail로 비밀번호 찾기</a> | 
+			<a href="ForgetEmail.me">E-Mail주소 찾기</a>
+			</div>
+			
+			
+			</fieldset>
+			</form>
+<!-- </section> -->
+</div>
 
-<section id="main">
-	<h1>Login</h1>
-	<form action="MemberLoginPro.me" method="post" id="join">
-	<fieldset>
-	<legend>이메일</legend>
-	<input type="text" name="email" id="email"> &nbsp;&nbsp; <input type="checkbox" id="emailSaveCheck">이메일 기억하기 <br>
-	</fieldset>
-	<fieldset>
-	<legend>비밀번호</legend>
-	<input type="password" name="pass" id="pass"> <br>
-	
-		<input type="submit" value="로그인"> 
-		<input type="button" value="회원가입" onclick="location.href='MemberJoinForm.me'">
-		<a href="ForgetPassword.me">E-Mail로 비밀번호 찾기</a>
-		<a href="ForgetEmail.me">E-Mail주소 찾기</a>
-		<input type="button" value="취소" onclick="history.back()">
-		
-	</fieldset>
-	</form>
-</section>
+
+
+	<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/member_login.css" rel="stylesheet" type="text/css">
 </body>
 </html>
 

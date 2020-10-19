@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body{background-color: #14141f;}
+.title{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.nation{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.rating{width: 250px;text-align: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.thisMovie{
+	float:left;
+	margin-left: 30px;
+}

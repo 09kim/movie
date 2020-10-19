@@ -16,6 +16,7 @@ import mypage.vo.CollectionBean;
 import mypage.action.Mypage;
 import mypage.vo.MypageBean;
 import mypage.vo.MypageGenreBean;
+import mypage.vo.ProfileBean;
 
 public class MypageDAO {
 
@@ -390,7 +391,7 @@ public class MypageDAO {
 	public int addCollectionMovie(CollectionBean collectionBean) {
 		int isSuccess = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+//		ResultSet rs = null;
 		  try {
 			String sql = "insert into collection values(idx,?,'test',?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -405,7 +406,7 @@ public class MypageDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rs);
+//			close(rs);
 			close(pstmt);
 		}
 		  
@@ -417,7 +418,7 @@ public class MypageDAO {
 	public int addCollection(CollectionBean collectionBean) {
 		int isSuccess = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+//		ResultSet rs = null;
 		  try {
 			String sql = "insert into collection values(idx,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -434,7 +435,7 @@ public class MypageDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rs);
+//			close(rs);
 			close(pstmt);
 		}
 		  
@@ -570,7 +571,7 @@ public class MypageDAO {
 		}
 
 		String sql = "SELECT " + sqlType + ", COUNT(*) FROM grade where nick = ? GROUP BY " + sqlType
-				+ " HAVING COUNT(*) > 1 order by count(*) desc limit 0,3";
+				+ " HAVING COUNT(*) > 1 order by count(*) desc limit 0,10";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<String> list = new ArrayList<String>();
@@ -613,6 +614,135 @@ public class MypageDAO {
 		
 		
 		return isSuccess;
+	}
+
+	public int updateProfile(ProfileBean profileBean) {
+		int updateCount = -1;
+		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+		String nick; // 닉네임
+		String orgFileName; // 원본 파일 이름
+		String uploadFileName; // 서버에 업로드된 파일 이름
+		String savePath; // 업로드되는 경로
+			try {
+				nick=profileBean.getNick();
+				orgFileName=profileBean.getOrgFileName();
+				uploadFileName=profileBean.getUploadFileName();
+				savePath=profileBean.getSavePath();
+				System.out.println("DAO에 받아온 nick : " + nick);
+				System.out.println("DAO에 받아온 orgFileName : " + orgFileName);
+				System.out.println("DAO에 받아온 uploadFileName : " + uploadFileName);
+				System.out.println("DAO에 받아온 savePath : " + savePath);
+				String sql = "UPDATE profile SET orgFileName=?, uploadFileName=?, savePath=? where nick=?";
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(1, orgFileName);
+				pstmt.setString(2, uploadFileName);
+				pstmt.setString(3, savePath);
+				pstmt.setString(4, nick);
+
+				updateCount = pstmt.executeUpdate();
+				
+				System.out.println("DAO updateCount : " + updateCount);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("프로필 업데이트 DAO 에러");
+				e.printStackTrace();
+			}finally {
+//				close(rs);
+				close(pstmt);
+			}
+
+		return updateCount;
+	}
+
+	public boolean selectProfile(ProfileBean profileBean) {
+		boolean isSelect = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String nick = "";
+		try {
+			nick = profileBean.getNick();
+			String sql = "SELECT * FROM profile where nick=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				isSelect = true;
+			}
+
+		} catch (SQLException e) {
+			System.out.println("MemberDAO - selectProfile() 에러! " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return isSelect;
+	}
+
+	public int insertProfile(ProfileBean profileBean) {
+		int isSuccess = 0;
+		PreparedStatement pstmt = null;
+		String nick; // 닉네임
+		String orgFileName; // 원본 파일 이름
+		String uploadFileName; // 서버에 업로드된 파일 이름
+		String savePath; // 업로드되는 경로
+//		ResultSet rs = null;
+		  try {
+			nick=profileBean.getNick();
+		  	orgFileName=profileBean.getOrgFileName();
+			uploadFileName=profileBean.getUploadFileName();
+			savePath=profileBean.getSavePath();
+			String sql = "insert into profile values(idx,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			pstmt.setString(2, orgFileName);
+			pstmt.setString(3, uploadFileName);
+			pstmt.setString(4, savePath);
+			
+			isSuccess = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+//			close(rs);
+			close(pstmt);
+		}
+		  
+		  
+		
+		return isSuccess;
+	}
+
+	public ProfileBean getProfile(String nick) {
+		ProfileBean profileBean = new ProfileBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM profile where nick=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				profileBean.setOrgFileName(rs.getString("orgFileName"));
+				profileBean.setUploadFileName(rs.getString("uploadFileName"));
+				profileBean.setSavePath(rs.getString("savePath"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("MemberDAO - getMypageInfo() 에러! " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return profileBean;
 	}
 
 }

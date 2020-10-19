@@ -20,13 +20,16 @@ String nick=(String)session.getAttribute("nick");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/moviecss/movie.css" rel="stylesheet" type="text/css">
 
 </head>
-<jsp:include page="../inc/top.jsp" />
-<div class="clear"></div><br><br><br>
 <body>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
+	<br><br><br>
     
     <h1><%=nick %>님이 남긴 리뷰</h1>
      
@@ -88,6 +91,15 @@ String nick=(String)session.getAttribute("nick");
             
     <section>등록된 글이 없습니다.</section>
             <%} %>
+
+
+
+
+
+
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" rel="stylesheet" type="text/css">
+
 
 </body>
 </html>

@@ -123,10 +123,20 @@ public class MovieDAO {
 	}
 
 	public int insertReview(ReviewBean reviewBean) {
+		System.out.println(reviewBean.getContent()+"여기는 DAO ~");
 
 		int insertCount = 0;
-		System.out.println(reviewBean.getContent()+"여기는 DAO ~");
+		
 		try {
+//			String sql = "select max(idx) from review";
+//			pstmt = con.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			
+//			int num = 0;;
+//			
+//			if(rs.next()) {
+//				num = rs.getInt(1) + 1;
+//			}
 
 			String sql = "SELECT * from grade where nick =? and movieSeq =?";
 			pstmt = con.prepareStatement(sql);
@@ -139,7 +149,7 @@ public class MovieDAO {
 				reviewBean.setTitle(rs.getString("title"));
 			}
 
-			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0)";
+			sql = "INSERT INTO review values(idx,?,?,?,?,?,?,?,0,0,0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reviewBean.getNick());
 			pstmt.setInt(2, reviewBean.getGrade());
@@ -148,6 +158,7 @@ public class MovieDAO {
 			pstmt.setString(5, reviewBean.getTitle());
 			pstmt.setString(6, reviewBean.getType());
 			pstmt.setString(7, reviewBean.getContent());
+//			pstmt.setInt(8, num);
 
 			insertCount = pstmt.executeUpdate();
 

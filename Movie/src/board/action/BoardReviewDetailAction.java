@@ -18,6 +18,7 @@ public class BoardReviewDetailAction implements Action {
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 		
+		
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
 		String reply = request.getParameter("reply");
@@ -28,6 +29,8 @@ public class BoardReviewDetailAction implements Action {
 		replyBean.setNick(nick);
 		replyBean.setMovieSeq(movieSeq);
 		replyBean.setReply(reply);
+		
+		
 		
 		
 		// 선택한 리뷰 내용 들고오기

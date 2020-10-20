@@ -21,13 +21,11 @@
 				$.each(data,function(index,item){
 					
 					$('.Moviecollection1').append("<div class=MovieCollectionMovie>"+
-	                 		   "<div><a class=MovieCollectionPoster><img class=MovieCollectionPoster_img></a></div>"+
-	                 		   "<div class =MovieCollectiontMovieName></div>"+
+	                 		   "<div><a class=MovieCollectionPoster><div class=poster style=background-image:url("+item.poster+"),url('../../../Movie/img/noImage.gif')></div></a></div>"+
+	                 		   "<div class =MovieCollectionMovieName></div>"+
 	                 		   "</div>");
-	                  	   $('.MovieCollectionPoster_img').eq(index).css("width","250px").css("height","350px");
-	                  	   $('.MovieCollectionPoster_img').eq(index).attr("src",item.poster);
 		                   $('.MovieCollectionPoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.title);
-		                   $('.MovieCollectionMovieName').eq(index).html(item.movieTitle);
+		                   $('.MovieCollectionMovieName').eq(index).html(item.title);
 				});
 				
 				
@@ -82,15 +80,12 @@
 				$('.collectionMovie2').prepend('<h1> 컬렉션 추천! '+data[0].collection_name+'</h1>')
 				
 				$.each(data,function(index,item){
-					
 					$('.Moviecollection2').append("<div class=MovieCollection2Movie>"+
-	                 		   "<div><a class=MovieCollection2Poster><img class=MovieCollection2Poster_img></a></div>"+
-	                 		   "<div class =MovieCollectiont2MovieName></div>"+
+	                 		   "<div><a class=MovieCollectionPoster><div class=poster style=background-image:url("+item.poster+"),url('../../../Movie/img/noImage.gif')></div></a></div>"+
+	                 		   "<div class =MovieCollection2MovieName></div>"+
 	                 		   "</div>");
-	                  	   $('.MovieCollection2Poster_img').eq(index).css("width","250px").css("height","350px");
-	                  	   $('.MovieCollection2Poster_img').eq(index).attr("src",item.poster);
 		                   $('.MovieCollection2Poster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.title);
-		                   $('.MovieCollection2MovieName').eq(index).html(item.movieTitle);
+		                   $('.MovieCollection2MovieName').eq(index).text(item.title);
 				});
 				
 				

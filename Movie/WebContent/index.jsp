@@ -52,9 +52,7 @@
 				</div>
 			<%
 	 	}%>
-		<div class="content">
 			<jsp:include page="/recommend/naver_search_ranking.jsp"/>
-		</div>
 	</section>
 	<div class="moveTop" style="cursor:pointer;">TOP</div>
 	

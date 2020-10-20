@@ -145,16 +145,7 @@ function a() {
 				$.each(data,function(idx,item){
 					$.each(item,function(idx2,item2){
 						var count = item2.avgGrade/2/item2.nation;
-// 						$('.nation').append(idx2 +" : "+item2.nation+"개 "+ count.toFixed(1) +"점 <br>"); 
-// 						$('.nationList').append('<tr><th scope="row">'+idx2+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="3000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
-// 						$('#nationList').append('<span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="5000" data-refresh-interval="50"></span><span class="colorlib-counter-label">'+idx2+'</span><span class="colorlib-counter-label">'+count.toFixed(1)+'</span>');
-// 						$('#favoriteNation').append('<div id=nationList style=float:left;margin:auto;padding:auto;><span style=color:#FFFFFF class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="5000" data-refresh-interval="50"></span><span style=color:#FFFFFF class="colorlib-counter-label">'+idx2+'</span><span style=color:#FFFFFF class="colorlib-counter-label">'+count.toFixed(1)+'</span></div>');
 						$('.nationList').append('<tr><th scope="row">'+idx2+'</th><td><span class="colorlib-counter js-counter" data-from="0" data-to="'+item2.nation+'" data-speed="1000" data-refresh-interval="50"></span></td><td>★'+count.toFixed(1)+'점</td></tr>');
-						// 						<div class="col-md-3 text-center animate-box" id="nationList"></div>
-						// 						<div class="col-md-3 text-center animate-box"> -->
-						<!-- 							<span class="colorlib-counter js-counter" data-from="0" data-to="309" data-speed="5000" data-refresh-interval="50"></span> -->
-						<!-- 							<span class="colorlib-counter-label">Cups of coffee</span> -->
-						<!-- 						</div> -->
 					});
 				});
 				
@@ -173,8 +164,6 @@ function a() {
  						var img = getSrc(item2.director);
  						var imgSrc = img.split("\"")[1]
  						
-//  						$('.director').append('<div class=favoriteDirector>'+img+'<br>'+item2.director+'</div>');
-//  						$('.director').append('<div class=favoriteDirector><div class="poster" style="background-image: url('+imgSrc+') onerror=this.src=../../../Movie/img/noImage.gif></div><div class="directorName">'+item2.director+'</div></div>');
  						$('.director').append('<div class=favoriteDirector>'+
  								'<div class=poster style="background-image: url('+imgSrc+'),url(${pageContext.request.contextPath}/img/noImage.gif"></div>'+
  								'<div class="directorName">'+item2.director+'</div></div>');
@@ -270,21 +259,6 @@ function a() {
 	
 	
 	
-// 	$('.modifyAddMov').click(function() {
-// 		var index = $(this).index();
-// 		$(this).val(index);
-// 		alert($(this).val());
-// 	});
-//		$('.modifyAddMov').each(function(idx) {
-//			var index = $('.modifyAddMov').eq(idx).index();
-//			$('.modifyAddMov').eq(idx).val(index);
-//			alert($('.modifyAddMov').eq(idx).val());
-//		});
-//		$('.delBtn').each(function() {
-//			var index = $(this).index();
-//			$(this).val(index);
-//			alert($(this).val());
-//		});
 
 
 
@@ -325,13 +299,6 @@ function a() {
 		$('.modifyAddMov').click(function(){
 			var index = $('.modifyAddMov').index();
 			var addId = $(this).attr('id');
-// 			var index = $(this).index();
-// 			$(this).val(index);
-// 			var addId = $(this).attr('id');
-			
-// 		    window.open('CollectionModifySearch.mo',+
-//  					'open the window',+
-// 					'toolbar=no, width=1000, height=850, top=150, left=150');
 		    window.open("CollectionModifySearch.mo?addId=" + addId,
  					"open the window",
 					"toolbar=no, width=1000, height=850, top=150, left=150");
@@ -350,8 +317,6 @@ function a() {
 			}
 		})
 			
-// 		$('#movies').append("<li>" + $('#hiddenTitle').val() +"</li>");
-// 		alert($('#hiddenTitle').val());
 		$('#submit').click(function(){
 			if($('#subject').val() == ''){
 				alert("제목을 입력하세요")
@@ -425,21 +390,11 @@ function a() {
 				$('#phoneNum').focus();
 				return false;
 			}
-// 			if($('#certificationNum').val()==""){
-// 				alert("핸드폰 인증코드를 입력하세요");
-// 				$('#certificationNum').focus();
-// 				return false;
-// 			}
 			if($('#email').val()==""){
 				alert("이메일을 입력하세요");
 				$('#email').focus();
 				return false;
 			}
-// 			if($('#certificationNum_email').val()==""){
-// 				alert("이메일 인증코드를 입력하세요");
-// 				$('#certificationNum_email').focus();
-// 				return false;
-// 			}
 			
 			if($('.confirm').eq(1).val()=="Y"==false){
 				alert("패스워드 설정에 문제가 있습니다.");
@@ -485,16 +440,11 @@ function a() {
 				
 			} else {
 				$(".phoneConfirm").hide();
-// 				$("#certificationBtn").attr("disabled",true);
-// 				$('#phoneNumBtn').attr("readonly",false);
 
 					$.ajax('MessageUpdate.me',{
 						data:{phone:phone},
 						success:function(rdata){
 							$('#divPhone').html(rdata);
-// 							if(rdata.includes("중복된 번호")){
-// 								alert("중복된 번호입니다.");
-// 							} else {
 								alert("인증번호를 전송했습니다.")
 								$(".phoneConfirm").show();
 								$('#divPhone').html(rdata);

@@ -1,0 +1,1574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="action.Action" project="Movie" file="/Movie/src/action/Action.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1152" y="65"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="api.BoxofficeApi" project="Movie" file="/Movie/src/api/BoxofficeApi.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="542" y="73"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="api.SendMessage" project="Movie" file="/Movie/src/api/SendMessage.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="113" y="311"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="api.kmdbApi" project="Movie" file="/Movie/src/api/kmdbApi.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="381" y="365"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="api.SendEmailForget" project="Movie" file="/Movie/src/api/SendEmailForget.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="607" y="311"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="api.RestAPI_Python" project="Movie" file="/Movie/src/api/RestAPI_Python.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="809" y="320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="api.RestAPI_Spring" project="Movie" file="/Movie/src/api/RestAPI_Spring.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1021" y="302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="api.SendMail" project="Movie" file="/Movie/src/api/SendMail.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1220" y="383"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="api.Gmail" project="Movie" file="/Movie/src/api/Gmail.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1497" y="302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="api.SendSMS" project="Movie" file="/Movie/src/api/SendSMS.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1766" y="383"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="api.GoogleAuthentication" project="Movie" 
+    file="/Movie/src/api/GoogleAuthentication.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="290" x="1911" y="195"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="api.NaverMovieApi" project="Movie" file="/Movie/src/api/NaverMovieApi.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="202" x="2241" y="195"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="api.SendEmail" project="Movie" file="/Movie/src/api/SendEmail.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="186" x="2483" y="195"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="board.action.BoardReplyProAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReplyProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="118" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="board.action.BoardReviewAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReviewAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="505" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="board.action.BoardReplyUpdateAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReplyUpdateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="892" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="board.action.BoardReviewListAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReviewListAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="1279" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="board.action.BoardReplyDeleteAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReplyDeleteAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="1666" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="board.action.BoardReviewLikeAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReviewLikeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="2053" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="board.action.BoardReviewReportAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReviewReportAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="2440" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="board.action.BoardReplyReportAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReplyReportAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="2827" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="board.action.BoardReviewDetailAction" project="Movie" 
+    file="/Movie/src/board/action/BoardReviewDetailAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="3214" y="532"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="board.controller.BoardFrontController" project="Movie" 
+    file="/Movie/src/board/controller/BoardFrontController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="152" y="748"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="board.dao.BoardDAO" project="Movie" file="/Movie/src/board/dao/BoardDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="295" x="370" y="509"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="board.svc.BoardReviewService" project="Movie" 
+    file="/Movie/src/board/svc/BoardReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="875" y="788"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="board.svc.BoardReplyService" project="Movie" 
+    file="/Movie/src/board/svc/BoardReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1180" y="788"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="board.svc.BoardReviewListService" project="Movie" 
+    file="/Movie/src/board/svc/BoardReviewListService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1480" y="752"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="board.vo.ReplyBean" project="Movie" file="/Movie/src/board/vo/ReplyBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="87" y="1198"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="board.vo.PageInfo" project="Movie" file="/Movie/src/board/vo/PageInfo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="263" y="1144"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="board.vo.ReviewReportBean" project="Movie" 
+    file="/Movie/src/board/vo/ReviewReportBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="445" y="1117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="board.vo.ReplyReportBean" project="Movie" 
+    file="/Movie/src/board/vo/ReplyReportBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="616" y="1117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="board.vo.ReviewBean" project="Movie" file="/Movie/src/board/vo/ReviewBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="794" y="1306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="board.vo.ReviewLikeBean" project="Movie" 
+    file="/Movie/src/board/vo/ReviewLikeBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="972" y="1090"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="db.JdbcUtil" project="Movie" file="/Movie/src/db/JdbcUtil.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="754" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="member.action.MemberForgetEmailAction" project="Movie" 
+    file="/Movie/src/member/action/MemberForgetEmailAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1260" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="member.action.MemberMessageAction" project="Movie" 
+    file="/Movie/src/member/action/MemberMessageAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1647" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="member.action.MemberMessageUpdateAction" project="Movie" 
+    file="/Movie/src/member/action/MemberMessageUpdateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2034" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="member.action.MemberEmailAction" project="Movie" 
+    file="/Movie/src/member/action/MemberEmailAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2421" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="member.action.MemberForgetAction" project="Movie" 
+    file="/Movie/src/member/action/MemberForgetAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2808" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="member.action.MemberNickAction" project="Movie" 
+    file="/Movie/src/member/action/MemberNickAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3195" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="member.action.MemberJoinProAction" project="Movie" 
+    file="/Movie/src/member/action/MemberJoinProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3582" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="member.action.MemberForgetPasswordAction" project="Movie" 
+    file="/Movie/src/member/action/MemberForgetPasswordAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3969" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="member.action.MemberLoginProAction" project="Movie" 
+    file="/Movie/src/member/action/MemberLoginProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4356" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="member.action.MemberUpdateAction" project="Movie" 
+    file="/Movie/src/member/action/MemberUpdateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4743" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="member.action.MemberUpdatePasswordAction" project="Movie" 
+    file="/Movie/src/member/action/MemberUpdatePasswordAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5130" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="member.action.MemberListAction" project="Movie" 
+    file="/Movie/src/member/action/MemberListAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5517" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="member.action.MemberLogoutAction" project="Movie" 
+    file="/Movie/src/member/action/MemberLogoutAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5904" y="1019"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="member.controller.MemberFrontController" project="Movie" 
+    file="/Movie/src/member/controller/MemberFrontController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1242" y="1176"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="member.dao.MemberDAO" project="Movie" file="/Movie/src/member/dao/MemberDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1605" y="1282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="member.exception.MemberInsertException" project="Movie" 
+    file="/Movie/src/member/exception/MemberInsertException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1873" y="1149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="member.exception.MemberLoginException" project="Movie" 
+    file="/Movie/src/member/exception/MemberLoginException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2086" y="1149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="member.svc.ForgetService" project="Movie" 
+    file="/Movie/src/member/svc/ForgetService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="978" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="member.svc.MemberUpdatePasswordService" project="Movie" 
+    file="/Movie/src/member/svc/MemberUpdatePasswordService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1225" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="member.svc.MemberListService" project="Movie" 
+    file="/Movie/src/member/svc/MemberListService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1517" y="1591"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="member.svc.MemberJoinProService" project="Movie" 
+    file="/Movie/src/member/svc/MemberJoinProService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1801" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="member.svc.DupCheckService" project="Movie" 
+    file="/Movie/src/member/svc/DupCheckService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2034" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="member.svc.MemberLoginProService" project="Movie" 
+    file="/Movie/src/member/svc/MemberLoginProService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2247" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="member.svc.MemberUpdateService" project="Movie" 
+    file="/Movie/src/member/svc/MemberUpdateService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2480" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="member.svc.MemberForgetEmailService" project="Movie" 
+    file="/Movie/src/member/svc/MemberForgetEmailService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2721" y="1582"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="member.vo.MemberBean" project="Movie" file="/Movie/src/member/vo/MemberBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="145" x="4546" y="-95"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="member.vo.MessageBean" project="Movie" 
+    file="/Movie/src/member/vo/MessageBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="178" x="4731" y="-95"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="movie.action.MovieDirectorAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieDirectorAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4692" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="movie.action.MovieExpectedGrade" project="Movie" 
+    file="/Movie/src/movie/action/MovieExpectedGrade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5079" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="movie.action.getMovieByChartAction" project="Movie" 
+    file="/Movie/src/movie/action/getMovieByChartAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5466" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="movie.action.MovieBoxOfficeAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieBoxOfficeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5853" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="movie.action.MovieReviewDeleteAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieReviewDeleteAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6240" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="movie.action.MovieBoxOfficeNationAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieBoxOfficeNationAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6627" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="movie.action.MovieDetailProAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieDetailProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7014" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="movie.action.getMovieByNationAction" project="Movie" 
+    file="/Movie/src/movie/action/getMovieByNationAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7401" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="movie.action.getMovieByTempAction" project="Movie" 
+    file="/Movie/src/movie/action/getMovieByTempAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7788" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="movie.action.MovieDirectorProAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieDirectorProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8175" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="movie.action.getMovieByGenreAction" project="Movie" 
+    file="/Movie/src/movie/action/getMovieByGenreAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8562" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="movie.action.MovieReviewAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieReviewAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8949" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="movie.action.MovieKeywordProAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieKeywordProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9336" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="movie.action.MovieDetailBySearch" project="Movie" 
+    file="/Movie/src/movie/action/MovieDetailBySearch.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9723" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="movie.action.getMovieByCollection" project="Movie" 
+    file="/Movie/src/movie/action/getMovieByCollection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8561" y="645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="movie.action.MovieGetGradeAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieGetGradeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8948" y="645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="movie.action.MovieGradeAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieGradeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8574" y="792"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="movie.action.MovieReviewUpdateAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieReviewUpdateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8961" y="792"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="movie.action.MovieNaverRankingAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieNaverRankingAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9348" y="792"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="movie.action.MovieActorProAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieActorProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9735" y="792"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="movie.action.MovieGetGradeModalAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieGetGradeModalAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8574" y="909"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="movie.action.MovieActorRoleAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieActorRoleAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8961" y="909"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="movie.action.MovieGetPosterForExpectationAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieGetPosterForExpectationAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9348" y="909"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="movie.action.MovieSetGradeAction" project="Movie" 
+    file="/Movie/src/movie/action/MovieSetGradeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9735" y="909"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="movie.controller.MovieFrontController" project="Movie" 
+    file="/Movie/src/movie/controller/MovieFrontController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4677" y="638"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="87" language="java" name="movie.dao.MovieDAO" project="Movie" file="/Movie/src/movie/dao/MovieDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5091" y="114"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="movie.exception.MovieChartExeption" project="Movie" 
+    file="/Movie/src/movie/exception/MovieChartExeption.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="157" x="5240" y="210"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="movie.svc.MovieChartService" project="Movie" 
+    file="/Movie/src/movie/svc/MovieChartService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5315" y="-37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="90" language="java" name="movie.svc.setGradeService" project="Movie" 
+    file="/Movie/src/movie/svc/setGradeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5522" y="-28"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="91" language="java" name="movie.svc.MovieGetPosterForExpectationService" project="Movie" 
+    file="/Movie/src/movie/svc/MovieGetPosterForExpectationService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5774" y="-37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="92" language="java" name="movie.svc.MovieGetService" project="Movie" 
+    file="/Movie/src/movie/svc/MovieGetService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6064" y="-19"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="93" language="java" name="movie.svc.MovieReviewService" project="Movie" 
+    file="/Movie/src/movie/svc/MovieReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6323" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="94" language="java" name="movie.vo.MovieBean" project="Movie" file="/Movie/src/movie/vo/MovieBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2909" y="1528"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="95" language="java" name="movie.vo.ReviewBean" project="Movie" file="/Movie/src/movie/vo/ReviewBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3068" y="1452"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="96" language="java" name="mypage.action.MypageChangeWishAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageChangeWishAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3355" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="97" language="java" name="mypage.action.MypageCollectionAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageCollectionAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3742" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="98" language="java" name="mypage.action.MypageAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4129" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="99" language="java" name="mypage.action.MypageInsertProfileAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageInsertProfileAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4516" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="100" language="java" name="mypage.action.MypageProAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageProAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4903" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="101" language="java" name="mypage.action.DupCheckAction" project="Movie" 
+    file="/Movie/src/mypage/action/DupCheckAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5290" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="102" language="java" name="mypage.action.MypageDirectorAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageDirectorAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5677" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="103" language="java" name="mypage.action.MypageNationAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageNationAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6064" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="104" language="java" name="mypage.action.Mypage" project="Movie" 
+    file="/Movie/src/mypage/action/Mypage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6337" y="1318"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="105" language="java" name="mypage.action.MypageCollectionDeleteAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageCollectionDeleteAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6610" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="106" language="java" name="mypage.action.MypageCollectionMovieAddAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageCollectionMovieAddAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6997" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="107" language="java" name="mypage.action.MypageCollectionUpdateAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageCollectionUpdateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7384" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="108" language="java" name="mypage.action.MypageGenerAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageGenerAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7771" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="109" language="java" name="mypage.action.MypageCollectionCreateAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageCollectionCreateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8158" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="110" language="java" name="mypage.action.MypageGradeAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageGradeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8545" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="111" language="java" name="mypage.action.MypageModifyProfileAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageModifyProfileAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8932" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="112" language="java" name="mypage.action.MypageSelectProfileTopAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageSelectProfileTopAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8587" y="1464"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="113" language="java" name="mypage.action.MypageSelectWishAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageSelectWishAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8974" y="1464"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="114" language="java" name="mypage.action.MypageSelectWishListAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageSelectWishListAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9361" y="1464"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="115" language="java" name="mypage.action.MypageDirectorSrcAction" project="Movie" 
+    file="/Movie/src/mypage/action/MypageDirectorSrcAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9748" y="1464"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="116" language="java" name="mypage.controller.MypageController" project="Movie" 
+    file="/Movie/src/mypage/controller/MypageController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3344" y="1461"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="117" language="java" name="mypage.dao.MypageDAO" project="Movie" 
+    file="/Movie/src/mypage/dao/MypageDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3688" y="1653"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="118" language="java" name="mypage.svc.MypageDeleteWishService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageDeleteWishService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="176" x="3964" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="119" language="java" name="mypage.svc.MypageCollectionMovieAddService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageCollectionMovieAddService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="238" x="4180" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="120" language="java" name="mypage.svc.MypageSelectWishListService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageSelectWishListService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="255" x="4458" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="121" language="java" name="mypage.svc.MypageProfileService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageProfileService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="193" x="4753" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="122" language="java" name="mypage.svc.MypageSelectWishService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageSelectWishService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="195" x="4986" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="123" language="java" name="mypage.svc.MypagePreferedThings" project="Movie" 
+    file="/Movie/src/mypage/svc/MypagePreferedThings.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="298" x="5221" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="124" language="java" name="mypage.svc.MypageAddCollectionService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageAddCollectionService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="268" x="5559" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="125" language="java" name="mypage.svc.MypageChangeWishService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageChangeWishService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="198" x="5867" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="126" language="java" name="mypage.svc.MypageGradeService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageGradeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="247" x="6105" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="127" language="java" name="mypage.svc.MypageService" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="213" x="6392" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="128" language="java" name="mypage.svc.MypageServiceForMain" project="Movie" 
+    file="/Movie/src/mypage/svc/MypageServiceForMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="267" x="6645" y="1484"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="129" language="java" name="mypage.vo.ProfileBean" project="Movie" 
+    file="/Movie/src/mypage/vo/ProfileBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4034" y="1780"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="130" language="java" name="mypage.vo.GenreBean" project="Movie" file="/Movie/src/mypage/vo/GenreBean.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4462" y="2113"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="131" language="java" name="mypage.vo.CollectionBean" project="Movie" 
+    file="/Movie/src/mypage/vo/CollectionBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4251" y="1861"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="132" language="java" name="mypage.vo.MypageBean" project="Movie" 
+    file="/Movie/src/mypage/vo/MypageBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4830" y="1969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="133" language="java" name="mypage.vo.MarkGenreBean" project="Movie" 
+    file="/Movie/src/mypage/vo/MarkGenreBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5244" y="1870"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="134" language="java" name="mypage.vo.GenreCountBean" project="Movie" 
+    file="/Movie/src/mypage/vo/GenreCountBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4653" y="2104"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="135" language="java" name="mypage.vo.MypageGenreBean" project="Movie" 
+    file="/Movie/src/mypage/vo/MypageGenreBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5003" y="1753"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="136" language="java" name="vo.ActionForward" project="Movie" file="/Movie/src/vo/ActionForward.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3238" y="1687"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="137">    
+    <end type="SOURCE" refId="96"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="139">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="140">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="141">    
+    <end type="SOURCE" refId="115"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="142">    
+    <end type="SOURCE" refId="84"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="143">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="144">    
+    <end type="SOURCE" refId="82"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="145">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="146">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="147" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="148" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="149">    
+    <end type="SOURCE" refId="112"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="150">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="151" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="152" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="153">    
+    <end type="SOURCE" refId="83"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="154">    
+    <end type="SOURCE" refId="101"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="155">    
+    <end type="SOURCE" refId="117" navigable="false">      
+      <attribute id="156" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="157" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="117" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="158">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="159">    
+    <end type="SOURCE" refId="68"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="160">    
+    <end type="SOURCE" refId="108"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="161">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="162">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="163">    
+    <end type="SOURCE" refId="63"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="164">    
+    <end type="SOURCE" refId="105"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="165">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="166">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="167">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="168">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="169">    
+    <end type="SOURCE" refId="69"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="170">    
+    <end type="SOURCE" refId="109"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="171">    
+    <end type="SOURCE" refId="97"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="172">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="173">    
+    <end type="SOURCE" refId="130"/>    
+    <end type="TARGET" refId="133"/>  
+  </realization>  
+  <realization id="174">    
+    <end type="SOURCE" refId="106"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="175">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="176">    
+    <end type="SOURCE" refId="70"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="177">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="178">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="179">    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="180">    
+    <end type="SOURCE" refId="78"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="181">    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="182">    
+    <end type="SOURCE" refId="134"/>    
+    <end type="TARGET" refId="133"/>  
+  </realization>  
+  <realization id="183">    
+    <end type="SOURCE" refId="85"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="184">    
+    <end type="SOURCE" refId="103"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="185">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="186">    
+    <end type="SOURCE" refId="113"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="187">    
+    <end type="SOURCE" refId="81"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="188">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="189">    
+    <end type="SOURCE" refId="98"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="190">    
+    <end type="SOURCE" refId="100"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="191">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="192">    
+    <end type="SOURCE" refId="107"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="193">    
+    <end type="SOURCE" refId="110"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="194">    
+    <end type="SOURCE" refId="102"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="195">    
+    <end type="SOURCE" refId="80"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="196">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="197">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="198" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="199" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="200">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="201">    
+    <end type="SOURCE" refId="62"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="202">    
+    <end type="SOURCE" refId="73"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="203">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="204">    
+    <end type="SOURCE" refId="71"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="205">    
+    <end type="SOURCE" refId="66"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="206">    
+    <end type="SOURCE" refId="74"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="207">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="208">    
+    <end type="SOURCE" refId="64"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="209">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="210" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="211" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="212">    
+    <end type="SOURCE" refId="75"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="213">    
+    <end type="SOURCE" refId="114"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="214">    
+    <end type="SOURCE" refId="87" navigable="false">      
+      <attribute id="215" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="216" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="87" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="217">    
+    <end type="SOURCE" refId="77"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="218">    
+    <end type="SOURCE" refId="111"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="219">    
+    <end type="SOURCE" refId="99"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="220">    
+    <end type="SOURCE" refId="79"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="221">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

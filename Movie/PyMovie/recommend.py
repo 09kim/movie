@@ -69,7 +69,7 @@ def drawGraph(data, name1, name2):
     plt.plot(li, li2, 'ro')  # plot 그리기
 
     # 각 축의 크기 설정 0에서 6까지
-    plt.axis([0, 6, 0, 6])
+    # plt.axis([6, 6, 6, 6])
 
     # x축과 y축 이름 설정
     plt.xlabel(name1)
@@ -79,7 +79,9 @@ def drawGraph(data, name1, name2):
     plt.show()
 
 
-# drawGraph(member, '태윤', 'test1')
+
+drawGraph(member, '야호', '야호2')
+
 
 # 피어슨 상관계수 구하기
 def sim_pearson(data, name1, name2):

@@ -51,10 +51,8 @@ $(document).ready(function(){
    $('#categoryMovie').change(function(){
       var type = $('#categoryMovie option:selected').val();
   	if($('.slick-track').length>0){
-  	alert("객체있음")
       $('.thisMovie').remove();
   	}else{
-  		alert("객체없음");
   		 $('.movieList').slick({
         	   dots: false,
              infinite: false,

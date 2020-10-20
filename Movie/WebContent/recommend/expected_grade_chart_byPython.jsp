@@ -49,8 +49,8 @@
               			 '<div class=title>'+title+'</div><div class=grade></div></div>');
               		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
                      
-                     
                      $('.grade').eq(i).append('예상 별점'+grade.toFixed(1));
+              		$('.grade').eq(i).css('color','#FFFF00');
                      $('.expectedGradePoster').eq(i).attr('href','MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+title);
 				}
 				

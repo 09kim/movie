@@ -837,7 +837,7 @@ function a() {
 				<fieldset>
 				<legend>패스워드</legend>
 				<div class="inputWithIcon inputIconBg">
-				  <input type="password" id="pass" name="pass" placeholder="Password"/>
+				  <input type="password" id="pass" name="pass" placeholder="Password" maxlength="15"/>
 				  <i class="fas fa-keyboard  fa-lg fa-fw" aria-hidden="true"></i>
 				</div>
 				  <div id="regPass"></div>

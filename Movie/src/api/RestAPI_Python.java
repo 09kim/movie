@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 public class RestAPI_Python {
 	public String getRecommendUser(String nick) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://127.0.0.1:5000/recommendUser/");
+				"http://192.168.5.25:5000/recommendUser/");
 				urlBuilder.append(URLEncoder.encode(nick, "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -34,7 +34,7 @@ public class RestAPI_Python {
 	
 	public String getExpectedGrade(String nick) throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://127.0.0.1:5000/expectedGrade/");
+				"http://192.168.5.25:5000/expectedGrade/");
 		urlBuilder.append(URLEncoder.encode(nick, "UTF-8"));
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -57,7 +57,7 @@ public class RestAPI_Python {
 	}
 	public String getNaver() throws IOException{
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://127.0.0.1:5000/getNaverRanking/");
+				"http://192.168.5.25:5000/getNaverRanking/");
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");

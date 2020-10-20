@@ -20,7 +20,6 @@ public class MypageCollectionCreateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("CollectionCreateAction 작동..제발");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String nick = (String)session.getAttribute("nick");
@@ -29,9 +28,6 @@ public class MypageCollectionCreateAction implements Action {
 		String[] poster = request.getParameterValues("poster");
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
-		System.out.println("콜렉션크리에이트 작동해라");
-		System.out.println(title[0]);
-		System.out.println(content);
 		String joinTitle = String.join(",", title);
 		String joinPoster = String.join(",", poster);
 		String joinMovieSeq = String.join("," , movieSeq);
@@ -45,7 +41,6 @@ public class MypageCollectionCreateAction implements Action {
 			}
 		}
 		
-		System.out.println(joinTitle + joinPoster + joinMovieSeq);
 		CollectionBean collectionBean = new CollectionBean();
 		collectionBean.setCollection_name(subject);
 		collectionBean.setContent(content);

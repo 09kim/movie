@@ -29,6 +29,7 @@ public class MypageDAO {
 		// 기존 MypageDAO 인스턴스가 없을 때만 생성하고, 있을 경우 생성하지 않음
 		if (instance == null) {
 			instance = new MypageDAO();
+			
 		}
 
 		return instance;

@@ -455,9 +455,9 @@
 	
 	             // 트레일러 영상 추가
 	             // 낙원 키
-	             var key = "AIzaSyAFCuBm8gWBOlb7U7BsVmPYB9QTfdCxUf0";
-	             // 영운 키
-	             //                         var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
+// 	             var key = "AIzaSyAFCuBm8gWBOlb7U7BsVmPYB9QTfdCxUf0";
+// 	             영운 키
+	                                     var key = "AIzaSyAVNyht3Y8C6lrx4Eiha9l3MsE7EItlHjI";
 	             var url = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&q=영화" + title3 + "예고편&part=id&type=video";
 	
 	             $.ajax({

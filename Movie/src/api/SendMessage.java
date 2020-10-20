@@ -15,10 +15,10 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class SendMessage {
 	
 	public String getCertificationNum(String phone) {
-		// 낙원 sms(실제 테스트제외하고 사용 하지 말것.. 잔액 얼마 안남음)
+//		 낙원 sms(실제 테스트제외하고 사용 하지 말것.. 잔액 얼마 안남음)
 //				String api_key = "NCSBLSZUNYTRLHOV";
 //				String api_secret = "LK2HBIOS9FOBMPZYKQ0JGXOVNYG46SCF";
-//영운 sms
+////영운 sms
     String api_key = "NCSITQNQU9QOWCME";
     String api_secret = "Y65VCPF93UELIM05B0GKIN1ROZYTNXZH";
     Message coolsms = new Message(api_key, api_secret);

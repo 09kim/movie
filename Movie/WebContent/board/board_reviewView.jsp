@@ -210,11 +210,11 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
     회원가입 또는 로그인 해주세요.
 </div>
  
-<div id="like-message" title="좋아요" style="display:none">
+<div id="like-message" title="좋아요" style="color:#000000 !important; display:none">
     이 댓글을 좋아요 하시겠습니까?
 </div>
 
-<div id="report-message" title="신고" style="display:none">
+<div id="report-message" title="신고" style="color:#000000 !important; display:none">
     이 댓글을 신고 하시겠습니까?
 </div>
 

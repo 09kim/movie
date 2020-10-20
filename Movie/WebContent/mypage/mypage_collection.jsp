@@ -150,18 +150,16 @@
 					<div class="collectionView">
 					<%for(int o = 0; o < collection.get(i).getTitle().split(",").length; o++){%>
 						<div class ="eachList<%=o %>" id="eachList">
-						<div id="modifyMovies"></div>
 						<img src="<%=collection.get(i).getPoster().split(",")[o]%>">
 						<br>
 						<a href="MovieDetailPro.mo?movieSeq=<%=collection.get(i).getMovieSeq().split(",")[o]%>
 						&query=<%=collection.get(i).getTitle().split(",")[o]%>"><%=collection.get(i).getTitle().split(",")[o]%></a>
-						
-						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br></div>
-						
+						<input type="button" class ="modifyDelBtn" id="eachList<%=o %>" value="삭제"><br>
 						<input type="hidden" name="movieSeq" value="<%=collection.get(i).getMovieSeq().split(",")[o]%>">
 						<input type="hidden" name="title" value="<%=collection.get(i).getTitle().split(",")[o]%>">
 						<input type="hidden" name="poster" value="<%=collection.get(i).getPoster().split(",")[o]%>">
 						<input type="hidden" name="idx" value="<%=collection.get(i).getIdx()%>">
+						</div>
 						
 						
 					<%} %></div>
@@ -179,40 +177,40 @@
 </section>
 <script type="text/javascript">
 
-$('.collectionView').slick({
-	   dots: false,
-     infinite: false,
-     arrows: true,
-     variableWidth:true,
-     speed: 300,
-     slidesToShow: 4,
-     slidesToScroll: 3,
-	   responsive: [
-	     {
-	       breakpoint: 1024,
-	       settings: {
-	         slidesToShow: 3,
-	         slidesToScroll: 3,
-	         infinite: false,
-	         dots: false
-	       }
-	     },
-	     {
-	       breakpoint: 600,
-	       settings: {
-	         slidesToShow: 2,
-	         slidesToScroll: 2
-	       }
-	     },
-	     {
-	       breakpoint: 480,
-	       settings: {
-	         slidesToShow: 1,
-	         slidesToScroll: 1
-	       }
-	     }
-	   ]
-	 });	
+// $('.collectionView').slick({
+// 	   dots: false,
+//      infinite: false,
+//      arrows: true,
+//      variableWidth:true,
+//      speed: 300,
+//      slidesToShow: 4,
+//      slidesToScroll: 3,
+// 	   responsive: [
+// 	     {
+// 	       breakpoint: 1024,
+// 	       settings: {
+// 	         slidesToShow: 3,
+// 	         slidesToScroll: 3,
+// 	         infinite: false,
+// 	         dots: false
+// 	       }
+// 	     },
+// 	     {
+// 	       breakpoint: 600,
+// 	       settings: {
+// 	         slidesToShow: 2,
+// 	         slidesToScroll: 2
+// 	       }
+// 	     },
+// 	     {
+// 	       breakpoint: 480,
+// 	       settings: {
+// 	         slidesToShow: 1,
+// 	         slidesToScroll: 1
+// 	       }
+// 	     }
+// 	   ]
+// 	 });	
 </script>
 	
 </body>

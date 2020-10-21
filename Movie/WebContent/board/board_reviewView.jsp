@@ -18,19 +18,19 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/reviewView.css" type="text/css" rel="stylesheet">
 
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
-<script src="../../../Movie/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 
 </head>
-<jsp:include page="/inc/top.jsp" /><br><br>
-<div class="clear"></div>
 <body>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
+	
     <h2 class="stick-h2">리뷰 상세보기</h2>
     <%for(ReviewBean rl : reviewList) { %>
     <h3 class="stick-h3"> <a href="javascript:history.back()">◀ </a><%=rl.getTitle() %> </h3>
@@ -210,13 +210,21 @@ int movieSeq = Integer.parseInt(request.getParameter("movieSeq"));
     회원가입 또는 로그인 해주세요.
 </div>
  
-<div id="like-message" title="좋아요" style="display:none">
+<div id="like-message" title="좋아요" style="color:#000000 !important; display:none">
     이 댓글을 좋아요 하시겠습니까?
 </div>
 
-<div id="report-message" title="신고" style="display:none">
+<div id="report-message" title="신고" style="color:#000000 !important; display:none">
     이 댓글을 신고 하시겠습니까?
 </div>
-              
+
+
+
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/mypagewish.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/jquery-ui.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/moviecss/movie.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/reviewView.css" type="text/css" rel="stylesheet">           
+<link href="${pageContext.request.contextPath}/css/movie_detail.css" type="text/css" rel="stylesheet">           
 </body>
 </html>

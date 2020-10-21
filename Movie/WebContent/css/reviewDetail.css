@@ -4,14 +4,14 @@
 
 .stick-h2 {
     position: sticky;
-    top: 0;
-    z-index: 9999;
-    background-color: #ffffff;
+    top: 65px;
+    z-index: 200;
+    background-color: #14141f;
 }
 
 .stick-h3 {
     position: fixed;
-    top: 5;
+    top: 100px;
     z-index: 9999;
     margin: 20px;
 }
@@ -50,7 +50,7 @@ a:hover, a:active {color: #ffff00; }
     color: #808080;
 }
 .replyBtn {
-	display:inline;
-	margin-right:5%;
+   display:inline;
+   margin-right:5%;
     float: right;
 }

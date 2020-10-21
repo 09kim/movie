@@ -448,6 +448,7 @@ public class BoardDAO {
 			e.printStackTrace();
 			System.out.println("BoardDAO - selectReport() 에러: " + e.getMessage());
 		} finally {
+			
 			close(rs);
 			close(pstmt);
 		}

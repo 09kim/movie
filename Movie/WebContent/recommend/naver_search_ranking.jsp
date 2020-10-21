@@ -8,9 +8,10 @@
 	position: fixed;
 	right: 50%;
 	top: 180px;
-	margin-right: -960px;
+	margin-right: -990px;
 	text-align: left;
 	width: 300px;
+	color: #FFFFFF
 }
 </style>
 
@@ -31,7 +32,7 @@ function auto_reload(){
 					$('.rank').append('<div class='+i+'></div>');
 					data[i] = data[i].replace('상승','<span style=color:red>&uarr;</span>');
 					data[i] = data[i].replace('하락','<span style=color:cyan>&darr;</span>');
-					data[i] = data[i].replace('동일0','<span style=color:black>-</span>');
+					data[i] = data[i].replace('동일0','<span style=color:#FFFFFF; >─</span>');
 					$('.'+i).append(data[i]);
 					 
 				}
@@ -42,6 +43,7 @@ function auto_reload(){
 		
 	});
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title></title>
 </head>

@@ -27,19 +27,19 @@ public class MemberEmailAction implements Action {
 		if(!checkResult) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('중복된 E-Mail입니다.')");
-			out.println("</script>");
+			out.print("<script>");
+			out.print("alert('중복된 E-Mail입니다.')");
+			out.print("</script>");
 		} else {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('사용할 수 있는 E-Mail 입니다.')");
-			out.println("</script>");
+			out.print("<script>");
+			out.print("alert('사용할 수 있는 E-Mail 입니다.')");
+			out.print("</script>");
 			String certificationNum_email = sendEmail.getCertificationNum(email);
-			out.println("인증 메세지가 전송되었습니다.");
-			out.println("<input type='text' id='hiddenCnum_email' value=" + certificationNum_email + ">");
-			System.out.println(certificationNum_email);
+			out.print("인증 메세지가 전송되었습니다.");
+			out.print("<input type='text' id='hiddenCnum_email' value=" + certificationNum_email + ">");
+			System.out.print(certificationNum_email);
 		}
 			
 			

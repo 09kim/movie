@@ -17,15 +17,15 @@
 					$('.genreMovie').prepend('<h1><%=nick %> 님이 좋아하는 장르의 영화들!</h1>')
 				}
 				$.each(data,function(index,item){
-					$('.MovieGenre').append("<div class=MovieGenreMovie>"+
-                 		   "<div><a class=MovieGenrePoster><img class=MovieGenrePoster_img></a></div>"+ // title 대신에 포스터클릭하면 넘어가게끔 변경 - 낙원:0930
-                 		   "<div class =MovieGenreMovieName></div>"+
-                 		   "<div class=MovieGenreNation></div></div>");
-                  		$('.MovieGenrePoster_img').eq(index).css("width","250px").css("height","350px");
-                  		$('.MovieGenrePoster_img').eq(index).attr("src",item.moviePoster);
-	         		   $('.MovieGenreNation').eq(index).text(item.nation);
+					
+					// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]					
+					 $('.MovieGenre').append("<div class=MovieGenreMovie>"+
+	                  			'<a class=MovieGenrePoster><div class=poster style="background-image: url('+item.moviePoster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
+	                  			 '<div class=nation>'+item.nation+'</div>'+
+	                  			 '<div class=title>'+item.movieTitle+'</div></div>');   
+					
 	                   $('.MovieGenrePoster').eq(index).attr('href','MovieDetailPro.mo?movieSeq='+item.movieSeq+'&query='+item.movieTitle);
-	                   $('.MovieGenreMovieName').eq(index).html(item.movieTitle);
+					// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
 				});
 				
 				$('.MovieGenre').slick({
@@ -63,12 +63,12 @@
 			     	   ]
 			     	 });	
 				
-			}
-		
+				}
 			
 		});
 	});
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 </head>
 <body>
 	<div class="genreMovie">

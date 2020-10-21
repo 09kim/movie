@@ -5,11 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/css/movieboard.css" rel="stylesheet" type="text/css">
-<script src="../../../Movie/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <script>
-
    $(document).ready(function() {
        var result;
        function getNation(openDt,title){ 
@@ -91,9 +89,15 @@
 </script>
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
+	<!-- 헤더 -->
+	<div style="width:100%;position: sticky !important;top:0;z-index: 100;">
+		<jsp:include page="/inc/top.jsp"/>
+		<div class="clear"></div>
+	</div>
+	<!-- 헤더 -->
     <h1>박스오피스 순위</h1>
     <div class="boxOffice"></div>
+    
+    <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
 </body>
 </html>

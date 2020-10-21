@@ -41,23 +41,17 @@
 					movieSeq = String(data[i]).substring(String(data[i]).indexOf('/')+1,String(data[i]).length); // 명시적 형변환 해줘야지 data 가 문자열 로 됨
 					poster = getPoster(movieSeq);
 					grade = grade/2
-					 $('.expectedGrade').append("<div class=expectedGradeMovie>"+
-                  		   "<a class=expectedGradePoster><img class=expectedGradePoster_img></a>"+
-                  		   "<div><div class=expectedGradeMovieName></div></div><div class=grade></div>"+
-                  		   "</div>");
 					
-                   
 					
-                     if(poster){
-                    	 $('.expectedGradePoster_img').eq(i).css("width","250px").css("height","350px");
-                     		$('.expectedGradePoster_img').eq(i).attr("src",poster);
-                     }else{
-                    	 $('.expectedGradePoster_img').eq(index).css("width","250px").css("height","350px");
-                  	 	$('.expectedGradePoster_img').eq(i).attr("src","../../../Movie/img/noImage.gif");
-                     }
+					// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [S]
+					  $('.expectedGrade').append("<div class=expectedGradeMovie>"+
+              			'<a class=expectedGradePoster><div class=poster style="background-image: url('+poster+'),url(${pageContext.request.contextPath}/img/noImage.gif;"></div></a>'+
+              			 '<div class=title>'+title+'</div><div class=grade></div></div>');
+              		// 디자인 맞춤때문에 코드 수정 - 낙원 : 1019 [E]
+                     
                      $('.grade').eq(i).append('예상 별점'+grade.toFixed(1));
+              		$('.grade').eq(i).css('color','#FFFF00');
                      $('.expectedGradePoster').eq(i).attr('href','MovieDetailPro.mo?movieSeq='+movieSeq+'&query='+title);
-                     $('.expectedGradeMovieName').eq(i).text(title);
 				}
 				
 				
@@ -96,12 +90,12 @@
 	            	   ]
 	            	 });
 				
-				
 			}
 		});
 		
-	});
+	}); // ready()끝
 </script>
+<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title></title>
 </head>

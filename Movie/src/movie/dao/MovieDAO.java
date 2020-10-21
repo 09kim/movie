@@ -128,15 +128,6 @@ public class MovieDAO {
 		int insertCount = 0;
 		
 		try {
-//			String sql = "select max(idx) from review";
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			int num = 0;;
-//			
-//			if(rs.next()) {
-//				num = rs.getInt(1) + 1;
-//			}
 
 			String sql = "SELECT * from grade where nick =? and movieSeq =?";
 			pstmt = con.prepareStatement(sql);

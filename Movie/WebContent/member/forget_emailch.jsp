@@ -4,18 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css">
+<title>미사용 페이지</title>
 </head>
 <body>
-<jsp:include page="/inc/top.jsp" />
-<div class="clear"></div>
-	<form action="ForgetPro.me" method="POST">
-		<h2>비밀번호 찾기</h2>
-		<hr>
-		<h4>입력하신 이메일로 발송된 인증번호를 입력해주세요.</h4>
-		이메일 : <input type="text" name="email" required="required"><br>
-		<input type="submit" value="다음">
-	</form>
 </body>
 </html>

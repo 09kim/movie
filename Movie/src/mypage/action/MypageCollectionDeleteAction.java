@@ -21,7 +21,7 @@ public class MypageCollectionDeleteAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MypageCollectionMovieAdd 작동");
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		
+		ActionForward forward = null;
 		MypageAddCollectionService service = new MypageAddCollectionService();
 		
 		boolean isDelete = service.deleteCollection(idx);
@@ -29,6 +29,9 @@ public class MypageCollectionDeleteAction implements Action{
 			
 		}
 		
-		return null;
+//		forward = new ActionForward();
+//		forward.setPath("/mypage/mypage.jsp");
+		
+		return forward;
 	}
 }

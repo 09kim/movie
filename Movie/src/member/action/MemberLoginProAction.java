@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import member.svc.MemberLoginProService;
 import member.vo.MemberBean;
+import mypage.svc.MypageProfileService;
+import mypage.vo.ProfileBean;
 import vo.ActionForward;
 
 public class MemberLoginProAction implements Action {
@@ -45,11 +47,24 @@ public class MemberLoginProAction implements Action {
 				out.println("</script>");	
 			}else {
 				
+				// 프로필 사진 받는 코드 - 낙원 : 1015[S]
+					MypageProfileService mypageProfileService = new MypageProfileService();
+			        ProfileBean profileBean = mypageProfileService.getProfile(nick);
+			        String savePath = profileBean.getSavePath();
+				    String uploadFileName = profileBean.getUploadFileName();
+				    String realProfilePath = savePath + "\\" + uploadFileName;
+//			        HttpSession session = request.getSession();
+				    HttpSession session = request.getSession();
+					session.setAttribute("nick", nick);
+					session.setAttribute("uploadFileName", uploadFileName);
+					request.setAttribute("nick", nick);
+			        request.setAttribute("uploadFileName", uploadFileName);
+				
+				
 				forward = new ActionForward();
 				forward.setRedirect(true);
 				forward.setPath("./");
-				HttpSession session = request.getSession();
-				session.setAttribute("nick", nick);
+				
 			}
 			
 		return forward;
